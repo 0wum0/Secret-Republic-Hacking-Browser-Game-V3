@@ -65,7 +65,7 @@ class Item
       $db->where('component_id', $this->data['component_id']);
       $specific = $db->getOne('components c', 'c.*');
     }
-    $this->data = serialize($specific, $this->data);
+    $this->data = array_merge($specific, $this->data);
   }
 
   function removeFromStorage()

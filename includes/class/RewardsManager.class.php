@@ -56,12 +56,12 @@ class RewardsManager {
       $value += floor(($value / 100) * $percentIncrease);
 
 
-    if ($login_days_in_row % 30 == 0)
+    if ($login_days_in_a_row % 30 == 0)
     {
       $reward['achievements'] = array(10);
     }
 
-    $reward['title'] = sprintf('Connect reward: %s day(s) in a row', $login_days_in_row);
+    $reward['title'] = sprintf('Connect reward: %s day(s) in a row', $login_days_in_a_row);
 
     return $reward;
   }

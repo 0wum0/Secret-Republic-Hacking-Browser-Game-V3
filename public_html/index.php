@@ -79,10 +79,10 @@ else require( $include );
 
 $tVars["GET"] = $GET;
 
-if (!$tVars["json"])
+if (empty($tVars["json"]))
 {
 
-  if ($tVars["show_404"])
+  if (!empty($tVars["show_404"]))
   {
     $tVars["audio"] = "eve/404.mp3";
 
@@ -92,25 +92,25 @@ if (!$tVars["json"])
   if (isset($tVars["display"]))
   {
 	/** HANDLE NOTICES DISPLAYED AFTER REDIRECTS **/
-	if ($_SESSION["success"])
+	if (!empty($_SESSION["success"]))
 		$success[]  = $_SESSION["success"];
 
-	if ($_SESSION["info"])
+	if (!empty($_SESSION["info"]))
 		$info[]  = $_SESSION["info"];
 
-	if ($_SESSION["error"])
+	if (!empty($_SESSION["error"]))
 		$errors[]  = $_SESSION["error"];
 
-	if ($_SESSION["warning"])
+	if (!empty($_SESSION["warning"]))
 		$warnings[]  = $_SESSION["warning"];
 
-	if ($_SESSION["voice"])
+	if (!empty($_SESSION["voice"]))
 		$voice = $_SESSION["voice"];
 
-	if ($_SESSION["messenger"])
+	if (!empty($_SESSION["messenger"]))
 	  $messenger[] = $_SESSION["messenger"];
 
-	if ($_SESSION["myModal"])
+	if (!empty($_SESSION["myModal"]))
 	  array_unshift($myModals, $_SESSION["myModal"]);
 
 	unset($_SESSION['myModal'], $_SESSION["success"], $_SESSION["error"], $_SESSION["warning"], $_SESSION["voice"], $_SESSION['info'], $_SESSION["messenger"]);

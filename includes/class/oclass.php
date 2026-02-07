@@ -61,7 +61,7 @@ class Organization extends Alpha
   var $nameChangeHpCost = 2;
   var $organizationCost = 100;
 
-  function Organization($organizationID = null)
+  function __construct($organizationID = null)
   {
 
     parent::__construct();

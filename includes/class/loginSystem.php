@@ -15,8 +15,12 @@ class LoginSystem extends Alpha
   {
     parent::__construct();
 
-	  ini_set('session.hash_function', 'sha512');
-	  ini_set('session.hash_bits_per_character', 5);
+	  // session.hash_function and session.hash_bits_per_character removed in PHP 8.1+
+	  // PHP 7.1+ uses session.sid_length and session.sid_bits_per_character instead
+	  if (PHP_VERSION_ID < 70100) {
+	    ini_set('session.hash_function', 'sha512');
+	    ini_set('session.hash_bits_per_character', 5);
+	  }
 	  ini_set('session.use_only_cookies', 1);
 	  session_name('_sr1');
     session_start();
@@ -107,7 +111,7 @@ class LoginSystem extends Alpha
   	{
         	$this->detectDevice = new Mobile_Detect;
   		    $_SESSION['detectDevice']['mobile'] = $this->detectDevice->isMobile();
-          $_SESSION['detectDevice']['table'] = $this->detectDevice->isTable();
+          $_SESSION['detectDevice']['tablet'] = $this->detectDevice->isTablet();
   	}
     $this->templateVariables['detectDevice'] = session('detectDevice');
 

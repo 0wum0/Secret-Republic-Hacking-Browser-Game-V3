@@ -109,7 +109,7 @@ class LoginSystem extends Alpha
 
     if (!session('detectDevice'))
   	{
-        	$this->detectDevice = new Mobile_Detect;
+        	$this->detectDevice = new \Detection\MobileDetect;
   		    $_SESSION['detectDevice']['mobile'] = $this->detectDevice->isMobile();
           $_SESSION['detectDevice']['tablet'] = $this->detectDevice->isTablet();
   	}

@@ -287,8 +287,8 @@ $groups = $db->rawQuery(sprintf(
                           (select count(*) from quests qq where qq.qgroup_id = hqg.qgroup_id and isLive = 1) nrQuestsLive
                           from quest_groups as hqg
 						  %s
-                          group by hqg.qgroup_id order by type desc, gorder asc",
-  						  $user['miniQuestManager'] ? "where hqg.creator_user_id = ".$user['id'] : ""));
+                          order by type desc, gorder asc",
+  						  !empty($user['miniQuestManager']) ? "where hqg.creator_user_id = ".intval($user['id']) : ""));
 
   if ($user['miniQuestManager'])
   	$db->where("creatorid", $user['id']);

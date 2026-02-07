@@ -14,6 +14,8 @@ if ($cardinal) {
 
 $growl = $myModals = array();
 $success = $warnings = $errors = $info = array();
+$messenger = array();
+$voice = null;
 
 require("../includes/class/paginator.class.php");
 
@@ -21,7 +23,7 @@ require_once('class/taskclass.php');
 
 if (!$logged) {
 
-  if ($GET['i'] && !$_SESSION['referrer']) {
+  if (!empty($GET['i']) && empty($_SESSION['referrer'])) {
     $_SESSION['referrer'] = base64_decode($GET['i']);
 
   } //$GET['i'] && !$_SESSION['referrer']
@@ -57,7 +59,7 @@ else {
           echo "Undefined required function in tutorial.php: " . $functionName;
           die();
         }
-        eval($functionName . "();");
+        $functionName();
       } elseif ($_POST['nextTutorialStep'] || $_POST['skipStep']) {
         $tutorial['step']++;
         $uclass->updatePlayer(array(

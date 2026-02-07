@@ -3,6 +3,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 
+#[\AllowDynamicProperties]
 class Alpha {
 
   function __construct() {
@@ -186,22 +187,22 @@ class Alpha {
     <html><head><meta http-equiv='Refresh' content='0;URL={$url}' /></head><body></body></html>
     META;*/
 
-    if (count($this->errors))
-      $_SESSION['error'] .= ($_SESSION['error'] != '' ? '<br/>' : '') . (is_array($this->errors) ? implode('<br/>', $this->errors) : $this->errors);
+    if (!empty($this->errors))
+      $_SESSION['error'] = (!empty($_SESSION['error']) ? $_SESSION['error'] . '<br/>' : '') . (is_array($this->errors) ? implode('<br/>', $this->errors) : $this->errors);
 
-    if ($this->success)
-      $_SESSION['success'] .= ($_SESSION['success'] != '' ? '<br/>' : '') . (is_array($this->success) ? implode('<br/>', $this->success) : $this->success);
+    if (!empty($this->success))
+      $_SESSION['success'] = (!empty($_SESSION['success']) ? $_SESSION['success'] . '<br/>' : '') . (is_array($this->success) ? implode('<br/>', $this->success) : $this->success);
 
-    if ($this->info)
-      $_SESSION['info'] .= ($_SESSION['info'] != '' ? '<br/>' : '') . (is_array($this->info) ? implode('<br/>', $this->info) : $this->info);
+    if (!empty($this->info))
+      $_SESSION['info'] = (!empty($_SESSION['info']) ? $_SESSION['info'] . '<br/>' : '') . (is_array($this->info) ? implode('<br/>', $this->info) : $this->info);
 
-    if ($this->warnings)
-      $_SESSION['warnings'] .= ($_SESSION['warnings'] != '' ? '<br/>' : '') . (is_array($this->warnings) ? implode('<br/>', $this->warnings) : $this->warnings);
+    if (!empty($this->warnings))
+      $_SESSION['warnings'] = (!empty($_SESSION['warnings']) ? $_SESSION['warnings'] . '<br/>' : '') . (is_array($this->warnings) ? implode('<br/>', $this->warnings) : $this->warnings);
 
-    if ($this->voice)
+    if (!empty($this->voice))
       $_SESSION['voice'] = $this->voice;
 
-    if ($myModals[0])
+    if (!empty($myModals[0]))
       $_SESSION['myModal'] = $myModals[0];
 
     if ($keepPostData && count($_POST)) {

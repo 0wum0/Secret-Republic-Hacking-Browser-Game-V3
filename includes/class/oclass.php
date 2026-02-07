@@ -2,9 +2,9 @@
 
 class OrganizationEntity extends Alpha
 {
-  var $data;
-  var $perms;
-  var $permissions = array('viewMembers', 'manageMembers', 'manageRanks', 'manageOrganization', 'messageAll', 'manageApplications', 'manageWars', 'forumManager', 'manageHackingPoints');
+  public $data;
+  public $perms;
+  public $permissions = array('viewMembers', 'manageMembers', 'manageRanks', 'manageOrganization', 'messageAll', 'manageApplications', 'manageWars', 'forumManager', 'manageHackingPoints');
 
   function __construct($organizationID)
   {
@@ -51,15 +51,15 @@ class OrganizationEntity extends Alpha
 class Organization extends Alpha
 {
 
-  var $organization;
-  var $perms;
-  var $permissions = array('viewMembers', 'manageMembers', 'manageRanks', 'manageOrganization', 'messageAll', 'manageApplications', 'manageWars', 'forumManager', 'manageHackingPoints');
-  var $permissionNames = array('View members', 'Manage members', 'Manage ranks', 'Edit organization', 'Message all', 'Manage Applications', 'Manage wars', 'Manage forum', 'Manage Hacking Points (upgrade org.)');
-  var $requestExpireTime = 1;
-  var $organizationQuest = 39;
-  var $forced_request_hp_cost = 100;
-  var $nameChangeHpCost = 2;
-  var $organizationCost = 100;
+  public $organization;
+  public $perms;
+  public $permissions = array('viewMembers', 'manageMembers', 'manageRanks', 'manageOrganization', 'messageAll', 'manageApplications', 'manageWars', 'forumManager', 'manageHackingPoints');
+  public $permissionNames = array('View members', 'Manage members', 'Manage ranks', 'Edit organization', 'Message all', 'Manage Applications', 'Manage wars', 'Manage forum', 'Manage Hacking Points (upgrade org.)');
+  public $requestExpireTime = 1;
+  public $organizationQuest = 39;
+  public $forced_request_hp_cost = 100;
+  public $nameChangeHpCost = 2;
+  public $organizationCost = 100;
 
   function __construct($organizationID = null)
   {

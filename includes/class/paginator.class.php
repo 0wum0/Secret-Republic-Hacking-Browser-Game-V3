@@ -8,16 +8,16 @@
  * @license CC Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0) - http://creativecommons.org/licenses/by-sa/3.0/
  */
 class Paginator{
-	var $items_per_page;
-	var $items_total;
-	var $current_page;
-	var $num_pages;
-	var $mid_range;
-	var $low;
-	var $limit;
-	var $return;
-	var $url;
-	var $ipp_array;
+	public $items_per_page;
+	public $items_total;
+	public $current_page;
+	public $num_pages;
+	public $mid_range;
+	public $low;
+	public $limit;
+	public $return;
+	public $url;
+	public $ipp_array;
 
 	function __construct()
 	{

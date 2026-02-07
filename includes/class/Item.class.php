@@ -1,8 +1,8 @@
 <?php
 class Item 
 {
-  var $data;
-  var $item_type;
+  public $data;
+  public $item_type;
 
   function __construct($data = false)
   {  

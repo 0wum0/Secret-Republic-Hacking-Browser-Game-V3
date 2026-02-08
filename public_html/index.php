@@ -29,6 +29,23 @@ if (!is_dir($configDir)) {
 }
 $smarty->setConfigDir($configDir);
 
+// Smarty 5: PHP-Funktionen muessen explizit als Modifier registriert werden
+$_smartyPhpModifiers = [
+    'ceil', 'floor', 'round', 'abs', 'intval', 'floatval',
+    'count', 'in_array', 'is_array', 'array_keys', 'array_values',
+    'strtoupper', 'strtolower', 'ucfirst', 'substr', 'str_pad', 'strlen', 'trim',
+    'number_format', 'nl2br', 'urlencode', 'urldecode',
+    'htmlentities', 'htmlspecialchars', 'strip_tags',
+    'json_encode', 'json_decode',
+    'print_r', 'var_export',
+    'date', 'time', 'strtotime',
+    'md5', 'sha1', 'base64_encode', 'base64_decode',
+];
+foreach ($_smartyPhpModifiers as $_mod) {
+    $smarty->registerPlugin('modifier', $_mod, $_mod);
+}
+unset($_smartyPhpModifiers, $_mod);
+
 $pageURL = array_filter(explode('/', stripslashes($_SERVER['REQUEST_URI'])));
 $containsPage = array_search('page', $pageURL);
 if ($containsPage) {
@@ -76,6 +93,14 @@ $_GET = array_merge(array("GET" => $_GET), $GET ?? array());
 
 
 require_once('../includes/header.php');
+
+// Smarty 5: Custom app functions als Modifier registrieren (nach header.php geladen)
+if (function_exists('date_fashion'))    $smarty->registerPlugin('modifier', 'date_fashion', 'date_fashion');
+if (function_exists('profile_link'))    $smarty->registerPlugin('modifier', 'profile_link', 'profile_link');
+if (function_exists('romanic_number'))  $smarty->registerPlugin('modifier', 'romanic_number', 'romanic_number');
+if (function_exists('sec2hms'))         $smarty->registerPlugin('modifier', 'sec2hms', 'sec2hms');
+if (function_exists('ordinal'))         $smarty->registerPlugin('modifier', 'ordinal', 'ordinal');
+if (function_exists('ordinalSuffix'))   $smarty->registerPlugin('modifier', 'ordinalSuffix', 'ordinalSuffix');
 
 $include = file_exists("../includes/modules/" . $include . ".php") ? "../includes/modules/" . $include . ".php" : '404';
 if ($include == "404")

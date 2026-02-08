@@ -191,10 +191,10 @@
                     </div>
                     <div class="row">
                       <div class="col-md-6 value">
-                         {$round.layers.attacker.attack|number_Format} ATK
+                         {$round.layers.attacker.attack|number_format} ATK
                       </div>
                       <div class="col-md-6 value">
-                          {$round.layers.attacker.defense|number_Format} DEF
+                          {$round.layers.attacker.defense|number_format} DEF
                       </div>
                     </div>
                   </div>
@@ -204,10 +204,10 @@
                   </div>
                     <div class="row">
                       <div class="col-md-6 value">
-                         {$round.layers.defender.attack|number_Format} ATK
+                         {$round.layers.defender.attack|number_format} ATK
                       </div>
                       <div class="col-md-6 value">
-                          {$round.layers.defender.defense|number_Format} DEF
+                          {$round.layers.defender.defense|number_format} DEF
                       </div>
                     </div>
                   </div>
@@ -236,10 +236,10 @@
             <div class="row">
               <div class="col-xs-6">
                 <button disabled>
-                  ATK: {$round.layers.attacker.attack|number_Format}
+                  ATK: {$round.layers.attacker.attack|number_format}
               </div>
               <div class="col-xs-6">
-              <button disabled>DEF: {$round.layers.attacker.defense|number_Format}
+              <button disabled>DEF: {$round.layers.attacker.defense|number_format}
               </div>
             </div>
             <h4>
@@ -255,10 +255,10 @@
             </h4>
             <div class="row">
             <div class="col-xs-6">
-            <button disabled>ATK: {$round.layers.defender.attack|number_Format}
+            <button disabled>ATK: {$round.layers.defender.attack|number_format}
             </div>
             <div class="col-xs-6">
-            <button disabled>DEF: {$round.layers.defender.defense|number_Format}
+            <button disabled>DEF: {$round.layers.defender.defense|number_format}
             </div>
             </div>
           </div>

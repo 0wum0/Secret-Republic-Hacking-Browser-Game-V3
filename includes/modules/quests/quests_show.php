@@ -21,7 +21,7 @@
 
         if (!$group["qgroup_id"])
           $cardinal->redirect(URL);
-        if ($group['premium'] && !$_SESSION['premium'][$group['premium']])
+        if ($group['premium'] && empty($_SESSION['premium'][$group['premium']]))
 			$cardinal->redirect(URL.'alpha_coins/option/' . $group['premium']);
 
         if ($user['in_party'])

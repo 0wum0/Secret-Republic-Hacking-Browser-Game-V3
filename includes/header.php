@@ -74,7 +74,7 @@ else {
           $uclass->addReward($user['id'], $tutorial['tutorialStep']['rewards'], "Tutorial: " . $tutorial['tutorialStep']['title']);
         }
         if ($tutorial['step'] > $config['tutorialSteps']) {
-          $info = "Congratulations, you have completed the beginner introductory sequence. Let the hacking begin!";
+          $info[] = "Congratulations, you have completed the beginner introductory sequence. Let the hacking begin!";
           unset($_SESSION['showTutorial'], $tutorial);
         } //$tutorial['step'] > $config['tutorialSteps']
 

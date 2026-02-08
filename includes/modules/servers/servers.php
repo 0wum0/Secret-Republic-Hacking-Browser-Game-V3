@@ -109,7 +109,7 @@ elseif (isset($GET['server']))
 	//$server->recomputeServerResources();
 	if ($GET['change'] == "hostname")
 	{
-		if (!$_SESSION['premium']['serversHostname'])
+		if (empty($_SESSION['premium']['serversHostname']))
 		{
 			$_SESSION['error'] = "You need to activate the Hostname Changer service to access it";
 			$cardinal->redirect(URL.'alpha_coins/option/serversHostname');

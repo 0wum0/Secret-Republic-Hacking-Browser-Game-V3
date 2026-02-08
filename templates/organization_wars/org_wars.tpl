@@ -22,7 +22,7 @@
 			{if $war.start <= time()}
 				war started 
 			{else}war will start{/if} 
-			{$war.start|date_Fashion}
+			{$war.start|date_fashion}
 		</div>
 	</div>
 	
@@ -54,7 +54,7 @@
 	</div>
 	<div class="col-md-5">
 		<div class="well black text-right">
-			finished {$war.finished|date_Fashion}
+			finished {$war.finished|date_fashion}
 		</div>
 	</div>
 	

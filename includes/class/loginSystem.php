@@ -95,7 +95,7 @@ class LoginSystem extends Alpha
       }
 
 
-      $this->user = array_merge($this->user, session('group'), $userData, session('user'));
+      $this->user = array_merge($this->user, (array)session('group'), $userData, (array)session('user'));
 
       if ($this->user['in_party'] || session('party'))
         if (!session('party'))

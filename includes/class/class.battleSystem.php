@@ -57,12 +57,12 @@ class BattleSystem extends Alpha {
             if (in_array($layerIndex, array_keys($skillData["layer"]))) {
 
               //$senderLayers[$layerIndex]["defense"] += $sender["skills"][$skillID] * $skillData["layer"][$layerIndex];
-              $player['layers'][$layerIndex]["defense"] += $player["skills"][$skillID] * $skillData["layer"][$layerIndex];
+              $player['layers'][$layerIndex]["defense"] = ($player['layers'][$layerIndex]["defense"] ?? 0) + $player["skills"][$skillID] * $skillData["layer"][$layerIndex];
             } //in_array($layerIndex, array_keys($skillData["layers"]))
 
             // skills that damage layer
             if (in_array(-$layerIndex, array_keys($skillData["layer"]))) {
-              $player['layers'][$layerIndex]["attack"] += $player["skills"][$skillID] * $skillData["layer"][-$layerIndex];
+              $player['layers'][$layerIndex]["attack"] = ($player['layers'][$layerIndex]["attack"] ?? 0) + $player["skills"][$skillID] * $skillData["layer"][-$layerIndex];
               //$receiverLayers[$layerIndex]["attack"] += $receiver["skills"][$skillID] * $skillData["layer"][-$layerIndex];
             } //in_array(-$layerIndex, $skillData["layer"])
           } //isset($skillData["layer"])
@@ -73,10 +73,10 @@ class BattleSystem extends Alpha {
         foreach ($player['servers'] as $serv)
           foreach ($serv['server']->skills as $skill => $data) {
             if (in_array($layerIndex, array_keys($theskills[$skill]["layer"]))) {
-              $player['layers'][$layerIndex]["defense"] += $data["level"] * $theskills[$skill]["layer"][$layerIndex];
+              $player['layers'][$layerIndex]["defense"] = ($player['layers'][$layerIndex]["defense"] ?? 0) + $data["level"] * $theskills[$skill]["layer"][$layerIndex];
             }
             if (in_array(-$layerIndex, array_keys($theskills[$skill]["layer"]))) {
-              $player['layers'][$layerIndex]["attack"] += $data["level"] * $theskills[$skill]["layer"][-$layerIndex];
+              $player['layers'][$layerIndex]["attack"] = ($player['layers'][$layerIndex]["attack"] ?? 0) + $data["level"] * $theskills[$skill]["layer"][-$layerIndex];
             }
 
           }
@@ -91,17 +91,17 @@ class BattleSystem extends Alpha {
       foreach ($player['skills'] as $skillID => $level)
         if (isset($theskills[$skillID]["spy"]))
           if ($theskills[$skillID]["spy"] > 0) {
-            $player["spyProtection"] += $level * $theskills[$skillID]["spy"];
+            $player["spyProtection"] = ($player["spyProtection"] ?? 0) + $level * $theskills[$skillID]["spy"];
 
           } else
-            $player["spyAttack"] += $level * (-$theskills[$skillID]["spy"]);
+            $player["spyAttack"] = ($player["spyAttack"] ?? 0) + $level * (-$theskills[$skillID]["spy"]);
 
       foreach ($player['servers'] as $serv)
         foreach ($serv['server']->skills as $skill => $data)
           if ($theskills[$skill]["spy"] > 0)
-            $player["spyProtection"] += $data['level'] * $theskills[$skill]["spy"];
+            $player["spyProtection"] = ($player["spyProtection"] ?? 0) + $data['level'] * $theskills[$skill]["spy"];
           else
-            $player["spyAttack"] += $data['level'] * (-$theskills[$skill]["spy"]);
+            $player["spyAttack"] = ($player["spyAttack"] ?? 0) + $data['level'] * (-$theskills[$skill]["spy"]);
 
       $player["spyProtection"] *= 100;
       $player["spyAttack"] *= 100;

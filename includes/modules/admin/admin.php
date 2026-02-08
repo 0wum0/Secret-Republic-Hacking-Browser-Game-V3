@@ -14,7 +14,7 @@ if ($GET["duality"] == "deactivate")
     $cardinal->redirect(URL);
 }
 
-if ($_SESSION['premium']['questManager'] && !$user["globalQuestManager"] && !$user["questManager"])
+if (!empty($_SESSION['premium']['questManager']) && !$user["globalQuestManager"] && !$user["questManager"])
 {
     $user['miniQuestManager'] = true;
     $user['questManager'] = true;

@@ -1,7 +1,7 @@
 <?php
 $cardinal->mustLogin();
-$maxContentSize = $_SESSION['premium']['notes'] ? 50000 : 500;
-$nrNotes = $_SESSION['premium']['notes'] ? 5 : 1;
+$maxContentSize = !empty($_SESSION['premium']['notes']) ? 50000 : 500;
+$nrNotes = !empty($_SESSION['premium']['notes']) ? 5 : 1;
 
 if ($GET['note'])
 {

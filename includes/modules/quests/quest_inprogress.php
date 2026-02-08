@@ -2,7 +2,7 @@
 if ($GET['history'])
 {
 
-    if (!$_SESSION['premium']['consoleHistory']) $errors[] = "You need to <a href='" . URL . "alpha_coins/option/consoleHistory'>activate the Console History</a> before using it. You will gain access to your full history and in case of party missions you will be able to view the history of all participants.";
+    if (empty($_SESSION['premium']['consoleHistory'])) $errors[] = "You need to <a href='" . URL . "alpha_coins/option/consoleHistory'>activate the Console History</a> before using it. You will gain access to your full history and in case of party missions you will be able to view the history of all participants.";
     else
     {
         if ($_POST['participant']) $cardinal->redirect(URL . 'quests/history/show/participant/' . $_POST['participant']);

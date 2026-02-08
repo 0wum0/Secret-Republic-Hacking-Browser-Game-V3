@@ -62,16 +62,16 @@ class QClass extends Alpha
       //Process console input commands
       if ($this->consoleInput = strip_tags($_POST['console'])) {
         $micro = microtime(true);
-        if ($_SESSTION['lastConsole'] <= ($micro - 0.8)) {
+        if (($_SESSION['lastConsole'] ?? 0) <= ($micro - 0.8)) {
 
-          $_SESSTION['lastConsole'] = $micro;
+          $_SESSION['lastConsole'] = $micro;
           $this->console();
         } //$_SESSTION['lastConsole'] <= ($micro - 0.8)
         else
           $this->consoleOutput = 'Server is busy';
       } //$this->consoleInput = $_POST['console']
 
-      $notepadAllowed = $_SESSION['premium']['missionNotepad'];
+      $notepadAllowed = !empty($_SESSION['premium']['missionNotepad']);
 
       if (($content = $_POST['notepad']) && $notepadAllowed && strlen($content) < 1002)
 	  {
@@ -216,7 +216,7 @@ class QClass extends Alpha
        $this->jsonOutput['remainingSeconds'] = $this->questTask['remainingSeconds'];
        $this->jsonOutput['totalSeconds'] = $this->questTask['totalSeconds'];
 
-      if (!$this->user['id'] || $this->user['aiVoice'] && $_SESSION['premium']['ai']) {
+      if (!$this->user['id'] || $this->user['aiVoice'] && !empty($_SESSION['premium']['ai'])) {
         $this->jsonOutput['voice'] = $this->voice;
       } //$_SESSION['premium']['ai'] > time() || $this->user['cardinal']
 

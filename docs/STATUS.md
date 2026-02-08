@@ -101,12 +101,19 @@
 |-------|-----------|
 | `includes/install/DB.sql` | user_bank.amount DEFAULT 0 |
 
+### SQL ONLY_FULL_GROUP_BY Compliance
+| Datei | Aenderung |
+|-------|-----------|
+| `includes/modules/quests/quests_show.php` | Quest-Liste: MAX() fuer Aggregation, alle q.* Spalten in GROUP BY; Gruppen: GROUP BY entfernt (unnoetig) |
+| `includes/modules/admin/manageUsers.php` | Admin Missions: MAX(created), alle Spalten in GROUP BY |
+
 ### CI / Docs
 | Datei | Aenderung |
 |-------|-----------|
 | `.github/workflows/php.yml` | phplint --exclude=vendor |
 | `docs/STATUS.md` | Diese Datei |
 | `docs/RUNBOOK.md` | Setup, ENV, Cron, Smoke-Tests |
+| `docs/sql_missions_audit.md` | Detailliertes SQL Audit aller GROUP BY Queries |
 
 ---
 
@@ -116,3 +123,4 @@ Keine offenen Blocker. Folgende Punkte sind nur bei Runtime/DB relevant:
 - E-Mail-Versand: Funktioniert nur mit gesetzten SMTP ENV-Variablen
 - reCAPTCHA: Funktioniert nur mit gesetzten RECAPTCHA ENV-Variablen
 - Cron-Jobs: Benoetigen konfigurierten Cron-Key in der Datenbank
+- ONLY_FULL_GROUP_BY: Alle Queries konform, getestet mit aktivem Mode

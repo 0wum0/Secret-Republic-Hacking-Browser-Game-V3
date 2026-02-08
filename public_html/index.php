@@ -18,7 +18,7 @@ $path = explode('/', $path);
 unset( $path[count($path) - 1]);
 
 
-$smarty = new Smarty;
+$smarty = new \Smarty\Smarty;
 $smarty->setTemplateDir(implode('/', $path) . '/' . 'templates');
 $smarty->setCompileDir(implode('/', $path) . '/' . 'includes/templates_c');
 $smarty->setCacheDir(implode('/', $path) . '/' . 'includes/cache');

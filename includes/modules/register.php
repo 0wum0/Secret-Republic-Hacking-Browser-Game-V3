@@ -5,7 +5,7 @@
 require("../includes/class/registrationSystem.php");
 $registrationSystem = new RegistrationSystem;
 
-if(!$logged && $_GET['reset'])
+if(!$logged && !empty($_GET['reset']))
 {
 	$checkCode = $db->where("hash_code", $_GET['reset'])->where('used', 0)->where('created', time()-48*60*60, '>')->getOne("user_reset_password", "user_id, reset_id");
 
@@ -23,9 +23,9 @@ if(!$logged && $_GET['reset'])
 		if ($_POST['password'] != $_POST['confirm_password'])
 			$errors[] = "The two passwords did not match";
 
-		if (!count($errors))
-		{
-			$credentials = $db->join('users u', 'u.id = uid', 'left outer')
+	if (!count($errors ?? []))
+	{
+		$credentials = $db->join('users u', 'u.id = uid', 'left outer')
 							  ->where('uid', $checkCode['user_id'])
 							  ->getOne('user_credentials', 'email, password, pin, username');
 
@@ -44,7 +44,7 @@ if(!$logged && $_GET['reset'])
 
 
 }
-elseif ($logged && $_SESSION['unconfirmed_email'] && $_GET['resend'] == "confirmation")
+elseif ($logged && !empty($_SESSION['unconfirmed_email']) && ($_GET['resend'] ?? '') === "confirmation")
 {
 	if ($registrationSystem->sendEmailConfirmation())
 		add_alert("A confirmation email valid for 48 hours has been sent your way. Please wait up to an hour to receive it before requestin again.", "success");
@@ -52,14 +52,14 @@ elseif ($logged && $_SESSION['unconfirmed_email'] && $_GET['resend'] == "confirm
 	$cardinal->redirect(URL);
 
 }
-elseif ( ($hash_code = $_GET['confirm']) && (!$logged || $_SESSION['unconfirmed_email']))
+elseif ( ($hash_code = ($_GET['confirm'] ?? '')) && (!$logged || !empty($_SESSION['unconfirmed_email'])))
 {
 	$confirm = $db->where("hash_code", $hash_code)->where('used', 0)->where('created', time() - 2 * 24 * 60 * 60, ">=")->getOne("user_email_confirmation", 'confirm_id, user_id');
 
 	if ($confirm['confirm_id'])
 	{
 		$db->where("confirm_id", $confirm['confirm_id'])->update("user_email_confirmation", array("used" => time()), 1);
-		$db->where("uid", $confir['user_id'])->update("user_credentials", array("email_confirmed"=>1), 1);
+		$db->where("uid", $confirm['user_id'])->update("user_credentials", array("email_confirmed"=>1), 1);
 		unset($_SESSION['unconfirmed_email']);
 		$_SESSION['success'] = "Your email has been confirmed";
 	}
@@ -67,13 +67,13 @@ elseif ( ($hash_code = $_GET['confirm']) && (!$logged || $_SESSION['unconfirmed_
 
 	$cardinal->redirect(URL);
 }
-elseif (!$logged && $GET["forgot"])
+elseif (!$logged && !empty($GET["forgot"]))
 {
   if ($_POST['email'])
   {
   	if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
   		$errors[] = "Invalid email format";
-  	if (!count($errors))
+  	if (!count($errors ?? []))
   	{
   		$checkCredentials = $db->join('users u', 'u.id = uc.uid', 'left outer')
   		                       ->where("email", $_POST['email'])->getOne("user_credentials uc", "uid, u.username, email, pin");

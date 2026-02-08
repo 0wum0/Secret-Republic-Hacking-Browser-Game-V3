@@ -31,7 +31,7 @@ class RegistrationSystem extends Alpha
     } //$email === false
     elseif ($this->isEmailUsed($email))
       add_alert($email . ' has already been used by another citizen.');
-    elseif (!checkdnsrr($domain = array_pop(explode("@", $email)), "MX")) {
+    elseif (!checkdnsrr($domain = substr(strrchr($email, "@"), 1), "MX")) {
       add_alert('Cardinal System: I could not validate your email domain ['.$domain.']. This might be an error on my part. However, make sure you have not misspelled your address.', "warning");
     }
 

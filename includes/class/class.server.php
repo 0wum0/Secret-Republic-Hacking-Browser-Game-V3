@@ -1,7 +1,7 @@
 <?php
 
 class Server extends Alpha {
-  var $componentNonStackable = array(1 => 'cpu', 2 => 'motherboard', 3 => 'case', 4 => 'power_source');
+  public $componentNonStackable = array(1 => 'cpu', 2 => 'motherboard', 3 => 'case', 4 => 'power_source');
   function __construct($server_id = false, $server = false) {
     parent::__construct();
 

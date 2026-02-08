@@ -71,7 +71,7 @@ class QClass extends Alpha
           $this->consoleOutput = 'Server is busy';
       } //$this->consoleInput = $_POST['console']
 
-      $notepadAllowed = $_SESSION['premium']['missionNotepad'];
+      $notepadAllowed = !empty($_SESSION['premium']['missionNotepad']);
 
       if (($content = $_POST['notepad']) && $notepadAllowed && strlen($content) < 1002)
 	  {
@@ -216,7 +216,7 @@ class QClass extends Alpha
        $this->jsonOutput['remainingSeconds'] = $this->questTask['remainingSeconds'];
        $this->jsonOutput['totalSeconds'] = $this->questTask['totalSeconds'];
 
-      if (!$this->user['id'] || $this->user['aiVoice'] && $_SESSION['premium']['ai']) {
+      if (!$this->user['id'] || $this->user['aiVoice'] && !empty($_SESSION['premium']['ai'])) {
         $this->jsonOutput['voice'] = $this->voice;
       } //$_SESSION['premium']['ai'] > time() || $this->user['cardinal']
 

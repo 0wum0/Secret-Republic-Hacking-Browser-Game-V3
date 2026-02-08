@@ -28,7 +28,7 @@
         $srv = new Server($srv);
         $srvCommandsInfluence = $srv->computeSkillsCommandsInfluence();
         foreach ($srvCommandsInfluence as $c => $v)
-          $commandsInfluence[$c] += $v;
+          $commandsInfluence[$c] = ($commandsInfluence[$c] ?? 0) + $v;
       }
 
       $stats = array();

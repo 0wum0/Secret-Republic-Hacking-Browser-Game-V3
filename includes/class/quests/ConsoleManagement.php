@@ -198,7 +198,7 @@ trait ConsoleManagement
 		
 	  if ($console[0] == "base64")
 	  {
-		  if (!$_SESSION['premium']['base64'])
+		  if (empty($_SESSION['premium']['base64']))
 		  {
 			  $this->consoleOutput = "You need to activate <a href='".URL."alpha_coins/option/base64'>the Base64 Encoding/Decoding Command service</a> to use this command for easy encoding and decoding of base64 strings. Alternatevely, you can find base64 encoders and decoders by <a href='http://lmgtfy.com/?q=base64+encode+decode' target='_blank'>searching online</a>.";
 		  }
@@ -224,7 +224,7 @@ trait ConsoleManagement
 	  }
 	  elseif ($this->consoleInput == 'time delusion')
 	  {
-		  if (!$_SESSION['premium']['extraTime'])
+		  if (empty($_SESSION['premium']['extraTime']))
 			  $this->consoleOutput = "You are not in <a href='".URL."alpha_coins'>posession of a Time Distortion Device</a>.";
 		  else
 		  {

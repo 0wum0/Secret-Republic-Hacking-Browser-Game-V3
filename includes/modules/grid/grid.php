@@ -55,7 +55,7 @@ $userNode = $db->where('zone_id', $userNode[0])
 							 ->where('node', $userNode[2])
 			   			 ->getOne('zone_grid_cluster_nodes');
 
-$currentZone = $_SESSION['gridZone'] ? $_SESSION['gridZone'] : $userNode['zone_id'];
+$currentZone = !empty($_SESSION['gridZone']) ? $_SESSION['gridZone'] : $userNode['zone_id'];
 $currentCluster = isset($_SESSION['gridCluster']) ? $_SESSION['gridCluster'] : $userNode['cluster'];
 
 

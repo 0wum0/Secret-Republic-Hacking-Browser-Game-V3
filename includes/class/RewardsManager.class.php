@@ -99,7 +99,7 @@ class RewardsManager {
       while ($level < $upgradeToLevel)
       {
         $level++;
-        $skills[$skill] += UserClass::computeSkillExperience($skill, $level);
+        $skills[$skill] = ($skills[$skill] ?? 0) + UserClass::computeSkillExperience($skill, $level);
       }
     }
     $reward = array("achievements" => array());

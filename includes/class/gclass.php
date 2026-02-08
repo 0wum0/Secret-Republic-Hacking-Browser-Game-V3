@@ -41,7 +41,7 @@ class Game {
         $number      = rand(0, 100);
         $nrIncrement = rand(1, 20);
 
-        for ($nrIndex = $nr; $nrIndex <= $numberOfNumbers; $nrIndex++) {
+        for ($nrIndex = 1; $nrIndex <= $numberOfNumbers; $nrIndex++) {
           $pattern['numbers'][] = $number;
           $number += $nrIncrement * $sign;
         }

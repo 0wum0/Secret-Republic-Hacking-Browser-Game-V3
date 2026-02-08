@@ -7,9 +7,10 @@ class Abilities extends Alpha {
     global $userData;
 
 
-    $userData["level"]     = $this->user["level"];
-    $userData["maxEnergy"] = $this->user["maxEnergy"];
+    $userData["level"]     = $this->user["level"] ?? 0;
+    $userData["maxEnergy"] = $this->user["maxEnergy"] ?? 0;
 
+    $userAbilities = array();
 
     if ($this->user['id']) {
 

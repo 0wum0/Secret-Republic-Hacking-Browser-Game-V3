@@ -41,7 +41,7 @@ jobs:
       run: composer install --prefer-dist --no-progress
 
     - name: Lint
-      run: ./includes/vendor/bin/phplint --no-cache includes/ public_html/index.php
+      run: ./includes/vendor/bin/phplint --no-cache --exclude=vendor includes/ public_html/index.php
 
     - name: Test
       run: ./includes/vendor/bin/phpunit tests

@@ -38,26 +38,26 @@ if(!$smarty->isCached('theWorld/worldGrid.tpl')) {
             ', array(time()-24*60*60, time(), time()-48*60*60))[0];
   $leftSide = $rightSide = array();
 
-  $leftSide [] = array('value' => number_format($stats['nrHackers']) . " && " . number_format($stats['nrOrgs']), 'title' => 'Hackers && Organizations', 'description' => 'are fighting for Grid supremacy.');
-  $leftSide [] = array('value' => number_format($stats['nrSocialAccounts']), 'title' => 'Accounts', 'description' => 'connected via Social Networks.');
-  $leftSide [] = array('value' => number_format($stats['nrAchievements']), 'title' => 'Achievements', 'description' => 'have been earned by hackers.');
-  $leftSide [] = array('value' => number_format($stats['liveQuests']), 'title' => 'Missions', 'description' => 'are publicly available.');
-  $leftSide [] = array('value' => number_format($stats['nrBlogs']), 'title' => 'Blogs', 'description' => 'have been created.');
-  $leftSide [] = array('value' => number_format($stats['nrArticles']. " && " . $stats['nrForumPosts']), 'title' => 'Articles && Forum Posts', 'description' => 'published.');
-  $leftSide [] = array('value' => number_format($stats['levelSum']), 'title' => 'Level Sum', 'description' => 'of all hackers.');
-  $leftSide [] = array('value' => number_format($stats['nrAttackLogs']), 'title' => 'Spy/Attack/Scavenge logs', 'description' => 'stored in database.');
-  $leftSide [] = array('value' => number_format($stats['skillSum']), 'title' => 'Level Sum', 'description' => 'of everyones skills.');
+  $leftSide [] = array('value' => number_format((float)$stats['nrHackers']) . " && " . number_format((float)$stats['nrOrgs']), 'title' => 'Hackers && Organizations', 'description' => 'are fighting for Grid supremacy.');
+  $leftSide [] = array('value' => number_format((float)$stats['nrSocialAccounts']), 'title' => 'Accounts', 'description' => 'connected via Social Networks.');
+  $leftSide [] = array('value' => number_format((float)$stats['nrAchievements']), 'title' => 'Achievements', 'description' => 'have been earned by hackers.');
+  $leftSide [] = array('value' => number_format((float)$stats['liveQuests']), 'title' => 'Missions', 'description' => 'are publicly available.');
+  $leftSide [] = array('value' => number_format((float)$stats['nrBlogs']), 'title' => 'Blogs', 'description' => 'have been created.');
+  $leftSide [] = array('value' => number_format((float)$stats['nrArticles']). " && " . number_format((float)$stats['nrForumPosts']), 'title' => 'Articles && Forum Posts', 'description' => 'published.');
+  $leftSide [] = array('value' => number_format((float)$stats['levelSum']), 'title' => 'Level Sum', 'description' => 'of all hackers.');
+  $leftSide [] = array('value' => number_format((float)$stats['nrAttackLogs']), 'title' => 'Spy/Attack/Scavenge logs', 'description' => 'stored in database.');
+  $leftSide [] = array('value' => number_format((float)$stats['skillSum']), 'title' => 'Level Sum', 'description' => 'of everyones skills.');
 
-	  $rightSide [] = array('value' => number_format($stats['nr24hRegistered']) . " && ".number_format($stats['nrOnlineLately']), 'title' => 'Hackers', 'description' => 'joined && online in the last 24h.');
-  $rightSide [] = array('value' => number_format($stats['nrLogins']), 'title' => 'Authentications', 'description' => 'by hackers since the competition has begun.');
+	  $rightSide [] = array('value' => number_format((float)$stats['nr24hRegistered']) . " && ".number_format((float)$stats['nrOnlineLately']), 'title' => 'Hackers', 'description' => 'joined && online in the last 24h.');
+  $rightSide [] = array('value' => number_format((float)$stats['nrLogins']), 'title' => 'Authentications', 'description' => 'by hackers since the competition has begun.');
 
-  $rightSide [] = array('value' => number_format($stats['nrEmails']), 'title' => 'Messages', 'description' => 'stored in our the Alpha database.');
-  $rightSide [] = array('value' => number_format($stats['nrFriends']), 'title' => 'Friendships', 'description' => 'made amongst a sea of enemies.');
-  $rightSide [] = array('value' => number_format($stats['nrDataPoints'], 2), 'title' => 'Data Points', 'description' => 'mined by all hackers.');
-  $rightSide [] = array('value' => number_format($stats['nrServers']), 'title' => 'Servers', 'description' => 'owned by hackers.');
-  $rightSide [] = array('value' => number_format($stats['nrCompletedQuests']), 'title' => 'Finished Missions', 'description' => 'logs for normal, daily and repeatable missions.');
-  $rightSide [] = array('value' => number_format($stats['nrTasks']), 'title' => 'Tasks', 'description' => 'in progress.');
-  $rightSide [] = array('value' => number_format($stats['endedOrgWars']) . " && ". number_format($stats['inprogressOrgWars']), 'title' => 'Organization Wars', 'description' => 'Ended && in progress.');
+  $rightSide [] = array('value' => number_format((float)$stats['nrEmails']), 'title' => 'Messages', 'description' => 'stored in our the Alpha database.');
+  $rightSide [] = array('value' => number_format((float)$stats['nrFriends']), 'title' => 'Friendships', 'description' => 'made amongst a sea of enemies.');
+  $rightSide [] = array('value' => number_format((float)$stats['nrDataPoints'], 2), 'title' => 'Data Points', 'description' => 'mined by all hackers.');
+  $rightSide [] = array('value' => number_format((float)$stats['nrServers']), 'title' => 'Servers', 'description' => 'owned by hackers.');
+  $rightSide [] = array('value' => number_format((float)$stats['nrCompletedQuests']), 'title' => 'Finished Missions', 'description' => 'logs for normal, daily and repeatable missions.');
+  $rightSide [] = array('value' => number_format((float)$stats['nrTasks']), 'title' => 'Tasks', 'description' => 'in progress.');
+  $rightSide [] = array('value' => number_format((float)$stats['endedOrgWars']) . " && ". number_format((float)$stats['inprogressOrgWars']), 'title' => 'Organization Wars', 'description' => 'Ended && in progress.');
 
   $tVars2['stats'] = $stats;
   $tVars2['leftSide'] = $leftSide;

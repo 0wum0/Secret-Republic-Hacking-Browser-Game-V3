@@ -68,7 +68,7 @@ class Tasks extends Alpha{
 			}
 		}
 
-		function check_fetch_task($user,$tasktype)
+		function check_fetch_task($user,$tasktype, $party = false)
 		{
 
 

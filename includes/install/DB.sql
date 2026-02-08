@@ -2641,7 +2641,7 @@ CREATE TABLE `user_achievements` (
 
 CREATE TABLE `user_bank` (
   `account_id` int(11) NOT NULL,
-  `amount` int(11) NOT NULL,
+  `amount` int(11) NOT NULL DEFAULT 0,
   `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

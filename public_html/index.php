@@ -40,6 +40,7 @@ $_smartyPhpModifiers = [
     'print_r', 'var_export',
     'date', 'time', 'strtotime',
     'md5', 'sha1', 'base64_encode', 'base64_decode',
+    'rand', 'mt_rand', 'max', 'min', 'array_pop', 'array_shift',
 ];
 foreach ($_smartyPhpModifiers as $_mod) {
     $smarty->registerPlugin('modifier', $_mod, $_mod);

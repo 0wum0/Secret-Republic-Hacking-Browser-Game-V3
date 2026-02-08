@@ -24,9 +24,7 @@ require_once('../includes/class/tclass.php');
 		
 	if ($trainTask['dataid'] == 1)
     {
-      require_once("../includes/class/recaptchalib.php");
-         
-      
+      // Legacy recaptchalib.php removed - google/recaptcha Composer package is used via $cardinal->verify_captcha_response()
       
       if(isset($_POST["answer"]) || $finish)
       {

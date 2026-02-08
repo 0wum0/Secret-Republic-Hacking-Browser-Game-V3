@@ -1,6 +1,8 @@
 <?php
 class TrainClass extends Alpha{
 
+	public $trainTask;
+
 	function __construct($trainTask = null){
 	  parent::__construct();
 	  

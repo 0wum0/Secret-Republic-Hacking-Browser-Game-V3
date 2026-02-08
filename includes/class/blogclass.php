@@ -1,6 +1,8 @@
 <?php
 class Blog extends Alpha {
 
+  public $blog;
+
   function __construct() {
     parent::__construct();
   }

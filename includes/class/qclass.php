@@ -17,6 +17,20 @@ class QClass extends Alpha
   private static $userGameEmail = '@secretrepublic.net';
   private static $cardinalOS = 'Cardinal OS V2.2';
 
+  public $questTask;
+  public $questData;
+  public $host;
+  public $service;
+  public $jsonOutput;
+  public $consoleInput;
+  public $consoleOutput;
+  public $refresh;
+  public $error;
+  public $doUpdate;
+  public $noConsoleSession;
+  public $result;
+  public $finished;
+
   function __construct(&$questTask = null)
   {
     parent::__construct();

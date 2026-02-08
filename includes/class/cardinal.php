@@ -17,6 +17,10 @@ unset($path[count($path) - 1], $path[count($path) - 1]);
 define('ABSPATH', implode('/', $path) . '/');
 
 class Cardinal extends Alpha {
+  public $beg_used_memory;
+  public $page_start;
+  public $loginSystem;
+
   function __construct() {
     global $page, $url;
 

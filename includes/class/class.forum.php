@@ -1,6 +1,19 @@
 <?php
 class Forum extends Alpha{
 
+		public $posts_per_page;
+		public $sections;
+		public $posts;
+		public $views;
+		public $section_url;
+		public $furl;
+		public $extra_check;
+		public $sections_extra_check;
+		public $org;
+		public $access;
+		public $content;
+		public $title;
+
 		function __construct($org=false, $org_access = array()){
 		  parent::__construct();
 

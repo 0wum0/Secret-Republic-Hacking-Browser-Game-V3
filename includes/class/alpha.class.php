@@ -3,8 +3,24 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 
-#[\AllowDynamicProperties]
 class Alpha {
+
+  public $db;
+  public $templateVariables;
+  public $config;
+  public $user;
+  public $GET;
+  public $info;
+  public $taskclass;
+  public $url;
+  public $voice;
+  public $uclass;
+  public $success;
+  public $errors;
+  public $warnings;
+  public $messenger;
+  public $logged;
+  public $pages;
 
   function __construct() {
     global $db, $tVars, $info, $pages, $voice, $config, $user, $GET, $logged, $taskclass, $url, $success, $messenger, $errors, $warnings, $uclass;

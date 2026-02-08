@@ -1,6 +1,9 @@
 <?php
 class Abilities extends Alpha {
 
+  public $userAbilities;
+  public $abilities;
+
   function __construct() {
 
     parent::__construct();

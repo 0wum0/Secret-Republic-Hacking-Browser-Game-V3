@@ -9,6 +9,7 @@ class LoginSystem extends Alpha
   private  $lastSessionCheckDelay = 180;
   private  $maxLoginTriesPerTime = 5;
   private  $failedLoginAttemptsPer = 900;
+  public $detectDevice;
 
 
   function __construct()

@@ -2,6 +2,28 @@
 
 class Server extends Alpha {
   public $componentNonStackable = array(1 => 'cpu', 2 => 'motherboard', 3 => 'case', 4 => 'power_source');
+  public $server;
+  public $server_id;
+  public $apps;
+  public $components;
+  public $skills;
+  public $total_ram;
+  public $total_hdd;
+  public $total_cpu;
+  public $power_usage;
+  public $ram_slots;
+  public $hdd_slots;
+  public $cpu_usage;
+  public $ram_usage;
+  public $hdd_usage;
+  public $ram_usage_percent;
+  public $cpu_usage_percent;
+  public $hdd_usage_percent;
+  public $used_ram_slots;
+  public $used_hdd_slots;
+  public $active_ram_slots;
+  public $active_hdd_slots;
+  public $disabled;
   function __construct($server_id = false, $server = false) {
     parent::__construct();
 

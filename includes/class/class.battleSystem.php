@@ -1,6 +1,8 @@
 <?php
 
 class BattleSystem extends Alpha {
+  public $report;
+
   function __construct() {
     parent::__construct();
   }

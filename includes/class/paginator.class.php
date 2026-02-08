@@ -7,7 +7,6 @@
  * @copyright (c) admin@catchmyfame.com (www.catchmyfame.com)
  * @license CC Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0) - http://creativecommons.org/licenses/by-sa/3.0/
  */
-#[\AllowDynamicProperties]
 class Paginator{
 	public $items_per_page;
 	public $items_total;
@@ -19,6 +18,9 @@ class Paginator{
 	public $return;
 	public $url;
 	public $ipp_array;
+	public $start_range;
+	public $end_range;
+	public $range;
 
 	function __construct()
 	{

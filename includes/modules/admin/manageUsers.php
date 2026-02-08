@@ -104,9 +104,9 @@ if ($hacker['id']) {
       $missions = $db->join('quests', 'quests.id = quests_user.quest', 'LEFT OUTER')
                      ->join('quest_groups', 'quest_groups.qgroup_id = quests.qgroup_id', 'LEFT OUTER')
                      ->where('user_id', $hacker['id'])
-                     ->groupBy('quest')
+                     ->groupBy('quest, quests.title, quests.type, quest_groups.name')
                      ->orderBy('created', 'desc')
-                     ->paginate('quests_user', $pages->current_page, 'quests_user.created, quests.title, quests.type, quest, quest_groups.name groupName');
+                     ->paginate('quests_user', $pages->current_page, 'MAX(quests_user.created) as created, quests.title, quests.type, quest, quest_groups.name groupName');
       foreach ($missions as &$mission)
         $mission['created'] = date('d/F/Y H:i:s', $mission['created']);
 

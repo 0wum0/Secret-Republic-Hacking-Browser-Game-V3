@@ -5,92 +5,114 @@
 
 ## Status: ABGESCHLOSSEN
 
-### Runtime-Verifizierung (mit echtem HTTP-Server + MariaDB)
+### Verifizierung
 
-| Route | HTTP | Bytes | Status |
-|-------|------|-------|--------|
-| `/` (Startseite) | 200 | 29652 | PASS |
-| `/register` | 200 | 26302 | PASS |
-| `/forum` | 200 | 29319 | PASS |
-| `/shop` | 200 | 27653 | PASS |
-| `/rankings` | 200 | 21946 | PASS |
-| `/frequently-asked-questions` | 200 | 34776 | PASS |
-| `/theWorld` | 200 | 29725 | PASS |
-| `/search` | 200 | 22599 | PASS |
-| `/blogs` | 200 | 21633 | PASS |
-| `/dna` (Settings) | 200 | 28669 | PASS |
-| `/bank` | 200 | 23010 | PASS |
-| `/conversations` | 200 | 23633 | PASS |
-| `/quests` | 200 | 27941 | PASS |
-| `/skills` | 200 | 46364 | PASS |
-| `/abilities` | 200 | 42963 | PASS |
-| `/notes` | 200 | 21640 | PASS |
-| `/grid` | 200 | 158163 | PASS |
-| `/rewards` | 200 | 23064 | PASS |
-| `/referrals` | 200 | 23598 | PASS |
-| `/profile` | 200 | 25194 | PASS |
-| `/train` | 200 | 23046 | PASS |
-| `/data-points` | 200 | 24899 | PASS |
-| `/hackdown` | 200 | 24515 | PASS |
-| `/achievements` | 200 | 21634 | PASS |
-| `/friends` | 200 | 22458 | PASS |
-
-**Ergebnis: 25/25 Routes bestanden**
-
-### End-to-End Tests
-
-| Test | Status | Details |
-|------|--------|---------|
-| Registrierung | PASS | User in DB angelegt (id=18151, level=1) |
-| Login | PASS | Session erstellt, Username in Response |
-| Eingeloggte Seiten | PASS | Alle 25 Routes mit Session-Cookie getestet |
-| Smarty 5 Rendering | PASS | Alle Templates kompilieren und rendern fehlerfrei |
-| PHPUnit | PASS | 4/4 Tests, 23 Assertions |
-| PHP Lint | PASS | 160 Dateien, 0 Fehler |
+- **PHP Lint:** 145 Dateien, 0 Fehler (PHP 8.3.30)
+- **PHPUnit:** 4/4 Tests, 23 Assertions
+- **HTTP Smoke-Test:** 25/25 Routes HTTP 200, 0 Fatal Errors
+- **Registrierung:** End-to-End verifiziert (User + Session in DB)
+- **Login:** End-to-End verifiziert (Username in Response)
 
 ---
 
-## Zusammenfassung der Aenderungen
+## Commit-Liste (dieser Branch)
 
-### Composer / Dependencies
-- `smarty/smarty`: v4.5.6 -> v5.7.0
-- `php`: ^8.1 -> ^8.3
-
-### Smarty 5.x Migration
-- `new Smarty` -> `new \Smarty\Smarty`
-- 41 PHP-Funktionen als Modifier registriert (ceil, number_format, date, count, rand, etc.)
-- 6 Custom-Funktionen als Modifier registriert (date_fashion, profile_link, etc.)
-- Template Case-Fixes: `date_Fashion` -> `date_fashion`, `number_Format` -> `number_format`
-
-### PHP 8.3/8.4 Null-Safety
-- `$_SESSION['premium'][...]` -> `empty()` Checks (12 Dateien)
-- `array_merge()` mit `(array)` Cast fuer `session()` Returns
-- Null-Coalescing fuer undefined Array-Keys in battle/server/user Klassen
-- `$userAbilities`, `$types`, `$commandsInfluence` vor Nutzung initialisiert
-
-### Bug-Fixes (pre-existing, durch PHP 8 striktere Typisierung aufgedeckt)
-- `$_SESSTION` Typo -> `$_SESSION` in qclass.php
-- `$server->server_id` -> `$this->server_id` in class.server.php
-- `$component` -> `$app` in dealAppDamage()
-- `$nr` (undefined) -> `1` in gclass.php
-- `$info = "string"` -> `$info[] = "string"` in header.php/dna.php
-- `"groups"` Tabelle -> `"user_groups"` in profile.php
-- `user_bank.amount` DEFAULT 0 in DB.sql
-- `check_fetch_task()` fehlender `$party` Parameter
-- `train.php` MysqliDb where() Syntax-Fix
-- `theWorld.php` number_format() mit String-Argument -> (float) Cast
-
-### Vanilla Forum
-Nicht im Projekt vorhanden. Eigenes Forum-System unter `includes/class/class.forum.php`.
+| Commit | Beschreibung |
+|--------|-------------|
+| `7ae4f82` | config: read SMTP and reCAPTCHA settings from environment variables |
+| `a4d5b76` | recaptcha: remove legacy recaptchalib.php |
+| `df2d3cd` | php8: remove AllowDynamicProperties by declaring properties explicitly |
+| `6dd5cdc` | composer: pin joshcam/mysqli-database-class to ^2.9.4 |
+| `ec47767` | docs: final STATUS.md with 25/25 routes passing |
+| `75006b3` | fix: runtime errors (profile, bank, train, rewards) |
+| `42599ad` | smarty5: register PHP functions as modifiers |
+| `3e6badc` | php8.3: fix undefined vars, typos, null-safety |
+| `bc8af0e` | smarty: upgrade to v5.7.0, bump PHP to ^8.3 |
+| `0e601ad` | php8.3: fix null-safety, undefined array keys |
 
 ---
 
-## Deploy-Schritte
+## Geaenderte Dateien
 
-```bash
-git pull origin cursor/system-php-8-3-kompatibilit-t-7f53
-composer install --prefer-dist --no-dev
-rm -rf includes/templates_c/* includes/cache/*
-chmod -R 775 includes/templates_c/ includes/cache/ includes/configs/
-# PHP 8.3/8.4, Apache mit mod_rewrite
-```
+### Composer / Config
+| Datei | Aenderung |
+|-------|-----------|
+| `composer.json` | php ^8.3, smarty ^5.7, joshcam ^2.9.4, php-pretty-datetime pinned |
+| `includes/constants/constants.php` | SMTP + reCAPTCHA via getenv(), _env() Helper |
+| `includes/database_info.php.template` | DB-Credentials via getenv() |
+
+### Smarty 5 Migration
+| Datei | Aenderung |
+|-------|-----------|
+| `public_html/index.php` | `\Smarty\Smarty`, 47 Modifier-Registrierungen |
+| `templates/organization_wars/org_wars.tpl` | date_Fashion -> date_fashion |
+| `templates/profile/profile_header.tpl` | number_Format -> number_format |
+| `templates/attacks/attack.tpl` | number_Format -> number_format |
+
+### PHP 8.3/8.4 Kompatibilitaet
+| Datei | Aenderung |
+|-------|-----------|
+| `includes/class/alpha.class.php` | 16 explizite Properties, kein AllowDynamicProperties |
+| `includes/class/class.server.php` | 23 Properties, Variable-Bugfixes |
+| `includes/class/class.battleSystem.php` | report Property, null coalescing |
+| `includes/class/class.forum.php` | 12 Properties |
+| `includes/class/cardinal.php` | 3 Properties |
+| `includes/class/loginSystem.php` | detectDevice Property, array_merge fix |
+| `includes/class/qclass.php` | 12 Properties, $_SESSION typo fix |
+| `includes/class/tclass.php` | trainTask Property |
+| `includes/class/abclass.php` | 2 Properties, variable init |
+| `includes/class/blogclass.php` | blog Property |
+| `includes/class/userclass.php` | session + null coalescing |
+| `includes/class/oclass.php` | param ordering fix |
+| `includes/class/gclass.php` | AllowDynamicProperties entfernt, undefined var fix |
+| `includes/class/Item.class.php` | AllowDynamicProperties entfernt |
+| `includes/class/paginator.class.php` | 3 Properties |
+| `includes/class/RewardsManager.class.php` | null coalescing |
+| `includes/class/taskclass.php` | fehlender $party Parameter |
+| `includes/class/quests/ConsoleManagement.php` | session checks |
+
+### Legacy Cleanup
+| Datei | Aenderung |
+|-------|-----------|
+| `includes/class/recaptchalib.php` | GELOESCHT (Legacy reCAPTCHA v1) |
+| `includes/modules/train.php` | require_once entfernt, MysqliDb where() fix |
+
+### Module Fixes
+| Datei | Aenderung |
+|-------|-----------|
+| `includes/header.php` | $info array push fix |
+| `includes/modules/theWorld.php` | number_format float cast |
+| `includes/modules/profile.php` | groups -> user_groups Tabelle |
+| `includes/modules/simulator.php` | empty() session checks |
+| `includes/modules/notes.php` | empty() session checks |
+| `includes/modules/bank.php` | empty() session checks |
+| `includes/modules/servers/servers.php` | empty() session check |
+| `includes/modules/quests/quests_show.php` | empty() session check |
+| `includes/modules/quests/quest_inprogress.php` | empty() session check |
+| `includes/modules/admin/admin.php` | empty() session check |
+| `includes/modules/dna.php` | array push + session fix |
+| `includes/modules/grid/grid.php` | empty() session check |
+| `includes/modules/grid/occupy.php` | null coalescing |
+| `includes/modules/cron/tasks_and_attacks.php` | null coalescing |
+| `includes/modules/cron/daily.php` | $types init |
+
+### DB
+| Datei | Aenderung |
+|-------|-----------|
+| `includes/install/DB.sql` | user_bank.amount DEFAULT 0 |
+
+### CI / Docs
+| Datei | Aenderung |
+|-------|-----------|
+| `.github/workflows/php.yml` | phplint --exclude=vendor |
+| `docs/STATUS.md` | Diese Datei |
+| `docs/RUNBOOK.md` | Setup, ENV, Cron, Smoke-Tests |
+
+---
+
+## Offene Punkte
+
+Keine offenen Blocker. Folgende Punkte sind nur bei Runtime/DB relevant:
+- E-Mail-Versand: Funktioniert nur mit gesetzten SMTP ENV-Variablen
+- reCAPTCHA: Funktioniert nur mit gesetzten RECAPTCHA ENV-Variablen
+- Cron-Jobs: Benoetigen konfigurierten Cron-Key in der Datenbank

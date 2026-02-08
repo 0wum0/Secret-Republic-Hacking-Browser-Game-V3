@@ -5,10 +5,21 @@
 | Komponente | Version | Pflicht |
 |-----------|---------|---------|
 | PHP | 8.3 oder 8.4 | Ja |
-| MySQL/MariaDB | 8.0+ / 10.5+ | Ja |
+| MySQL / MariaDB | 8.0+ / 10.5+ | Ja |
 | Apache | 2.4+ mit mod_rewrite | Ja (oder Nginx) |
-| Composer | 2.x | Ja (für Installation) |
-| PHP Extensions | mysqli, mbstring, json, curl, session, gd | Ja |
+| Composer | 2.x | Ja (fuer Installation) |
+
+### Benoetigte PHP Extensions
+
+```
+mysqli mbstring json curl session gd xml zip
+```
+
+Pruefen mit:
+
+```bash
+php -m | grep -E 'mysqli|mbstring|json|curl|session|gd'
+```
 
 ---
 
@@ -27,35 +38,64 @@ cd secretrepublic
 composer install --prefer-dist --no-progress
 ```
 
-Die Vendor-Dateien werden nach `includes/vendor/` installiert.
+Vendor-Verzeichnis: `includes/vendor/`
 
-### 3. Datenbank konfigurieren
+### 3. Environment-Variablen setzen
+
+Alle Secrets werden ueber Umgebungsvariablen konfiguriert. Erstelle eine `.env`-Datei oder setze sie im Webserver / Systemd / Docker.
+
+#### Datenbank (Pflicht)
 
 ```bash
-# Konfigurationsdatei aus Template erstellen
+export DB_HOST=localhost
+export DB_USER=secretrepublic
+export DB_PASS=geheim
+export DB_NAME=secretrepublic
+export DB_PORT=3306
+```
+
+#### SMTP Mail (optional, laesst Mailversand leer = deaktiviert)
+
+```bash
+export SMTP_HOST=smtp.example.com
+export SMTP_PORT=587
+export SMTP_USER=user@example.com
+export SMTP_PASS=smtp-password
+export SMTP_SECURE=tls
+export SMTP_FROM=noreply@example.com
+export SMTP_FROM_NAME="Secret Republic"
+```
+
+#### reCAPTCHA v2 (optional, leer = deaktiviert)
+
+```bash
+export RECAPTCHA_SITE_KEY=6Le...
+export RECAPTCHA_SECRET_KEY=6Le...
+```
+
+Erstelle Keys unter: https://www.google.com/recaptcha/admin/create
+
+#### Sonstige (optional)
+
+```bash
+export CONTACT_EMAIL=admin@example.com
+```
+
+### 4. Datenbank-Konfiguration
+
+```bash
 cp includes/database_info.php.template includes/database_info.php
 ```
 
-Datei `includes/database_info.php` bearbeiten:
+Die Datei liest automatisch die ENV-Variablen `DB_HOST`, `DB_USER`, `DB_PASS`, `DB_NAME`, `DB_PORT`. Bei direktem Hosting ohne ENV die Werte in der Datei anpassen.
 
-```php
-<?php
-return array(
-    'server_name' => 'localhost',
-    'username' => 'DB_USER',
-    'password' => 'DB_PASSWORD',
-    'name' => 'DB_NAME',
-    'port' => 3306
-);
-```
-
-### 4. Datenbank-Schema importieren
+### 5. Datenbank-Schema importieren
 
 ```bash
-mysql -u DB_USER -p DB_NAME < includes/install/DB.sql
+mysql -u $DB_USER -p $DB_NAME < includes/install/DB.sql
 ```
 
-### 5. Verzeichnis-Berechtigungen setzen
+### 6. Verzeichnis-Berechtigungen
 
 ```bash
 chmod -R 775 includes/templates_c/
@@ -63,18 +103,23 @@ chmod -R 775 includes/cache/
 chmod -R 775 includes/configs/
 ```
 
-### 6. Webserver konfigurieren
+### 7. Webserver konfigurieren
 
 **Document Root** muss auf `public_html/` zeigen.
 
-#### Apache (.htaccess ist bereits vorhanden)
+#### Apache
+
+`.htaccess` ist bereits vorhanden. Mod_rewrite aktivieren:
+
 ```bash
-# mod_rewrite aktivieren
 sudo a2enmod rewrite
 sudo systemctl restart apache2
 ```
 
-#### Nginx (Referenz: public_html/nginx.conf)
+#### Nginx
+
+Referenz-Konfiguration unter `public_html/nginx.conf`:
+
 ```nginx
 server {
     root /path/to/secretrepublic/public_html;
@@ -92,128 +137,141 @@ server {
 }
 ```
 
-### 7. Setup durchführen
+### 8. Setup
 
-Öffne `http://deine-domain/setup` im Browser. Das Setup-Formular erstellt den Admin-Account.
+Oeffne `http://deine-domain/setup` im Browser.
 
 ---
 
 ## Upgrade von PHP 8.1/8.2 auf 8.3/8.4
 
-### 1. PHP aktualisieren
-
 ```bash
-# Ubuntu/Debian mit ondrej PPA
+# 1. PHP aktualisieren
 sudo add-apt-repository ppa:ondrej/php
 sudo apt update
 sudo apt install php8.3 php8.3-cli php8.3-fpm php8.3-mysqli php8.3-mbstring php8.3-xml php8.3-curl php8.3-gd
-```
 
-### 2. Code aktualisieren
+# 2. Code aktualisieren
+git pull
 
-```bash
-cd /path/to/secretrepublic
-git pull origin cursor/system-php-8-3-kompatibilit-t-7f53
-```
-
-### 3. Composer Dependencies aktualisieren
-
-```bash
+# 3. Composer Dependencies
 composer install --prefer-dist --no-progress
-```
 
-### 4. Smarty Compile-Cache leeren
+# 4. Smarty Cache leeren (PFLICHT nach Smarty 4 -> 5 Upgrade!)
+rm -rf includes/templates_c/* includes/cache/*
 
-```bash
-rm -rf includes/templates_c/*
-rm -rf includes/cache/*
-```
+# 5. DB-Patch (einmalig, falls bestehende Installation)
+mysql -e "ALTER TABLE user_bank MODIFY amount int(11) NOT NULL DEFAULT 0;" $DB_NAME
 
-### 5. PHP-FPM neustarten (wenn verwendet)
-
-```bash
+# 6. Services neustarten
 sudo systemctl restart php8.3-fpm
-```
-
-### 6. Webserver neustarten
-
-```bash
 sudo systemctl restart apache2  # oder nginx
 ```
 
 ---
 
-## Smoke-Test Checkliste
+## Cron-Jobs
 
-Nach jedem Deployment diese Punkte prüfen:
-
-| # | Test | URL | Erwartung |
-|---|------|-----|-----------|
-| 1 | Startseite (Besucher) | `/` | Splash Screen ohne PHP Errors |
-| 2 | Setup-Seite | `/setup` | Installations-Formular (nur ohne DB-Config) |
-| 3 | Registrierung | `/register` | Formular lädt, Felder vorhanden |
-| 4 | Login | `/` (Login-Form) | Login-Formular angezeigt |
-| 5 | Dashboard | Nach Login → `/` | Index mit Tasks, News, Grid |
-| 6 | Quests | `/quests` | Mission-Liste angezeigt |
-| 7 | Forum | `/forum` | Forum-Kategorien laden |
-| 8 | Shop | `/shop` | Shop-Seite rendert |
-| 9 | Blog | `/blogs` | Blog-Liste |
-| 10 | Profil | `/profile` | Eigenes Profil |
-| 11 | Organisation | `/organization` | Org-Seite |
-| 12 | Admin | `/admin` (als Admin) | Admin-Panel |
-| 13 | DNA | `/dna` | Einstellungen |
-| 14 | Grid | `/grid` (nach Login) | Grid-Ansicht |
-| 15 | Ranking | `/rankings` | Ranking-Tabelle |
-
-### Cronjob-Test
+Das Projekt nutzt HTTP-basierte Cron-Ausfuehrung. Der Cron-Key ist in der Datenbank konfiguriert.
 
 ```bash
-# Daily Cron (ersetze KEY mit dem konfigurierten Cron-Key)
-curl http://domain/cron/key1/KEY/daily/1
+# Taeglich
+curl -s http://domain/cron/key1/CRON_KEY/daily/1
 
-# Hourly Cron
-curl http://domain/cron/key1/KEY/hourly/1
+# Stuendlich
+curl -s http://domain/cron/key1/CRON_KEY/hourly/1
 
 # Rankings
-curl http://domain/cron/key1/KEY/rankings/1
+curl -s http://domain/cron/key1/CRON_KEY/rankings/1
+
+# Ressourcen
+curl -s http://domain/cron/key1/CRON_KEY/resources/1
+
+# Tasks & Attacks
+curl -s http://domain/cron/key1/CRON_KEY/tasks_and_attacks/1
+```
+
+Empfohlene Crontab:
+
+```crontab
+*/5 * * * * curl -s http://domain/cron/key1/CRON_KEY/tasks_and_attacks/1
+0 * * * *   curl -s http://domain/cron/key1/CRON_KEY/hourly/1
+0 0 * * *   curl -s http://domain/cron/key1/CRON_KEY/daily/1
+0 * * * *   curl -s http://domain/cron/key1/CRON_KEY/resources/1
+0 */6 * * * curl -s http://domain/cron/key1/CRON_KEY/rankings/1
 ```
 
 ---
 
-## Produktions-Konfiguration
+## Produktion
 
 ### Error Reporting
 
 In `public_html/index.php` ist bereits gesetzt:
+
 ```php
 error_reporting(E_ALL ^E_NOTICE);
 ini_set('display_errors', '0');
 ```
 
-### PHP OPcache (empfohlen)
+### OPcache (empfohlen)
 
-In `php.ini`:
 ```ini
 opcache.enable=1
 opcache.memory_consumption=128
 opcache.max_accelerated_files=10000
-opcache.validate_timestamps=0  # Nur für Produktion!
+opcache.validate_timestamps=0
 ```
 
-### Smarty Compile Check
+### Smarty Compile Check (optional)
 
-Für Performance in Produktion optional in `public_html/index.php` nach Smarty-Init hinzufügen:
+Fuer bessere Performance nach `$smarty`-Init in `index.php`:
+
 ```php
 $smarty->setCompileCheck(\Smarty\Smarty::COMPILECHECK_OFF);
 ```
 
-**Achtung:** Nach Template-Änderungen muss dann manuell `includes/templates_c/` geleert werden.
+Nach Template-Aenderungen muss dann `includes/templates_c/` manuell geleert werden.
 
 ---
 
-## Abhängigkeiten
+## Smoke-Test Checkliste
 
-### Composer (composer.json)
+| # | Test | URL | Erwartet |
+|---|------|-----|----------|
+| 1 | Startseite | `/` | Splash Screen, HTTP 200 |
+| 2 | Registrierung | `/register` | Formular |
+| 3 | Login | `/` POST | Dashboard nach Login |
+| 4 | Forum | `/forum` | Kategorien |
+| 5 | Shop | `/shop` | Shop-Seite |
+| 6 | Rankings | `/rankings` | Tabelle |
+| 7 | Quests | `/quests` | Mission-Liste |
+| 8 | Skills | `/skills` | Skill-Uebersicht |
+| 9 | Grid | `/grid` | Grid-Ansicht |
+| 10 | Profil | `/profile` | Eigenes Profil |
+| 11 | Bank | `/bank` | Bank-Seite |
+| 12 | DNA | `/dna` | Einstellungen |
+| 13 | Admin | `/admin` | Admin-Panel |
+| 14 | Training | `/train` | Training-Seite |
+| 15 | Rewards | `/rewards` | Belohnungen |
+
+---
+
+## Fehlerbehebung
+
+| Problem | Loesung |
+|---------|---------|
+| Class "Smarty" not found | Smarty 5: `new \Smarty\Smarty` wird verwendet. `composer dump-autoload` ausfuehren. |
+| templates_c not writable | `chmod -R 775 includes/templates_c/` |
+| unknown modifier 'xyz' | PHP-Funktion muss in `index.php` als Modifier registriert sein. |
+| Session-Probleme | Smarty Cache leeren: `rm -rf includes/templates_c/*` |
+| SMTP Fehler | ENV-Variablen SMTP_HOST, SMTP_USER, SMTP_PASS pruefen. |
+| reCAPTCHA fehlt | ENV-Variablen RECAPTCHA_SITE_KEY, RECAPTCHA_SECRET_KEY setzen. |
+| DB connection refused | ENV DB_HOST, DB_USER, DB_PASS pruefen oder `database_info.php` anpassen. |
+
+---
+
+## Abhaengigkeiten
 
 | Package | Version | Zweck |
 |---------|---------|-------|
@@ -221,63 +279,8 @@ $smarty->setCompileCheck(\Smarty\Smarty::COMPILECHECK_OFF);
 | `phpmailer/phpmailer` | ^6.9 | E-Mail-Versand |
 | `google/recaptcha` | ^1.3 | reCAPTCHA v2 |
 | `mobiledetect/mobiledetectlib` | ^4.8 | Mobile Device Detection |
-| `joshcam/mysqli-database-class` | dev-master | DB-Abstraction Layer |
-| `danielstjules/php-pretty-datetime` | dev-master | Relative Zeitanzeige |
+| `joshcam/mysqli-database-class` | ^2.9.4 | DB-Abstraction Layer |
+| `danielstjules/php-pretty-datetime` | dev-master#c489c905 | Relative Zeitanzeige |
 | `jbbcode/jbbcode` | ^1.3 | BBCode Parser |
-
-### Dev-Dependencies
-
-| Package | Version | Zweck |
-|---------|---------|-------|
-| `overtrue/phplint` | ^9.0 | PHP Syntax Linter |
-| `phpunit/phpunit` | ^10.5 | Unit Tests |
-
----
-
-## Verzeichnisstruktur
-
-```
-secretrepublic/
-├── public_html/          # Document Root
-│   ├── index.php         # Haupteingang
-│   ├── .htaccess         # Apache Rewrite
-│   └── nginx.conf        # Nginx Referenz-Config
-├── includes/
-│   ├── class/            # PHP-Klassen
-│   ├── constants/        # Konfigurationskonstanten
-│   ├── modules/          # Controller-Module
-│   │   ├── main/         # Startseite (visitor.php, player.php)
-│   │   ├── admin/        # Admin-Panel
-│   │   ├── cron/         # Cronjobs
-│   │   └── ...           # Weitere Module
-│   ├── install/          # DB.sql Schema
-│   ├── vendor/           # Composer Packages
-│   ├── templates_c/      # Smarty Compile Dir (beschreibbar!)
-│   ├── cache/            # Smarty Cache Dir (beschreibbar!)
-│   └── configs/          # Smarty Config Dir (beschreibbar!)
-├── templates/            # Smarty Templates (.tpl)
-├── docs/                 # Dokumentation
-│   ├── STATUS.md         # Upgrade-Status
-│   └── RUNBOOK.md        # Diese Datei
-├── tests/                # PHPUnit Tests
-└── composer.json
-```
-
----
-
-## Fehlerbehebung
-
-### "Class Smarty not found"
-→ Smarty 5 erfordert `new \Smarty\Smarty` statt `new Smarty`. Composer-Autoloader prüfen: `composer dump-autoload`
-
-### "templates_c is not writable"
-→ `chmod -R 775 includes/templates_c/`
-
-### Session-Probleme nach Update
-→ Smarty Compile-Cache leeren: `rm -rf includes/templates_c/*`
-
-### Deprecation Warnings
-→ In `php.ini`: `error_reporting = E_ALL & ~E_DEPRECATED & ~E_NOTICE`
-
-### MySQL Strict Mode Probleme
-→ In `my.cnf`: `sql_mode = ''` oder spezifische Modes entfernen
+| `overtrue/phplint` | ^9.0 | PHP Syntax Linter (dev) |
+| `phpunit/phpunit` | ^10.5 | Unit Tests (dev) |

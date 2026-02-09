@@ -35,7 +35,7 @@ class BattleSystem extends Alpha {
       }
 
       $player['servers'] = $servers;
-      require_once("../includes/class/class.server.php");
+      require_once(ABSPATH . 'includes/class/class.server.php');
 
       foreach ($player['servers'] as &$server) {
         $server['server'] = new Server($server['server_id'], $server);
@@ -312,7 +312,7 @@ class BattleSystem extends Alpha {
       $user_id
     ));
 
-    require_once("../includes/class/class.server.php");
+    require_once(ABSPATH . 'includes/class/class.server.php');
     $serverClass = new Server();
     $damage      = ceil($damage / count($comps));
     foreach ($comps as $component) {

@@ -674,7 +674,7 @@ class UserClass extends Alpha
                     ->where('app_id', $app['app_id'])->getOne('applications', 'hdd');
                 $neededHDD += $app['hdd'];
             }
-            require ("../includes/class/class.server.php");
+            require(ABSPATH . 'includes/class/class.server.php');
             $server = new Server($this->user['server']);
 
             if ($server->server['total_hdd'] - $server->server['hdd_usage'] < $neededHDD) add_alert("Not enough HDD on main server to store the apps");
@@ -752,7 +752,7 @@ class UserClass extends Alpha
                 ->where('id', $user_id)->getOne('users', 'id, server');
             $main = $user['server'];
         }
-        require ('../includes/constants/skills.php');
+        require(ABSPATH . 'includes/constants/skills.php');
 
         if (!$user_id) return array();
 
@@ -771,7 +771,7 @@ class UserClass extends Alpha
 
         if ($main)
         {
-            require_once ('../includes/class/class.server.php');
+            require_once(ABSPATH . 'includes/class/class.server.php');
 
             $servers = array();
             if ($allServers)

@@ -17,7 +17,7 @@ $success = $warnings = $errors = $info = array();
 $messenger = array();
 $voice = null;
 
-require("../includes/class/paginator.class.php");
+require(ABSPATH . 'includes/class/paginator.class.php');
 
 require_once('class/taskclass.php');
 

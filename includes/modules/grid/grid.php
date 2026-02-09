@@ -65,7 +65,7 @@ if($GET['show'] == 'clusters')
 }
 elseif ($GET['layers'])
 {
-	require ("../includes/class/class.battleSystem.php");
+	require(ABSPATH . 'includes/class/class.battleSystem.php');
 	$battleSystem = new BattleSystem();
 	$player = $battleSystem->computePlayerStats($user['id'], true, true);
 

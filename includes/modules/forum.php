@@ -4,7 +4,7 @@
 require_once(ABSPATH . 'includes/class/class.forum.php');
 
 
-	$page_title="Hacker Forums";
+	$page_title=t('FORUM_TITLE');
 	
 	$fclass=new Forum();
 	

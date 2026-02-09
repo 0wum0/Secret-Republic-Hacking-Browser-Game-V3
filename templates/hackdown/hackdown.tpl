@@ -6,12 +6,12 @@
  <form method="post">
   <input type="hidden" name="arena" value="true" />      
 	<div class="alert alert-info">
-		<p>Select the servers you want to use in the arena attack.</p>
+		<p>{$L.HACKDOWN_SELECT_SERVERS}</p>
 		<p>
-		They will contributed to your attack and defense and might be dealt components damage. Check your <a href="{$config.url}grid/layers/show">layers</a> to evaluate your power.
+		{$L.HACKDOWN_SERVERS_INFO|replace:':url':"{$config.url}grid/layers/show"}
 		</p>
 		<p>
-		The servers used into the attack will be locked and you will be unable to use them into another attack until the current one has finished. Moreover, they will no longer contribute to your defense in case you are attacked or spyed on.
+		{$L.HACKDOWN_SERVERS_LOCK}
 	</p></div>
 	
 	{include file='grid/pick_unused_servers.tpl'}
@@ -28,7 +28,7 @@
 		<img src="{$config.url}layout/img/events/hackdown.jpg" style="width:100%"/>
 	</div>
 	<hr/>
-	<a href="{$config.url}hackdown/rankings/gimme"><button>RANKINGS FOR LAST HACKDOWN</button></a>
+	<a href="{$config.url}hackdown/rankings/gimme"><button>{$L.HACKDOWN_RANKINGS_LAST}</button></a>
 
 <hr/>
 
@@ -39,7 +39,7 @@
 {else}
 {if $hackdownRemaining }<br/>
 	<h3 class="text-center">
-You have Hackdowned {($hacks.nrMissions + $hacks.nrAttacks)|floatval|number_format} ({$hacks.nrMissions} hacks && {$hacks.nrAttacks} Arena) successful times
+{$L.HACKDOWN_STATS|replace:':count':{($hacks.nrMissions + $hacks.nrAttacks)|floatval|number_format}|replace:':missions':$hacks.nrMissions|replace:':arena':$hacks.nrAttacks}
 </h3><br/>
 {/if}
 
@@ -57,24 +57,24 @@ You have Hackdowned {($hacks.nrMissions + $hacks.nrAttacks)|floatval|number_form
 		<div class="panel-footer text-right">Norman Schwarzkopf</div>
 	</div>
 	<div class="panel panel-glass ">
-			<div class="panel-heading">About HACKDOWN</div>
+			<div class="panel-heading">{$L.HACKDOWN_ABOUT}</div>
 			<div class="panel-body">
-				<p>Hackdown is a mini-competition organized by hackers within the big competition started by Alpha.</p>
-				<p>A Hackdown takes place every week on Saturday and lasts for the entire day.</p>
-				<p>During a Hackdown, hackers can complete special missions as many times as they want gaining points for each successful attempt.</p>
-				<p>Anonymous battles can also take place amongst participants in the Arena, which again will improve rankings if won.</p>
-				At the end of a Hackdown, stats and rankings are computed and every hacker and their organizations receive rewards depending on how well they did compared to everybody else.
+				<p>{$L.HACKDOWN_ABOUT_P1}</p>
+				<p>{$L.HACKDOWN_ABOUT_P2}</p>
+				<p>{$L.HACKDOWN_ABOUT_P3}</p>
+				<p>{$L.HACKDOWN_ABOUT_P4}</p>
+				{$L.HACKDOWN_ABOUT_P5}
 					
 			</div>
 			<div class="panel-footer text-center">
-						<strong>We are hackers and we know what YOU want. You want fame and power. You want prestige and influence. You need to be part of the Hackdown!</strong>
+						<strong>{$L.HACKDOWN_ABOUT_FOOTER}</strong>
 </div>
 		</div>
 		
 		<div class="panel panel-glass">
-			<div class="panel-heading">Rewards</div>
+			<div class="panel-heading">{$L.HDR_TUTORIAL_REWARDS}</div>
 			<div class="panel-body">
-				Rewards include but are not limited to: fame, money, Universal Skill Points, experience, high priced software and hardware for outstanding hackers.
+				{$L.HACKDOWN_REWARDS_DESC}
 			</div>
 		</div>
 
@@ -91,7 +91,7 @@ You have Hackdowned {($hacks.nrMissions + $hacks.nrAttacks)|floatval|number_form
                                               progressBarCountdown = "true" reloadOnFinish = "true" 
                                               textLeft=$L.HACKDOWN_NEXT_IN}
 </div>
-<div class="panel-footer">You think you have what it takes to be one of the champions?</div>
+<div class="panel-footer">{$L.HACKDOWN_CHAMPION}</div>
 </div>
 
 
@@ -99,7 +99,7 @@ You have Hackdowned {($hacks.nrMissions + $hacks.nrAttacks)|floatval|number_form
 
 {if $hackdownRemaining}
 <div class="panel panel-glass ">
-	<div class="panel-heading">Hackdown countdown</div>
+	<div class="panel-heading">{$L.HACKDOWN_COUNTDOWN}</div>
 	<div class="panel-body">
 {include file="components/hackdown.tpl" countdownFrom=$hackdownRemaining totalCountdown=24*60*60
                                               textCountdown = "true" progressBarClass = "progress-info"
@@ -114,29 +114,29 @@ You have Hackdowned {($hacks.nrMissions + $hacks.nrAttacks)|floatval|number_form
 		
 	
 		<div class="panel panel-glass ">
-			<div class="panel-heading">Mission</div>
+			<div class="panel-heading">{$L.HACKDOWN_MISSION}</div>
 			<div class="panel-body">
-				<p>Especially challenging missions have been prepared.</p>
-				<p>When you complete a mission succesffully you gain points for yourself, your organization and zone.</p>
+				<p>{$L.HACKDOWN_MISSION_P1}</p>
+				<p>{$L.HACKDOWN_MISSION_P2}</p>
 				
 			
 			</div>
 			<form method="post">
-<button type="submit" name="hackdown" value="true">BEGIN A NEW MISSION</button>
+<button type="submit" name="hackdown" value="true">{$L.HACKDOWN_BEGIN_MISSION}</button>
 </form>
 		</div>
 		<div class="panel panel-glass">
-		<div class="panel-heading">Arena</div>
+		<div class="panel-heading">{$L.HACKDOWN_ARENA}</div>
 			<div class="panel-body">
-				<p>If you join the Arena you will be fighting another other hackers who aren in there.</p>
-				<p>You will receive a report as soon as someone is available to battle with you and the battle has reached its conclusion.</p>
-				<p>Once joined you cannot retreat until you have attacked someone (which will happen automatically when someone is available).</p>
-				<p>Attacks are similar to the Grid ones from the point of view of hardware damage and security layers. However, they are anonymous.</p>
-				<p>If there's no one to match you with, you will be waiting for a while. After 20 minutes of waiting unmatched, you will be kicked out of the Arena.</p>
+				<p>{$L.HACKDOWN_ARENA_DESC_1}</p>
+				<p>{$L.HACKDOWN_ARENA_DESC_2}</p>
+				<p>{$L.HACKDOWN_ARENA_DESC_3}</p>
+				<p>{$L.HACKDOWN_ARENA_DESC_4}</p>
+				<p>{$L.HACKDOWN_ARENA_DESC_5}</p>
 				
 			</div>
 			<form method="post">
-<button type="submit" name="arena" value="true">ENTER ARENA</button>
+<button type="submit" name="arena" value="true">{$L.HACKDOWN_ENTER_ARENA}</button>
 </form>
 		</div>
 		

@@ -2,7 +2,7 @@
 
 
 
-	$page_title="Simulator";
+	$page_title=t('SIM_TITLE');
 
 
 

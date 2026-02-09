@@ -4,7 +4,7 @@
 
 $cardinal->mustLogin();
 
-$page_title = "DNA";
+$page_title = t('DNA_TITLE');
 
 if ($GET['sessions'])
 {

@@ -9,7 +9,7 @@ $cardinal->mustLogin();
 
 require_once(ABSPATH . 'includes/class/abclass.php');
 
-	$page_title="Abilities";
+	$page_title=t('ABILITIES_NAV');
 
   /* /ABILITIES TASK  */
 

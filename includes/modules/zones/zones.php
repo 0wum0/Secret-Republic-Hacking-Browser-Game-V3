@@ -3,7 +3,7 @@
 
 
 
-$page_title = 'Zones';
+$page_title = t('ZONES_TITLE');
 
 if (!$GET['zone'])
 {

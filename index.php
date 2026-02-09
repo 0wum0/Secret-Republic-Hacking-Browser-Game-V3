@@ -37,7 +37,7 @@ $_smartyPhpModifiers = [
     'ceil', 'floor', 'round', 'abs', 'intval', 'floatval',
     'count', 'in_array', 'is_array', 'array_keys', 'array_values',
     'strtoupper', 'strtolower', 'ucfirst', 'substr', 'str_pad', 'strlen', 'trim',
-    'number_format', 'nl2br', 'urlencode', 'urldecode',
+    'nl2br', 'urlencode', 'urldecode',
     'htmlentities', 'htmlspecialchars', 'strip_tags',
     'json_encode', 'json_decode',
     'print_r', 'var_export',
@@ -48,6 +48,19 @@ foreach ($_smartyPhpModifiers as $_mod) {
     $smarty->registerPlugin('modifier', $_mod, $_mod);
 }
 unset($_smartyPhpModifiers, $_mod);
+
+/**
+ * Safe number_format wrapper for PHP 8.x strict types.
+ *
+ * PHP 8.0+ enforces that number_format() receives a numeric value.
+ * Database results and Smarty variables often arrive as strings, which
+ * triggers: "Argument #1 ($num) must be of type float, string given".
+ * This wrapper casts the first argument to float before formatting.
+ */
+function safe_number_format($value, int $decimals = 0, string $dec_point = '.', string $thousands_sep = ','): string {
+    return number_format((float) $value, $decimals, $dec_point, $thousands_sep);
+}
+$smarty->registerPlugin('modifier', 'number_format', 'safe_number_format');
 
 $pageURL = array_filter(explode('/', stripslashes($_SERVER['REQUEST_URI'])));
 $containsPage = array_search('page', $pageURL);

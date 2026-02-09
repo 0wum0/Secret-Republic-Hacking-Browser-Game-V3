@@ -84,10 +84,22 @@
 | `includes/class/paginator.class.php` | `var` -> `public`, `#[AllowDynamicProperties]` |
 | `includes/class/recaptchalib.php` | `var` -> `public`, `#[AllowDynamicProperties]` |
 
+### Smarty `number_format` Strict-Type Fix (PHP 8.3+)
+| Datei | Änderung |
+|-------|----------|
+| `index.php` | `number_format` nicht mehr als Raw-PHP-Modifier registriert, sondern via `safe_number_format()` Wrapper (castet Argument #1 zu float). Behebt `Smarty\Extension\DefaultExtension::smarty_modifier_number_format(): Argument #1 must be ?float, string given`. |
+| `templates/home/main_stats.tpl` | `\|number_format` nach `\|replace` aufgelöst: Zahl wird per `{assign}` vorformatiert, dann in `\|replace` eingesetzt. |
+| `templates/train/train.tpl` | Gleicher Fix für 2 Stellen (`TRAIN_DECRYPT`, `TRAIN_FEELING_LUCKY`). |
+| `templates/quests/questsCached.tpl` | Gleicher Fix für 2 Stellen (`QUEST_FINISHED_TIMES`, `QUEST_DONE_FROM`). |
+
+> **WICHTIG nach Deploy**: Kompilierte Smarty-Templates müssen neu generiert werden.
+> Entweder `includes/templates_c/` leeren (`rm -rf includes/templates_c/*`) oder
+> Smarty mit `$smarty->force_compile = true;` einmalig laufen lassen.
+
 ### PHP 8.3/8.4 Kompatibilität - Core
 | Datei | Änderung |
 |-------|----------|
-| `index.php` | Initialisierung `$GET = array()`, Smarty Config-Dir Fix, Null-Safety für Session-Zugriffe, `SR_ROOT` Konstante |
+| `index.php` | Initialisierung `$GET = array()`, Smarty Config-Dir Fix, Null-Safety für Session-Zugriffe, `SR_ROOT` Konstante, `safe_number_format()` Modifier |
 | `includes/header.php` | Initialisierung `$messenger`, `$voice`, `eval()` -> direkter Funktionsaufruf, Null-Safety für `$GET['i']` |
 | `includes/functions.php` | Null-Safety für `$_SESSION['premium']`, `$pages` instanceof Check |
 | `.htaccess` | Apache Rewrite + Security Rules (blockiert includes/, templates/, etc.) |

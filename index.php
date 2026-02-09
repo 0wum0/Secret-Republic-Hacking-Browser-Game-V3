@@ -62,21 +62,23 @@ function safe_number_format($value, int $decimals = 0, string $dec_point = '.', 
 }
 $smarty->registerPlugin('modifier', 'number_format', 'safe_number_format');
 
-$pageURL = array_filter(explode('/', stripslashes($_SERVER['REQUEST_URI'])));
+// Strip query string from REQUEST_URI – the route MUST only use the path.
+$_requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?: '/';
+
+$pageURL = array_filter(explode('/', stripslashes($_requestPath)));
 $containsPage = array_search('page', $pageURL);
 if ($containsPage) {
 	unset($pageURL[$containsPage], $pageURL[$containsPage + 1]);
 }
-define("URL_C", stripslashes($_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']) . '/');
+define("URL_C", stripslashes($_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $_requestPath) . '/');
 
 $pageURL =  stripslashes($_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST']) . '/' . implode ("/", $pageURL);
 
 if (isset($_SERVER['PATH_INFO'])) {
   $GETQuery = urldecode($_SERVER['PATH_INFO']);
-} else if (isset($_SERVER['QUERY_STRING'])) {
-  $GETQuery = urldecode($_SERVER['QUERY_STRING']);
 } else {
-  $GETQuery = 'main/main';
+  // Use the clean path (without query string) as the route source.
+  $GETQuery = urldecode($_requestPath);
 }
 
 $GETQuery = array_values(array_filter(explode("/", $GETQuery)));
@@ -105,7 +107,9 @@ if ($include != "404" && !file_exists(SR_ROOT . '/includes/modules/' . $include 
 $GET["currentPage"] = $include;
 
 
-$_GET = array_merge(array("GET" => $_GET), $GET ?? array());
+// Preserve original query string parameters (e.g. ?lang=en) before overwrite
+$_ORIG_GET = $_GET;
+$_GET = array_merge(array("GET" => $_ORIG_GET), $GET ?? array());
 
 
 require_once SR_ROOT . '/includes/header.php';

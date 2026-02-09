@@ -18,16 +18,16 @@ else
     if ($couponLog['coupon_id'] = $coupon['coupon_id'])
     {
       if ($coupon['limitedUse'] && !$coupon['uses'])
-        $errors[] = "Coupon has expired";
+        $errors[] = t('ERR_COUPON_EXPIRED');
       if ($coupon['expires'] && $coupon['expirationDate'] <= time())
-        $errors[] = "Coupon has expired";
+        $errors[] = t('ERR_COUPON_EXPIRED');
       if (!count($errors))
       {
         if ($coupon['limitedUse'])
             $db->where("coupon_id", $coupon['coupon_id'])->update("coupons",array("uses" => $coupon['uses'] - 1));
   
         $db->where("id", $user['id'])->update("users", array("alphaCoins" => $user['alphaCoins'] + $coupon['alphaCoins']));
-        $_SESSION['success'] = $coupon['alphaCoins']." Alpha-C have been added to your balance.";
+        $_SESSION['success'] = t('MSG_AC_ADDED', null, [':count' => $coupon['alphaCoins']]);
         $voice = 'transaction_done';
       }
     }

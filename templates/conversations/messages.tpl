@@ -11,7 +11,7 @@
   <div class="col-md-5">
 
     <form method="post">
-      <button type="submit" name="readall" value="true" >Mark all as read</button>
+      <button type="submit" name="readall" value="true" >{$L.CONV_MARK_READ}</button>
     </form>
 
 </div>

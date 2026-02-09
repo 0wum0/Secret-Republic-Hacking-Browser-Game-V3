@@ -179,7 +179,7 @@ else
 						);
 						if ($db->insert('hackdown_arena', $dataInsert))
 						{
-							$info[] = "You are inside the Arena!";
+							$info[] = t('MSG_HACKDOWN_ARENA');
 							$cardinal->redirect(URL_C);
 
 						}

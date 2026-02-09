@@ -558,4 +558,387 @@ return [
     'RANK_2ND'               => '2. Platz',
     'RANK_3RD'               => '3. Platz',
     'RANK_NO_HACKERS'        => 'Keine Hacker',
+
+    // ── Dashboard Extras (index/index.tpl) ──
+    'DASH_OWN_ALPHA'         => 'Du besitzt <strong><a href=":url">:count Alpha-M\u00fcnzen</a>',
+    'DASH_INCREASE_REC'      => 'Regenerationsrate erh\u00f6hen?',
+    'DASH_AC_BONUS'          => '+:pct% A-C-Bonus',
+
+    // ── Aufgaben ──
+    'TASK_FINISHED'          => 'Aufgabe erledigt',
+
+    // ── Server-Seite ──
+    'SERVERS_OWN_COUNT'      => 'Du besitzt :count/:max Server. Beachte, dass nur dein Hauptserver zu deinen Skill-Leveln in Missionen beitr\u00e4gt.',
+    'SERVERS_SET_MAIN'       => 'Als Hauptserver setzen',
+    'SERVERS_MAIN_LABEL'     => 'HAUPT',
+    'SERVERS_MAIN_TAG'       => '[HAUPT]',
+    'SERVERS_DAMAGED_PCT'    => ':amount% besch\u00e4digt',
+    'SERVERS_UNDAMAGED'      => 'unbeschadigt',
+    'SERVERS_NO_SERVERS'     => 'Du besitzt keine Server \u2013 <a href=":shop_url">kaufe Komponenten</a> und <a href=":build_url">baue einen</a>',
+    'SERVERS_BUILD_NEW'      => 'Neuen Server bauen',
+    'SERVERS_CHANGE_HOST'    => 'Hostname \u00e4ndern',
+
+    // ── Organisation Hacking-Punkte ──
+    'ORG_HP_DAILY_TITLE'     => 'T\u00e4gliche Organisationsmission \u2013 2 Hacking-Punkte Belohnung',
+    'ORG_HP_FIELD_AGAIN'     => 'Du kannst wieder ins Feld in',
+    'ORG_HP_LABEL'           => 'Hacking-Punkte',
+    'ORG_HP_DESC'            => 'Hacking-Punkte sind eine wertvolle Ressource f\u00fcr Organisationen. Sie k\u00f6nnen auf verschiedene Weise genutzt und verdient werden. Mitglieder m\u00fcssen nur Missionen abschlie\u00dfen und aktiv am Wettbewerb teilnehmen, um ihre Organisation mit Hacking-Punkten zu belohnen.',
+    'ORG_HP_EXP_DESC'        => 'Hacking-Punkte repr\u00e4sentieren auch die Erfahrung, die die Organisation sammelt und zum Aufstieg ben\u00f6tigt. Ein Hacking-Punkt entspricht einem Erfahrungspunkt. Upgrades und Features \u00e4ndern sich je nach Level der Organisation.',
+    'ORG_HP_USE_CREDITS'     => ':name kann diese Punkte nutzen, um anderen Organisationen den Krieg zu erkl\u00e4ren oder sich zu verbessern.',
+    'ORG_HP_UPGRADE_NRM'     => 'Maximale Mitgliederzahl um 1 erh\u00f6hen f\u00fcr :cost HP',
+    'ORG_HP_RANKINGS'        => 'HP-Rangliste',
+    'ORG_HP_HISTORY'         => 'Verlauf',
+    'ORG_HP_ANCIENT'         => 'Alte Eintr\u00e4ge werden vom Cardinal-Mainframe gel\u00f6scht.',
+    'ORG_HP_NO_LOGS'         => 'Keine Hacking-Punkte-Verlaufseintr\u00e4ge.',
+
+    // ── Grid Extras ──
+    'GRID_INITIATE_SPY'      => 'Spionageversuch starten',
+
+    // ── Organisation Forum ──
+    'ORG_NEW_SECTION'        => 'Neuer Forenbereich',
+
+    // ── Organisation Kriege ──
+    'ORG_SEND_WAR_REQ'       => 'Kriegsanfrage senden',
+
+    // ── Organisation R\u00e4nge ──
+    'ORG_ADD_RANK'           => 'Neuen Rang hinzuf\u00fcgen',
+
+    // ── Tutorial-Schritte ──
+    'TUT_STEP1_TITLE'        => 'Schritt Nummer Null',
+    'TUT_STEP1_CONTENT'      => '<p>*Applaus*</p>
+<p>Willkommen, :username,</p>
+<p>zum ersten einer Reihe von Mini-Tutorials, die dich in diesen gro\u00dfartigen Wettbewerb einf\u00fchren sollen.</p>
+<p>Am Ende jedes Schritts warten Belohnungen auf dich.</p>
+<p>Lies zuerst <a href=\':url_tutorial\'>eine kurze \u00dcbersicht der verf\u00fcgbaren Interfaces</a>.</p>
+<p><strong>T\u00e4gliches Einloggen gew\u00e4hrt wachsende Belohnungen proportional zu aufeinanderfolgenden Tagen.</strong></p>
+<p>Das Tutorial-Symbol blinkt weiterhin links. Dr\u00fccke es, wenn du die \u00dcbersicht gelesen hast.</p>',
+
+    'TUT_STEP2_TITLE'        => 'Belohnungen!',
+    'TUT_STEP2_CONTENT'      => '<p>Wir haben deine Belohnung geliefert!</p>
+<p>Du kannst sie im Belohnungs-Bereich abholen. Dort findest du auch den Verlauf deiner Belohnungen.</p>
+<p>Bitte hole alle ausstehenden Belohnungen ab.</p>',
+
+    'TUT_STEP3_TITLE'        => 'Freunde mit Vorteilen',
+    'TUT_STEP3_CONTENT'      => '<p>\u201eFreunde kommen und gehen, aber Feinde sammeln sich an.\u201c ~ Thomas Jones.</p>
+<p>Dennoch ist der Nutzen von Freundschaften unbestreitbar.</p>
+<p>Wenn du <a href=":url_dna">deine Konten verkn\u00fcpfst</a>, kannst du dich mit einem Klick authentifizieren \u2013 und es gibt einen Erfolg f\u00fcr das Verkn\u00fcpfen aller sozialen Konten.</p>
+<p>Beachtliche Belohnungen warten, <a href=":url_referrals">wenn du andere wirbst, und die Belohnungen kommen immer wieder</a>.</p>
+<p>Schau jetzt in dein Freunde-Interface. Vielleicht hast du ein oder zwei Anfragen offen.</p>
+<p>Dr\u00fccke oben auf Hauptquartier, gehe zu Freunde und entscheide \u00fcber offene Anfragen.</p>',
+
+    'TUT_STEP4_TITLE'        => 'Ein Server?',
+    'TUT_STEP4_CONTENT'      => '<p>Server sind Computer, die f\u00fcr schwere Arbeit ausgelegt sind.</p>
+<p>Um etwas N\u00fctzliches tun zu k\u00f6nnen, musst du deinen 1. Server konfigurieren \u2013 finde das Server-Interface.</p>
+<p><strong>Kaufe die G\u00dcNSTIGSTEN Komponenten</strong>, die du findest. Geld w\u00e4chst NICHT auf B\u00e4umen (leider).</p>
+<p>Du brauchst ein Netzteil, ein Mainboard, eine CPU, ein Geh\u00e4use, eine <a title="Arbeitsspeicherkarte">RAM-Karte</a> und eine <a title="Festplattenspeicher">HDD</a>.</p>
+<p>Gekaufte Gegenst\u00e4nde gehen ins Lager. Achtung: Das Lager hat begrenzten Platz (erweitert sich mit deinem Level oder durch <a href=":url_ac_storage">Alpha-M\u00fcnzen</a>).</p>
+<p>Nach dem Bauen eines Servers solltest du dein <a href=":url_storage">Lager</a> besuchen, um RAM und HDD zu montieren.</p>',
+
+    'TUT_STEP5_TITLE'        => 'Missionen',
+    'TUT_STEP5_CONTENT'      => '<p>Rufe das Missions-Interface auf.</p>
+<p>Die meisten Befehle in Missionen werden von deinen Skills && den Skills deines Hauptservers beeinflusst, und es besteht die M\u00f6glichkeit, dass sie deine Software besch\u00e4digen. Im Skills-Interface erf\u00e4hrst du, was beeinflusst wird.</p>
+<p><strong>Diesmal ist deine Aufgabe, die erste Mission in der Informatik-Missionsgruppe abzuschlie\u00dfen.</strong></p>
+<p>Wenn du in Missionen nicht genug Zeit hast, kannst du ein <a href=":url_ac_time">Zeitverzerrungsger\u00e4t</a> nutzen.</p>
+<p>Einige Missionen wurden von Hackern wie dir entworfen, die dem <a href=":url_ac_quest">Alpha-Missions-Designer-Praktikumsprogramm</a> beigetreten sind.</p>',
+
+    'TUT_STEP6_TITLE'        => 'Alle f\u00fcr einen und einer f\u00fcr die Party',
+    'TUT_STEP6_CONTENT'      => '<p>Im Missions-Interface siehst du, dass \u201ePartys\u201c eine Option sind.</p>
+<p>\u00dcberfliege kurz die Anweisungen f\u00fcr \u201ePartys\u201c.</p>
+<p>F\u00fcr Party-Mitglieder erscheint eine Live-Chatbox. <a href=":url_ac_chat">Du kannst den Party-Chat \u00fcberall aktivieren</a> (standardm\u00e4\u00dfig ist er nur im Missions-Interface sichtbar).</p>
+<p>Party-Mitglieder k\u00f6nnen gemeinsamen Missions-Instanzen beitreten und mit denselben Systemen interagieren.</p>
+<p>Deine Aufgabe ist einfach. Erstelle eine Party und l\u00f6se sie auf, wann du willst.</p>',
+
+    'TUT_STEP7_TITLE'        => 'Das Knoten-Labyrinth',
+    'TUT_STEP7_CONTENT'      => '<p>Jeder Teilnehmer kann im Grid-Netzwerk gefunden werden.</p>
+<p>\u00dcber das Grid kannst du andere ausspionieren und angreifen. Jeder hat drei Sicherheitsschichten plus eine Spionageschicht dar\u00fcber. Wir besprechen das sp\u00e4ter.</p>
+<p>Das Grid ist in Zonen unterteilt, die wiederum Unterabschnitte namens Cluster haben.</p>
+<p>Du kannst einen oder mehrere Knoten in einem oder mehreren Clustern jeder Zone besitzen, aber offiziell geh\u00f6rst du nur der Zone an, die du zuerst gew\u00e4hlt hast.</p>
+<p>Einen Knoten zu besetzen hei\u00dft Instanziierung und kann mit spezialisierter Software durchgef\u00fchrt werden.</p>
+<p>In extremen Situationen k\u00f6nnen Knoten zerst\u00f6rt werden \u2013 besser, mehr als einen zu haben.</p>
+<p>Schau jetzt kurz ins Grid, finde einen zuf\u00e4lligen B\u00fcrger und rufe sein Profil auf.</p>',
+
+    'TUT_STEP8_TITLE'        => 'Die dunkle Seite des Grids',
+    'TUT_STEP8_CONTENT'      => '<p><a href=":url_achievements">Erfolge</a> sind spezielle Auszeichnungen. Einige verbessern dein Ranking. Es gibt ebenso viele versteckte Erfolge wie \u00f6ffentliche.</p>
+<p>Deine Skills und Server-Skills beeinflussen deine Schichten.</p>
+<p>Ein Angreifer muss die zweite Schicht durchbrechen, um etwas zu stehlen \u2013 und wenn er die dritte Schicht passiert, werden mehr Ressourcen gestohlen.</p>
+<p>Du kannst deine Server zum Angriff senden, aber w\u00e4hrend sie im Einsatz sind, sch\u00fctzen sie dich nicht.</p>
+<p>Du kannst den Einfluss jedes Skills und Servers (sofern er nicht im Einsatz ist) im Schichten-Interface sehen.</p>
+<p>Der <a href=":url_simulator">Kampfsimulator</a> kann versuchen, den Ausgang von K\u00e4mpfen vorherzusagen.</p>
+<p>Bitte gehe zum <a href=":url_grid">Grid</a> und betritt das <strong>Schichten-Interface</strong>.</p>',
+
+    'TUT_STEP9_TITLE'        => 'Skills',
+    'TUT_STEP9_CONTENT'      => '<p>Wir haben festgestellt, dass Skills deine Sicherheitsschichten beeinflussen.</p>
+<p>Skills erh\u00f6hen auch die Effizienz und verk\u00fcrzen die Dauer der Befehlsausf\u00fchrung in der Missions-Konsole.</p>
+<p>Rufe das Skills-Interface auf und verbessere deine Skills mit allen verf\u00fcgbaren Universellen Skill-Punkten (USP).</p>
+<p>Vielleicht durchl\u00e4ufst du einen schmerzhaften Trial-and-Error-Prozess, um herauszufinden, welche Skills am besten sind.</p>
+<p>Skills sind im Grunde genommen <strong>du</strong>!</p>',
+
+    'TUT_STEP10_TITLE'       => 'F\u00e4higkeiten',
+    'TUT_STEP10_CONTENT'     => '<p>F\u00e4higkeiten verbessern deine Skills. Sie tragen nur dazu bei, dir spezifischere Skill-Punkte zu geben.</p>
+<p>Vielleicht m\u00f6chtest du genau sehen, zu welchen Skills jede F\u00e4higkeit beitr\u00e4gt, bevor du einsteigst.</p>
+<p>Du kannst zum n\u00e4chsten Schritt weitergehen, sobald du eine F\u00e4higkeit erlernt hast.</p>
+<p>Um den F\u00e4higkeiten-Bienenstock zu erreichen, gehe zum Skills-Interface und dann zum F\u00e4higkeiten-Interface.</p>',
+
+    'TUT_STEP11_TITLE'       => 'Server-Skills und Apps',
+    'TUT_STEP11_CONTENT'     => '<p>Du machst das wirklich sehr gut. Wir m\u00fcssen sagen, wir sind beeindruckt!</p>
+<p>Serverkomponenten und Software k\u00f6nnen bei Grid-K\u00e4mpfen, Missionen und anderem besch\u00e4digt werden.</p>
+<p>Server-Skills werden durch laufende Apps generiert. Bitte kaufe eine g\u00fcnstige App (im gleichen Shop wie f\u00fcr Komponenten), installiere und starte sie auf deinem Hauptserver.</p>
+<p>Beobachte, wie sich die Skill-Level deines Servers \u00e4ndern.</p>',
+
+    'TUT_STEP12_TITLE'       => 'Datenpunkte',
+    'TUT_STEP12_CONTENT'     => '<p>Du kannst <a href=":url_dp">hier \u00fcber Datenpunkte lesen</a>.</p>
+<p>Es reicht zu sagen, dass DPs von Servern unter dem Einfluss laufender Apps generiert werden.</p>
+<p>Du kannst <a href=":url_ac_dp">einen Mining-Berater engagieren, um deine DP-Produktion zu steigern</a>.</p>
+<p>Alles, was du tun musst, ist <a href=":url_dp">das hier kurz zu lesen</a>.</p>',
+
+    'TUT_STEP13_TITLE'       => 'Jobs',
+    'TUT_STEP13_CONTENT'     => '<p>Das Schl\u00fcsselwort ist Freelancing. Ein Hacker braucht Geld und Erfahrung \u2013 und nicht nur aus Missionen.</p>
+<p>Finde das Job-Interface und schlie\u00dfe einen Job ab.</p>',
+
+    'TUT_STEP14_TITLE'       => 'Training',
+    'TUT_STEP14_CONTENT'     => '<p>Gro\u00dfartig! Das Gleiche gilt f\u00fcr Training.</p>
+<p>Unsere Trainingsprogramme werden deinen Verstand herausfordern, aber deine Logik wird sich exponentiell verbessern. Du magst Denksportaufgaben? PECH GEHABT!</p>
+<p>Wenn du bei einem Zahlenproblem feststeckst, stehen dir die Foren und Chats jederzeit zur Verf\u00fcgung.</p>
+<p>Trainiere einmal und wir machen z\u00fcgig weiter!</p>
+<p>Du erreichst das Training-Interface \u00fcber das Job-Interface.</p>',
+
+    'TUT_STEP15_TITLE'       => 'Forumsy',
+    'TUT_STEP15_CONTENT'     => '<p><a href=":url_forum">Sag uns im Forum Hallo!</a></p>
+<p>Du kannst diesen Schritt gerne \u00fcberspringen, wenn du m\u00f6chtest.</p>',
+
+    'TUT_STEP16_TITLE'       => 'Organisationen',
+    'TUT_STEP16_CONTENT'     => '<p>Organisationen sind Gruppen von Hackern mit einem Hauch eines gemeinsamen Ziels. Partner im Verbrechen.</p>
+<p>Organisationskriege machen den Unterschied zwischen den Starken.. und den Schwachen.</p>
+<p>Hacking-Punkte helfen Organisationen sich zu verbessern. Du kannst Hacking-Punkte f\u00fcr deine Organisation verdienen, indem du normale Missionen machst, an Events teilnimmst und an den t\u00e4glichen Hacking-Missionen im Hacking-Punkte-Interface deiner Organisation teilnimmst.</p>
+<p>Nach einer Weile wirst du aus der Anf\u00e4nger-Organisation entfernt. Tritt einer bei oder gr\u00fcnde deine eigene!</p>
+<p>Deine Aufgabe ist es, das Hacking-Punkte-Interface deiner aktuellen Organisation zu finden (gehe zu deiner Organisation und untersuche die Umgebung).</p>
+<p>Vielleicht schaffst du die Hacking-Punkte-Mission nicht, weil du die Konsole noch nicht gewohnt bist ^^. Keine Sorge, du wirst sie bald meistern.</p>',
+
+    'TUT_STEP17_TITLE'       => 'Kinderleicht',
+    'TUT_STEP17_CONTENT'     => '<p>Zeit f\u00fcr eine weitere einfache Aufgabe.</p>
+<p>Du kannst ein Youtube-Video auf deiner Profilseite anzeigen lassen! Wie cool ist das?!</p>
+<p>Alles, was du brauchst, ist der Video-Code \u2013 ein Beispiel findest du im DNA/Einstellungen-Interface.</p>
+<p>Rufe dieses Interface auf, indem du auf deinen Avatar im Dashboard oder auf deiner Profilseite klickst und setze ein Youtube-Video f\u00fcr dich. Untersuche optional auch, wie du deinen Avatar aktualisieren kannst!</p>',
+
+    'TUT_STEP18_TITLE'       => 'Mein Informatik-Abschluss',
+    'TUT_STEP18_CONTENT'     => '<p>Zu guter Letzt: Schlie\u00dfe die Mission \u201eSELECT * FROM WORLD\u201c ab, die in der Informatik-Missionsgruppe verf\u00fcgbar ist.</p>
+<p><strong>Du musst die Missionen der Gruppe eine nach der anderen abschlie\u00dfen, bis du diese erreichst.</strong></p>
+<p>Hast du den <strong>PAUSE</strong>-Button in Missionen bemerkt?</p>
+<p>Bitte denke daran, unsere sozialen Kan\u00e4le zu liken und zu folgen und unsere Mobile-/Tablet-Apps herunterzuladen, um dieses herausfordernde Projekt zu unterst\u00fctzen.</p>
+<p>Und wir entschuldigen uns im Voraus f\u00fcr die Bugs, die dir begegnen k\u00f6nnten ^^.</p>',
+
+    // ── Admin Extras ──
+    'ADMIN_ADD_SKILL_EXP'    => 'Skill-Erfahrung hinzuf\u00fcgen',
+
+    // ── Server-Detailseite ──
+    'SERVERS_IN_USE'         => ':used / :total in Benutzung',
+    'SERVERS_POWER_USAGE'    => 'Stromverbrauch: :amount',
+    'SERVERS_RAM_SLOTS'      => ':used / :total RAM-Pl\u00e4tze',
+    'SERVERS_HDD_SLOTS'      => ':used / :total HDD-Pl\u00e4tze',
+    'SERVERS_POWER'          => 'Strom: :used/:total',
+    'SERVERS_NO_RAM'         => 'kein RAM montiert',
+    'SERVERS_NO_HDD'         => 'keine HDDs montiert',
+    'SERVERS_NO_APPS'        => 'keine Apps installiert',
+    'SERVERS_NO_SKILLS'      => 'keine Skill-Level',
+    'SERVERS_CUR_SKILLS'     => 'aktuelle Server-Skill-Level',
+    'SERVERS_UNMOUNT'        => 'Karte entfernen',
+    'SERVERS_DMG_DISABLED'   => 'Deaktiviert wegen Mainboard-Schaden',
+    'SERVERS_ABOUT_DMG'      => '\u00dcber Software, Hardware und was passiert, wenn sie besch\u00e4digt werden',
+    'SERVERS_TRANSFER'       => '\u00dcBERTRAGEN',
+    'SERVERS_TRANSFER_LC'    => '\u00fcbertragen',
+
+    // ── Header-Tutorial-Leiste ──
+    'HDR_TUTORIAL_BAR'       => 'Tutorial (:pct%)',
+
+    // ── Grid-Seite Extras ──
+    'GRID_OCCUPY_NODE'       => 'Knoten besetzen',
+    'GRID_UNINHABITED'       => 'unbewohnter Knoten',
+    'GRID_INITIALIZE'        => 'eine Knoten-Instanz initialisieren',
+    'GRID_INACTIVE'          => 'seit einer Weile inaktiv',
+    'GRID_SCAVENGE'          => 'Sammeln',
+    'GRID_FLOATING_DP'       => ':count schwebende DPs',
+    'GRID_NO_FLOATING'       => 'keine <a href=":url">schwebenden Datenpunkte</a>',
+    'GRID_SEND_MSG'          => 'Nachricht senden',
+    'GRID_CONFIG_ATTACK'     => 'Angriff konfigurieren',
+    'GRID_RENAME_CLUSTER'    => 'Cluster (um)benennen',
+    'GRID_RENAME_INFO'       => 'Cluster-Bewohner k\u00f6nnen den Namen alle 15 Tage \u00e4ndern.',
+    'GRID_NAME_BTN'          => 'Cluster benennen',
+    'GRID_CLUSTER'           => 'Cluster',
+    'GRID_FREE_DP'           => 'Frei schwebende Datenpunkt-Reste. Einsammeln?',
+    'GRID_NO_FLOATING_PTS'   => 'keine schwebenden Punkte',
+    'GRID_EMPTY_NODE'        => 'LEERER KNOTEN',
+
+    // ── Skills-Seite ──
+    'SKILLS_DESIGNATE'       => 'Skill-Punkte wie oben angegeben zuweisen',
+    'SKILLS_DONT_FORGET'     => 'Vergiss nicht, die \u00c4nderungen zu speichern',
+    'SKILLS_HIGHER_LEVEL'    => 'Je h\u00f6her der Skill-Level, desto gr\u00f6\u00dfer wird der Einfluss.',
+
+    // ── F\u00e4higkeiten-Seite ──
+    'ABILITIES_NAV'          => 'F\u00e4higkeiten',
+    'ABILITIES_DECREASE'     => 'Wartezeit um eine Stunde verk\u00fcrzen f\u00fcr 1 Alpha-M\u00fcnze',
+    'ABILITIES_REQUIREMENTS' => 'Voraussetzungen',
+    'ABILITIES_BONUS'        => 'Bonus-Skill-Punkte f\u00fcr n\u00e4chstes Level',
+    'ABILITIES_UPGRADE'      => 'Verbessern',
+
+    // ── Lager Extras ──
+    'STORAGE_SELL_WARN'      => 'Du bist dabei, diesen Gegenstand zu verkaufen und damit zu verlieren. Der offizielle Shop unterbewertet den Gegenstand und gibt dir weniger Geld, wenn er besch\u00e4digt ist.',
+    'STORAGE_SELL_ITEM'      => 'Verkaufen [:price$]',
+    'STORAGE_REPAIR'         => 'Reparieren',
+    'STORAGE_MOUNT_SERVER'   => 'Server',
+    'STORAGE_PICK_SERVER'    => 'Server ausw\u00e4hlen',
+    'STORAGE_MOUNT_SLOT'     => 'Steckplatz',
+    'STORAGE_REPLACE'        => 'Ersetzen: :name',
+
+    // ── Job/Training-Navigation ──
+    'JOB_TRAIN_NAV'          => 'Trainieren',
+    'TRAIN_PATTERN_HINT'     => 'Probleme mit den Musterspielen? Das Gef\u00fchl, diese Modelle nie zu durchschauen? Versuche, <a href="http://www.cimt.plymouth.ac.uk/projects/mepres/allgcse/bkb12.pdf" target="_blank">diesen Spickzettel</a> zu \u00fcberfliegen \u2013 er dient als Inspiration f\u00fcr die meisten davon.',
+
+    // ── Quests Extras ──
+    'QUEST_ACHIEVEMENT'      => 'Erfolg: :name',
+    'QUEST_AVAIL_AGAIN'      => 'Mission ist wieder verf\u00fcgbar in',
+    'QUEST_FINISHED_DATE'    => 'Abgeschlossen :date.',
+    'QUEST_RESUME'           => 'Mission fortsetzen',
+    'QUEST_PAUSE'            => 'Mission pausieren',
+    'QUEST_NOTEPAD'          => 'Notizblock',
+    'QUEST_NOTEPAD_PH'       => 'Missions-Notizblock',
+    'QUEST_DAILIES'          => 'T\u00e4gliche',
+    'QUEST_NORMAL_REPEAT'    => 'Normal und wiederholbar',
+    'QUEST_FEEDBACK_FOR'     => 'Feedback-Sitzung f\u00fcr <em>:title</em>',
+    'QUEST_DIFFICULTY'       => 'Schwierigkeit',
+    'QUEST_TIME'             => 'Zeit',
+    'QUEST_REPLAY_VALUE'     => 'Wiederspielwert',
+
+    // ── Organisation Extras ──
+    'ORG_EDIT_SECTION'       => 'Bereich bearbeiten',
+    'ORG_CONFIRM_ACTION'     => 'Aktion best\u00e4tigen',
+    'ORG_EDIT_FORUM'         => 'Forum bearbeiten',
+    'ORG_SECTION_NAME'       => 'Bereichsname',
+    'ORG_FORUM_NAME'         => 'Forumname',
+    'ORG_PROCESS'            => 'Verarbeiten',
+    'ORG_ORDER'              => 'Reihenfolge',
+    'ORG_RANK_NAME'          => 'Rangname \u2013 max. 15 Zeichen',
+    'ORG_DELETE_RANK'        => 'Rang l\u00f6schen',
+
+    // ── F\u00e4higkeiten-Seite Extras ──
+    'ABILITIES_HIVE'         => 'F\u00e4higkeiten-Bienenstock',
+    'ABILITIES_NOT_LEARNT'   => 'nicht erlernt',
+    'ABILITIES_MAX_LEVEL'    => 'Maximallevel f\u00fcr diese F\u00e4higkeit erreicht',
+    'ABILITIES_NEED_LEVEL'   => 'Du musst Level :level sein, um die F\u00e4higkeit zu verbessern',
+    'ABILITIES_NO_MONEY'     => 'Nicht genug Geld auf deinem Konto',
+    'ABILITIES_NO_ENERGY'    => 'Nicht genug Energie f\u00fcr das Upgrade',
+    'ABILITIES_NO_DP'        => 'Nicht genug Datenpunkte f\u00fcr das Upgrade',
+    'ABILITIES_NO_ACTION'    => 'Keine Aktion',
+    'ABILITIES_DATA_PTS'     => 'Datenpunkte',
+
+    // ── Quest-Listen Extras ──
+    'QUEST_PARTY'            => 'Party',
+    'QUEST_SOLO'             => 'SOLO',
+    'QUEST_REPEATABLE'       => 'Wiederholbar',
+    'QUEST_NOT_DONE'         => 'Nicht erledigt',
+    'QUEST_DONE_LABEL'       => 'Erledigt',
+    'QUEST_NO_DAILY'         => 'Keine t\u00e4glichen Missionen in dieser Missionsgruppe verf\u00fcgbar.',
+    'QUEST_NO_NORMAL'        => 'Keine normalen oder wiederholbaren Missionen in dieser Missionsgruppe verf\u00fcgbar.',
+    'QUEST_DAILY_DESC'       => 'Missionen, die t\u00e4glich erledigt werden k\u00f6nnen',
+    'QUEST_NORMAL_DESC'      => 'Missionen, die einmal abgeschlossen oder ohne Belohnung wiederholt werden k\u00f6nnen',
+
+    // ── Job-Navigation ──
+    'JOB_NAV_JOB'            => 'Job',
+
+    // ── Forum ──
+    'FORUM_NAV'              => 'Forum',
+    'FORUM_STARTED_BY'       => 'Diskussion gestartet von :user in <a href=":url">:forum</a> :date',
+    'FORUM_MUST_CONNECT'     => 'Zum Diskutieren muss man verbunden sein',
+    'FORUM_STICKED'          => 'Angepinnt',
+    'FORUM_CLOSED'           => 'Geschlossen',
+    'FORUM_PREVIEW'          => 'Vorschau',
+
+    // ── Unterhaltungen ──
+    'CONV_MARK_READ'         => 'Alle als gelesen markieren',
+    'CONV_TITLE_PH'          => 'Titel',
+    'CONV_USERNAME_PH'       => 'Benutzername',
+
+    // ── Quest-Feedback ──
+    'QUEST_DEBUG'            => 'Quest-Debug',
+
+    // ── Organisation Extras ──
+    'ORG_LEVEL_LABEL'        => 'Level :level [:exp/:expNext]',
+    'ORG_MODIFY'             => '\u00c4ndern',
+    'ORG_DELETE_SECTION'     => 'Bereich :name l\u00f6schen',
+    'ORG_DELETE_FORUM'       => 'Forum :name l\u00f6schen',
+    'ORG_REQUESTS'           => 'Anfragen',
+    'ORG_START_WAR'          => 'Krieg starten',
+    'ORG_NORMAL_WAR'         => 'Normale Kriegsanfrage',
+    'ORG_FORCED_WAR'         => 'Erzwungene Anfrage (:cost Hacking-Punkte)',
+    'ORG_NAME_PH'            => 'Organisationsname',
+    'ORG_TAG_PH'             => 'Organisations-TAG',
+
+    // ── Forum Extras ──
+    'FORUM_NEW_DISCUSSION'   => 'Neue Diskussion',
+    'FORUM_CLOSED_LABEL'     => 'FORUM GESCHLOSSEN',
+    'FORUM_REPLIES_COUNT'    => ':count Antworten',
+    'FORUM_BY'               => 'von',
+    'FORUM_LAST_BY'          => 'zuletzt :date von :user',
+    'FORUM_NOTHING'          => 'Nichts anzuzeigen',
+    'FORUM_CANCEL'           => 'Abbrechen',
+
+    // ── PHP-Modul-Meldungen ──
+    'MSG_REWARDS_CLAIMED'    => 'Belohnungen eingeholt',
+    'MSG_REWARD_ERROR'       => 'Ein Fehler ist aufgetreten',
+    'MSG_SOLD_FOR'           => 'Verkauft f\u00fcr :price$.',
+    'MSG_ALL_READ'           => 'Alle Nachrichten als gelesen markiert.',
+    'MSG_TRANSACTION'        => 'Transaktion abgeschlossen',
+    'MSG_SESSION_CANCELED'   => 'Sitzung wurde abgebrochen',
+    'MSG_PROFILE_UPDATED'    => 'Aktualisiert. Du kannst jetzt dein Profil \u00fcberpr\u00fcfen.',
+    'MSG_APPLICATION_SENT'   => 'Bewerbung wurde gesendet',
+    'MSG_ORG_WAIT'           => 'Du wartest auf eine Antwort auf deine Beitrittsbewerbung.',
+    'MSG_ORG_FULL'           => 'Die Organisation kann im Moment keine weiteren Mitglieder aufnehmen.',
+    'ERR_NOT_ENOUGH_AC'      => 'Nicht genug Alpha-M\u00fcnzen verf\u00fcgbar',
+    'ERR_INVALID_EMAIL_DNA'  => 'Ung\u00fcltige E-Mail',
+    'ERR_EMAIL_CONNECTED'    => 'E-Mail ist bereits mit einem anderen Konto verbunden',
+    'ERR_INVALID_VIDEO'      => 'Ung\u00fcltiger Video-Code',
+    'ERR_ACCESS_DENIED_DNA'  => 'ZUGRIFF VERWEIGERT',
+    'ERR_SAME_PASSWORD'      => 'Du hast zweimal dasselbe Passwort eingegeben',
+    'ERR_FEEDBACK_LENGTH'    => 'Feedback muss weniger als 2000 Zeichen enthalten',
+    'ERR_CONSOLE_HISTORY'    => 'Du musst die <a href=\':url\'>Konsolen-Chronik aktivieren</a>, bevor du sie nutzen kannst. Du erh\u00e4ltst Zugriff auf deinen gesamten Verlauf und bei Party-Missionen kannst du den Verlauf aller Teilnehmer einsehen.',
+    'ERR_NOTE_TITLE'         => 'Der Titel muss zwischen 1 und 100 Zeichen haben',
+    'ERR_NOTE_CONTENT'       => 'Der Inhalt muss weniger als :max Zeichen haben.',
+    'ERR_SEARCH_LENGTH'      => 'Bitte verwende weniger als 100 Zeichen f\u00fcr deine Suche',
+    'ERR_SEARCH_INVALID'     => 'Ung\u00fcltiger Benutzername. Du brauchst nicht den exakten Benutzernamen, aber er muss g\u00fcltig sein.',
+    'WARN_SHOP_NO_SERVER'    => 'Du hast noch keinen <a href=\':url\'>Hauptserver</a> gebaut, daher haben wir <strong>die Auswahl in diesem Shop auf die g\u00fcnstigsten</strong> Komponenten und Software beschr\u00e4nkt.',
+    'WARN_GRID_FRIENDS'      => 'Du bist mit dem Besitzer dieses Grid-Knotens <a href=\':url\'>befreundet</a>.',
+    'WARN_GRID_SAME_ORG'     => 'Du bist in derselben Organisation wie der Besitzer dieses Grid-Knotens. Du kannst deinen Angriff weiter planen.',
+    'ERR_NOT_ENOUGH_DP'      => 'Nicht genug Datenpunkte, um den ausgew\u00e4hlten Ort zu durchsuchen. Du ben\u00f6tigst :cost DP f\u00fcr diesen Befehl.',
+    'ERR_CPU_POWER'          => 'Laufende Apps auf dem Server verbrauchen mehr CPU-Leistung als die neue Komponente bieten kann.',
+    'ERR_POWER_SOURCE'       => 'Das montierte Netzteil kann die neue Komponente nicht unterst\u00fctzen.',
+    'ERR_POWER_ALL'          => 'Die neue Komponente kann nicht alle anderen aktuellen Komponenten des Servers mit Strom versorgen.',
+    'MSG_HACKDOWN_ARENA'     => 'Du bist in der Arena!',
+
+    // ── Hackdown-Seite ──
+    'HACKDOWN_COUNTDOWN'     => 'Hackdown-Countdown',
+    'HACKDOWN_RANKINGS_LAST' => 'RANGLISTE DES LETZTEN HACKDOWNS',
+    'HACKDOWN_STATS'         => 'Du hast :count Mal erfolgreich Hackdown gespielt (:missions Hacks && :arena Arena)',
+    'HACKDOWN_ABOUT'         => '\u00dcber HACKDOWN',
+    'HACKDOWN_ABOUT_P1'      => 'Hackdown ist ein Mini-Wettbewerb, der von Hackern innerhalb des gro\u00dfen Wettbewerbs von Alpha organisiert wird.',
+    'HACKDOWN_ABOUT_P2'      => 'Ein Hackdown findet jede Woche am Samstag statt und dauert den ganzen Tag.',
+    'HACKDOWN_ABOUT_P3'      => 'W\u00e4hrend eines Hackdowns k\u00f6nnen Hacker spezielle Missionen so oft abschlie\u00dfen wie sie wollen und erhalten f\u00fcr jeden erfolgreichen Versuch Punkte.',
+    'HACKDOWN_ABOUT_P4'      => 'Anonyme K\u00e4mpfe k\u00f6nnen auch zwischen Teilnehmern in der Arena stattfinden, die wiederum die Rangliste verbessern, wenn man gewinnt.',
+    'HACKDOWN_ABOUT_P5'      => 'Am Ende eines Hackdowns werden Statistiken und Ranglisten berechnet und jeder Hacker und seine Organisationen erhalten Belohnungen je nachdem, wie gut sie im Vergleich zu allen anderen abgeschnitten haben.',
+    'HACKDOWN_ABOUT_FOOTER'  => 'Wir sind Hacker und wir wissen, was DU willst. Du willst Ruhm und Macht. Du willst Prestige und Einfluss. Du musst Teil des Hackdowns sein!',
+    'HACKDOWN_REWARDS_DESC'  => 'Belohnungen umfassen unter anderem: Ruhm, Geld, universelle Skill-Punkte, Erfahrung, hochpreisige Software und Hardware f\u00fcr herausragende Hacker.',
+    'HACKDOWN_CHAMPION'      => 'Glaubst du, du hast das Zeug dazu, einer der Champions zu sein?',
+    'HACKDOWN_MISSION'       => 'Mission',
+    'HACKDOWN_MISSION_P1'    => 'Besonders herausfordernde Missionen wurden vorbereitet.',
+    'HACKDOWN_MISSION_P2'    => 'Wenn du eine Mission erfolgreich abschlie\u00dft, erh\u00e4ltst du Punkte f\u00fcr dich, deine Organisation und Zone.',
+    'HACKDOWN_BEGIN_MISSION'  => 'NEUE MISSION STARTEN',
+    'HACKDOWN_ARENA_DESC_1'  => 'Wenn du der Arena beitrittst, k\u00e4mpfst du gegen andere Hacker, die dort sind.',
+    'HACKDOWN_ARENA_DESC_2'  => 'Du erh\u00e4ltst einen Bericht, sobald jemand zum K\u00e4mpfen verf\u00fcgbar ist und der Kampf abgeschlossen ist.',
+    'HACKDOWN_ARENA_DESC_3'  => 'Sobald du beigetreten bist, kannst du nicht zur\u00fccktreten, bis du jemanden angegriffen hast (was automatisch passiert, wenn jemand verf\u00fcgbar ist).',
+    'HACKDOWN_ARENA_DESC_4'  => 'Angriffe sind \u00e4hnlich wie die im Grid hinsichtlich Hardwareschaden und Sicherheitsschichten. Sie sind jedoch anonym.',
+    'HACKDOWN_ARENA_DESC_5'  => 'Wenn niemand f\u00fcr dich passt, musst du warten. Nach 20 Minuten ohne Match wirst du aus der Arena geworfen.',
+    'HACKDOWN_ENTER_ARENA'   => 'ARENA BETRETEN',
+    'HACKDOWN_TRAPPED'       => 'Du bist in der Arena gefangen. Sobald ein Kampf stattfindet, erh\u00e4ltst du einen Bericht und kannst eine Hackdown-Mission starten oder der Arena erneut beitreten.',
+    'HACKDOWN_KICK_20'       => 'Wenn du nach 20 Minuten nicht zugewiesen wurdest, wirst du aus der Arena geworfen.',
+    'HACKDOWN_SELECT_SERVERS'=> 'W\u00e4hle die Server aus, die du f\u00fcr den Arena-Angriff verwenden m\u00f6chtest.',
+    'HACKDOWN_SERVERS_INFO'  => 'Sie tragen zu deinem Angriff und deiner Verteidigung bei und k\u00f6nnen Komponentenschaden erleiden. Pr\u00fcfe deine <a href=":url">Schichten</a>, um deine St\u00e4rke einzusch\u00e4tzen.',
+    'HACKDOWN_SERVERS_LOCK'  => 'Die im Angriff verwendeten Server werden gesperrt und du kannst sie in keinem anderen Angriff verwenden, bis der aktuelle beendet ist. Au\u00dferdem tragen sie nicht mehr zu deiner Verteidigung bei, falls du angegriffen oder ausspioniert wirst.',
 ];

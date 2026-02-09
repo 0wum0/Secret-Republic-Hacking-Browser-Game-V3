@@ -4,7 +4,7 @@
 
 $cardinal->mustLogin();
 
-$page_title = "DNA";
+$page_title = t('DNA_TITLE');
 
 if ($GET['sessions'])
 {
@@ -13,7 +13,7 @@ if ($GET['sessions'])
 	if ($_POST['cancel'])
 	{
 		$db->where('id', $_POST['cancel'])->where('user_id', $user['id'])->delete('user_session');
-		$success[] = "Session has been canceled";
+		$success[] = t('MSG_SESSION_CANCELED');
 		$cardinal->redirect(URL_C);
 
 	}
@@ -54,10 +54,10 @@ else
 		$registrationSystem = new RegistrationSystem();
 
 		if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
-			$errors[] = "Invalid email";
+			$errors[] = t('ERR_INVALID_EMAIL_DNA');
 
 		if ($registrationSystem->isEmailUsed($_POST['email']))
-			$errors[] = "Email is already connected to another account";
+			$errors[] = t('ERR_EMAIL_CONNECTED');
 
 		if (!count($errors))
 		{
@@ -78,20 +78,20 @@ else
 	elseif ($youtube = $_POST['youtube'])
 	{
 		if (strlen($youtube) < 3 || strlen($youtube) > 20)
-			$errors[] = "Invalid video code";
+			$errors[] = t('ERR_INVALID_VIDEO');
 
 		if (!count($errors))
 		{
 			$youtube = htmlentities(strip_tags($youtube));
 			$updateData = array("youtube" => $youtube);
 			$db->where("uid", $user['id'])->update("user_credentials", $updateData, 1);
-			$success[] = "Updated. You can check your profile now.";
+			$success[] = t('MSG_PROFILE_UPDATED');
 		}
 		$cardinal->redirect(URL_C);
 	}
 	elseif ($_POST['aiVoice'])
 	{
-		$success[] = "Updated";
+		$success[] = t('MSG_UPDATED');
 	  $uclass->updatePlayer(array('aiVoice' => $user['aiVoice'] ? 0 : 1));
 		$cardinal->redirect(URL_C);
 	}
@@ -117,15 +117,15 @@ else
         }
         else
         {
-          $errors[] = "ACCESS DENIED";
+          $errors[] = t('ERR_ACCESS_DENIED_DNA');
           $_SESSION["failedChangeAttempts"] = ($_SESSION["failedChangeAttempts"] ?? 0) + 1;
           if ($_SESSION["failedChangeAttempts"] > 2)
             $cardinal->loginSystem->logout();
         }
 
-      } else $errors[] = "You entered same password twice";
+      } else $errors[] = t('ERR_SAME_PASSWORD');
 
-	  } else $errors[] = "ACCESS DENIED";
+	  } else $errors[] = t('ERR_ACCESS_DENIED_DNA');
 	  $cardinal->redirect(URL_C);
 	}
 

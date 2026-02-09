@@ -1,7 +1,7 @@
 <div class="Mary-AI">
 <div class="futureNav middle ">
  <ul>
-    <li><a href="{$furl}" ><div>Forum</div></a></li>
+    <li><a href="{$furl}" ><div>{$L.FORUM_NAV}</div></a></li>
     <li><a href="{$furl}fid/{$forum.id}" ><div>{$forum.name}</div></a></li>
     <li><a href="{$url}"  ><div>{$thread.title}</div></a></li> 
   </ul>

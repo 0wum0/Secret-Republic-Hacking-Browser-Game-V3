@@ -13,7 +13,7 @@
     if ($_POST) {
       $data['feedback'] = $_POST['feedback'];
       if (strlen($data['feedback']) > 2000)
-        $errors[] = "Feedback must contain under 2000 characters";
+        $errors[] = t('ERR_FEEDBACK_LENGTH');
       
       if (!count($errors)) {
         $data['time_rating']       = $_POST['time_rating'] >= 0 && $_POST['time_rating'] <= 10 ? $_POST['time_rating'] : 0;

@@ -32,7 +32,7 @@ if ($amount = intval($_POST['amount']))
 			
 			$db->where('account_id', $account['account_id'])->update('user_bank', array('amount' => $account['amount'] + $amount));
 			$uclass->updatePlayer(array('money' => $user['money'] - $amount));
-			$success[] = "Transaction completed";
+			$success[] = t('MSG_TRANSACTION');
 			$voice = 'transaction_done';
 		}
 		
@@ -46,7 +46,7 @@ if ($amount = intval($_POST['amount']))
 		{
 			$db->where('account_id', $account['account_id'])->update('user_bank', array('amount' => $account['amount'] - $amount));
 			$uclass->updatePlayer(array('money' => $user['money'] + $amount));
-			$success[] = "Transaction completed";
+			$success[] = t('MSG_TRANSACTION');
 			$voice = 'transaction_done';
 		}
 		

@@ -11,7 +11,7 @@ if (GET('details'))
 }	
 else
 {
-	$page_title="Rankings database";
+	$page_title=t('RANK_TITLE');
 
 	$smarty->caching = 1; // lifetime is per cache
   $smarty->cache_lifetime = 60*60;

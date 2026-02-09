@@ -4,7 +4,7 @@
 
 $cardinal->mustLogin();
 
-$page_title="Friendships";
+$page_title=t('FRIENDS_TITLE');
 
   if($GET["requests"]){
       

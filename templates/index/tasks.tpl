@@ -10,11 +10,11 @@
             {include file="components/hackdown.tpl" countdownFrom=$t.remainingSeconds totalCountdown=$t.totalSeconds
                                                     id=($t.id+$user["id"]) textCountdown = "true" 
                                                     progressBarCountdown = "true" reloadOnFinish = false 
-                                                    textFinish = "Task finished"
+                                                    textFinish = $L.TASK_FINISHED
                                                     progressBarClass = "progress-small" textNormal = "true"}
  
             {else}
-              Task finished
+              {$L.TASK_FINISHED}
             {/if}
            </small>
         </div>

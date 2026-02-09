@@ -12,7 +12,7 @@
         
         <p>{$L.TRAIN_INTRO_1}</p>
 		<p>{$L.TRAIN_INTRO_2}</p>
-		<p>Problems with the pattern games? Feeling like you'll never figure out those models? Try skimming through <a href="http://www.cimt.plymouth.ac.uk/projects/mepres/allgcse/bkb12.pdf" target="_blank">this cheatsheet</a>, it serves as inspiration for most of them.
+		<p>{$L.TRAIN_PATTERN_HINT}
 		</p>
 		{$L.TRAIN_INTRO_3}
       </div>

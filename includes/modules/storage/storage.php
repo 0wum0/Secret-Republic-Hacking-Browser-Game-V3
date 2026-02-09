@@ -8,7 +8,7 @@ require('storage_functions.php');
 if ($_POST['sell'])
 {
 	if ($component = sellComponentFromStorage($user['id'], $_POST['sell']))
-		$success[] = "Sold for " . $component["default_sell_price"] . "$.";
+		$success[] = t('MSG_SOLD_FOR', null, [':price' => $component["default_sell_price"]]);
 
 	$cardinal->redirect(URL_C);
 
@@ -37,9 +37,9 @@ elseif (isset($_POST['mount']))
 			if ($component['type'] == 1)
 			{
 				if ($server->server['cpu_usage'] > $component['cpu'])
-					$errors[] = "Current running apps on server consume more CPU power than the new component has to offer.";
+					$errors[] = t('ERR_CPU_POWER');
 				if ($server->server['power_usage'] - ($server->components['motherboard']['power_usage'] ?? 0) + $component['power_usage'] > ($server->components['power_source']['power'] ?? 0))
-					$errors[] = "The mounted power source cannot support the new component.";
+					$errors[] = t('ERR_POWER_SOURCE');
 			}
 			// MOTHERBOARD
 			elseif ($component['type'] == 2)
@@ -48,7 +48,7 @@ elseif (isset($_POST['mount']))
 						$errors[] = sprintf("New component supports only %s while the server has %s RAM cards mounted", $component['slots'], $server->server['used_ram_slots']);
 
 				if ($server->server['power_usage'] - ($server->components['motherboard']['power_usage'] ?? 0) + $component['power_usage'] > ($server->components['power_source']['power'] ?? 0))
-					$errors[] = "The mounted power source cannot support the new component.";
+					$errors[] = t('ERR_POWER_SOURCE');
 
 			}
 			// CASE
@@ -61,7 +61,7 @@ elseif (isset($_POST['mount']))
 			elseif ($component['type'] == 4)
 			{
 				if ($server->server['power_usage'] > $component['power'])
-					$errors[] = "New component cannot power all the other current components of the server.";
+					$errors[] = t('ERR_POWER_ALL');
 			}
 			// RAM and HDD
 			elseif ($component['type'] == 5 || $component['type'] == 6)

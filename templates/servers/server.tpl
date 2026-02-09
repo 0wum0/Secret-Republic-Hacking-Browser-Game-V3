@@ -3,9 +3,9 @@
 
 <div class="row">
 	<div class="col-sm-10">
-		<h1 style="display:inline-block">{if $server->server.server_id eq $user.server}[MAIN] {/if}{$server->server.hostname}</h1> <div style="margin-left:10px;display:inline-block"><a href="{$config.url}servers/server/{$server->server['server_id']}/change/hostname" title="change hostname"><span class="glyphicon glyphicon-pencil"></span></a></div>
+		<h1 style="display:inline-block">{if $server->server.server_id eq $user.server}{$L.SERVERS_MAIN_TAG} {/if}{$server->server.hostname}</h1> <div style="margin-left:10px;display:inline-block"><a href="{$config.url}servers/server/{$server->server['server_id']}/change/hostname" title="{$L.SERVERS_CHANGE_HOST}"><span class="glyphicon glyphicon-pencil"></span></a></div>
 	</div>
-	<div class="col-sm-2 text-right" title="About software, hardware and what happens when they're damaged">
+	<div class="col-sm-2 text-right" title="{$L.SERVERS_ABOUT_DMG}">
 		<a href="{$config.url}frequently-asked-questions/open/damaged-software-hardware">  
 			<span class="fa fa-question-circle" style="font-size:25px;padding:20px"></span> </a>
 	</div>
@@ -38,10 +38,10 @@
 			<div id="cpu_collapse" class="panel-collapse collapse " role="tabpanel" >
 				<div class="well black text-center button-stack">
 					
-					<button disabled>{$server->server['cpu_usage']} / {$server->components.cpu.cpu} in use</button>
+					<button disabled>{$L.SERVERS_IN_USE|replace:':used':$server->server['cpu_usage']|replace:':total':$server->components.cpu.cpu}</button>
 
 					
-					<button disabled>Power usage: {$server->components.cpu.power_usage}</button>
+					<button disabled>{$L.SERVERS_POWER_USAGE|replace:':amount':$server->components.cpu.power_usage}</button>
 				</div>
 			</div>
 			<br/>
@@ -53,9 +53,9 @@
 			</button>
 			<div id="motherboard_collapse" class="panel-collapse collapse " role="tabpanel" >
 				<div class="well black button-stack">
-					<button disabled>{$server->server.used_ram_slots} / {$server->server.ram_slots} RAM slots</button>
+					<button disabled>{$L.SERVERS_RAM_SLOTS|replace:':used':$server->server.used_ram_slots|replace:':total':$server->server.ram_slots}</button>
 				
-					<button disabled>Power usage: {$server->components.motherboard.power_usage}</button>
+					<button disabled>{$L.SERVERS_POWER_USAGE|replace:':amount':$server->components.motherboard.power_usage}</button>
 				</div>
 			</div>
 			<br/>
@@ -68,7 +68,7 @@
 			</button>
 			<div id="case_collapse" class="panel-collapse collapse " role="tabpanel" >
 				<div class="well black">
-					<button disabled>{$server->server.used_hdd_slots} / {$server->server.hdd_slots} HDD slots</button>
+					<button disabled>{$L.SERVERS_HDD_SLOTS|replace:':used':$server->server.used_hdd_slots|replace:':total':$server->server.hdd_slots}</button>
 				</div>
 			</div>
 			<br/>
@@ -82,7 +82,7 @@
 
 			<div id="power_collapse" class="panel-collapse collapse " role="tabpanel" >
 				<div class="well black">
-					<button disabled>Power: {$server->server.power_usage}/{$server->components.power_source.power}</button>
+					<button disabled>{$L.SERVERS_POWER|replace:':used':$server->server.power_usage|replace:':total':$server->components.power_source.power}</button>
 				</div>
 			</div>
 			<br/>
@@ -102,11 +102,11 @@
 						<div id="rams_{$key}_collapse" class="panel-collapse collapse " role="tabpanel" style="padding:20px;padding-bottom:0">
 							
 							<button disabled>{$ram.ram} RAM</button><br/>
-							<button name="unmount_ram" value="{$ram.relation_id}" title="Unmount card"><span class="glyphicon glyphicon-eject"></span></button>
+							<button name="unmount_ram" value="{$ram.relation_id}" title="{$L.SERVERS_UNMOUNT}"><span class="glyphicon glyphicon-eject"></span></button>
 						</div>
 						<br/>
 					{foreachelse}
-						<button disabled>no RAM mounted</button><br/>
+						<button disabled>{$L.SERVERS_NO_RAM}</button><br/>
 					{/foreach}
 				</div>
 			</div>
@@ -123,13 +123,13 @@
 							{/if}
 						</button>
 						<div id="hdds_{$key}_collapse" class="panel-collapse collapse " role="tabpanel" style="padding:20px;padding-bottom:0">
-							{if $hdd.disabled}<div class="alert alert-error">Disabled due to MBoard damage</div>{/if}
+							{if $hdd.disabled}<div class="alert alert-error">{$L.SERVERS_DMG_DISABLED}</div>{/if}
 							<button disabled>{$hdd.hdd} HDD</button><br/>
-							<button name="unmount_hdd" value="{$hdd.relation_id}" title="Unmount card"><span class="glyphicon glyphicon-eject"></span></button>
+							<button name="unmount_hdd" value="{$hdd.relation_id}" title="{$L.SERVERS_UNMOUNT}"><span class="glyphicon glyphicon-eject"></span></button>
 						</div>
 						<br/>
 					{foreachelse}
-					<button disabled>no HDDs mounted</button><br/>
+					<button disabled>{$L.SERVERS_NO_HDD}</button><br/>
 					{/foreach}
 				</div>
 			</div>
@@ -240,9 +240,9 @@
 					{/if}
 					
 						{if !$app.running}
-						<a href="{$config.url}servers/server/{$server->server_id}/transfer/{$app.process_id}"><button type="button">TRANSFER</button></a>
+						<a href="{$config.url}servers/server/{$server->server_id}/transfer/{$app.process_id}"><button type="button">{$L.SERVERS_TRANSFER}</button></a>
 						{else}
-						<button disabled>transfer</button>
+						<button disabled>{$L.SERVERS_TRANSFER_LC}</button>
 						{/if}
 					</div>
 				
@@ -256,13 +256,13 @@
 			</div>
 		</div>
 		{foreachelse}
-		<button disabled>no apps installed</button>
+		<button disabled>{$L.SERVERS_NO_APPS}</button>
 		{/foreach}
 		</form>
 		
 		</div>
 		
-		<h3 class="text-right">current server skill levels <span class="glyphicon glyphicon-compressed"></span></h3>
+		<h3 class="text-right">{$L.SERVERS_CUR_SKILLS} <span class="glyphicon glyphicon-compressed"></span></h3>
 		<div class="panel-group" id="skillsAccordion" role="tablist">
 		{foreach from = $server->skills key = skill_ID item = data}
 			<div class="row mb10">
@@ -290,7 +290,7 @@
 			</div>
 			
 		{foreachelse}
-		<button disabled>no skill levels</button>
+		<button disabled>{$L.SERVERS_NO_SKILLS}</button>
 		{/foreach}
 		</div>
 	</div>

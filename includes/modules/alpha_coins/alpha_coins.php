@@ -2,7 +2,7 @@
 
 $cardinal->mustLogin();
 
-$page_title = "Alpha Coins";
+$page_title = t('SHOP_TITLE');
 
 if ($GET['history'])
 {

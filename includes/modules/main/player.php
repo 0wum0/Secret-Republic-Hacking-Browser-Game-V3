@@ -44,15 +44,15 @@ $smarty->caching = 0;
 //$smarty->clearAllCache();
 //TASKS
 $ttypes                         = array(
-  1 => 'Ability',
-  2 => 'Mission',
-  3 => 'Workbench',
-  4 => 'Hackdown',
-  5 => 'Org. hack',
-  9 => 'Training',
-  12 => 'Work',
-  15 => 'Quest',
-  18 => 'Beta Quest'
+  1 => t('TASK_ABILITY'),
+  2 => t('TASK_MISSION'),
+  3 => t('TASK_WORKBENCH'),
+  4 => t('TASK_HACKDOWN'),
+  5 => t('TASK_ORG_HACK'),
+  9 => t('TASK_TRAINING'),
+  12 => t('TASK_WORK'),
+  15 => t('TASK_QUEST'),
+  18 => t('TASK_BETA_QUEST')
 );
 $tredirect                      = array(
   1 => 'abilities',

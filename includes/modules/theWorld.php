@@ -2,7 +2,7 @@
 
 
 
-$page_title = "World Timeline";
+$page_title = t('DASH_WORLD_TIMELINE');
 
 $smarty->caching = 1; // lifetime is per cache
 $smarty->cache_lifetime = 1800;

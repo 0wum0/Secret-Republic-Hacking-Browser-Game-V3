@@ -3,9 +3,9 @@
         <form method="post">
 		<div class="row">
 			<div class="col-md-7">
-            <input type="text"  name="name" maxlength="{$config.org_name_size}" placeholder="Organization Name" value="{$smarty.post.name|htmlspecialchars}" />
+            <input type="text"  name="name" maxlength="{$config.org_name_size}" placeholder="{$L.ORG_NAME_PH}" value="{$smarty.post.name|htmlspecialchars}" />
             </div><div class="col-md-5">
-			<input type="text"  name="tag" maxlength="4" placeholder="Organization TAG" value="{$smarty.post.tag|htmlspecialchars}" />
+			<input type="text"  name="tag" maxlength="4" placeholder="{$L.ORG_TAG_PH}" value="{$smarty.post.tag|htmlspecialchars}" />
             </div>
 			</div><br/>
             <div class="row">

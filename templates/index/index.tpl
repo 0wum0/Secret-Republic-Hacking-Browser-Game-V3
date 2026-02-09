@@ -32,7 +32,7 @@
 
         <div class="panel panel-glass">
           <div class="panel-heading">
-            <small data-hacker-text='Hello, <a href="{$config.url}profile" title="{$user.name}">{$user.username}</a>. You are level {$user.level}'>
+            <small data-hacker-text='{$L.DASH_HELLO|replace:":link":"<a href=\\"{$config.url}profile\\" title=\\"{$user.name}\\">{$user.username}</a>"|replace:":level":$user.level}'>
 
             </small>
           </div>
@@ -46,7 +46,7 @@
               </div>
               <div class="col-xs-8">
 
-                <p title="{($user.expNext-$user.exp)|floatval|number_format} to level up" ><span class="glyphicon glyphicon-fire"></span>  <small>{$user.exp|floatval|number_format} / {$user.expNext|floatval|number_format} exp</small></p>
+                <p title="{$L.DASH_TO_LEVEL_UP|replace:':exp':{($user.expNext-$user.exp)|floatval|number_format}}" ><span class="glyphicon glyphicon-fire"></span>  <small>{$user.exp|floatval|number_format} / {$user.expNext|floatval|number_format} {$L.DASH_EXP}</small></p>
                 <div class="progress progress-small">
                   <div class="progress-bar" role="progressbar" style="width: {($user.exp/($user.expNext/100))|intval}%;">
                   </div>
@@ -56,8 +56,8 @@
 
 
 
-                <p ><span class="glyphicon glyphicon-flash"></span> <small><span title="Hourly recovery rate: 20%{if $smarty.session.premium.recoveryRateDouble} (+20% A-C bonus){/if}">{$user.energy|floatval|number_format} / {$user.maxEnergy|floatval|number_format} energy</span>
-                  {if !$smarty.session.premium.recoveryRateDouble && !$smarty.session.premium.removeAds} (<a href="{$config.url}alpha_coins/option/recoveryRateDouble" title="Increase recovery rate?">+rec. rate</a>){/if}
+                <p ><span class="glyphicon glyphicon-flash"></span> <small><span title="{$L.DASH_HOURLY_RECOVERY}{if $smarty.session.premium.recoveryRateDouble} ({$L.DASH_AC_BONUS|replace:':pct':'20'}){/if}">{$user.energy|floatval|number_format} / {$user.maxEnergy|floatval|number_format} {$L.DASH_ENERGY}</span>
+                  {if !$smarty.session.premium.recoveryRateDouble && !$smarty.session.premium.removeAds} (<a href="{$config.url}alpha_coins/option/recoveryRateDouble" title="{$L.DASH_INCREASE_REC}">+{$L.DASH_REC_RATE}</a>){/if}
                 </small></p>
                 <div class="progress progress-small">
                   <div class="progress-bar" role="progressbar"  style="width: {($user.energy/($user.maxEnergy/100))|intval}%;">
@@ -74,7 +74,7 @@
 
           <div class="panel-footer text-right">
 
-            <small data-hacker-text='You own <strong><a href="{$config.url}alpha_coins">{$user.alphaCoins|floatval|number_format} Alpha coins{if !$smarty.session.premium.removeAds} <em><strong>GET MORE</strong></em>
+            <small data-hacker-text='{$L.DASH_OWN_ALPHA|replace:":url":$config.url|cat:"alpha_coins"|replace:":count":{$user.alphaCoins|floatval|number_format}}{if !$smarty.session.premium.removeAds} <em><strong>{$L.DASH_GET_MORE}</strong></em>
               {/if}'>
             </a></small></strong>
 
@@ -206,17 +206,17 @@
         <div class="row mb10">
 
           <div class="col-md-4 col-xs-4 mb10">
-            <a href="{$config.url}theWorld" class="button button-clear text-center" title="World timeline"> <span class="glyphicon glyphicon-sunglasses"></span></a>
+            <a href="{$config.url}theWorld" class="button button-clear text-center" title="{$L.DASH_WORLD_TIMELINE}"> <span class="glyphicon glyphicon-sunglasses"></span></a>
           </div>
 
 
           <div class="col-xs-4 mb10">
-            <a href="{$config.url}referrals" class="button button-clear text-center" title="Referrals">
+            <a href="{$config.url}referrals" class="button button-clear text-center" title="{$L.DASH_REFERRALS}">
               <span class="fa fa-users"></span>
             </a>
           </div>
           <div class="col-xs-4  mb10">
-            <a href="{$config.url}search" class="button button-clear text-center" title="Search">
+            <a href="{$config.url}search" class="button button-clear text-center" title="{$L.DASH_SEARCH}">
               <span class="glyphicon glyphicon-search"></span>
             </a>
           </div>

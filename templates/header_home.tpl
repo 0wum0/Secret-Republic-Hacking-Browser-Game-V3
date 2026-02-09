@@ -300,7 +300,7 @@
 								</a>
 							</div>
 							<div class="col-xs-8">
-								<p>Tutorial ({$tutorialPercent}%)</p>
+								<p>{$L.HDR_TUTORIAL_BAR|replace:':pct':$tutorialPercent}</p>
               	<div class="progress progress-small"> <div class="progress-bar" role="progressbar" style="width:{$tutorialPercent}%"> </div> </div>
 							</div>
 						</div>

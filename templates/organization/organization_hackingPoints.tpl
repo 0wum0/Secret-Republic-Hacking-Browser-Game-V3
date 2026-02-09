@@ -4,7 +4,7 @@
 				<div class="row">
 					<div class="col-md-4">
 						
-						<button disabled>Level {$org.level} [{$org.exp|floatval|number_format}/{$org.expNext|floatval|number_format}]</button>
+						<button disabled>{$L.ORG_LEVEL_LABEL|replace:':level':$org.level|replace:':exp':{$org.exp|floatval|number_format}|replace:':expNext':{$org.expNext|floatval|number_format}}</button>
 						
 					</div>
 					<div class="col-md-8">
@@ -16,14 +16,14 @@
 		</div>	
 <div class="panel panel-glass">
 	<div class="panel-heading">
-		Daily Organization Mission - 2 hacking points reward
+		{$L.ORG_HP_DAILY_TITLE}
 	</div>
 	{if $lastHack.created}
 			<div class="panel-body">
 				{include file="components/hackdown.tpl" countdownFrom=$lastHack.created + 24*60*60 - time() totalCountdown=24*60*60
                                               textCountdown = "true" progressBarClass = "progress-info"
                                               progressBarCountdown = "true" reloadOnFinish = "true" 
-                                              textLeft="You can go on the field again in"}
+                                              textLeft=$L.ORG_HP_FIELD_AGAIN}
 				
 				
 			</div>
@@ -38,21 +38,21 @@
 		
 		<div class="row mb10">
   <div class="col-md-3 text-center">
-    <button disabled class="disabled">hacking points</button>
+    <button disabled class="disabled">{$L.ORG_HP_LABEL}</button>
     <h1>{$org.hacking_points|floatval|number_format}</h1>
   </div>
   <div class="col-md-9">
   <div class="well">
   <p>
-  Hacking points are a valuable resource for organizations. These can be used and earned in various ways. Members need only complete missions and be active in the competition in order to reward their organization with hacking points.
+  {$L.ORG_HP_DESC}
   </p>
-  Hacking Points also represent the experience the organization earns and need to level up. One hacking points is equivalent to one experience point. Upgrades and features change at times depending on the organization's level.
+  {$L.ORG_HP_EXP_DESC}
   <hr/>
-  {$org.name} can use these credits to force wars on other organizations or to upgrade itself.
+  {$L.ORG_HP_USE_CREDITS|replace:':name':$org.name}
   </div>
   {if $access.manageHackingPoints}
   <form method="post">
-    <input type="submit" name="upgradeNRM" value="Increase maximum number of members by 1 for {$nrmUpgradeCost} HP"/>
+    <input type="submit" name="upgradeNRM" value="{$L.ORG_HP_UPGRADE_NRM|replace:':cost':$nrmUpgradeCost}"/>
   </form>
   {/if}
   </div>
@@ -61,12 +61,12 @@
 <div class="row mb10" id="showFrame">
 	<div class="col-xs-6">
 		<a href="{$config.url}organization/show/{$org.id}/view/hackingPoints/rankings/go#showFrame">
-			<button {if $GET.rankings}disabled{/if}>HP Rankings</button>
+			<button {if $GET.rankings}disabled{/if}>{$L.ORG_HP_RANKINGS}</button>
 		</a>
 	</div>
 	<div class="col-xs-6">
 		<a href="{$config.url}organization/show/{$org.id}/view/hackingPoints/history/go#showFrame">
-			<button {if $GET.history}disabled{/if}>History</button>
+			<button {if $GET.history}disabled{/if}>{$L.ORG_HP_HISTORY}</button>
 		</a>
 	</div>
 </div>
@@ -97,7 +97,7 @@
 {elseif $GET.history}
 
 <div class="alert alert-info">
-Ancient records are deleted by the Cardinal Mainframe.
+{$L.ORG_HP_ANCIENT}
 </div>
 {foreach $history as $entry}
 <div class="row mb10">
@@ -117,7 +117,7 @@ Ancient records are deleted by the Cardinal Mainframe.
 </div>
 {foreachelse}
 <div class="well">
-No hacking points earnings logs.
+{$L.ORG_HP_NO_LOGS}
 </div>
 {/foreach}
 {/if}

@@ -4,7 +4,7 @@
 
 require_once(ABSPATH . 'includes/class/oclass.php');
 
-$page_title = 'Organization';
+$page_title = t('ORG_TITLE');
 
 
 $oclass = new Organization($GET['show'] ? $GET['show'] : $user['organization']);

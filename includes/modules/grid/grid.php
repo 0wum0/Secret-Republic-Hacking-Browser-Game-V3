@@ -102,9 +102,9 @@ else
 
 		if ($node['user_id'])
 		{
-			if ($friends) $warnings[] = "You are <a href='".URL."friends'>friends</a> with the owner of this Grid Node.";
+			if ($friends) $warnings[] = t('WARN_GRID_FRIENDS', null, [':url' => URL . 'friends']);
 	    if ($node['organization'] && $node['organization'] == $user['organization'])
-	    	$warnings[] = "You are in the same organization as the owner of this Grid Node. You can continue to plan your attack.";
+	    	$warnings[] = t('WARN_GRID_SAME_ORG');
 
 	  	$friends = $uclass->areUsersFriends($node['user_id'], $user['id']);
 
@@ -170,7 +170,7 @@ else
 		}
 		if ($dpCost > $user['dataPoints'])
 		{
-			$errors[] = "Not enough Data Points to browser selected location. You need ".number_format($dpCost)." DP to execute that commmand.";
+			$errors[] = t('ERR_NOT_ENOUGH_DP', null, [':cost' => number_format($dpCost)]);
 			$cardinal->redirect(URL_C);
 		}
 		else{

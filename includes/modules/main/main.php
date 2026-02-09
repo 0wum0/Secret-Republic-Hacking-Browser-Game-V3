@@ -1,5 +1,5 @@
 <?php
-$page_title = 'Home';
+$page_title = t('PAGE_HOME');
 
 /* HACKDOWN */
 if (date('w') == 6)

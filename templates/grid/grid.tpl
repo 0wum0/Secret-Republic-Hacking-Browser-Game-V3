@@ -56,10 +56,10 @@
 
 {if $cluster.can_change_name}
 <div class="panel panel-glass">
-  <div class="panel-heading">(Re)name this cluster</div>
+  <div class="panel-heading">{$L.GRID_RENAME_CLUSTER}</div>
   <div class="panel-body">
     <div class="alert alert-info">
-      Cluster inhabitants can change its name every 15 days.
+      {$L.GRID_RENAME_INFO}
     </div>
     <form method="post">
       <div class="row">
@@ -67,7 +67,7 @@
           <input type="text" name="name" maxlength="100" value="{$cluster.name}"/>
         </div>
         <div class="col-md-3">
-          <button type="submit" name="form_identifier" value="change_cluster_name">name this cluster</button>
+          <button type="submit" name="form_identifier" value="change_cluster_name">{$L.GRID_NAME_BTN}</button>
         </div>
       </div>
     </form>
@@ -80,7 +80,7 @@
 
 <div class="row">
   <div class="col-md-10">
-    <h4 style="text-transform:uppercase"><small>cluster</small> {$cluster.name}</h4>
+    <h4 style="text-transform:uppercase"><small>{$L.GRID_CLUSTER}</small> {$cluster.name}</h4>
   </div>
   <div class="col-md-2 text-right">
     <a href="{$config.url}frequently-asked-questions/open/the-grid">
@@ -95,8 +95,8 @@
         <div class=" grid-row">
           <div class="row">
             <div class="col-md-12">
-              <a href="{$config.url}grid/node/{$node.node}/occupy/node" title="Occupy node">
-              uninhabbited node <span class="glyphicon glyphicon-certificate"></span> initialize a node instance
+              <a href="{$config.url}grid/node/{$node.node}/occupy/node" title="{$L.GRID_OCCUPY_NODE}">
+              {$L.GRID_UNINHABITED} <span class="glyphicon glyphicon-certificate"></span> {$L.GRID_INITIALIZE}
               </a>
             </div>
             </div>
@@ -111,7 +111,7 @@
       <div class="col-md-3 col-sm-4 col-xs-8">
 
         <a href="{$config.url}profile/hacker/{$node.username}">{$node.username}</a>
-        {if $node.innactive}<small>innactive for a while</small>{/if}
+        {if $node.innactive}<small>{$L.GRID_INACTIVE}</small>{/if}
       </div>
       <div class="col-md-3 col-sm-4 col-xs-3 text-center">
         <strong>{if $node.organization}
@@ -120,24 +120,24 @@
         </div>
         <div class="col-md-3 col-sm-9 text-center">
           {if $node.floatingDataPoints}
-          <a href="{$config.url}grid/node/{$node.node}/collect/ohyeah" title="Scavenge">
-            {$node.floatingDataPoints|floatval|number_format:2} floating DP's
+          <a href="{$config.url}grid/node/{$node.node}/collect/ohyeah" title="{$L.GRID_SCAVENGE}">
+            {$L.GRID_FLOATING_DP|replace:':count':{$node.floatingDataPoints|floatval|number_format:2}}
           </a>
           {else}
-          <em>no <a href="{$config.url}frequently-asked-questions/open/floating-data-points">floating data points</a></em>
+          <em>{$L.GRID_NO_FLOATING|replace:':url':"{$config.url}frequently-asked-questions/open/floating-data-points"}</em>
           {/if}
         </div>
         {if $node.user_id ne $user.id}
         <div class="col-md-2 col-sm-3 col-xs-12 text-center">
-          <a href="{$config.url}conversations/new/emilia/to/{$node.username}" title="Send message">
+          <a href="{$config.url}conversations/new/emilia/to/{$node.username}" title="{$L.GRID_SEND_MSG}">
             <span class="glyphicon glyphicon-envelope" ></span>
           </a>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="{$config.url}grid/node/{$node.node}/spy/initiate" title="Initiate spy attempt">
+          <a href="{$config.url}grid/node/{$node.node}/spy/initiate" title="{$L.GRID_INITIATE_SPY}">
             <span class="glyphicon glyphicon-eye-open"></span>
           </a>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="{$config.url}grid/node/{$node.node}/attack/configure" title="Configure attack">
+          <a href="{$config.url}grid/node/{$node.node}/attack/configure" title="{$L.GRID_CONFIG_ATTACK}">
             <span class="glyphicon glyphicon-screenshot"></span>
           </a>
         </div>
@@ -150,7 +150,7 @@
     {/foreach}
   </div>
 <div class="text-right">
-    <h4 style="text-transform:uppercase"><small>cluster</small> {$cluster.name}</h4>
+    <h4 style="text-transform:uppercase"><small>{$L.GRID_CLUSTER}</small> {$cluster.name}</h4>
   </div>
 <br/>
   {include file="grid/grid_navigation_bar.tpl"}

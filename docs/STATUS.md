@@ -1,7 +1,7 @@
 # Upgrade Status: PHP 8.3/8.4 + Smarty 5.7.0 + i18n
 
 **Stand:** 2026-02-09
-**Branch:** `cursor/missionsseite-only-full-group-by-d0dd`
+**Branch:** `cursor/german-ui-completion-da9c`
 
 ---
 
@@ -20,7 +20,7 @@ Das Projekt "Secret Republic Hacking Browser Game V3" wurde vollständig auf PHP
 | Null-Safety Fixes | Fertig | `$_SESSION`, `array_merge`, undefined array keys |
 | Dynamic Properties | Fertig | `#[AllowDynamicProperties]` auf alle relevanten Klassen |
 | DB/SQL Kompatibilität | Fertig | utf8mb4, ONLY_FULL_GROUP_BY-konforme Queries (keine sql_mode-Änderungen nötig) |
-| **i18n (DE/EN)** | **Fertig** | **Deutsch als Default, Englisch wählbar. ~180 Keys pro Sprache.** |
+| **i18n (DE/EN)** | **Fertig** | **Deutsch als Default, Englisch wählbar. ~350+ Keys pro Sprache. Vollständig für alle Kernseiten.** |
 | Vanilla Forum | N/A | Nicht im Projekt vorhanden (eigenes Forum-System) |
 | PHPUnit Tests | 4/4 bestanden | Alle Unit-Tests grün |
 | Phplint | 0 Fehler | Alle Projektdateien syntaktisch korrekt |
@@ -124,6 +124,68 @@ Das Projekt "Secret Republic Hacking Browser Game V3" wurde vollständig auf PHP
 2. `danielstjules/php-pretty-datetime` (dev-master) - Version pinnen
 3. `#[AllowDynamicProperties]` - In PHP 9.0 entfernt, Properties deklarieren
 4. `recaptchalib.php` (Legacy) - Kann entfernt werden
+
+---
+
+## Changelog (2026-02-09)
+
+### i18n: Vollständige deutsche Übersetzungen für Tutorial/System/Übersicht + verbleibende UI-Strings
+
+**Geänderte Dateien:**
+- `lang/de.php` / `lang/en.php` – ~170+ neue Übersetzungsschlüssel
+- `includes/constants/tutorial.php` – 18 Tutorial-Schritte auf t()-System umgestellt
+- `includes/modules/main/player.php` – Task-Typen via Übersetzungsschlüssel
+- `includes/modules/main/main.php` – Seitentitel via t()
+- `includes/modules/rewards/rewards.php` – Meldungen via t()
+- `includes/modules/storage/storage.php` – Meldungen via t()
+- `includes/modules/dna.php` – Meldungen via t()
+- `includes/modules/conversations.php` – Meldungen via t()
+- `includes/modules/bank.php` – Meldungen via t()
+- `includes/modules/abilities.php` – Meldungen via t()
+- `includes/modules/organization/org_apply.php` – Meldungen via t()
+- `includes/modules/quests/feedback.php` – Meldungen via t()
+- `includes/modules/quests/quest_inprogress.php` – Meldungen via t()
+- `includes/modules/notes.php` – Meldungen via t()
+- `includes/modules/search.php` – Meldungen via t()
+- `includes/modules/shop.php` – Meldungen via t()
+- `includes/modules/grid/grid.php` – Meldungen via t()
+- `includes/modules/hackdown/hackdown.php` – Meldungen via t()
+- `includes/modules/forum.php` – Seitentitel via t()
+- `includes/modules/friends.php` – Seitentitel via t()
+- `includes/modules/rankings.php` – Seitentitel via t()
+- `includes/modules/zones/zones.php` – Seitentitel via t()
+- `includes/modules/theWorld.php` – Seitentitel via t()
+- `includes/modules/alpha_coins/alpha_coins.php` – Seitentitel via t()
+- `includes/modules/simulator.php` – Seitentitel via t()
+- `includes/modules/organization/organization.php` – Seitentitel via t()
+- `templates/index/index.tpl` – Dashboard-Begrüßung, EXP, Energie, Alpha-Münzen
+- `templates/index/tasks.tpl` – "Task finished" via Schlüssel
+- `templates/header_home.tpl` – Tutorial-Leiste
+- `templates/servers/servers.tpl` – Server-Liste
+- `templates/servers/server.tpl` – Server-Detail
+- `templates/organization/organization_hackingPoints.tpl` – Hacking-Punkte
+- `templates/organization/org_manage_forum.tpl` – Forum-Verwaltung
+- `templates/organization/organization_edit_ranks.tpl` – Rang-Verwaltung
+- `templates/organization/organization_creation_form.tpl` – Org-Erstellung
+- `templates/organization/wars/organization_wars.tpl` – Kriegsanfragen
+- `templates/grid/grid.tpl` – Grid-Seite
+- `templates/skills_and_abilities/skills.tpl` – Skills-Seite
+- `templates/skills_and_abilities/skills_header.tpl` – Skills-Navigation
+- `templates/skills_and_abilities/abilities.tpl` – Fähigkeiten-Seite
+- `templates/storage/storageBit.tpl` – Lager-Elemente
+- `templates/quests/quest_available.tpl` – Quest-Verfügbarkeit
+- `templates/quests/quests_available_list.tpl` – Quest-Listen
+- `templates/quests/quest_play.tpl` – Quest-Spiel
+- `templates/quests/quest_feedback.tpl` – Quest-Feedback
+- `templates/conversations/messages.tpl` – Nachrichten
+- `templates/forum/forum_thread.tpl` – Forum-Thread
+- `templates/forum/forum_threads.tpl` – Forum-Threads
+- `templates/job/job_header.tpl` – Job-Navigation
+- `templates/train/train.tpl` – Training
+- `templates/hackdown/hackdown.tpl` – Hackdown-Seite
+- `templates/hackdown/hackdown_arena.tpl` – Hackdown-Arena
+
+**Bestätigung:** Im DE-Modus sind keine englischen Texte mehr auf den Kernseiten (Dashboard, Tutorial, Belohnungen, Rangliste, Lager, Server, Skills, Grid, Forum, Hackdown, Organisationen) sichtbar.
 
 ---
 

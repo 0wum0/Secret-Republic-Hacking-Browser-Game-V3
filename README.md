@@ -1,4 +1,4 @@
-# Secret Republic - Browser Based futuristic PHP hacker game - V3
+# Secret Republic - Browser Based Futuristic PHP Hacker Game - V3
 
 [![PHP Composer](https://github.com/nenuadrian/Secret-Republic-Hacking-Browser-Game-V3/actions/workflows/php.yml/badge.svg)](https://github.com/nenuadrian/Secret-Republic-Hacking-Browser-Game-V3/actions/workflows/php.yml)
 
@@ -6,252 +6,626 @@
 
 ![Cover](screens/cover.jpg)
 
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
-
 </p>
 
-Live Demo: https://secretrepublic-v3.nenuadrian.com
+A PHP & MySQL browser-based, mobile-compatible role-playing game with a post-apocalyptic futuristic hacking theme. Built from the ground up over multiple iterations, this is the 3rd full version.
 
-Hosted on recommended provider [DreamHost](https://mbsy.co/dreamhost/92571715).
+**Tech Stack:** PHP 8.3/8.4 | MySQL 5.7+ / 8.x / MariaDB 10.5+ | Smarty 5.7 | Composer 2.x | Bootstrap UI
 
-Audio Trailer: https://www.youtube.com/watch?v=6thfiGb-b7c
+> **Note:** The UI/theme is the original Bootstrap-based design and has not been redesigned.
 
-[Read about the journey of this project in this Medium article.](https://medium.com/@adrian.n/secret-republic-open-sourced-hacker-simulation-futuristic-rpg-browser-based-game-php-843d393cb9d7)
+**Links:**
+- Live Demo: https://secretrepublic-v3.nenuadrian.com
+- Audio Trailer: https://www.youtube.com/watch?v=6thfiGb-b7c
+- [Medium article about the project journey](https://medium.com/@adrian.n/secret-republic-open-sourced-hacker-simulation-futuristic-rpg-browser-based-game-php-843d393cb9d7)
+- V4 (mobile-first, fewer features): https://github.com/nenuadrian/Secret-Republic-Hacker-Game-ORPBG-Alpha
 
-# Table of contents
+---
 
-1. [Overview](#Overview)
+## Table of Contents
 
-2. [Main features](#Main-Features)
+1. [Features](#features)
+2. [Requirements](#requirements)
+3. [Installation](#installation)
+4. [Configuration](#configuration)
+5. [Webserver Setup](#webserver-setup)
+6. [Cronjobs](#cronjobs)
+7. [Upgrade from Older Versions](#upgrade-from-older-versions)
+8. [Changelog](#changelog)
+9. [Framework Details](#framework-details)
+10. [Tests](#tests)
+11. [Troubleshooting](#troubleshooting)
+12. [Security & Deployment](#security--deployment)
+13. [Screenshots](#screenshots)
+14. [Contributors & License](#contributors--license)
 
-3. [SecretAlpha v4](#SecretAlpha-V4)
+---
 
-4. [Simple Setup](#Simple-Setup)
-   * Semi-manual setup
-   * Manual setup
-   * Useful tips
+## Features
 
-5. [Screenshots](#Screenshots)
+| Feature | Description |
+|---|---|
+| Missions | UNIX terminal-like missions with multi-objective design, party support, and a full mission designer in the admin panel. See `MISSION-GUIDES/` for PDFs. |
+| Servers | Players build servers with upgradable hardware (motherboard, RAM, HDD, PSU) and installable software. |
+| The Grid | Zone/cluster/node world map. Players conquer nodes, launch attacks, spy, and compete for territory. |
+| Organizations | Guild system with ranks, internal forums, hacking points, and inter-org wars. |
+| Hackdown | Weekly scheduled hacking competition (via cronjob). |
+| Forums & Blogs | Integrated forum system with guild-private forums. Player blog system with articles and votes. |
+| Skills & Abilities | Point-based skills and time-based abilities that enhance player stats. Configured in `includes/constants/`. |
+| Tutorial | Multi-step guided tutorial with rewards. Configured in `includes/constants/tutorial.php`. |
+| Rankings | Player and organization rankings, generated via cronjob. |
+| Alpha Coins | Premium currency with an in-game shop and coupons. |
+| Jobs & Training | Daily jobs and training mini-games for rewards. |
+| Messaging & Friends | Thread-based messaging and friend system. |
+| Admin Panel | User management, mission designer, group management, achievement management, and more. |
+| Audio AI | Pre-recorded audio cues that play on specific in-game events (can be muted). |
 
-6. Learning the platform
+---
 
-7. Framework details
-   * ~MVC Architecture
-   * Routing
-   * Creating new missions
-   * Adding skills, ablitites or tutorial steps
-   * New pages with minimal functionality
+## Requirements
 
-8. [Tests](#Tests)
+| Component | Version | Required |
+|---|---|---|
+| PHP | **8.3** or **8.4** | Yes |
+| MySQL / MariaDB | MySQL 5.7+ / 8.x or MariaDB 10.5+ | Yes |
+| Webserver | Apache 2.4+ with `mod_rewrite` **or** Nginx | Yes |
+| Composer | 2.x | Yes (for installation) |
 
-9. Sponsors and contributors
+### Required PHP Extensions
 
-10. [License](#License)
+`mysqli`, `mbstring`, `json`, `curl`, `session`, `gd`
 
-# Overview
+These are tested in CI (see `.github/workflows/php.yml`). Additionally, `xml` and `zip` are used during Composer operations.
 
-Built from the ground up by a fairely inexperienced software developer at the time.
+### Writable Directories
 
-It's been through years of development with this being its 3rd full do-over.
+The following directories must be writable by the webserver process:
 
-A PHP & MySQL based browser based, mobile compatible, role playing game. The theme is post-apocalyptic futuristic hacking.
+| Directory | Purpose |
+|---|---|
+| `includes/templates_c/` | Smarty compiled templates |
+| `includes/cache/` | Smarty cache |
+| `includes/configs/` | Smarty config (created automatically if missing) |
 
-There are many features, enough for this to be a stand-alone game, ranging from guilds/organizations, to party system, single and multi-player missions, servers players can build and hack, wars between zones players can join and even be the president of, forums and blogs. And that is not even all.
+---
 
-Documentation is minimal and is being built as we go.
+## Installation
 
-I am trying to actively contribute and solve raised issues, so please feel free to raise one, and more so please contribute with whatever you can!
+### 1. Clone the Repository
 
-# Main-Features
-
-| Feature       | Description           |
-| ------------- | --------------------- |
-| Futuristic UI | Bootstrap made. Custom build. Generally responsive. |
-| Abilities     | Upgradeable, enhance player stats, take time to level up. Controlled by `constants/abilities.php`.     |
-| Skills        | Point based, where points can be earned by levelling up. Enhance player stats. Controlled by `constants/skills.php`.  |
-| Tutorial      | Multiple guiding steps, with rewards at each step. Players can skip steps. Quite advanced and flexible, easy to extend. Controlled by `constants/tutorial.php`. |
-| Rewards       | The reward system allows the game to give players multiple rewards (stat points, money, etc.) in a packaged way (as a reward with multiple items). The players can then accept the reward at which point it will be applied, and they can review history of rewards. |
-| Audio AI      | Audio cues have been pre-recorded for use in the game. They can be muted and play when specific actions take place. |
-| Admin Panel   | Advanced administration interface, with user management, mission design screens, and more. |
-| Mission Designer | Part of the admin panel, allows for advanced design of missions, with multiple objective and sub-objectives, and custom BBCodes. |
-| Missions      | Enhanced UNIX terminal-like missions, which can be leveraged across the game, including for guild daily missions, the hackdown competition, training, or story-drive missions. Easy to extend and re-use. |
-| Servers | Can build multiple, each with their own upgradable hardware (motherboard, ram, hdd, power source). And software which can be run and uses resources. |
-| Forums | Feature-rich integrated forum system. With the ability to create internal forums specific to guilds in-game. |
-| Organizations | Guild-like system. Owned by players. Can create multiple membership groups, there are missions specific for organizations and wars can be declared between them. They can have their own internal forums. |
-| Messaging | Ability for players to chat, in a thread based system. |
-| Blogs | Feature-rich player blog system. |
-| Hackdown | Mission based `cron.php` scheduled competition. |
-| Friends | Friend system for players. |
-| The Grid |  Every players gets a starting `node` and can initialize/conquer other empty nodes or from other players. The world is split in multiple zones, which are divided into clusters with multiple nodes in each cluster. Damage and spy attacks can be triggered between nodes. There's an attempt at a simulator for attacks |
-| Attacks | Players can launch attacks using their nodes on other players. |
-| Data Points | Mined via `cron.php` and use resources and software. |
-| Alpha Coins | Premium currency, with custom in-game shop, coupons and more. |
-| Rankings | Generated via `cron.php`, they are at player and organization granularity. |
-| Job | Give players a mission designed in the mission designer to complete depending on level, for rewards. |
-| Zones | Splits the world, 6 zones, each with many clusters, each with a couple of nodes. Players can take over nodes, and they start with a random node. | 
-| Train | Captcha and some other mini-games designed for players to complete daily for rewards. | 
-
-# SecretAlpha-V4
-
-V4 is newer, more responsive made with mobile-first in mind, but with way less features.
-
-https://github.com/nenuadrian/Secret-Republic-Hacker-Game-ORPBG-Alpha
-
-# Simple-Setup
-
-## Require steps
-
-You need a webserver (e.g. MAMP/WAMP/XAMPP) able to run PHP (tested with 7.3) and an MySQL database (LAMP stack).
-
-1. Install `composer` (the PHP dependency management system - `brew install composer` for MacOS if you have brew) and run `composer install`
-
-2. Create an empty Database in MySQL. For MAMP, you would go to `http://localhost:8888/phpMyAdmin5`
-
-## Semi-manual setup
-
-![Screenshot](screens/setup.png)
-
-Visit `http://localhost/public_html/setup` - this may be different if you are using another port or directory structure, e.g. `http://localhost:8888/sr/public_html/setup` and follow the setup process
-
-## Manual setup
-
-1. Import `includes/install/DB.sql` to the database you have created.
-
-2. Rename `includes/database_info.php.template` to `includes/database_info.php` and update the details within accordingly.
-
-3. The game should be up and running. Go and create and account manually.
-
-4. Go to the `user_credentials` table and update the entry for your user, setting the column `group_id` to be `1`. This will make your account a full administrator. Log out and log back in.
-
-## Useful tips
-
-All SQL queries are ONLY_FULL_GROUP_BY compliant. No manual `sql_mode` changes are required.
-
-# Cron jobs
-
-https://en.wikipedia.org/wiki/Cron
-
-These ensure processes run as required, that hacking competitions start, that attack reports are generated and that time based resources are given to players.
-
-Set these up to run periodically as the parameters suggest. The resources one should run every minute.
-
-| Name | Description | URL    | Proposed schedule |
-| -----|-------------|-------|------- |
-| Attacks | | localhost/cron/key1/MDMwN2Q3OGRiYmM4Y2RkOWZjNTBmMzA4MzViZDZiNjQ=/attacks/true | Every minute |
-| Hourly | | localhost/cron/key1/MDMwN2Q3OGRiYmM4Y2RkOWZjNTBmMzA4MzViZDZiNjQ=/hourly/true | Hourly |
-| Daily | | localhost/cron/key1/MDMwN2Q3OGRiYmM4Y2RkOWZjNTBmMzA4MzViZDZiNjQ=/daily/true | Daily |
-| Hackdown | | localhost/cron/key1/MDMwN2Q3OGRiYmM4Y2RkOWZjNTBmMzA4MzViZDZiNjQ=/hackdown/true | Daily |
-| Rankings | | localhost/cron/key1/MDMwN2Q3OGRiYmM4Y2RkOWZjNTBmMzA4MzViZDZiNjQ/rankings/true | Hourly |
- 
-
-Example:
-```
-*/2 * * * * wget -O - http://localhost/cron/key1/MDMwN2Q3OGRiYmM4Y2RkOWZjNTBmMzA4MzViZDZiNjQ=/attacks/true >/dev/null 2>&1
+```bash
+git clone https://github.com/nenuadrian/Secret-Republic-Hacking-Browser-Game-V3.git
+cd Secret-Republic-Hacking-Browser-Game-V3
 ```
 
-Or use the control panel your host may provide.
+### 2. Install Composer Dependencies
 
-# Screenshots
-
-## main page
-![Screenshot](screens/1.jpg)
-
-## player dashboard
-![Screenshot](screens/2.jpg)
-
-## mission
-![Screenshot](screens/3.jpg)
-
-## organization
-![Screenshot](screens/4.jpg)
-
-## skills
-![Screenshot](screens/5.jpg)
-
-## the grid
-![Screenshot](screens/6.jpg)
-
-## mission designer
-![Screenshot](screens/7.jpg)
-
-![Screenshot](screens/8.jpg)
-
-![Screenshot](screens/9.jpg)
-
-## forum
-![Screenshot](screens/10.jpg)
-
-![Screenshot](screens/11.jpg)
-
-
-# Framework details
-
-Sadly it was built from scratch, combining vanilla PHP, the Smarty template engine and a few libraries (composer.json). It makes use of Smarty caching.
-
-Lint:
-```
-./includes/vendor/bin/phplint --exclude=vendor  --no-cache -v
+```bash
+composer install --prefer-dist --no-progress
 ```
 
-## ~MVC Architecture
+Dependencies are installed into `includes/vendor/` (configured via `composer.json` `vendor-dir`).
 
-TBC
+### 3. Create a MySQL Database
 
-## Routing
-
-Is done based on the `includes/modules` folder. Adding a new module file say helloworld.php, will allow `http://localhost/helloworld` to work. 
-
-Something such as `http://localhost/helloworld/hacker/test` will pass the value test in `$GET["hacker"]`.
-
-Any variables `http://localhost/helloworld/hi?attach=2` would be passed in `$GET["attack"]`.
-
-This all happens in `public_html/index.php`.
-
-## Creating new missions
-
-Please refer to the the GUIDES folder in this repository. In contains instructions of what can be used within the Mission descriptions to benefit from dynamic IP generation between missions and other useful instructions, tips and tricks.
-
-## Adding skills, ablitites or tutorial steps
-
-Check the `includes/constants` folder.
-
-### Tutorial steps
-
-Modify `includes/constants/tutorial.php`.
-
-When adding or modifying a step also check if you need to add or modify a `tutorial_step_N_check` function in the same file, where N is the number of the step you have added or modified within `tutorial.php`.
-
-## New pages with minimal functionality
-
-This is as simple as create a `.tpl` file in `templates/pages`.
-
-The easiest starting point is creating a copy of the `template.tpl` file which is within the same directory.
-
-As soon as it is created, the page will be available at `/pages/NAME` e.g. `http://localhost/pages/template`.
-
-# Tests
-
-```
-./includes/vendor/phpunit/phpunit/phpunit tests
+```bash
+mysql -u root -p -e "CREATE DATABASE secretrepublic CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 ```
 
-# Sponsors and contributors
+### 4. Option A: Automated Setup (Recommended)
 
-## Contributors
+1. Make sure `includes/database_info.php` does **not** exist yet (delete it if it does).
+2. Point your webserver's Document Root to `public_html/` (see [Webserver Setup](#webserver-setup)).
+3. Open `http://your-domain/setup` in a browser.
+4. Fill in the database connection details and admin account credentials.
+5. The setup wizard imports the schema (`includes/install/DB.sql`) and creates your admin user.
 
-If your pull request is merged, I will add your name here. Thank you for your contribution!
+![Setup Screenshot](screens/setup.png)
 
-   * [nenuadrian](https://github.com/nenuadrian) - main developer
-   * [SKSaki](https://github.com/SKSaki) - initial user and bug-finder
+### 4. Option B: Manual Setup
 
-## Sponsors
+```bash
+# Import the database schema
+mysql -u DB_USER -p secretrepublic < includes/install/DB.sql
 
-Thank you all who bought credits when the game was active. Your name will appear here if you financially contribute to the open-source project. Get in touch to do so.
+# Create the database config from the template
+cp includes/database_info.php.template includes/database_info.php
+```
 
-# License
+Edit `includes/database_info.php` with your database credentials:
 
-This initial version was created by [Adrian Nenu] (https://github.com/nenuadrian) 
+```php
+<?php
+$db['server_name'] = 'localhost';
+$db['username'] = 'your_db_user';
+$db['password'] = 'your_db_password';
+$db['name'] = 'secretrepublic';
+$db['port'] = 3306;
 
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+return $db;
+```
 
-Please link and contribute back to this repository if using the code or assets :)
+Then create your first user account via the registration page and promote it to admin:
+
+```sql
+-- After registering, set your user as full administrator
+UPDATE user_credentials SET group_id = 1, email_confirmed = 1 WHERE uid = 1;
+```
+
+Log out and log back in for the admin role to take effect.
+
+### 5. Set Directory Permissions
+
+```bash
+chmod -R 775 includes/templates_c/
+chmod -R 775 includes/cache/
+chmod -R 775 includes/configs/
+```
+
+---
+
+## Configuration
+
+All application settings are in **`includes/constants/constants.php`**. This file is already present in the repository with default/empty values. No `.env` file is used.
+
+### SMTP (Email)
+
+Email sending uses PHPMailer. Configure the SMTP settings in `includes/constants/constants.php`:
+
+```php
+"smtp_host"     => "smtp.example.com",
+"smtp_username" => "your_smtp_user",
+"smtp_password" => "your_smtp_password",
+"smtp_name"     => "Secret Republic",
+"smtp_from"     => "noreply@example.com",
+"smtp_secure"   => "tls",       // "tls" or "ssl"
+"smtp_port"     => 587,         // 587 for TLS, 465 for SSL
+```
+
+If `smtp_host` is left empty, no emails will be sent (email features like registration confirmation and password reset will not work).
+
+### reCAPTCHA v2
+
+Registration and training pages use Google reCAPTCHA v2. Get your keys at https://www.google.com/recaptcha/admin/create and configure:
+
+```php
+'recaptcha_site_key'   => 'your_site_key',
+'recaptcha_secret_key' => 'your_secret_key',
+```
+
+If keys are left empty, a warning is shown instead of the captcha widget.
+
+### Other Settings
+
+| Key | Default | Description |
+|---|---|---|
+| `contact_email` | `undefined@undefined.com` | Displayed contact email |
+| `tutorialSteps` | `20` | Number of tutorial steps |
+| `trainEvery` | `36000` (10h) | Cooldown between training sessions (seconds) |
+| `timeBetweenJobs` | `43200` (12h) | Cooldown between jobs (seconds) |
+| `max_tasks` | `3` | Max concurrent tasks per player |
+| `defaultGroup` | `2` | Default user permission group on registration |
+
+The `url` setting is auto-detected from `$_SERVER` and does not need manual configuration.
+
+---
+
+## Webserver Setup
+
+The **Document Root** must point to the `public_html/` directory.
+
+### Apache
+
+`mod_rewrite` must be enabled. An `.htaccess` file is included in `public_html/` and handles all URL rewriting automatically. It supports `mod_php`, `mod_fcgid`, and PHP-FPM.
+
+```bash
+# Enable mod_rewrite (Debian/Ubuntu)
+sudo a2enmod rewrite
+sudo systemctl restart apache2
+```
+
+Make sure your Apache `<Directory>` block allows `.htaccess` overrides:
+
+```apache
+<Directory /path/to/public_html>
+    AllowOverride All
+</Directory>
+```
+
+### Nginx
+
+A reference configuration is provided at `public_html/nginx.conf`. Key parts:
+
+```nginx
+server {
+    root /path/to/project/public_html;
+    index index.php;
+
+    location / {
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php-fpm.sock;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+}
+```
+
+---
+
+## Cronjobs
+
+Cronjobs are triggered via HTTP requests to the cron module. Each request requires an authentication key.
+
+The **default cron key** is configured in `includes/modules/cron/cron.php`. Change this in production.
+
+| Job | URL Path | Schedule |
+|---|---|---|
+| Attacks & Tasks | `/cron/key1/{CRON_KEY}/attacks/true` | Every 1-2 minutes |
+| Resources | `/cron/key1/{CRON_KEY}/resources/true` | Every minute |
+| Hourly | `/cron/key1/{CRON_KEY}/hourly/true` | Every hour |
+| Daily | `/cron/key1/{CRON_KEY}/daily/true` | Once daily |
+| Rankings | `/cron/key1/{CRON_KEY}/rankings/true` | Every hour |
+| Hackdown | `/cron/key1/{CRON_KEY}/hackdown/true` | Once daily (Saturdays) |
+| Hackdown End | `/cron/key1/{CRON_KEY}/hackdownEnd/true` | Once daily (Sundays) |
+| Monthly | `/cron/key1/{CRON_KEY}/monthly/true` | Once monthly |
+
+### Example Crontab
+
+```bash
+# Attacks & tasks - every 2 minutes
+*/2 * * * * wget -qO /dev/null http://your-domain/cron/key1/YOUR_KEY/attacks/true
+
+# Resources - every minute
+* * * * * wget -qO /dev/null http://your-domain/cron/key1/YOUR_KEY/resources/true
+
+# Hourly tasks + rankings
+0 * * * * wget -qO /dev/null http://your-domain/cron/key1/YOUR_KEY/hourly/true
+5 * * * * wget -qO /dev/null http://your-domain/cron/key1/YOUR_KEY/rankings/true
+
+# Daily
+0 3 * * * wget -qO /dev/null http://your-domain/cron/key1/YOUR_KEY/daily/true
+
+# Hackdown (Saturday start, Sunday end)
+0 0 * * 6 wget -qO /dev/null http://your-domain/cron/key1/YOUR_KEY/hackdown/true
+0 0 * * 0 wget -qO /dev/null http://your-domain/cron/key1/YOUR_KEY/hackdownEnd/true
+
+# Monthly
+0 4 1 * * wget -qO /dev/null http://your-domain/cron/key1/YOUR_KEY/monthly/true
+```
+
+---
+
+## Upgrade from Older Versions
+
+If you are upgrading from an older PHP 7.x/8.1 version of this project:
+
+### 1. Update the Code
+
+```bash
+git pull origin master
+```
+
+### 2. Update Composer Dependencies
+
+```bash
+composer install --prefer-dist --no-progress
+```
+
+### 3. Clear Smarty Cache
+
+This is **required** after upgrading, especially after the Smarty 4 to 5 migration:
+
+```bash
+rm -rf includes/templates_c/*
+rm -rf includes/cache/*
+```
+
+### 4. Database
+
+All tables use `utf8mb4` encoding. If upgrading from an older installation, re-import the schema or run:
+
+```sql
+-- Verify charset (should show utf8mb4 for all tables)
+SELECT TABLE_NAME, TABLE_COLLATION
+FROM information_schema.TABLES
+WHERE TABLE_SCHEMA = 'your_database_name';
+```
+
+No `sql_mode` changes are needed. All queries are `ONLY_FULL_GROUP_BY` compliant.
+
+### 5. PHP Version
+
+Ensure your server runs **PHP 8.3 or 8.4**. The `composer.json` requires `^8.3`.
+
+```bash
+php -v   # Must show 8.3.x or 8.4.x
+```
+
+---
+
+## Changelog
+
+### PHP 8.3/8.4 Compatibility Update
+
+| Area | Details |
+|---|---|
+| **PHP 8.3/8.4** | All 128 PHP files pass `phplint` without errors. Fixed: null-safety issues, deprecated `session.hash_function`, `Mobile_Detect` API change, old-style constructors, `var` to `public`, undefined variables. |
+| **Smarty 5.7** | Upgraded from Smarty 4.5.6. Namespace changed to `\Smarty\Smarty`. 35 PHP built-in functions + 6 custom functions registered as Smarty modifiers (required by Smarty 5). |
+| **Composer** | `php ^8.3`, `smarty/smarty ^5.7`, `mobiledetect/mobiledetectlib ^4.8`, `phpmailer/phpmailer ^6.9`, `google/recaptcha ^1.3`, `phpunit/phpunit ^10.5`, `overtrue/phplint ^9.0` |
+| **Database** | All 100 tables converted to `utf8mb4` + `utf8mb4_unicode_ci`. All GROUP BY queries are `ONLY_FULL_GROUP_BY` compliant -- no `SET GLOBAL/SESSION sql_mode` workarounds needed. |
+| **CI** | GitHub Actions matrix tests PHP 8.3 and 8.4. Runs phplint and PHPUnit. |
+
+### Known Remaining Points
+
+| Item | Status | Recommendation |
+|---|---|---|
+| `joshcam/mysqli-database-class` | `dev-master` | Pin to a specific commit or fork |
+| `danielstjules/php-pretty-datetime` | `dev-master` | Pin to a specific commit or fork |
+| `#[AllowDynamicProperties]` | Used on several classes | Will be removed in PHP 9.0; declare properties explicitly long-term |
+| `includes/class/recaptchalib.php` | Legacy reCAPTCHA v1 lib | Not actively used (replaced by `google/recaptcha` Composer package); can be removed |
+
+For detailed upgrade documentation, see `docs/STATUS.md`.
+
+---
+
+## Framework Details
+
+The application is built with vanilla PHP, using Smarty as the template engine and a few Composer libraries. There is no traditional MVC framework.
+
+### Directory Structure
+
+```
+project-root/
+├── public_html/              # Document Root (web-accessible)
+│   ├── index.php             # Front controller (entry point)
+│   ├── .htaccess             # Apache URL rewriting
+│   ├── nginx.conf            # Nginx reference config
+│   ├── css/                  # Stylesheets
+│   ├── js/                   # JavaScript
+│   └── audio/                # Audio files (mp3, ogg)
+├── includes/
+│   ├── class/                # PHP classes
+│   │   ├── cardinal.php      # Core application class
+│   │   ├── alpha.class.php   # Base class (email, captcha, etc.)
+│   │   ├── loginSystem.php   # Authentication
+│   │   ├── userclass.php     # User operations
+│   │   ├── qclass.php        # Quest/mission engine
+│   │   ├── class.forum.php   # Forum system
+│   │   └── ...
+│   ├── constants/            # Application configuration
+│   │   ├── constants.php     # Main config (SMTP, reCAPTCHA, etc.)
+│   │   ├── abilities.php     # Ability definitions
+│   │   ├── skills.php        # Skill definitions
+│   │   ├── tutorial.php      # Tutorial step definitions
+│   │   └── jobs.php          # Job definitions
+│   ├── modules/              # Controllers (one per route)
+│   │   ├── main/             # Homepage (visitor.php, player.php)
+│   │   ├── admin/            # Admin panel
+│   │   ├── quests/           # Missions
+│   │   ├── cron/             # Cronjob handlers
+│   │   └── ...
+│   ├── install/
+│   │   └── DB.sql            # Full database schema
+│   ├── vendor/               # Composer packages (gitignored)
+│   ├── templates_c/          # Smarty compiled templates (writable)
+│   ├── cache/                # Smarty cache (writable)
+│   ├── configs/              # Smarty configs (writable)
+│   ├── database_info.php     # DB credentials (not in repo)
+│   └── database_info.php.template
+├── templates/                # Smarty .tpl templates (~133 files)
+├── MISSION-GUIDES/           # PDF guides for mission design
+├── tests/                    # PHPUnit tests
+├── docs/                     # Additional documentation
+│   ├── STATUS.md             # Upgrade status details
+│   ├── RUNBOOK.md            # Operational runbook
+│   └── sql_missions_audit.md # SQL audit for GROUP BY queries
+├── screens/                  # Screenshots
+├── composer.json
+└── LICENSE.md                # MIT License
+```
+
+### Routing
+
+All requests are rewritten to `public_html/index.php` via `.htaccess` / nginx. The first URL segment maps to a module file in `includes/modules/`:
+
+```
+http://domain/quests            → includes/modules/quests/quests.php
+http://domain/forum             → includes/modules/forum.php
+http://domain/admin             → includes/modules/admin/admin.php
+http://domain/pages/about       → templates/pages/about.tpl (static page)
+```
+
+URL parameters are parsed as key/value pairs from the path:
+
+```
+http://domain/quests/group/5/mission/10
+→ $GET["group"] = "5", $GET["mission"] = "10"
+```
+
+### Creating New Missions
+
+See the PDF guides in `MISSION-GUIDES/`:
+- `missions-console-guide.pdf` - Console commands and syntax
+- `missions-designer-guide.pdf` - Using the admin mission designer
+
+### Adding Skills, Abilities, or Tutorial Steps
+
+Edit the corresponding file in `includes/constants/`:
+- `abilities.php` - Ability definitions
+- `skills.php` - Skill definitions
+- `tutorial.php` - Tutorial steps (also add a `tutorial_step_N_check` function for each step)
+
+### Adding Simple Pages
+
+Create a `.tpl` file in `templates/pages/`. It becomes available at `/pages/FILENAME` immediately.
+Use `templates/pages/template.tpl` as a starting point.
+
+---
+
+## Tests
+
+### PHP Lint
+
+```bash
+./includes/vendor/bin/phplint --no-cache --exclude=vendor includes/ public_html/index.php
+```
+
+### PHPUnit
+
+```bash
+./includes/vendor/bin/phpunit tests
+```
+
+Currently 4 tests with 23 assertions covering abilities, skills, tutorial, and basic functionality.
+
+---
+
+## Troubleshooting
+
+### Smarty: "templates_c is not writable"
+
+```bash
+chmod -R 775 includes/templates_c/
+chmod -R 775 includes/cache/
+chmod -R 775 includes/configs/
+```
+
+If using SELinux:
+
+```bash
+chcon -R -t httpd_sys_rw_content_t includes/templates_c/ includes/cache/ includes/configs/
+```
+
+### 500 Internal Server Error
+
+1. Check that `mod_rewrite` is enabled (Apache) or that nginx config has proper `try_files`.
+2. Verify Document Root points to `public_html/`, not the project root.
+3. Check PHP error log: `tail -f /var/log/php_errors.log` (or your configured path).
+
+### Database Connection Error
+
+1. Verify `includes/database_info.php` exists and has correct credentials.
+2. Check that the MySQL service is running.
+3. Ensure the `mysqli` PHP extension is installed: `php -m | grep mysqli`.
+
+### reCAPTCHA Not Working
+
+1. Ensure `recaptcha_site_key` and `recaptcha_secret_key` are set in `includes/constants/constants.php`.
+2. Keys must match your domain. Localhost requires separate test keys from Google.
+
+### Email Not Sending
+
+1. Verify SMTP settings in `includes/constants/constants.php`.
+2. `smtp_host` must not be empty for emails to work.
+3. Check that your SMTP provider allows the configured authentication method (TLS/SSL).
+4. For debugging, temporarily set `$mail->SMTPDebug = 2;` in `includes/class/alpha.class.php`.
+
+### Missions Page: GROUP BY Errors
+
+All SQL queries are `ONLY_FULL_GROUP_BY` compliant. **No `sql_mode` changes are needed.**
+
+If you see GROUP BY errors, ensure you are running the latest code from this branch. See `docs/sql_missions_audit.md` for details on the query fixes.
+
+### "Class Smarty not found"
+
+Smarty 5 requires the namespaced class. Ensure:
+1. You ran `composer install` successfully.
+2. The `includes/vendor/` directory exists and contains Smarty.
+
+### Template Rendering Issues After Upgrade
+
+Clear the Smarty compile cache:
+
+```bash
+rm -rf includes/templates_c/*
+rm -rf includes/cache/*
+```
+
+---
+
+## Security & Deployment
+
+### Production Checklist
+
+- [ ] Change the cron key in `includes/modules/cron/cron.php` (default is a base64 string)
+- [ ] Set SMTP credentials in `includes/constants/constants.php`
+- [ ] Set reCAPTCHA keys in `includes/constants/constants.php`
+- [ ] Ensure `includes/database_info.php` is **not** committed to version control
+- [ ] Set correct file permissions (`775` for Smarty dirs, `644` for PHP files)
+- [ ] Use HTTPS in production
+- [ ] Set `display_errors` to `0` in production (already set in `index.php`)
+- [ ] Consider enabling PHP OPcache for performance
+
+### File Permissions
+
+```bash
+# Writable directories for Smarty
+chmod -R 775 includes/templates_c/ includes/cache/ includes/configs/
+
+# Restrict database config
+chmod 640 includes/database_info.php
+```
+
+### OPcache (Recommended)
+
+In `php.ini`:
+
+```ini
+opcache.enable=1
+opcache.memory_consumption=128
+opcache.max_accelerated_files=10000
+opcache.validate_timestamps=0   # Only for production; set to 1 during development
+```
+
+### Smarty Compile Check
+
+For production performance, you can disable Smarty compile checks by adding this after the Smarty initialization in `public_html/index.php`:
+
+```php
+$smarty->setCompileCheck(\Smarty\Smarty::COMPILECHECK_OFF);
+```
+
+After any template change, clear `includes/templates_c/` manually.
+
+---
+
+## Screenshots
+
+| Main Page | Player Dashboard | Mission |
+|---|---|---|
+| ![Main](screens/1.jpg) | ![Dashboard](screens/2.jpg) | ![Mission](screens/3.jpg) |
+
+| Organization | Skills | The Grid |
+|---|---|---|
+| ![Org](screens/4.jpg) | ![Skills](screens/5.jpg) | ![Grid](screens/6.jpg) |
+
+| Mission Designer | | |
+|---|---|---|
+| ![Designer 1](screens/7.jpg) | ![Designer 2](screens/8.jpg) | ![Designer 3](screens/9.jpg) |
+
+| Forum | |
+|---|---|
+| ![Forum 1](screens/10.jpg) | ![Forum 2](screens/11.jpg) |
+
+---
+
+## Contributors & License
+
+### Contributors
+
+- [nenuadrian](https://github.com/nenuadrian) - Main developer
+- [SKSaki](https://github.com/SKSaki) - Initial user and bug-finder
+
+If your pull request is merged, your name will be added here.
+
+### License
+
+MIT License - Copyright (c) 2012 Adrian Mircea Nenu
+
+See [LICENSE.md](LICENSE.md) for the full license text.
+
+Please link and contribute back to this repository if using the code or assets.

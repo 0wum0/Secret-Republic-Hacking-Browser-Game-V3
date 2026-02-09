@@ -547,4 +547,15 @@ return [
     // ── Misc UI ──
     'UI_POINTS'              => 'Punkte',
     'UI_DAMAGED'             => 'besch\u00e4digt',
+
+    // ── Rankings Page ──
+    'RANK_HACKERS'           => 'Hacker',
+    'RANK_HACKERS_BTN'       => 'HACKER',
+    'RANK_ORGS_BTN'          => 'ORGANISATIONEN',
+    'RANK_MEMBERS'           => 'Mitglieder',
+    'RANK_DETAILS_LINK'      => 'Zugriff auf die <strong><a href=":url">Ranglisten-Daten-Seite</a></strong> f\u00fcr detaillierte Informationen zu deinem Ranking.',
+    'RANK_1ST'               => '1. Platz',
+    'RANK_2ND'               => '2. Platz',
+    'RANK_3RD'               => '3. Platz',
+    'RANK_NO_HACKERS'        => 'Keine Hacker',
 ];

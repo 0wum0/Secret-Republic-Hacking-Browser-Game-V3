@@ -547,4 +547,15 @@ return [
     // ── Misc UI ──
     'UI_POINTS'              => 'points',
     'UI_DAMAGED'             => 'damaged',
+
+    // ── Rankings Page ──
+    'RANK_HACKERS'           => 'Hackers',
+    'RANK_HACKERS_BTN'       => 'HACKERS',
+    'RANK_ORGS_BTN'          => 'ORGANIZATIONS',
+    'RANK_MEMBERS'           => 'members',
+    'RANK_DETAILS_LINK'      => 'Access the <strong><a href=":url">Rankings Data interface</a></strong> to find detailed information regarding your own ranking.',
+    'RANK_1ST'               => '1st place',
+    'RANK_2ND'               => '2nd place',
+    'RANK_3RD'               => '3rd place',
+    'RANK_NO_HACKERS'        => 'No hackers',
 ];

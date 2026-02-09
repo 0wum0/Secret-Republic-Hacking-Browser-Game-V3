@@ -2,7 +2,7 @@
 		
     {if $logged}
       <div class="alert alert-info">
-        Access the <strong><a href="{$config.url}rankings/details/show">Rankings Data interface</a></strong> to find detailed information regarding your own ranking.
+        {$L.RANK_DETAILS_LINK|replace:':url':"{$config.url}rankings/details/show"}
       </div>
     {/if}
 		{$rankingsGrid}

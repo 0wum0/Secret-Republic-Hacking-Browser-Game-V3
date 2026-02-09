@@ -10,7 +10,10 @@
 <div class="row">
 	<div class="col-md-7">
 		<h3>{$thread.title}</h3>
-		<h5>{$L.FORUM_STARTED_BY|replace:':user':{$thread.user|profile_link}|replace:':url':"{$furl}fid/{$forum.id}"|replace:':forum':$forum.name|replace:':date':{$thread.created|date_fashion}}</h5>
+		{assign var="threadUser" value=$thread.user|profile_link}
+		{assign var="forumUrl" value="`$furl`fid/`$forum.id`"}
+		{assign var="threadDate" value=$thread.created|date_fashion}
+		<h5>{$L.FORUM_STARTED_BY|replace:':user':$threadUser|replace:':url':$forumUrl|replace:':forum':$forum.name|replace:':date':$threadDate}</h5>
 	</div>
 	
 </div>

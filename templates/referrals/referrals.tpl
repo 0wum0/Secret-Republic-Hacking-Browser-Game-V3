@@ -47,7 +47,8 @@
 						The last two apply only to referrals over level 4. The A-C's will be delivered as <a href="{$config.url}rewards">rewards</a>.
 					</div>
 					<div class="panel-footer text-center">
-				{$L.UI_REFERRED_HACKERS|replace:':count':{$referrals_count|floatval|number_format}}
+				{assign var="refCount" value=$referrals_count|floatval|number_format}
+				{$L.UI_REFERRED_HACKERS|replace:':count':$refCount}
 			</div>
 				</div>
 			

@@ -11,7 +11,8 @@
 		conversation with {$message.username} started {$message.created|date_fashion}
 	</p>
 	<p>
-		{$L.UI_MESSAGES_EXCHANGED|replace:':count':{$message.replies|floatval|number_format}}
+		{assign var="msgCount" value=$message.replies|floatval|number_format}
+		{$L.UI_MESSAGES_EXCHANGED|replace:':count':$msgCount}
 	</p>
 
 </div>
@@ -99,7 +100,8 @@
 
 {if !$replyNotAllowed}
 <div class="alert alert-info">
-	{$L.UI_REPLY_COST|replace:':cost':{$config.newMessageReplyDataPoints|floatval|number_format}}
+	{assign var="replyCost" value=$config.newMessageReplyDataPoints|floatval|number_format}
+	{$L.UI_REPLY_COST|replace:':cost':$replyCost}
 </div>
 
 <div id="quick_reply">

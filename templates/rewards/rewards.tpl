@@ -5,7 +5,8 @@
 <div class="row mb10">
 	<div class="col-xs-8">
 		<div class="well black">
-			{$L.REWARDS_INTRO|replace:':url':"{$config.url}achievements"}
+			{assign var="achievementsUrl" value="`$config.url`achievements"}
+			{$L.REWARDS_INTRO|replace:':url':$achievementsUrl}
 		</div>
 	</div>
 	<div class="col-xs-4">

@@ -4,7 +4,9 @@
 				<div class="row">
 					<div class="col-md-4">
 						
-						<button disabled>{$L.ORG_LEVEL_LABEL|replace:':level':$org.level|replace:':exp':{$org.exp|floatval|number_format}|replace:':expNext':{$org.expNext|floatval|number_format}}</button>
+						{assign var="orgExp" value=$org.exp|floatval|number_format}
+						{assign var="orgExpNext" value=$org.expNext|floatval|number_format}
+						<button disabled>{$L.ORG_LEVEL_LABEL|replace:':level':$org.level|replace:':exp':$orgExp|replace:':expNext':$orgExpNext}</button>
 						
 					</div>
 					<div class="col-md-8">

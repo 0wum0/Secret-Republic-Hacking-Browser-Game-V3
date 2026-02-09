@@ -32,8 +32,10 @@
 
         <div class="panel panel-glass">
           <div class="panel-heading">
-            <small data-hacker-text='{$L.DASH_HELLO|replace:":link":"<a href=\\"{$config.url}profile\\" title=\\"{$user.name}\\">{$user.username}</a>"|replace:":level":$user.level}'>
-
+            {assign var="profileLink" value="<a href=\"`$config.url`profile\" title=\"`$user.name`\">`$user.username`</a>"}
+            {assign var="helloText" value=$L.DASH_HELLO|replace:":link":$profileLink|replace:":level":$user.level}
+            <small data-hacker-text='{$helloText|escape:"html"}'>
+              {$helloText nofilter}
             </small>
           </div>
           <div class="panel-body">
@@ -46,7 +48,8 @@
               </div>
               <div class="col-xs-8">
 
-                <p title="{$L.DASH_TO_LEVEL_UP|replace:':exp':{($user.expNext-$user.exp)|floatval|number_format}}" ><span class="glyphicon glyphicon-fire"></span>  <small>{$user.exp|floatval|number_format} / {$user.expNext|floatval|number_format} {$L.DASH_EXP}</small></p>
+                {assign var="expNeeded" value=($user.expNext-$user.exp)|floatval|number_format}
+                <p title="{$L.DASH_TO_LEVEL_UP|replace:':exp':$expNeeded}" ><span class="glyphicon glyphicon-fire"></span>  <small>{$user.exp|floatval|number_format} / {$user.expNext|floatval|number_format} {$L.DASH_EXP}</small></p>
                 <div class="progress progress-small">
                   <div class="progress-bar" role="progressbar" style="width: {($user.exp/($user.expNext/100))|intval}%;">
                   </div>
@@ -74,9 +77,10 @@
 
           <div class="panel-footer text-right">
 
-            <small data-hacker-text='{$L.DASH_OWN_ALPHA|replace:":url":$config.url|cat:"alpha_coins"|replace:":count":{$user.alphaCoins|floatval|number_format}}{if !$smarty.session.premium.removeAds} <em><strong>{$L.DASH_GET_MORE}</strong></em>
-              {/if}'>
-            </a></small></strong>
+            {assign var="alphaUrl" value="`$config.url`alpha_coins"}
+            {assign var="alphaCount" value=$user.alphaCoins|floatval|number_format}
+            <small data-hacker-text='{$L.DASH_OWN_ALPHA|replace:":url":$alphaUrl|replace:":count":$alphaCount}{if !$smarty.session.premium.removeAds} {$L.DASH_GET_MORE}{/if}'>
+            </small>
 
 
           </div>

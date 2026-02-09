@@ -1,7 +1,8 @@
 {include file="header_home.tpl"}
 
 <div class="well">
-	{$L.UI_NOTES_INFO|replace:':count':$nrNotes|replace:':max':{$maxContentSize|floatval|number_format}} 
+	{assign var="maxSize" value=$maxContentSize|floatval|number_format}
+	{$L.UI_NOTES_INFO|replace:':count':$nrNotes|replace:':max':$maxSize} 
 	{if !$smarty.session.premium.removeAds && !$smarty.session.premium.notes}
 		<a href="{$config.url}alpha_coins/option/notes">Upgrade to 5 notes with a maximum of 50 000 characters in length.</a>
 	{/if}

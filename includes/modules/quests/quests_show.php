@@ -74,7 +74,7 @@
           $quests = $db->get('quests q', null, 'q.id, q.title, q.summary, q.time, q.id, q.level, MAX(qu.last_done) as done, q.type, MAX(qur.quest) as qdone, q.party, q.qgroup_id');
 
           $messenger[] = array(
-            "message" => count($quests) . " out of " . $group["nrQuests"] . " total missions currently available in '" . $group["name"] . "'",
+            "message" => t('QUEST_MISSIONS_AVAIL', null, [':count' => count($quests), ':total' => $group["nrQuests"], ':name' => $group["name"]]),
             "type" => "success"
           );
 
@@ -105,7 +105,7 @@
 
 
         $messenger[] = array(
-          "message" => "Missions interface loaded",
+          "message" => t('QUEST_MISSIONS_LOADED'),
           "type" => "success"
         );
 

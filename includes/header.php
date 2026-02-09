@@ -31,7 +31,7 @@ if (!$logged) {
 else {
 
   if ($_SESSION['unconfirmed_email']) {
-    $warnings[]       = "A link to confirm your email has been sent. <a href='" . URL . "register/resend/confirmation'>Request a new email confirmation link</a>. <a href='".URL."dna'>Change email</a>?";
+    $warnings[]       = t('HDR_UNCONFIRMED_EMAIL', null, [':resend_url' => URL . 'register/resend/confirmation', ':change_url' => URL . 'dna']);
     $no_warning_voice = true;
   } //$_SESSION['unconfirmed_email']
 
@@ -67,14 +67,14 @@ else {
         ));
 
         if ($_POST['skipStep']) {
-          $success[] = "Tutorial step skipped";
+          $success[] = t('HDR_TUTORIAL_SKIPPED');
         } //$_POST['skipStep']
         else {
-          $success[] = "Tutorial step complete";
+          $success[] = t('HDR_TUTORIAL_COMPLETE');
           $uclass->addReward($user['id'], $tutorial['tutorialStep']['rewards'], "Tutorial: " . $tutorial['tutorialStep']['title']);
         }
         if ($tutorial['step'] > $config['tutorialSteps']) {
-          $info[] = "Congratulations, you have completed the beginner introductory sequence. Let the hacking begin!";
+          $info[] = t('HDR_TUTORIAL_FINISHED');
           unset($_SESSION['showTutorial'], $tutorial);
         } //$tutorial['step'] > $config['tutorialSteps']
 
@@ -90,7 +90,7 @@ else {
 
       $myModal['content'] .= sprintf('
 <div class="panel panel-future ">
-	<div class="panel-heading ">Rewards</div>
+	<div class="panel-heading ">%s</div>
 	<div class="panel-body">
 	<button disabled><div class="row">
 		<div class="col-xs-4">
@@ -104,25 +104,26 @@ else {
 		</div>
 		</div>
 		</button>
-	', number_format($tutorial["tutorialStep"]["rewards"]["money"]), number_format($tutorial["tutorialStep"]["rewards"]["exp"]), number_format($tutorial["tutorialStep"]["rewards"]["skillPoints"]));
+	', t('HDR_TUTORIAL_REWARDS'), number_format($tutorial["tutorialStep"]["rewards"]["money"]), number_format($tutorial["tutorialStep"]["rewards"]["exp"]), number_format($tutorial["tutorialStep"]["rewards"]["skillPoints"]));
      if ($tutorial['status'] != 1)
 		 $myModal['content'] .= '<br/><div class="alert alert-danger nomargin text-center">
-			  	If you skip you will not receive any rewards for this step
+			  	' . t('HDR_TUTORIAL_SKIP_WARN') . '
 			  </div>';
 
 		$myModal['content'] .= "</div>";
       if ($tutorial["status"] == 1)
         $myModal['content'] .= '
 <form method="post">
-	<button type="submit" name="nextTutorialStep" value="go">RECEIVE REWARD AND ADVANCE</button>
+	<button type="submit" name="nextTutorialStep" value="go">' . t('HDR_TUTORIAL_RECEIVE') . '</button>
 </form>';
 		else
 			  $myModal['content'] .= '
 
 <form method="post" >
-	<button type="submit" name="skipStep" value="go">SKIP STEP '. romanic_number($tutorial["step"]) .'</button>
+	<button type="submit" name="skipStep" value="go">' . t('HDR_TUTORIAL_SKIP', null, [':step' => romanic_number($tutorial["step"])]) . '</button>
 </form>';
 
+      $tutorialPercent = floor($tutorial["step"] / ($config['tutorialSteps'] / 100));
       $myModal['content'] .= sprintf('
 </div>
 
@@ -132,9 +133,9 @@ else {
 	<div class="panel-body">
 	<div class="progress"> <div class="progress-bar" role="progressbar" style="width:%s%%"> </div> </div>
 	</div>
-	<div class="panel-footer text-right">Tutorial progress [%s/%s]</div>
+	<div class="panel-footer text-right">%s</div>
 </div>
-', $tutorialPercent = floor($tutorial["step"] / ($config['tutorialSteps'] / 100)), $tutorial["step"], $config['tutorialSteps']);
+', $tutorialPercent, t('HDR_TUTORIAL_PROGRESS', null, [':current' => $tutorial["step"], ':total' => $config['tutorialSteps']]));
 
 		$myModal['id'] = 'tutorial';
 		$myModals[] = $myModal;
@@ -148,7 +149,7 @@ else {
   //Classes
 
   $finish =  ($user["cardinal"] && $GET["alpha"]);
-	if ($finish) $info[] = "Cardinal Enforcemented Active";
+	if ($finish) $info[] = t('HDR_CARDINAL_ACTIVE');
 
 
 }

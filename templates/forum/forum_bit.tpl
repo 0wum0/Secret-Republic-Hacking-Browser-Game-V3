@@ -1,6 +1,6 @@
  <div class="well">
 
-                        <h3 style="margin-top:10px; margin-bottom:10px;"><a href="{$f.url}">{$f.name}</a> <span style="font-size:13px">{$f.threads|floatval|number_format} threads</span></h3>
+                        <h3 style="margin-top:10px; margin-bottom:10px;"><a href="{$f.url}">{$f.name}</a> <span style="font-size:13px">{$f.threads|floatval|number_format} {$L.UI_THREADS}</span></h3>
                         <p>{$f.description}</p>
                         {if $f.last_post_id}
                         	<div class="text-right">

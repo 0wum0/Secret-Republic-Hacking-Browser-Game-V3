@@ -13,7 +13,7 @@ function validateMessage($content)
   if  (isset($content[9]) && !isset($content[4000]))
     return true;
 
-  $errors[]="Message should have between 10 and 4000 characters";
+  $errors[]=t('ERR_MSG_LENGTH');
 }
 function validateTitle($title)
 {
@@ -22,7 +22,7 @@ function validateTitle($title)
   if  (isset($title[4]) && !isset($title[50]))
     return true;
 
-  $errors[]="Title should have between 4 and 50 characters";
+  $errors[]=t('ERR_TITLE_MSG_LENGTH');
 }
 if ($GET['new'])
 {
@@ -32,12 +32,12 @@ if ($GET['new'])
     $message = $_POST['message'];
     $title = $_POST['title'];
 	if ($user['dataPoints'] < $config['newMessageDataPoints'])
-		$errors[] = "Not enough Data Points available";
+		$errors[] = t('ERR_NOT_ENOUGH_DP_MSG');
    elseif (validateTitle($title) && validateMessage($message))
       if (!$cardinal->loginSystem->validateUsername($to))
-        $errors[] = 'Invalid username provided';
+        $errors[] = t('ERR_INVALID_USERNAME');
       elseif(!($to = $cardinal->loginSystem->isUsernameUsed($to)))
-        $errors[] = 'Hacker not found';
+        $errors[] = t('ERR_HACKER_NOT_FOUND');
       else
       {
 	    $uclass->updatePlayer(array("dataPoints" => $user['dataPoints'] - $config['newMessageDataPoints']));
@@ -87,7 +87,7 @@ elseif ($message_id = $GET['message'])
 		{
 			  $reply = $_POST['message'];
       		  if ($user['dataPoints'] < $config['newMessageReplyDataPoints'])
-					$errors[] = "Not enough Data Points available";
+					$errors[] = t('ERR_NOT_ENOUGH_DP_MSG');
 			  elseif(validateMessage($reply))
 			  {
           $parser = new \JBBCode\Parser();
@@ -106,12 +106,12 @@ elseif ($message_id = $GET['message'])
 					               set replies = replies + 1, last_reply_by_user_id = ?, last_reply_date = ?, last_reply_seen = 0
 								   where message_id = ? limit 1",
 								   array($user['id'], time(), $message_id));
-					$success = "Message sent";
+					$success = t('MSG_MESSAGE_SENT');
 
 					  $uclass->updatePlayer(array("dataPoints" => $user['dataPoints'] - $config['newMessageReplyDataPoints']));
 
 				  	$cardinal->redirect(URL_C);
-				  } else $errors[] = "Could not add";
+				  } else $errors[] = t('ERR_COULD_NOT_ADD');
 			  }
 		}
 

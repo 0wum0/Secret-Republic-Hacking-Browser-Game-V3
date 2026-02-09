@@ -44,7 +44,7 @@ else
 
 			$uclass->spendAlphaCoins(50, "Username change to ".$_POST['username']);
 
-			$success [] = "Username has been changed. Hi there, ".$_POST['username']."!";
+			$success [] = t('MSG_USERNAME_CHANGED', null, [':username' => $_POST['username']]);
 			$cardinal->redirect(URL_C);
 		}
 	}
@@ -111,7 +111,7 @@ else
 
           $cardinal->loginSystem->changeUserPassword($user["id"], $_POST["new"], $credentials["pin"]);
           $no_pass = false;
-          $success [] = "Password combo changed";
+          $success [] = t('MSG_PASSWORD_CHANGED');
 
 
         }

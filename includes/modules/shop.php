@@ -25,13 +25,13 @@ $cardinal->mustLogin();
 						$server = new Server($server['server_id'], $server);
 
 						if ($server->server['total_hdd'] - $server->server['hdd_usage'] < $item['hdd'])
-							add_alert("Not enough HDD to store the new item available on server");
+							add_alert(t('ERR_HDD_NOT_ENOUGH_SHOP'));
 
 						if (!there_are_errors())
 						{
 
 
-							$_SESSION['success'] = "Item has been bought and delivered to server";
+							$_SESSION['success'] = t('MSG_ITEM_BOUGHT_SERVER');
 							$uclass->updatePlayer(array( "money" => $user['money'] - $item['price'] ));
 
 							$server->installApp($item);
@@ -65,7 +65,7 @@ $cardinal->mustLogin();
 		if ($_POST["buy"])
 		{
 			if (!$uclass->getAvailableStorageSlots())
-				$errors[] = "No available space in <a href='".URL."storage'>your storage area</a>.";
+				$errors[] = t('ERR_NO_STORAGE_SPACE', null, [':url' => URL . 'storage']);
 
 			if (!count($errors))
 			{
@@ -75,7 +75,7 @@ $cardinal->mustLogin();
 						   ->getOne("shop_items si", null, "si.*, data.*");
 
 				if ($item["item_id"] && $item['price'] > $user['money'])
-					$errors[] = "Not enough money.";
+					$errors[] = t('ERR_NOT_ENOUGH_MONEY_SHOP');
 				else
 				{
 
@@ -83,7 +83,7 @@ $cardinal->mustLogin();
 					$db->insert("storage", array("user_id" => $user['id'], "component_id" => $item["component_id"]));
 					$uclass->updatePlayer(array( "money" => $user['money'] - $item['price'] ));
 
-					$_SESSION['success'] = "Item has been bought and delivered to <a href='".URL."storage'>storage</a>.";
+					$_SESSION['success'] = t('MSG_ITEM_BOUGHT_STORAGE', null, [':url' => URL . 'storage']);
 
 					$cardinal->redirect(URL_C);
 				}

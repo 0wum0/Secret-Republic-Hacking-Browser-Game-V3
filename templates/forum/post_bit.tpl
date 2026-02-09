@@ -35,7 +35,7 @@
                <a href="{$furl}edit/{$p.id}"><span class="glyphicon glyphicon-pencil"></span></a>
              {/if}
              {if $forumAccess.forumManager || $forumAccess.canDeleteOwnThreads }
-               <form method="post" name="delete_{$p.id}" id="delete_{$p.id}" onsubmit="return confirm('Are you sure?');" style="display:inline-block">
+               <form method="post" name="delete_{$p.id}" id="delete_{$p.id}" onsubmit="return confirm('{$L.UI_CONFIRM_DELETE}');" style="display:inline-block">
               <input type="hidden" name="del" value="{$p.id}"/>
               <a onclick="$('#delete_{$p.id}').submit();"><span class="glyphicon glyphicon-remove-sign"></span></a>
               </form>

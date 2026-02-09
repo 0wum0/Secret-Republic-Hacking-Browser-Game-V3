@@ -11,7 +11,7 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-xs-3">
-        <button disabled>{$user.dataPointsPerHour|floatval|number_format:2} / hour</button>
+        <button disabled>{$user.dataPointsPerHour|floatval|number_format:2} {$L.DP_PER_HOUR}</button>
       </div>
       <div class="col-xs-4">
         <a href="{$config.url}alpha_coins/option/extraDataPoints15">
@@ -20,7 +20,7 @@
   {if $smarty.session.premium.extraDataPoints15}
       {assign var= bonus value=round(($user['dataPointsPerHour'] / 100) * 15, 2) }
     
-        + 15% [{$bonus|floatval|number_format:2}] (Mining Consultant)
+        {$L.DP_MINING_BONUS|replace:'[:bonus]':"[{$bonus|floatval|number_format:2}]"}
     
   {else}
     + 0% bonus [hire a Data Points Consultant]
@@ -30,7 +30,7 @@
         </a>
       </div>
       <div class="col-xs-5">
-        <button disabled>Final Prod. Rate: {($user.dataPointsPerHour + $bonus)|floatval|number_format:2} / hour</button>
+        <button disabled>{$L.DP_FINAL_RATE|replace:':rate':{($user.dataPointsPerHour + $bonus)|floatval|number_format:2}}</button>
       </div>
       
     </div>
@@ -52,7 +52,7 @@
         <p>
           <strong>Data Points / Data Coins</strong> are resources to be <strong>mined (obtained)</strong> using <strong>servers</strong> (which earn you <strong>10 DP/hour each</strong> by default) on which you can install additional <strong>software and hardware</strong> to help you <strong>mine faster</strong>.
         </p>
-        There are a couple more ways of collecting Data Points, such as browsing <strong><a href="{$config.url}grid">the Grid</a> for lost floating Data Points</strong> (reminiscences of past battles between mighty hackers) or by initiating Grid Attacks on other competitors.
+        {$L.DP_COLLECT_WAYS|replace:':url':"{$config.url}grid"}
       </div>
     </div>
     
@@ -62,7 +62,7 @@
         <p>Companies around the glove and even Alpha themselves have adopted this system thanks to earlier successful pre-World War III implementations.</p>
         <p>Some of you might remember the controversial <a href="http://en.wikipedia.org/wiki/Bitcoin" target="_blank" rel="nofollow">Bit Coin decentralised virtual currency</a> which has slowly but steadily increased its value to rival real monetary markets through its independent nature.
         </p>
-        Being used mostly by hackers and becoming ever more popular after the <strong>competition</strong> has started, Alpha is unsatisfied with the anonymity of Data Points earnings and transactions and constantly researches way to track them.
+        {$L.DP_ALPHA_RESEARCH}
       </div>
     </div>
 
@@ -85,7 +85,7 @@
       </div>
       <form method="post">
         <button type="submit" {if $user.dataPoints<$spin1Costs || !$logged}disabled{/if} class="button-white" name="form_identifier" value="spin1">
-          Spin for {$spin1Costs|floatval|number_format} Data Points
+          {$L.DP_SPIN_FOR|replace:':cost':{$spin1Costs|floatval|number_format}}
         </button>
       </form>
     </div>

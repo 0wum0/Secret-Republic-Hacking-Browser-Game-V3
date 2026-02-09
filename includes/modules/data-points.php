@@ -45,14 +45,14 @@ if (logged_in())
          $log['component_id'] = $spin1comps[0]['component_id'];
        }
        $uclass->addReward($user['id'], $reward, "Data Points Spin");
-       $message = "Coincidence by design! Reward has been delivered";
+       $message = t('MSG_SPIN_SUCCESS');
        add_alert($message, "success");
 
        $db->insert('data_points_spin_logs', $log);
      }
      else
      {
-       add_alert("Sadly you have not received anything from this spin.");
+       add_alert(t('MSG_SPIN_FAIL'));
      }
      $cardinal->redirect(URL_C);
 

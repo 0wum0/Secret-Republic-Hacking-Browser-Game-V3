@@ -15,7 +15,7 @@
             <div class="text-center mb10">
               {$captcha}
             </div>
-            <button type="submit">Send inquiry</button>
+            <button type="submit">{$L.UI_SEND_INQUIRY}</button>
           </form>
         {/if}
       </div>
@@ -23,7 +23,7 @@
         <h3>contact()</h3>
         <p>return <strong>{$config.contact_email}</strong>;</p>
         <h3>feedback && bugs</h3>
-        <p>we are really keen on finding out what <strong>YOU</strong> think about the republic of hackers</p>
+        <p>{$L.SUPPORT_INTRO}</p>
         <p>echo "so let us know!";</p>
         <h3>waiting time</h3>
         <p>printf("we'll try to get back to you within %d hours", 48);</p>

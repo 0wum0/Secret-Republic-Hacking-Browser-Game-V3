@@ -1,7 +1,7 @@
 <?php
 
 if ($_POST['coupon'] == "iLOVEtutorials")
-  $success [] = "Tutorial coupon accepted. No rewards attached. You can now continue with the tutorial.";
+  $success [] = t('MSG_COUPON_ACCEPTED');
 else
 {
   $faileds = $db->where('user_id', $user['id']) 
@@ -9,7 +9,7 @@ else
           ->getOne('coupon_logs', 'count(*) nrf');
   if ($faileds['nrf'] >= 3)
   {
-    $errors[] = "One too many failed attempts in the last 24 hours. We hope you're not trying something funky!";
+    $errors[] = t('ERR_COUPON_LIMIT');
   }
   else
   {
@@ -18,23 +18,23 @@ else
     if ($couponLog['coupon_id'] = $coupon['coupon_id'])
     {
       if ($coupon['limitedUse'] && !$coupon['uses'])
-        $errors[] = "Coupon has expired";
+        $errors[] = t('ERR_COUPON_EXPIRED');
       if ($coupon['expires'] && $coupon['expirationDate'] <= time())
-        $errors[] = "Coupon has expired";
+        $errors[] = t('ERR_COUPON_EXPIRED');
       if (!count($errors))
       {
         if ($coupon['limitedUse'])
             $db->where("coupon_id", $coupon['coupon_id'])->update("coupons",array("uses" => $coupon['uses'] - 1));
   
         $db->where("id", $user['id'])->update("users", array("alphaCoins" => $user['alphaCoins'] + $coupon['alphaCoins']));
-        $_SESSION['success'] = $coupon['alphaCoins']." Alpha-C have been added to your balance.";
+        $_SESSION['success'] = t('MSG_AC_ADDED', null, [':count' => $coupon['alphaCoins']]);
         $voice = 'transaction_done';
       }
     }
     else
     {
       $coupon['failed'] = 1;
-      $errors[] = "Invalid or terminated coupon";
+      $errors[] = t('ERR_COUPON_INVALID');
     }
     $db->insert('coupon_logs', $couponLog);
   }

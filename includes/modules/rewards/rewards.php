@@ -18,7 +18,7 @@ if ($GET["myReward"])
     {
   	  if ($uclass->claimReward($reward['reward_id'], $reward))
   	  {
-        	$_SESSION["messenger"] = array("message" => "Reward confirmed and received", "type" => "success");
+        	$_SESSION["messenger"] = array("message" => t('MSG_REWARD_CONFIRMED'), "type" => "success");
        	 $cardinal->redirect(URL_C);
   	  } else $errors[] = t('MSG_REWARD_ERROR');
     }

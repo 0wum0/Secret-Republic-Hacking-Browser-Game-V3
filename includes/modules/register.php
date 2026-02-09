@@ -111,7 +111,7 @@ elseif (!$logged && !empty($GET["forgot"]))
 				$cardinal->redirect(URL_C);
 			}
   		}
-  		else $errors[] = "Could not find ".$_POST['email'].' in our records. <a href="'.URL.'register">Create an account?</a>';
+  		else $errors[] = t('ERR_EMAIL_NOT_FOUND_REG', null, [':email' => $_POST['email'], ':url' => URL . 'register']);
   	}
   }
   $tVars["display"] = 'forgot_password/request_email.tpl';

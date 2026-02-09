@@ -23,9 +23,9 @@ if ($amount = intval($_POST['amount']))
 	{
 		
 		if ($amount > $user['money'])
-			$errors[] = "You are not that rich";
+			$errors[] = t('ERR_NOT_RICH');
 		elseif ($amount > $bankLimit - $account['amount'])
-			$errors[] = "Your account in its current state cannot store that much. <a href='".URL."alpha_coins/option/bankLimit1'>Upgrade?</a>";
+			$errors[] = t('ERR_BANK_LIMIT', null, [':url' => URL . 'alpha_coins/option/bankLimit1']);
 		
 		if (!count($errors))
 		{
@@ -40,7 +40,7 @@ if ($amount = intval($_POST['amount']))
 	else
 	{
 		if ($amount > $account['amount'])
-			$errors[] = "Your account is not that rich";
+			$errors[] = t('ERR_BANK_NOT_RICH');
 		
 		if (!count($errors))
 		{

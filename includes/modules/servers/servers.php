@@ -15,10 +15,10 @@ if (isset($GET['build']))
 
 
 	if ($user['money'] < $cost)
-		$errors[] = "Not enough money available in your balance";
+		$errors[] = t('ERR_NOT_ENOUGH_MONEY');
 
 	if ($serversCount['nrs'] >= $maxServers)
-		$errors [] = sprintf("You have reached your current limit of %s servers.", $maxServers);
+		$errors [] = t('ERR_SERVER_LIMIT', null, [':max' => $maxServers]);
 
 	if (!count($errors))
 	{
@@ -39,7 +39,7 @@ if (isset($GET['build']))
 					$power_usage += $s['power_usage'];
 				}
 				if ($power_usage > $power)
-					$errors[] = "The selected configuration uses more energy that the designated power source can provide.";
+					$errors[] = t('ERR_SERVER_POWER');
 
 				if (!count($errors))
 				{
@@ -75,7 +75,7 @@ if (isset($GET['build']))
 						$cardinal->redirect(URL."servers/server/".$server_id);
 					}
 					else
-						$errors[] = "A technical error has occurred. Server not created.";
+						$errors[] = t('ERR_SERVER_TECHNICAL');
 				}
 			}
 		}
@@ -111,21 +111,21 @@ elseif (isset($GET['server']))
 	{
 		if (empty($_SESSION['premium']['serversHostname']))
 		{
-			$_SESSION['error'] = "You need to activate the Hostname Changer service to access it";
+			$_SESSION['error'] = t('ERR_ACTIVATE_HOSTNAME');
 			$cardinal->redirect(URL.'alpha_coins/option/serversHostname');
 		}
 
 		if ($hostname = $_POST['hostname'])
 		{
 			if (strlen($hostname) < 3 && strlen($hostname) > 30 )
-				$errors[] = "Hostname must have between 3 and 30 characters";
+				$errors[] = t('ERR_HOSTNAME_LENGTH');
 
 			if (!count($errors))
 			{
 				$hostname = strip_tags($hostname);
 				$dataUpdate = array("hostname" => $hostname);
 				$db->where('server_id', $server->server_id)->update('servers', $dataUpdate, 1);
-				$_SESSION['success'] = "Hostname changed to ".$hostname;
+				$_SESSION['success'] = t('MSG_HOSTNAME_CHANGED', null, [':hostname' => $hostname]);
 				$cardinal->redirect(URL.'servers/server/'.$server->server_id);
 			}
 		}
@@ -149,12 +149,12 @@ elseif (isset($GET['server']))
 				if ($app['process_id'])
 				{
 					if ($toServer->server['hdd_usage'] + $app['hdd'] > $toServer->server['total_hdd'])
-						$errors[] = "There's not enough HDD available on target";
+						$errors[] = t('ERR_HDD_NOT_ENOUGH');
 
 					if (!count($errors))
 					{
 						$db->where('process_id', $app['process_id'])->update("server_apps", array('server_id' => $toServer->server_id), 1);
-						$_SESSION['success'] = "Transfer complete";
+						$_SESSION['success'] = t('MSG_TRANSFER_COMPLETE');
 					}
 				}
 			}
@@ -185,15 +185,15 @@ elseif (isset($GET['server']))
 				if ($app['running'])
 				{
 					$db->where("process_id", $app['process_id'])->update('server_apps', array('running' => 0));
-					$_SESSION['success'] = "Process has been killed";
+					$_SESSION['success'] = t('MSG_PROCESS_KILLED');
 					$_SESSION['voice'] = "app_killed";
 				}
 				elseif( ($server->server['total_cpu']- $server->server['cpu_usage']) >= $app['cpu'] && ($server->server['total_ram'] - $server->server['ram_usage']) >= $app['ram'])
 				{
 					$db->where("process_id", $app['process_id'])->update('server_apps', array('running' => time()));
-					$_SESSION['success'] = "App has been started";
+					$_SESSION['success'] = t('MSG_APP_STARTED');
 					$_SESSION['voice'] = "app_execute";
-				} else $errors[] = "Not enough resources available to run the app";
+				} else $errors[] = t('ERR_NOT_ENOUGH_RESOURCES');
 
 			if (!count($errors))
 			{
@@ -223,9 +223,9 @@ elseif (isset($GET['server']))
 
 			if ($component)
 				if (($server->server['total_hdd'] - $component['hdd']) < $server->server['hdd_usage'])
-					$errors[] = "Cannot remove card as available HDD will be lower than HDD in use.";
+					$errors[] = t('ERR_HDD_IN_USE');
 				elseif (!$uclass->getAvailableStorageSlots())
-					$errors[] = "No available space in <a href='".URL."storage'>your storage area</a>.";
+					$errors[] = t('ERR_NO_STORAGE_SPACE', null, [':url' => URL . 'storage']);
 				else
 				{
 					$dataInsert = array('user_id' => $user['id'],
@@ -238,7 +238,7 @@ elseif (isset($GET['server']))
 
 						$server->recomputeServerResources();
 						$uclass->recomputeDataPointsStats($user['id']);
-						$_SESSION['success'] = "Component sent to storage";
+						$_SESSION['success'] = t('MSG_COMPONENT_TO_STORAGE');
 					}
 				}
 			$cardinal->redirect(URL_C);
@@ -250,7 +250,7 @@ elseif (isset($GET['server']))
 //$server->recomputeServerResources();
 		
 		if ($server->server['disabled'])
-			$errors [] = "Server is currently disabled and all running apps have been killed. Probably components are using more power than the current power source can provide.";
+			$errors [] = t('ERR_SERVER_DISABLED');
 
 		$tVars['theskills'] = $theskills;
 		$tVars['commandActions'] = $commandActions;

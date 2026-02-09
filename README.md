@@ -416,9 +416,19 @@ php -v   # Must show 8.3.x or 8.4.x
 - Language switch "DE | EN" in header on every page
 - Language persistence: DB (`users.language`) > Cookie (`sr_lang`) > Session > Default `de`
 - i18n infrastructure: `includes/i18n.php` with `t()`, `get_lang()`, `set_lang()`
-- Translation dictionaries: `lang/de.php` + `lang/en.php` (~180 keys each)
+- Translation dictionaries: `lang/de.php` + `lang/en.php` (~280 keys each)
 - Smarty integration: `{$L.KEY}` in all translated templates
-- Translated: Navigation, footer, login, registration, setup, admin nav, missions, tutorial, error/success messages
+- **Fully translated (no mixed language):**
+  - Login / Splash screen
+  - Registration
+  - Password recovery (forgot password)
+  - Missions page (overview, groups, quest info, feedback)
+  - Training page (all difficulties, history, pattern games)
+  - Profile page (reputation, friends, blogs, achievements, org)
+  - Admin navigation
+  - Installer / Setup
+  - Header / Footer / Navigation (desktop + mobile)
+  - All PHP error/success/info messages in: `loginSystem`, `registrationSystem`, `header`, `quests`, `train`, `profile`
 - DB schema: `users.language VARCHAR(2) DEFAULT 'de'` added
 - Documentation: `docs/I18N_PROJECT_MAP.md`, `docs/I18N_CHECKLIST.md`
 

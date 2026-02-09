@@ -471,6 +471,20 @@ php -v   # Must show 8.3.x or 8.4.x
 
 ## Changelog
 
+### 2026-02-09: fix: Rewards reward.tpl `is_Array` modifier (Smarty 4)
+
+- **Problem:** `/rewards/myReward/2/` crashed with Smarty compiler error `unknown modifier 'is_Array'` at line 137 of `templates/rewards/reward.tpl`. The template used `|is_Array` (mixed case) but Smarty modifiers are case-sensitive and only `is_array` (lowercase) was registered.
+- **Fix (template):** Changed `|is_Array` → `|is_array` on lines 137 and 158 of `reward.tpl` (applications and components array checks).
+- **Fix (controller):** Hardened `includes/modules/rewards/rewards.php` — `applications` and `components` deserialization now uses `@unserialize()` with `is_array()` validation. Falls back to `json_decode()` for applications if unserialize fails. Both default to `[]` on any failure, ensuring the template always receives arrays.
+- **Changed files:** `templates/rewards/reward.tpl`, `includes/modules/rewards/rewards.php`
+- **Repo-wide check:** No other `|is_Array` (mixed case) occurrences found in any `.tpl` file.
+
+> **Important:** After deploying, clear the Smarty compiled template cache:
+> ```bash
+> rm -rf includes/templates_c/*
+> rm -rf includes/cache/*
+> ```
+
 ### 2026-02-09: fix: Rankings pagination negative LIMIT offset
 
 - **Problem:** Visiting `/rankings/?page=0`, `/rankings/?page=-5`, or `/rankings/?page=abc` caused a MariaDB syntax error: `LIMIT -20, 20`. The `Paginator` class read `$GET["page"]` and cast it to `(int)` without clamping, then passed the unchecked value to `MysqliDb->paginate()` which computed a negative offset via `($page - 1) * $perPage`.

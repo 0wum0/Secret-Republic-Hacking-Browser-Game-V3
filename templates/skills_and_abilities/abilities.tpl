@@ -75,17 +75,17 @@
       
       <div class="col-xs-3">
         <button disabled >
-        {$ability.rates.price|number_format}$
+        {$ability.rates.price|floatval|number_format}$
         </button>
       </div>
       <div class="col-xs-3">
         <button disabled >
-        {$ability.rates.dataPoints|number_format} data points
+        {$ability.rates.dataPoints|floatval|number_format} data points
         </button>
       </div>
 	  <div class="col-xs-3">
         <button disabled >
-        {$ability.rates.energy|number_format} energy
+        {$ability.rates.energy|floatval|number_format} energy
         </button>
       </div>
 	  

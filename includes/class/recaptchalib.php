@@ -138,9 +138,10 @@ function recaptcha_get_html ($pubkey, $error = null, $use_ssl = false)
 /**
  * A ReCaptchaResponse is returned from recaptcha_check_answer()
  */
+#[\AllowDynamicProperties]
 class ReCaptchaResponse {
-        var $is_valid;
-        var $error;
+        public $is_valid;
+        public $error;
 }
 
 

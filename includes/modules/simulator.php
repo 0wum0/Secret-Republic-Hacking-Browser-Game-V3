@@ -8,7 +8,7 @@
 
 if ($GET['simulation'])
 {
-	if (!$_SESSION['premium']['attackSimulator'])
+	if (empty($_SESSION['premium']['attackSimulator']))
 	{
 		$_SESSION['error'] = "You need to activate the Attack Simulator to access it.";
 		$cardinal->redirect(URL."alpha_coins/option/attackSimulator");
@@ -28,7 +28,7 @@ if ($GET['simulation'])
 elseif ($GET['simulate'])
 {
 
-	if (!$_SESSION['premium']['attackSimulator'])
+	if (empty($_SESSION['premium']['attackSimulator']))
 {
 	$_SESSION['error'] = "You need to activate the Attack Simulator to access it.";
 	$cardinal->redirect(URL."alpha_coins/option/attackSimulator");
@@ -72,7 +72,7 @@ elseif ($GET['simulate'])
 
 
 
-		require("../includes/class/class.battleSystem.php");
+		require(ABSPATH . 'includes/class/class.battleSystem.php');
 		$battleSystem = new BattleSystem();
 
 

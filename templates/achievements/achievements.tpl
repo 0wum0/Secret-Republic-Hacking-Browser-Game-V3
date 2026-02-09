@@ -23,7 +23,7 @@
 			
 		</div>
 		<div class="panel-footer text-right">
-			<em>{$achievement.points|number_format} rank points</em>
+			<em>{$achievement.points|floatval|number_format} rank points</em>
 		</div>
 	</div>
 	</div>

@@ -35,7 +35,7 @@ background-size:contain; background-position: 100% 50%">
 			 	 {if $thread.closed}
 			 	 	<span title="Closed" class="glyphicon glyphicon-lock"></span>
 			 	 {/if}
-					  {$thread.title} ({$thread.replies|number_format} replies) <small><em>by {$thread.user}</em></small></a>
+					  {$thread.title} ({$thread.replies|floatval|number_format} replies) <small><em>by {$thread.user}</em></small></a>
 				</div>
 				
 				<div class="col-md-5  text-right ">

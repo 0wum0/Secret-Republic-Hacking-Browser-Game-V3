@@ -6,7 +6,7 @@ $cardinal->mustLogin();
 
 
 
-if ($_SESSION["duality"])
+if (!empty($_SESSION["duality"]))
 {
   unset($_SESSION["duality"]);
   $hackerCredentials = $db->where("uid", $_SESSION['userId'])->getOne("user_credentials", "group_id");

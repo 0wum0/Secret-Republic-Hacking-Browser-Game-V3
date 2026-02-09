@@ -46,7 +46,7 @@
               </div>
               <div class="col-xs-8">
 
-                <p title="{($user.expNext-$user.exp)|number_format} to level up" ><span class="glyphicon glyphicon-fire"></span>  <small>{$user.exp|number_format} / {$user.expNext|number_format} exp</small></p>
+                <p title="{($user.expNext-$user.exp)|floatval|number_format} to level up" ><span class="glyphicon glyphicon-fire"></span>  <small>{$user.exp|floatval|number_format} / {$user.expNext|floatval|number_format} exp</small></p>
                 <div class="progress progress-small">
                   <div class="progress-bar" role="progressbar" style="width: {($user.exp/($user.expNext/100))|intval}%;">
                   </div>
@@ -56,7 +56,7 @@
 
 
 
-                <p ><span class="glyphicon glyphicon-flash"></span> <small><span title="Hourly recovery rate: 20%{if $smarty.session.premium.recoveryRateDouble} (+20% A-C bonus){/if}">{$user.energy|number_format} / {$user.maxEnergy|number_format} energy</span>
+                <p ><span class="glyphicon glyphicon-flash"></span> <small><span title="Hourly recovery rate: 20%{if $smarty.session.premium.recoveryRateDouble} (+20% A-C bonus){/if}">{$user.energy|floatval|number_format} / {$user.maxEnergy|floatval|number_format} energy</span>
                   {if !$smarty.session.premium.recoveryRateDouble && !$smarty.session.premium.removeAds} (<a href="{$config.url}alpha_coins/option/recoveryRateDouble" title="Increase recovery rate?">+rec. rate</a>){/if}
                 </small></p>
                 <div class="progress progress-small">
@@ -74,7 +74,7 @@
 
           <div class="panel-footer text-right">
 
-            <small data-hacker-text='You own <strong><a href="{$config.url}alpha_coins">{$user.alphaCoins|number_format} Alpha coins{if !$smarty.session.premium.removeAds} <em><strong>GET MORE</strong></em>
+            <small data-hacker-text='You own <strong><a href="{$config.url}alpha_coins">{$user.alphaCoins|floatval|number_format} Alpha coins{if !$smarty.session.premium.removeAds} <em><strong>GET MORE</strong></em>
               {/if}'>
             </a></small></strong>
 
@@ -117,7 +117,7 @@
         {include file = "index/attacks.tpl"}
 
         {else}
-        <button disabled class="button-clear">Nothing to report</button>
+        <button disabled class="button-clear">{$L.DASH_NOTHING_REPORT}</button>
 
 
         {/if}

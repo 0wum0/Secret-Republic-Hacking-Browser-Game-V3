@@ -50,7 +50,7 @@ else
 	}
     elseif ($_POST['email'] && strtolower($_POST['email']) != $credentials['email'])
 	{
-		require("../includes/class/registrationSystem.php");
+		require(ABSPATH . 'includes/class/registrationSystem.php');
 		$registrationSystem = new RegistrationSystem();
 
 		if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
@@ -91,7 +91,7 @@ else
 	}
 	elseif ($_POST['aiVoice'])
 	{
-		$success = "Updated";
+		$success[] = "Updated";
 	  $uclass->updatePlayer(array('aiVoice' => $user['aiVoice'] ? 0 : 1));
 		$cardinal->redirect(URL_C);
 	}
@@ -118,7 +118,7 @@ else
         else
         {
           $errors[] = "ACCESS DENIED";
-          $_SESSION["failedChangeAttempts"] ++;
+          $_SESSION["failedChangeAttempts"] = ($_SESSION["failedChangeAttempts"] ?? 0) + 1;
           if ($_SESSION["failedChangeAttempts"] > 2)
             $cardinal->loginSystem->logout();
         }

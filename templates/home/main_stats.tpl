@@ -1,7 +1,8 @@
 <br/>
-	  <strong><em>{$online|number_format} hackers have recently connected to the Grid</em> </strong>
+	  {assign var="onlineFormatted" value=$online|default:0|floatval|number_format}
+	  <strong><em>{$L.VISITOR_HACKERS_GRID|replace:':count':$onlineFormatted}</em> </strong>
 	   <br/> <br/>
-	  <h4>newest organizations && hackers</h4>
+	  <h4>{$L.VISITOR_NEWEST}</h4>
       {foreach from = $orgHackers item = item}
         {if $item.name}
           <a href="{$config.url}organization/show/{$item.id}">{$item.name}</a>
@@ -16,13 +17,13 @@
 	
 	  <br/>
     <p>
-  latest news | <a href="{$config.url}forum/tid/{$lastNews.tid}">{$lastNews.title}</a>
+  {$L.VISITOR_LATEST_NEWS} | <a href="{$config.url}forum/tid/{$lastNews.tid}">{$lastNews.title}</a>
 </p>
-  last article | <a href="{$config.url}blog/article/{$lastArticle.article_id}">{$lastArticle.title}</a>
+  {$L.VISITOR_LAST_ARTICLE} | <a href="{$config.url}blog/article/{$lastArticle.article_id}">{$lastArticle.title}</a>
 	  
 	 
 	  <br/><br/>
-	  <strong>Random review</strong> 
+	  <strong>{$L.VISITOR_RANDOM_REVIEW}</strong> 
 	  <em>
 	  
 	  {$review}

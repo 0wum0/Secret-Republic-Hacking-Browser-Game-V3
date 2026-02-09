@@ -19,7 +19,7 @@ if ($hackTask["id"]) {
     
     
     
-    require("../includes/class/qclass.php");
+    require(ABSPATH . 'includes/class/qclass.php');
   
  
       
@@ -64,7 +64,7 @@ else
           { 
         
     
-            require("../includes/class/qclass.php");
+            require(ABSPATH . 'includes/class/qclass.php');
 
 
 

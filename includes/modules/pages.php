@@ -8,7 +8,7 @@ else
 {
   if(ctype_alnum(str_replace(array("-", "_"), "", $GET["page"])))
   {
-    if(file_exists("../templates/pages/".$GET["page"].".tpl"))
+    if(file_exists(ABSPATH . 'templates/pages/'.$GET["page"].'.tpl'))
     { 
 		if ($GET["page"] == "typography")
 			{
@@ -23,7 +23,7 @@ else
 		}
 		elseif ($GET['page'] == "media")
 		{
-			require("../includes/constants/abilities.php");
+			require(ABSPATH . 'includes/constants/abilities.php');
 			$tVars['abilities'] = abilities(null, null);
 		}
       $tVars["display"] = "pages/".$GET["page"].".tpl";

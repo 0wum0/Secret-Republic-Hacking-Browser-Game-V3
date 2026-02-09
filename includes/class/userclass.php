@@ -9,8 +9,8 @@ class UserClass extends Alpha
     function canDoTask()
     {
         $userLimit = $this->config["max_tasks"];
-        $userLimit = $_SESSION['premium']['maxTasks1'] ? 5 : $userLimit;
-        $userLimit = $_SESSION['premium']['maxTasks2'] ? 10 : $userLimit;
+        $userLimit = !empty($_SESSION['premium']['maxTasks1']) ? 5 : $userLimit;
+        $userLimit = !empty($_SESSION['premium']['maxTasks2']) ? 10 : $userLimit;
 
         if ($this->user["tasks"] >= $userLimit)
         {
@@ -674,7 +674,7 @@ class UserClass extends Alpha
                     ->where('app_id', $app['app_id'])->getOne('applications', 'hdd');
                 $neededHDD += $app['hdd'];
             }
-            require ("../includes/class/class.server.php");
+            require(ABSPATH . 'includes/class/class.server.php');
             $server = new Server($this->user['server']);
 
             if ($server->server['total_hdd'] - $server->server['hdd_usage'] < $neededHDD) add_alert("Not enough HDD on main server to store the apps");
@@ -752,7 +752,7 @@ class UserClass extends Alpha
                 ->where('id', $user_id)->getOne('users', 'id, server');
             $main = $user['server'];
         }
-        require ('../includes/constants/skills.php');
+        require(ABSPATH . 'includes/constants/skills.php');
 
         if (!$user_id) return array();
 
@@ -767,11 +767,11 @@ class UserClass extends Alpha
         
 
         $commandsInfluence = array();
-        foreach ($skills as $skill => $data) if (is_array($theskills[$skill]['commands'])) foreach ($theskills[$skill]['commands'] as $command => $influenceRate) $commandsInfluence[$command] += $influenceRate * $data['level'];
+        foreach ($skills as $skill => $data) if (isset($theskills[$skill]['commands']) && is_array($theskills[$skill]['commands'])) foreach ($theskills[$skill]['commands'] as $command => $influenceRate) $commandsInfluence[$command] = ($commandsInfluence[$command] ?? 0) + $influenceRate * $data['level'];
 
         if ($main)
         {
-            require_once ('../includes/class/class.server.php');
+            require_once(ABSPATH . 'includes/class/class.server.php');
 
             $servers = array();
             if ($allServers)
@@ -797,7 +797,7 @@ class UserClass extends Alpha
             foreach ($servers as $server)
             {
                 $srvCommandsInfluence = $server->computeSkillsCommandsInfluence();
-                foreach ($srvCommandsInfluence as $c => $v) $commandsInfluence[$c] += $v;
+                foreach ($srvCommandsInfluence as $c => $v) $commandsInfluence[$c] = ($commandsInfluence[$c] ?? 0) + $v;
             }
 
         }
@@ -832,7 +832,7 @@ class UserClass extends Alpha
     function getTotalStorageSlots()
     {
         $user_level = $this->user['level'];
-        $user_premium = $_SESSION['premium']['extraStorage1'];
+        $user_premium = !empty($_SESSION['premium']['extraStorage1']);
         $user_premium = $user_premium ? 10 : 0;
 
         return 6 + floor($user_level / 7) + $user_premium;

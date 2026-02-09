@@ -14,13 +14,13 @@ if ($GET["duality"] == "deactivate")
     $cardinal->redirect(URL);
 }
 
-if ($_SESSION['premium']['questManager'] && !$user["globalQuestManager"] && !$user["questManager"])
+if (!empty($_SESSION['premium']['questManager']) && !$user["globalQuestManager"] && !$user["questManager"])
 {
     $user['miniQuestManager'] = true;
     $user['questManager'] = true;
 }
 
-require_once ('../includes/class/class.admin.php');
+require_once(ABSPATH . 'includes/class/class.admin.php');
 
 if ($GET['view'] == 'tests' && $user['cardinal'])
 {

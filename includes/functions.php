@@ -67,7 +67,7 @@ function configs($field) {
 
 function date_fashion($date) {
   if (!$date)
-    return 'never';
+    return t('GAME_NEVER');
   $dateTime = new DateTime();
   $dateTime->setTimestamp($date);
   return PrettyDateTime::parse($dateTime);
@@ -133,7 +133,7 @@ function myErrorHandler($errno, $errstr, $errfile, $errline) {
       unset($smarty);
 
     } else {
-      echo '<h3>Cardinal notice: An unexpected error took place. Error recorded. Crazy people are going to look into it soon!</h3>';
+      echo '<h3>' . t('ERR_UNEXPECTED') . '</h3>';
       if (isset($cardinal->user['view_debug']))
         print_R($insertData);
     }
@@ -167,7 +167,7 @@ function errors_success() {
 
 
 
-  if ($user['aiVoice'] && ($_SESSION['premium']['ai'])) {
+  if (!empty($user['aiVoice']) && !empty($_SESSION['premium']['ai'])) {
     if (!$voice)
       if ($errors || $error)
         $voice = 'error';
@@ -178,9 +178,9 @@ function errors_success() {
   } else
     unset($voice);
 
-  if ($cardinal->loginSystem->logged) {
+  if (isset($cardinal->loginSystem) && $cardinal->loginSystem->logged) {
 
-    if ($user['friend_requests'] + $user['rewardsToReceive'])
+    if (($user['friend_requests'] ?? 0) + ($user['rewardsToReceive'] ?? 0))
       $user['profileNotification'] = true;
     $tVars['logged'] = true;
     $tVars['user']   = $user;
@@ -190,7 +190,7 @@ function errors_success() {
 
 
 
-  if ($pages->num_pages) {
+  if (isset($pages) && $pages instanceof Paginator && $pages->num_pages) {
 
     $tVars['pages'] = $pages->display_pages();
 

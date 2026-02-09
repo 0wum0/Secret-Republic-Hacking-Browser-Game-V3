@@ -1,8 +1,9 @@
 <?php
+#[\AllowDynamicProperties]
 class Item 
 {
-  var $data;
-  var $item_type;
+  public $data;
+  public $item_type;
 
   function __construct($data = false)
   {  
@@ -65,7 +66,7 @@ class Item
       $db->where('component_id', $this->data['component_id']);
       $specific = $db->getOne('components c', 'c.*');
     }
-    $this->data = serialize($specific, $this->data);
+    $this->data = array_merge($specific, $this->data);
   }
 
   function removeFromStorage()

@@ -37,7 +37,7 @@ $cardinal->mustLogin();
         {
 
 
-              require_once('../includes/class/oclass.php');
+              require_once(ABSPATH . 'includes/class/oclass.php');
 
               $oclass = new Organization();
               if (!($nameError = $oclass->validataOrgName($search, false)))
@@ -60,7 +60,7 @@ $cardinal->mustLogin();
         elseif($GET["type"]=="blog")
         {
 
-          require_once('../includes/class/blogclass.php');
+          require_once(ABSPATH . 'includes/class/blogclass.php');
 
           if ($bclass->validateBlogTitle($search))
           {
@@ -83,7 +83,7 @@ $cardinal->mustLogin();
         elseif($GET["type"]=="article")
         {
 
-          require_once('../includes/class/blogclass.php');
+          require_once(ABSPATH . 'includes/class/blogclass.php');
 
           if ($bclass->validateBlogTitle($search))
           {

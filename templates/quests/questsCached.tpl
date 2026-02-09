@@ -8,15 +8,17 @@
       <div class="panel-body text-center">
         {if $myQuest}
         {if $myQuest.type eq 1 or $myQuest.type eq 2}
-        You've finished <em>{$myQuest.title}</em> {$myQuest.times|number_format} times
+        {assign var="timesFormatted" value=$myQuest.times|default:0|floatval|number_format}
+        {$L.QUEST_FINISHED_TIMES|replace:':title':$myQuest.title|replace:':times':$timesFormatted}
         {else}
         {$myQuest.title}
         {/if}
         {else}
         {if !$user.in_party}
-        {$group.questsDone|number_format} missions done from {$quests|count} currently available out of {$group.nrQuests} total in <strong>{$group.name}</strong>.
+        {assign var="doneFormatted" value=$group.questsDone|default:0|floatval|number_format}
+        {$L.QUEST_DONE_FROM|replace:':done':$doneFormatted|replace:':avail':$quests|count|replace:':total':$group.nrQuests|replace:':name':$group.name}
         {else}
-        <div class="text-center">PARTY</div>
+        <div class="text-center">{$L.NAV_PARTY}</div>
         {/if}
         {/if}
       </div>
@@ -64,23 +66,23 @@
       {include file="quests/quests_available_list.tpl"}
       {elseif $group}
       <div class="alert alert-warning">
-        You have not fulfilled the requirements for any missions in this group. Complete all other available missions and work towards increasing your level to uncover hidden missions of {$group.name}.
+        {$L.QUEST_NO_REQUIREMENTS|replace:':name':$group.name}
       </div>
       {else}
       <div class=" well black">
         <p>
-          Groups become available as their <strong>requirements</strong> (such as level, completing other missions, being part of a certain zone or even only at a certain time) are met.
+          {$L.QUEST_GROUPS_INFO}
         </p>
         <p>
-          Selected few missions are available to parties only and will reward you more upon completion with friends.
+          {$L.QUEST_PARTY_INFO}
         </p>
         <p>
-          Some can be redone <strong>daily</strong> and others repeated at any time with no rewards to refresh your memory regarding certain facts.
+          {$L.QUEST_DAILY_INFO}
         </p>
         <p>
-          <strong>Every mission reward will be delivered through <a href="{$config.url}rewards">the Rewards Interface</a>.</strong>
+          {$L.QUEST_REWARD_INFO|replace:':url':"`$config.url`rewards"}
         </p>
-        Finishing missions will earn <a href="{$config.url}organization/view/hackingPoints">Hacking Points</a> for <a href="{$config.url}organization">your Organization</a>.
+        {$L.QUEST_HACK_POINTS_INFO|replace:':hp_url':"`$config.url`organization/view/hackingPoints"|replace:':org_url':"`$config.url`organization"}
       </div>
       <div class="panel panel-glass" id="program">
         <a href="{$config.url}referrals">
@@ -88,18 +90,18 @@
         </a>
         <div class="panel-body">
           <div class="well">
-            <p>This hacking competition is powered by its competitors. The more participants reach level 5 and higher the more well thought story and puzzle missions Alpha team will make available.</p>
-            <p>For every 100 hackers who reach level 5 we will add missions on top of those created on an irregular schedule. 
+            <p>{$L.QUEST_COMMUNITY_INFO}</p>
+            <p>{$L.QUEST_100_HACKERS}
             </p>
-            <p>These extra missions will be a special reward for your devotement.</p>
-            <p>Use <a href="{$config.url}referrals">your referral link</a> to gain rewards.</p>
-            <p>Consider <a href="{$config.url}alpha_coins/option/questManager">joining the Intern Mission Engineering team</a> and doing it yourself today.</p>
-            <p>We have part of the story writen out and some amazing ideas to surprise you but we need <strong>your support</strong>!</p>
+            <p>{$L.QUEST_EXTRA_REWARD}</p>
+            <p>{$L.QUEST_REFERRAL_LINK|replace:':url':"`$config.url`referrals"}</p>
+            <p>{$L.QUEST_INTERN_TEAM|replace:':url':"`$config.url`alpha_coins/option/questManager"}</p>
+            <p>{$L.QUEST_SUPPORT_NEEDED}</p>
           </div>
           <br/>
           <div class="panel panel-glass nomargin">
             <div class="panel-body">
-              <p>Hackers to reach level 5 before the next mission pack gets developed</p>
+              <p>{$L.QUEST_LEVEL5_PROGRESS}</p>
               <div class="progress progress-well">
                 <div class="progress-bar" role="progressbar" style="width: {($usersCount/(100/100))|intval}%;">
                 </div>

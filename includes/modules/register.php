@@ -2,37 +2,37 @@
  /**
  */
 
-require("../includes/class/registrationSystem.php");
+require(ABSPATH . 'includes/class/registrationSystem.php');
 $registrationSystem = new RegistrationSystem;
 
-if(!$logged && $_GET['reset'])
+if(!$logged && !empty($_GET['reset']))
 {
 	$checkCode = $db->where("hash_code", $_GET['reset'])->where('used', 0)->where('created', time()-48*60*60, '>')->getOne("user_reset_password", "user_id, reset_id");
 
 	if (!$checkCode['reset_id'])
 	{
-		$_SESSION['error'] = "Invalid reset code";
+		$_SESSION['error'] = t('ERR_INVALID_RESET_CODE');
 		$cardinal->redirect(URL);
 	}
 
 	if ($_POST)
 	{
 		if (!$cardinal->loginSystem->validatePassword($_POST['password']))
-			$errors[] = "Password needs to have between 4 and 20 characters";
+			$errors[] = t('ERR_PASSWORD_LENGTH');
 
 		if ($_POST['password'] != $_POST['confirm_password'])
-			$errors[] = "The two passwords did not match";
+			$errors[] = t('ERR_PASSWORD_MISMATCH');
 
-		if (!count($errors))
-		{
-			$credentials = $db->join('users u', 'u.id = uid', 'left outer')
+	if (!count($errors ?? []))
+	{
+		$credentials = $db->join('users u', 'u.id = uid', 'left outer')
 							  ->where('uid', $checkCode['user_id'])
 							  ->getOne('user_credentials', 'email, password, pin, username');
 
 			$cardinal->loginSystem->changeUserPassword($checkCode["user_id"], $_POST['password'], $credentials["pin"]);
 
 			$db->where('reset_id', $checkCode['reset_id'])->update('user_reset_password', array('used' => time()), 1);
-			$_SESSION['success'] = "Password reset to new value";
+			$_SESSION['success'] = t('MSG_PASSWORD_RESET');
 
 			if ($cardinal->loginSystem->loginUser(false, $credentials['username'], $_POST['password']))
 				$cardinal->redirect(URL.'dna');
@@ -44,36 +44,36 @@ if(!$logged && $_GET['reset'])
 
 
 }
-elseif ($logged && $_SESSION['unconfirmed_email'] && $_GET['resend'] == "confirmation")
+elseif ($logged && !empty($_SESSION['unconfirmed_email']) && ($_GET['resend'] ?? '') === "confirmation")
 {
 	if ($registrationSystem->sendEmailConfirmation())
-		add_alert("A confirmation email valid for 48 hours has been sent your way. Please wait up to an hour to receive it before requestin again.", "success");
+		add_alert(t('MSG_EMAIL_CONFIRMATION_SENT'), "success");
 
 	$cardinal->redirect(URL);
 
 }
-elseif ( ($hash_code = $_GET['confirm']) && (!$logged || $_SESSION['unconfirmed_email']))
+elseif ( ($hash_code = ($_GET['confirm'] ?? '')) && (!$logged || !empty($_SESSION['unconfirmed_email'])))
 {
 	$confirm = $db->where("hash_code", $hash_code)->where('used', 0)->where('created', time() - 2 * 24 * 60 * 60, ">=")->getOne("user_email_confirmation", 'confirm_id, user_id');
 
 	if ($confirm['confirm_id'])
 	{
 		$db->where("confirm_id", $confirm['confirm_id'])->update("user_email_confirmation", array("used" => time()), 1);
-		$db->where("uid", $confir['user_id'])->update("user_credentials", array("email_confirmed"=>1), 1);
+		$db->where("uid", $confirm['user_id'])->update("user_credentials", array("email_confirmed"=>1), 1);
 		unset($_SESSION['unconfirmed_email']);
-		$_SESSION['success'] = "Your email has been confirmed";
+		$_SESSION['success'] = t('MSG_EMAIL_CONFIRMED');
 	}
-	else $_SESSION['error'] = "Invalid email confirmation code";
+	else $_SESSION['error'] = t('ERR_INVALID_EMAIL_CONFIRM');
 
 	$cardinal->redirect(URL);
 }
-elseif (!$logged && $GET["forgot"])
+elseif (!$logged && !empty($GET["forgot"]))
 {
   if ($_POST['email'])
   {
   	if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
-  		$errors[] = "Invalid email format";
-  	if (!count($errors))
+  		$errors[] = t('ERR_INVALID_EMAIL_FORMAT');
+  	if (!count($errors ?? []))
   	{
   		$checkCredentials = $db->join('users u', 'u.id = uc.uid', 'left outer')
   		                       ->where("email", $_POST['email'])->getOne("user_credentials uc", "uid, u.username, email, pin");
@@ -84,7 +84,7 @@ elseif (!$logged && $GET["forgot"])
   			            ->getOne("user_reset_password", 'count(*) nrc');
 
   			if ($check['nrc'] >= 1)
-  				$errors[] = "You can request your details only once over a 12 hours period.";
+  				$errors[] = t('ERR_RESET_LIMIT');
   			else
   			{
 				$hash_code = $checkCredentials["uid"].rand(-1000000,1000000).time().$checkCredentials["username"].md5(rand(-12323,234234).$checkCredentials["pin"]);
@@ -106,7 +106,7 @@ elseif (!$logged && $GET["forgot"])
 
 				$cardinal->sendEmail($email);
 
-				$_SESSION['success'] = "We've sent your details. Please wait up to an hour to receive them.";
+				$_SESSION['success'] = t('MSG_DETAILS_SENT');
 
 				$cardinal->redirect(URL_C);
 			}

@@ -1,7 +1,7 @@
 <?php
 
 class Server extends Alpha {
-  var $componentNonStackable = array(1 => 'cpu', 2 => 'motherboard', 3 => 'case', 4 => 'power_source');
+  public $componentNonStackable = array(1 => 'cpu', 2 => 'motherboard', 3 => 'case', 4 => 'power_source');
   function __construct($server_id = false, $server = false) {
     parent::__construct();
 
@@ -32,7 +32,7 @@ class Server extends Alpha {
   }
 
   function getComponent($relation_id) {
-    $component = $this->db->join('components c', 'c.component_id = sc.component_id', 'left outer')->where("server_id", $server->server_id)->where('relation_id', $relation_id)->getOne('server_components sc');
+    $component = $this->db->join('components c', 'c.component_id = sc.component_id', 'left outer')->where("server_id", $this->server_id)->where('relation_id', $relation_id)->getOne('server_components sc');
 
     return $component['component_id'] ? $component : false;
   }
@@ -127,9 +127,9 @@ class Server extends Alpha {
 
 
     foreach ($this->skills as $skill => $data)
-      if (is_array($theskills[$skill]['commands']))
+      if (isset($theskills[$skill]['commands']) && is_array($theskills[$skill]['commands']))
         foreach ($theskills[$skill]['commands'] as $command => $influenceRate)
-          $commandsInfluence[$command] += $influenceRate * $data['level'];
+          $commandsInfluence[$command] = ($commandsInfluence[$command] ?? 0) + $influenceRate * $data['level'];
 
     return $commandsInfluence;
   }
@@ -141,7 +141,7 @@ class Server extends Alpha {
 
     foreach ($this->apps as $app)
       if ($app['running'])
-        $this->skills[$app['skill_id']]["exp"] += $app['skill_value'];
+        $this->skills[$app['skill_id']]["exp"] = ($this->skills[$app['skill_id']]["exp"] ?? 0) + $app['skill_value'];
     foreach ($this->skills as $skill => &$data) {
       $lvl = $exp = 0;
       while ($data["exp"] >= $exp) {
@@ -364,7 +364,7 @@ class Server extends Alpha {
     if (!$app['process_id'])
       $app = $this->db->join('servers s', 's.server_id = sa.server_id', 'left outer')->where('process_id', $app)->getOne('server_apps sa', 'sa.server_id, damage, process_id, s.user_id, running');
     else
-      $app = array_merge($app, $this->db->where('server_id', $component['server_id'])->getOne('servers', 'user_id'));
+      $app = array_merge($app, $this->db->where('server_id', $app['server_id'])->getOne('servers', 'user_id'));
 
     if (!$app['server_id'])
       return;

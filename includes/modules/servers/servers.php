@@ -43,7 +43,7 @@ if (isset($GET['build']))
 
 				if (!count($errors))
 				{
-					require("../includes/class/class.server.php");
+					require(ABSPATH . 'includes/class/class.server.php');
 					$server = new Server();
 
 					$dataInsert = array(
@@ -91,7 +91,7 @@ if (isset($GET['build']))
 }
 elseif (isset($GET['server']))
 {
-	require_once('../includes/class/class.server.php');
+	require_once(ABSPATH . 'includes/class/class.server.php');
 
 	if (!$user['cardinal'])
 		$db->where('user_id', $user['id']);
@@ -109,7 +109,7 @@ elseif (isset($GET['server']))
 	//$server->recomputeServerResources();
 	if ($GET['change'] == "hostname")
 	{
-		if (!$_SESSION['premium']['serversHostname'])
+		if (empty($_SESSION['premium']['serversHostname']))
 		{
 			$_SESSION['error'] = "You need to activate the Hostname Changer service to access it";
 			$cardinal->redirect(URL.'alpha_coins/option/serversHostname');

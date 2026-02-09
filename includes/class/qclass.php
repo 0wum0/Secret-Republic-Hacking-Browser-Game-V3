@@ -38,7 +38,7 @@ class QClass extends Alpha
 		if (!$instance['instance_id'])
 		{
 			$this->refresh = true;
-			$this->error = "Party instance has ended.";
+			$this->error = t('QUEST_PARTY_ENDED');
 			$this->taskclass->delete_task_session($this->user["id"], $questTask["type"]);
 
 		}
@@ -62,16 +62,16 @@ class QClass extends Alpha
       //Process console input commands
       if ($this->consoleInput = strip_tags($_POST['console'])) {
         $micro = microtime(true);
-        if ($_SESSTION['lastConsole'] <= ($micro - 0.8)) {
+        if (($_SESSION['lastConsole'] ?? 0) <= ($micro - 0.8)) {
 
-          $_SESSTION['lastConsole'] = $micro;
+          $_SESSION['lastConsole'] = $micro;
           $this->console();
         } //$_SESSTION['lastConsole'] <= ($micro - 0.8)
         else
-          $this->consoleOutput = 'Server is busy';
+          $this->consoleOutput = t('QUEST_SERVER_BUSY');
       } //$this->consoleInput = $_POST['console']
 
-      $notepadAllowed = $_SESSION['premium']['missionNotepad'];
+      $notepadAllowed = !empty($_SESSION['premium']['missionNotepad']);
 
       if (($content = $_POST['notepad']) && $notepadAllowed && strlen($content) < 1002)
 	  {
@@ -216,7 +216,7 @@ class QClass extends Alpha
        $this->jsonOutput['remainingSeconds'] = $this->questTask['remainingSeconds'];
        $this->jsonOutput['totalSeconds'] = $this->questTask['totalSeconds'];
 
-      if (!$this->user['id'] || $this->user['aiVoice'] && $_SESSION['premium']['ai']) {
+      if (!$this->user['id'] || $this->user['aiVoice'] && !empty($_SESSION['premium']['ai'])) {
         $this->jsonOutput['voice'] = $this->voice;
       } //$_SESSION['premium']['ai'] > time() || $this->user['cardinal']
 
@@ -352,7 +352,7 @@ class QClass extends Alpha
         $this->questData['objective']          = $newObjective;
 
         $this->parseQSyntaxRecursively($this->questData['objective']);
-        $this->consoleOutput .= '<br/> Objective completed';
+        $this->consoleOutput .= '<br/> ' . t('QUEST_OBJ_COMPLETED');
 
         //$_SESSION['messenger'] = array('message' => 'A mission objective has been completed', 'type' => 'success');
         $this->jsonOutput['newObjective'] = $this->questData['objective']['story'];
@@ -365,7 +365,7 @@ class QClass extends Alpha
           $this->noConsoleSession = true;
 
 
-          $this->result = 'Mission complete';
+          $this->result = t('QUEST_MISSION_COMPLETE');
 
           $this->finished =$this->taskclass->delete_task_session($this->user['id'], $this->questTask['type']);
 
@@ -641,7 +641,7 @@ class QClass extends Alpha
     $this->questTask = $this->taskclass->add_task_session($this->user['id'], $type, $takes, $task, 0, $quest['title'], $session, $party, $instance_id);
 
     $_SESSION['messenger'] = array(
-      'message' => 'Mission accepted and initialised',
+      'message' => t('QUEST_MISSION_ACCEPTED'),
       'type' => 'success'
     );
 
@@ -717,7 +717,7 @@ class QClass extends Alpha
     if ($this->questData['trace'] >= 100) {
 
       $this->taskclass->delete_task_session($this->user['id'], $this->questTask['type']);
-      $_SESSION['error'] = 'You have been traced and failed the missions!';
+      $_SESSION['error'] = t('QUEST_BEEN_TRACED');
       //$this->redirect(URL . 'quests');
       $this->refresh     = true;
     } //$this->questData['trace'] >= 100

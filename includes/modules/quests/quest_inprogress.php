@@ -2,7 +2,7 @@
 if ($GET['history'])
 {
 
-    if (!$_SESSION['premium']['consoleHistory']) $errors[] = "You need to <a href='" . URL . "alpha_coins/option/consoleHistory'>activate the Console History</a> before using it. You will gain access to your full history and in case of party missions you will be able to view the history of all participants.";
+    if (empty($_SESSION['premium']['consoleHistory'])) $errors[] = "You need to <a href='" . URL . "alpha_coins/option/consoleHistory'>activate the Console History</a> before using it. You will gain access to your full history and in case of party missions you will be able to view the history of all participants.";
     else
     {
         if ($_POST['participant']) $cardinal->redirect(URL . 'quests/history/show/participant/' . $_POST['participant']);
@@ -46,7 +46,7 @@ else
     if ($qtask["type"] == 15 && $qclass->finished)
     {
 
-        $success[] = "Mission completed";
+        $success[] = t('QUEST_MISSION_COMPLETED');
 
         $quest = $db->join('quests_user qu', 'qu.quest = q.id and qu.user_id = ' . $user['id'], 'left outer')->where("q.id", $qclass->questTask["questID"])
             ->getOne("quests q", "qu.id qu_id, type, money, experience, achievement_id, skillPoints, qu.created as done, times");
@@ -61,7 +61,7 @@ else
             if ($user['organization'])
             {
                 // give a hacking point to org
-                require ("../includes/class/oclass.php");
+                require(ABSPATH . 'includes/class/oclass.php');
                 $oclass = new Organization();
                 $hackingPoints = 1;
                 $oclass->addHackingPoints($hackingPoints, $user['organization'], $user['id'], $qclass->finished);

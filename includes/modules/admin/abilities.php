@@ -1,10 +1,10 @@
 <?php
 
 
-require_once('../includes/class/abclass.php');
+require_once(ABSPATH . 'includes/class/abclass.php');
 
 
-require("../includes/constants/abilities.php");
+require(ABSPATH . 'includes/constants/abilities.php');
 $abilities = abilities(null, null);
 $abclass= new Abilities($abilities);
 

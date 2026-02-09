@@ -15,7 +15,7 @@ if ($hacker['id']) {
         $db->where('uid', $hacker['id']);
         $db->update('user_credentials', $_POST);
 
-        $_SESSION['success'] = 'Hacker credentials updated';
+        $_SESSION['success'] = t('MSG_HACKER_CRED_UPDATED');
 
         $cardinal->redirect(URL_C);
 
@@ -88,7 +88,7 @@ if ($hacker['id']) {
              ->where('user_id', $hacker['id'])
              ->orderBy('created', 'desc')
              ->delete('quests_user', 1);
-          $success[] = 'Record deleted';
+          $success[] = t('MSG_RECORD_DELETED');
         }
       }
 
@@ -106,7 +106,7 @@ if ($hacker['id']) {
                      ->where('user_id', $hacker['id'])
                      ->groupBy('quest')
                      ->orderBy('created', 'desc')
-                     ->paginate('quests_user', $pages->current_page, 'quests_user.created, quests.title, quests.type, quest, quest_groups.name groupName');
+                     ->paginate('quests_user', $pages->current_page, 'MAX(quests_user.created) as created, MAX(quests.title) as title, MAX(quests.type) as type, quest, MAX(quest_groups.name) as groupName');
       foreach ($missions as &$mission)
         $mission['created'] = date('d/F/Y H:i:s', $mission['created']);
 
@@ -165,7 +165,7 @@ if ($hacker['id']) {
       $db->where('id', $hacker['id']);
       $db->update('users', $_POST);
 
-      $_SESSION['success'] = 'Hacker updated';
+      $_SESSION['success'] = t('MSG_HACKER_UPDATED');
 
       $cardinal->redirect(URL_C);
 

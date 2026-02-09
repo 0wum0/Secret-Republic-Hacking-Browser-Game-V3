@@ -5,7 +5,7 @@
 	{if $dailies|count}
 	{foreach $dailies as $daily}
 
-<a href="{$config.url}quests/group/{$daily.qgroup_id}/{$daily.id}" class="text-center button  cut-text" title="Daily mission">
+<a href="{$config.url}quests/group/{$daily.qgroup_id}/{$daily.id}" class="text-center button  cut-text" title="{$L.QUEST_DAILY_MISSION}">
 [D] {$daily.title} 
 </a>
 
@@ -21,7 +21,7 @@
 </a>
 
 {foreachelse}
-<button class="disabled mb10" disabled>no incomplete mission groups</button>
+<button class="disabled mb10" disabled>{$L.QUEST_NO_INCOMPLETE}</button>
 {/foreach}
 	
 
@@ -31,13 +31,13 @@
 <div class="button-stack mb10">
 {if $can_train}
 	<a href="{$config.url}train" class="button text-center">
-	TRAIN
+	{$L.QUEST_TRAIN}
 	
 	</a>
 	{/if}
 	{if $can_work}
 	<a href="{$config.url}job" class="button text-center">
-	WORK
+	{$L.QUEST_WORK}
 	
 	</a>
 	{/if}

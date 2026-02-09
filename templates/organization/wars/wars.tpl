@@ -55,9 +55,9 @@
 			<div class="col-md-6">
 	 <div class="alert alert-info nomargin">
 	 	{if $endedWar.org1_id eq $org.id}
-			We scored {$endedWar.org1_points|number_format} points while they had {$enderWar.org2_points|number_format}.
+			We scored {$endedWar.org1_points|floatval|number_format} points while they had {$enderWar.org2_points|floatval|number_format}.
 		{else}
-			We scored {$endedWar.org2_points|number_format} points while they had {$enderWar.org1_points|number_format}.
+			We scored {$endedWar.org2_points|floatval|number_format} points while they had {$enderWar.org1_points|floatval|number_format}.
 		{/if}
 	 </div>
 	 		</div>

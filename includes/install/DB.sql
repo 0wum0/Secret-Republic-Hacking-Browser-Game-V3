@@ -2,7 +2,7 @@ CREATE TABLE `abilities` (
   `user_id` int(11) NOT NULL,
   `ability_id` int(11) DEFAULT NULL,
   `level` int(11) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `achievements` (
   `achievement_id` int(11) NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE `achievements` (
   `description` varchar(200) DEFAULT NULL,
   `points` int(11) NOT NULL DEFAULT '0',
   `visibleInList` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `alpha_coins_logs` (
   `log_id` int(11) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE `alpha_coins_logs` (
   `kongregate` varchar(300) DEFAULT NULL,
   `kongregate_user_id` int(11) DEFAULT NULL,
   `reason` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `alpha_coins_shop` (
   `item_id` int(11) NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE `alpha_coins_shop` (
   `type` tinyint(1) NOT NULL DEFAULT '1',
   `available` tinyint(1) NOT NULL DEFAULT '1',
   `extraData` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `alpha_coins_shop` (`item_id`, `monthly_cost`, `description`, `user_premium_col`, `name`, `shopOrder`, `type`, `available`, `extraData`) VALUES
 (1, 10, '<div class=\"row\"> <div class=\"col-md-3\"> <a href=\"#\" onclick=\"$(\'#demo-0\')[0].play();return false;\" ><img src=\"http://secretrepublic.net/layout/img/characters/eve.png\" style=\"max-width:100%\"/> </a></div> <div class=\"col-md-9\">Your <strong>personal Artificial Intelligent assistant</strong> will greet you when you connect and will notify you as certain events take place. For example: in missions (commands and actions), jobs, training, general notices (errors and warnings), login, 404 pages, etc. <br/><br/>You will have the ability to activate/deactivate the voice using the Settings interface (same one you can change your password in). <br/><br/>Verify if your can hear the following demo: <div class=\"text-center\"><br/><br/> <div class=\"row\">   <div class=\"col-md-4\">     <a href=\"#\" onclick=\"$(\'#demo-0\')[0].play();return false;\" class=\"button text-center mb10\">HELLO</a>   </div><div class=\"col-md-4\">     <a href=\"#\" onclick=\"$(\'#demo-1\')[0].play();return false;\" class=\"button text-center mb10\">INITIATED</a>   </div>   <div class=\"col-md-4\">     <a href=\"#\" onclick=\"$(\'#demo-2\')[0].play(); return false;\" class=\"button text-center mb10\">PING</a>   </div> </div> <audio controls class=\"nodisplay\" id=\"demo-0\">   <source src=\"http://secretrepublic.net/mp3/eve/ogg/ai_intro.ogg\" type=\"audio/ogg\">   <source src=\"http://secretrepublic.net/mp3/eve/ai_intro.mp3\" type=\"audio/mpeg\"> Your browser does not support the audio element. </audio>\n<audio controls class=\"nodisplay\" id=\"demo-1\">   <source src=\"http://secretrepublic.net/mp3/eve/ogg/systems_initiated_welcome.ogg\" type=\"audio/ogg\">   <source src=\"http://secretrepublic.net/mp3/eve/systems_initiated_welcome.mp3\" type=\"audio/mpeg\"> Your browser does not support the audio element. </audio>\n<br/><br/> <audio controls class=\"nodisplay\" id=\"demo-2\">   <source src=\"http://secretrepublic.net/mp3/eve/ogg/ping_in_progress.ogg\" type=\"audio/ogg\">   <source src=\"http://secretrepublic.net/mp3/eve/ping_in_progress.mp3\" type=\"audio/mpeg\"> Your browser does not support the audio element. </audio> </div></div></div>', 'ai', 'Personal Assistant - A.I. Voice - Welcome, Commands, Notifications', 1, 1, 1, ''),
@@ -74,7 +74,7 @@ CREATE TABLE `alpha_coin_transactions` (
   `paid` float DEFAULT NULL,
   `fortumo_revenue` float DEFAULT NULL,
   `paypal_revenue` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `applications` (
   `app_id` int(11) NOT NULL,
@@ -85,7 +85,7 @@ CREATE TABLE `applications` (
   `skill_id` int(11) DEFAULT NULL,
   `skill_value` int(11) DEFAULT NULL,
   `repair_coefficient` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `applications` (`app_id`, `name`, `cpu`, `ram`, `hdd`, `skill_id`, `skill_value`, `repair_coefficient`) VALUES
 (1, 'Brick - Network Defender', 1, 50, 50, 2, 10, 1),
@@ -111,7 +111,7 @@ CREATE TABLE `attacks_inprogress` (
   `hard` tinyint(1) NOT NULL,
   `sender` varchar(20) NOT NULL,
   `receiver` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `attack_logs` (
   `attack_log_id` int(11) NOT NULL,
@@ -128,7 +128,7 @@ CREATE TABLE `attack_logs` (
   `sender` varchar(20) NOT NULL,
   `receiver` varchar(20) NOT NULL,
   `winner` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `blogs` (
   `blog_id` int(11) NOT NULL,
@@ -138,7 +138,7 @@ CREATE TABLE `blogs` (
   `nra` int(11) NOT NULL DEFAULT '0',
   `nrs` int(11) NOT NULL DEFAULT '0',
   `rank` int(11) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `blog_articles` (
   `article_id` int(11) NOT NULL,
@@ -150,14 +150,14 @@ CREATE TABLE `blog_articles` (
   `nrc` int(11) NOT NULL DEFAULT '0',
   `edited` int(11) DEFAULT NULL,
   `content_unparsed` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `blog_article_votes` (
   `vote_id` int(11) NOT NULL,
   `article_id` int(11) NOT NULL,
   `created` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `blog_comments` (
   `comment_id` int(11) NOT NULL,
@@ -165,14 +165,14 @@ CREATE TABLE `blog_comments` (
   `content` text,
   `created` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `blog_subscriptions` (
   `subscription_id` int(11) NOT NULL,
   `blog_id` int(11) NOT NULL,
   `created` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `components` (
   `component_id` int(11) NOT NULL,
@@ -187,7 +187,7 @@ CREATE TABLE `components` (
   `image` varchar(150) DEFAULT NULL,
   `default_sell_price` int(11) NOT NULL,
   `repair_coefficient` float DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `components` (`component_id`, `name`, `type`, `hdd`, `ram`, `cpu`, `slots`, `power`, `power_usage`, `image`, `default_sell_price`, `repair_coefficient`) VALUES
 (1, 'Training CPU', 1, NULL, NULL, 2, NULL, NULL, 1, 'cpu.png', 50, 1),
@@ -224,7 +224,7 @@ CREATE TABLE `conversations` (
   `last_reply_date` int(11) DEFAULT NULL,
   `replies` int(11) NOT NULL DEFAULT '0',
   `type` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `coupons` (
   `coupon_id` int(11) NOT NULL,
@@ -234,7 +234,7 @@ CREATE TABLE `coupons` (
   `uses` int(11) DEFAULT '0',
   `expires` tinyint(1) DEFAULT '0',
   `expirationDate` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `coupon_logs` (
   `log_id` int(11) NOT NULL,
@@ -242,13 +242,13 @@ CREATE TABLE `coupon_logs` (
   `user_id` int(11) DEFAULT NULL,
   `coupon_id` int(11) DEFAULT NULL,
   `failed` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `data_points_spin` (
   `id` int(11) NOT NULL,
   `app_id` int(11) DEFAULT NULL,
   `component_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `data_points_spin` VALUES (1,1,NULL),(2,9,NULL),(3,10,NULL),(4,11,NULL),(5,NULL,19),(6,NULL,20);
 
@@ -258,27 +258,27 @@ CREATE TABLE `data_points_spin_logs` (
   `component_id` int(11) DEFAULT NULL,
   `created` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `debug_404_errors` (
   `id` int(11) NOT NULL,
   `URL` varchar(300) DEFAULT NULL,
   `created` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `debug_cron_logs` (
   `created` int(11) DEFAULT NULL,
   `data` text,
   `type` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `email_templates` (
   `subject` varchar(300) NOT NULL,
   `message` text NOT NULL,
   `shortcut` varchar(100) NOT NULL,
   `name` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `email_templates` (`subject`, `message`, `shortcut`, `name`) VALUES
 ('Alpha Coins Delivered', '<p>Hello,</p>\r\n\r\n<p>We\'ve processed and delivered ALPHA_COINS Alpha Coins to your account.</p>\r\n<p>If you have any questions or problems please contact our team using the contact form.</p>\r\n<p>Enjoy the premium features and hack away!</p>', 'alpha_coins', 'Alpha Coins'),
@@ -291,7 +291,7 @@ CREATE TABLE `faq_categories` (
   `title` varchar(300) NOT NULL,
   `faq_order` int(11) NOT NULL DEFAULT '0',
   `shortname` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `faq_categories` (`cat_id`, `title`, `faq_order`, `shortname`) VALUES
 (1, 'Servers', 0, 'servers'),
@@ -304,7 +304,7 @@ CREATE TABLE `faq_questions` (
   `question` varchar(400) NOT NULL,
   `answer` text NOT NULL,
   `faq_order` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `faq_questions` (`shortname`, `cat_id`, `question`, `answer`, `faq_order`) VALUES
 ('about-nodes', 2, 'What are Nodes?', '<p><strong>Short</strong></p>\r\n<p>\r\nThe Grid is composed of Clusters which contain Nodes. You can own multiple nodes. The address of a node is referred to as [Zone:Cluster:Node]. You can obtain ownership of more nodes through specialised software on your servers. Change which node you are connected to on the Dashboard. While linked to a node you can see only operations concerning that node (attack, spying, scavenging, etc). If you loose all your nodes you lose the game.\r\n</p>\r\n<p>\r\n<strong>Long version</strong></p>\r\n<p>The Grid has multiple subdivisions.</p>\r\n<p>The first subdivision is made out of Clusters. Each zone has multiple clusters which in turn contain up to 10 nodes each. </p>\r\n<p>The location of a node is often shortened [Z:C:N] where Z is the Zone, C the cluster and N the Node.</p>\r\n<p>When you first join the competition you are given one Node on the Grid in your Zone.</p>\r\n<p>The action of taking ownership over a new node is called Node Instantiation and it can be achieved by installing software specific for this purpose on your servers, finding an empty node by browsing the Grid and sending your servers to do the job. There\'s of course chances you will fail depending on how powerful your software and will are.</p>\r\n<p>On the Dashboard you can Link/Connect to one of your nodes at a time. When connected to a node you can see the attacks sent from and to that node only.</p>\r\n<p>When launching an attack you use the same servers that you own no matter which node you are connected to but the receiver can only know about the node you sent the attack from.</p>\r\n<p>If at any point you lose all of your nodes, you lose the game.</p>\r\n<p>It is advised to own more than one node as in extreme situations they can be overcomed and Uninstantiated.</p>', 2),
@@ -329,7 +329,7 @@ CREATE TABLE `forum_posts` (
   `user_id` int(11) DEFAULT NULL,
   `closed` tinyint(1) NOT NULL DEFAULT '0',
   `stick` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `forum_sections` (
   `id` int(11) UNSIGNED NOT NULL,
@@ -340,7 +340,7 @@ CREATE TABLE `forum_sections` (
   `description` varchar(500) NOT NULL,
   `ord` int(11) NOT NULL,
   `threads` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `forum_sections` (`id`, `parent`, `name`, `type`, `closed`, `description`, `ord`, `threads`) VALUES
 (1, NULL, 'Headquarters', 2, 0, '', 0, 0),
@@ -361,14 +361,14 @@ CREATE TABLE `friendships` (
   `user1id` int(11) NOT NULL,
   `user2id` int(11) NOT NULL,
   `date` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `friend_requests` (
   `request_id` int(11) NOT NULL,
   `senderid` int(11) NOT NULL,
   `created` int(11) NOT NULL,
   `receiverid` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 CREATE TABLE `user_groups` (
@@ -392,7 +392,7 @@ CREATE TABLE `user_groups` (
   `globalQuestManager` tinyint(4) NOT NULL DEFAULT '0',
   `emailTemplatesManager` tinyint(1) NOT NULL DEFAULT '0',
   `noRank` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `user_groups` (`group_id`, `name`, `view_debug`, `wikiManager`, `questManager`, `userList`, `cardinal`, `instant_tasks`, `manageUsers`, `manageDuality`, `adminNav`, `manageAchievements`, `dailyRep`, `maxBlogs`, `levelManager`, `dataManager`, `forumManager`, `globalQuestManager`, `emailTemplatesManager`, `noRank`) VALUES
 (1, 'Alpha CEO (Admin)', 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 4, 127, 1, 1, 1, 1, 1, 1),
@@ -408,7 +408,7 @@ CREATE TABLE `hackdown_arena` (
   `attack_log_id` int(11) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `servers` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `hackdown_logs` (
   `log_id` int(11) NOT NULL,
@@ -418,7 +418,7 @@ CREATE TABLE `hackdown_logs` (
   `task_log_id` int(11) DEFAULT NULL,
   `hackdown_id` int(11) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `hackdown_rankings_organizations` (
   `ranking_id` int(11) NOT NULL,
@@ -427,7 +427,7 @@ CREATE TABLE `hackdown_rankings_organizations` (
   `hackdown_id` int(11) DEFAULT NULL,
   `points` int(11) DEFAULT NULL,
   `rank` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `hackdown_rankings_users` (
   `ranking_id` int(11) NOT NULL,
@@ -436,7 +436,7 @@ CREATE TABLE `hackdown_rankings_users` (
   `created` int(11) DEFAULT NULL,
   `points` int(11) DEFAULT NULL,
   `rank` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `hackdown_rankings_zones` (
   `ranking_id` int(11) NOT NULL,
@@ -444,7 +444,7 @@ CREATE TABLE `hackdown_rankings_zones` (
   `hackdown_id` int(11) DEFAULT NULL,
   `created` int(11) DEFAULT NULL,
   `points` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `hacker_quotes` (
   `quote_id` int(11) NOT NULL,
@@ -454,7 +454,7 @@ CREATE TABLE `hacker_quotes` (
   `created` int(11) DEFAULT NULL,
   `visible` tinyint(1) NOT NULL DEFAULT '0',
   `source` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `hacker_quotes` (`quote_id`, `user_id`, `quote`, `author`, `created`, `visible`, `source`) VALUES
 (1, 1559, 'If at first you don&rsquo;t succeed; call it version 1.0.', NULL, 1395571548, 1, NULL),
@@ -563,7 +563,7 @@ CREATE TABLE `level_rewards` (
   `money` int(11) DEFAULT NULL,
   `achievement_id` varchar(45) DEFAULT NULL,
   `skillPoints` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `level_rewards` (`level_id`, `money`, `achievement_id`, `skillPoints`) VALUES
 (2, 100, '2', 5),
@@ -576,7 +576,7 @@ CREATE TABLE `notes` (
   `content` text,
   `created` int(11) DEFAULT NULL,
   `lastUpdate` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `organizations` (
   `id` int(11) NOT NULL,
@@ -603,7 +603,7 @@ CREATE TABLE `organizations` (
   `level` int(11) DEFAULT '1',
   `exp` int(11) DEFAULT '0',
   `expNext` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `organizations` (`id`, `name`, `intro`, `memb_intro`, `app_intro`, `nrm`, `created`, `owner`, `orank`, `points`, `applications`, `allow_app`, `max_nrm`, `hacking_points`, `wars_inprogress`, `wars`, `wars_won`, `tag`, `intro_unparsed`, `memb_intro_unparsed`, `app_intro_unparsed`, `level`, `exp`, `expNext`) VALUES
 (98, 'Zone 1 Beginner Org', 'This organization is for hackers who have just joined the competition.<br />\n<br />\nTo help them integrate in the existing community and become aware that they are not alone in the fight for power, Alpha has created beginner organizations for each zone.<br />\n<br />\nYou can leave at any time and we urge you to do so to find or create your own organization.<br />\n<br />\nThis organization is not ranked and shall not improve your ranking.<br />\n<br />\nAfter a while, the Cardinal System will kick you out of the Beginner Organization automatically.', 'There\'s an organization private forum and a private chat you can use to get help when needed.<br />\n<br />\nFeel free to leave at any time and remember this organization is not ranked and as such does not contribute to your own rank as any normal ones would.<br />\n<br />\nMoreover, we do not take part in wars. Only occasionally between us and other beginner organizations.', '', 1, 1406528737, 1, 0, 0, 1490, 0, 10000, 3622, 0, 0, 0, 'BEG1', 'This organization is for hackers who have just joined the competition.\r\n\r\nTo help them integrate in the existing community and become aware that they are not alone in the fight for power, Alpha has created beginner organizations for each zone.\r\n\r\nYou can leave at any time and we urge you to do so to find or create your own organization.\r\n\r\nThis organization is not ranked and shall not improve your ranking.\r\n\r\nAfter a while, the Cardinal System will kick you out of the Beginner Organization automatically.', 'There\'s an organization private forum and a private chat you can use to get help when needed.\r\n\r\nFeel free to leave at any time and remember this organization is not ranked and as such does not contribute to your own rank as any normal ones would.\r\n\r\nMoreover, we do not take part in wars. Only occasionally between us and other beginner organizations.', '', 16, 0, 340),
@@ -621,7 +621,7 @@ CREATE TABLE `organization_members_logs` (
   `org_id` int(11) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `kicked` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `org_applications` (
   `id` int(11) NOT NULL,
@@ -629,7 +629,7 @@ CREATE TABLE `org_applications` (
   `content` varchar(1000) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `created` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `org_ended_wars` (
   `war_id` int(11) NOT NULL,
@@ -640,7 +640,7 @@ CREATE TABLE `org_ended_wars` (
   `org1_points` int(11) NOT NULL,
   `org2_points` int(11) NOT NULL,
   `winner_org_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `org_forum_posts` (
   `id` int(11) UNSIGNED NOT NULL,
@@ -655,7 +655,7 @@ CREATE TABLE `org_forum_posts` (
   `org` int(11) DEFAULT NULL,
   `closed` tinyint(1) NOT NULL DEFAULT '0',
   `stick` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `org_forum_sections` (
   `id` int(11) UNSIGNED NOT NULL,
@@ -667,7 +667,7 @@ CREATE TABLE `org_forum_sections` (
   `description` varchar(500) DEFAULT NULL,
   `ord` int(11) DEFAULT NULL,
   `org` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `org_hacking_points_logs` (
   `log_id` int(11) NOT NULL,
@@ -677,7 +677,7 @@ CREATE TABLE `org_hacking_points_logs` (
   `hackingPoints` int(11) DEFAULT NULL,
   `source_type` int(11) DEFAULT NULL,
   `task_log_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `org_ranks` (
   `rank_id` int(11) NOT NULL,
@@ -696,7 +696,7 @@ CREATE TABLE `org_ranks` (
   `forumManager` tinyint(1) NOT NULL DEFAULT '0',
   `manageHackingPoints` tinyint(1) NOT NULL DEFAULT '0',
   `rank_order` int(11) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `org_wars` (
   `war_id` int(11) UNSIGNED NOT NULL,
@@ -709,7 +709,7 @@ CREATE TABLE `org_wars` (
   `org2_points` int(11) NOT NULL DEFAULT '0',
   `created` int(11) DEFAULT NULL,
   `ends` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `org_war_requests` (
   `request_id` int(11) NOT NULL,
@@ -719,13 +719,13 @@ CREATE TABLE `org_war_requests` (
   `reason` varchar(500) NOT NULL,
   `created` int(11) NOT NULL,
   `answer_date` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `org_zone_beginners` (
   `id` int(11) NOT NULL,
   `org_id` int(11) NOT NULL,
   `zone` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `org_zone_beginners` (`id`, `org_id`, `zone`) VALUES
 (1, 98, 1),
@@ -740,7 +740,7 @@ CREATE TABLE `parties` (
   `created` int(11) NOT NULL,
   `creator_id` int(11) NOT NULL,
   `global_chat_active` tinyint(4) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `party_invitations` (
   `invitation_id` int(11) NOT NULL,
@@ -749,7 +749,7 @@ CREATE TABLE `party_invitations` (
   `created` int(11) NOT NULL,
   `from_user_id` int(11) NOT NULL,
   `reason` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `party_quest_instances` (
   `instance_id` int(11) NOT NULL,
@@ -760,7 +760,7 @@ CREATE TABLE `party_quest_instances` (
   `start` int(11) NOT NULL,
   `totalSeconds` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `quests` (
   `id` int(11) NOT NULL,
@@ -783,7 +783,7 @@ CREATE TABLE `quests` (
   `creator_name` varchar(100) NOT NULL,
   `party` tinyint(1) NOT NULL DEFAULT '0',
   `creatorsNotepad` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `quests` (`id`, `title`, `level`, `time`, `type`, `creatorid`, `isLive`, `isLocked`, `qgroup_id`, `achievement_id`, `summary`, `money`, `experience`, `skillPoints`, `energy`, `required_quest_id`, `qgroup_order`, `creator_name`, `party`, `creatorsNotepad`) VALUES
 (1, 'The world within the Grid', 0, 300, 0, 1564, 0, 0, 1, 0, NULL, 30, NULL, 3, NULL, 0, 0, 'Cardinal', 0, NULL),
@@ -850,7 +850,7 @@ CREATE TABLE `quests_feedback` (
   `replay_rating` int(11) DEFAULT NULL,
   `quest_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `quests_user` (
   `user_id` int(11) DEFAULT NULL,
@@ -859,7 +859,7 @@ CREATE TABLE `quests_user` (
   `id` int(11) NOT NULL,
   `last_done` int(11) DEFAULT NULL,
   `times` int(11) NOT NULL DEFAULT '1'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `quest_console_history` (
   `entry_id` int(11) NOT NULL,
@@ -870,7 +870,7 @@ CREATE TABLE `quest_console_history` (
   `quest_id` int(11) DEFAULT NULL,
   `instance_id` int(11) DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `quest_console_history` (`entry_id`, `input`, `output`, `task_id`, `user_id`, `quest_id`, `instance_id`, `created`) VALUES
 (1, 'ls', 'final.sh [executable]<br/><em>1 returned</em>', 1, 18148, 70, NULL, '2018-02-03 10:49:59');
@@ -892,7 +892,7 @@ CREATE TABLE `quest_files` (
   `requiredObjective` int(11) DEFAULT NULL,
   `burst` tinyint(1) DEFAULT NULL,
   `executionTime` int(4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `quest_files` (`file_id`, `title`, `content`, `service_id`, `encryption`, `canRun`, `requiredToRun`, `requiredOnMainToRun`, `running`, `sender`, `size`, `parameters`, `cantKill`, `requiredObjective`, `burst`, `executionTime`) VALUES
 (70, 'enc', '[color=red]test[/color]', 40, '2', 0, '', '', 0, 'sender@domain.com', 1000, NULL, NULL, NULL, NULL, NULL),
@@ -1223,7 +1223,7 @@ CREATE TABLE `quest_groups` (
   `creator_user_id` int(11) DEFAULT NULL,
   `premium` varchar(45) DEFAULT NULL,
   `story` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `quest_groups` (`qgroup_id`, `name`, `gorder`, `level`, `qparent`, `type`, `live_quests`, `live_party_quests`, `creator_user_id`, `premium`, `story`) VALUES
 (4, 'Job Work', 1, 1, 0, 2, 4, 0, NULL, NULL, NULL),
@@ -1256,7 +1256,7 @@ CREATE TABLE `quest_hosts` (
   `qid` int(11) NOT NULL,
   `discovered` tinyint(1) DEFAULT NULL,
   `maxBounces` int(11) NOT NULL DEFAULT '3'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `quest_hosts` (`id`, `hostname`, `qid`, `discovered`, `maxBounces`) VALUES
 (1, 'server', 29, NULL, 3),
@@ -1573,7 +1573,7 @@ CREATE TABLE `quest_notepad` (
   `content` text NOT NULL,
   `user_id` int(11) NOT NULL,
   `task_id` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `quest_objectives` (
   `id` int(11) NOT NULL,
@@ -1586,7 +1586,7 @@ CREATE TABLE `quest_objectives` (
   `extraTime` int(11) DEFAULT NULL,
   `achievement_id` int(11) DEFAULT NULL,
   `compulsory` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `quest_objectives` (`id`, `qid`, `type`, `side`, `story`, `data`, `oorder`, `extraTime`, `achievement_id`, `compulsory`) VALUES
 (18, 8, 'hack', NULL, 'Congratz it works\r\n\r\nIP_2', 'IP_2', 9, 0, 0, 0),
@@ -2111,7 +2111,7 @@ CREATE TABLE `quest_services` (
   `port` varchar(15) NOT NULL DEFAULT '22',
   `encryption` varchar(15) DEFAULT NULL,
   `welcome` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `quest_services` (`service_id`, `hid`, `type`, `port`, `encryption`, `welcome`) VALUES
 (40, 51, 'ssh', '22', NULL, NULL),
@@ -2456,7 +2456,7 @@ CREATE TABLE `rankings_stats` (
   `level_points` int(11) NOT NULL DEFAULT '0',
   `rep_extras_points` int(11) NOT NULL DEFAULT '0',
   `zone` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `servers` (
   `server_id` int(11) NOT NULL,
@@ -2482,7 +2482,7 @@ CREATE TABLE `servers` (
   `ram_usage_percent` int(11) DEFAULT NULL,
   `hdd_usage_percent` int(11) DEFAULT NULL,
   `cpu_usage_percent` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `server_apps` (
   `process_id` int(11) NOT NULL,
@@ -2490,14 +2490,14 @@ CREATE TABLE `server_apps` (
   `running` int(11) NOT NULL DEFAULT '0',
   `server_id` int(11) NOT NULL,
   `damage` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `server_components` (
   `relation_id` int(11) NOT NULL,
   `server_id` int(11) NOT NULL,
   `component_id` int(11) NOT NULL,
   `damage` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `shop_items` (
   `item_id` int(11) NOT NULL,
@@ -2505,7 +2505,7 @@ CREATE TABLE `shop_items` (
   `component_id` int(11) DEFAULT NULL,
   `price` int(11) DEFAULT NULL,
   `noob` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `shop_items` (`item_id`, `app_id`, `component_id`, `price`, `noob`) VALUES
 (1, NULL, 1, 100, 1),
@@ -2541,7 +2541,7 @@ CREATE TABLE `shop_logs` (
   `user_id` int(11) DEFAULT NULL,
   `app_id` int(11) DEFAULT NULL,
   `component_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `skills` (
   `skill` int(2) DEFAULT NULL,
@@ -2550,14 +2550,14 @@ CREATE TABLE `skills` (
   `expNext` int(11) DEFAULT NULL,
   `level` int(11) DEFAULT NULL,
   `id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `storage` (
   `storage_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `component_id` int(11) NOT NULL,
   `damage` int(11) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `storage` (`storage_id`, `user_id`, `component_id`, `damage`) VALUES
 (4, 18148, 5, 0),
@@ -2575,7 +2575,7 @@ CREATE TABLE `tasks` (
   `party_id` int(11) DEFAULT NULL,
   `instance_id` int(11) DEFAULT NULL,
   `paused` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `task_logs` (
   `id` int(11) UNSIGNED NOT NULL,
@@ -2589,7 +2589,7 @@ CREATE TABLE `task_logs` (
   `log_created` int(11) DEFAULT NULL,
   `party_id` int(11) DEFAULT NULL,
   `instance_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
@@ -2623,27 +2623,28 @@ CREATE TABLE `users` (
   `dataPointsPerHour` int(11) UNSIGNED NOT NULL DEFAULT '0',
   `tutorial` int(10) UNSIGNED NOT NULL DEFAULT '10',
   `main_node` varchar(20) DEFAULT NULL,
-  `createdAt` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `createdAt` int(11) DEFAULT NULL,
+  `language` varchar(2) NOT NULL DEFAULT 'de'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `users_reputation` (
   `sender` int(11) DEFAULT NULL,
   `receiver` int(11) DEFAULT NULL,
   `created` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `user_achievements` (
   `user_achievement_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `achievement_id` int(11) NOT NULL,
   `times` int(11) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `user_bank` (
   `account_id` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `user_bans` (
   `ban_id` int(11) NOT NULL,
@@ -2652,7 +2653,7 @@ CREATE TABLE `user_bans` (
   `by_user_id` int(11) DEFAULT NULL,
   `expires` int(11) DEFAULT NULL,
   `reason` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `user_credentials` (
   `uid` int(11) NOT NULL,
@@ -2665,7 +2666,7 @@ CREATE TABLE `user_credentials` (
   `email_confirmed` tinyint(1) NOT NULL DEFAULT '0',
   `login_days_in_row` int(11) NOT NULL DEFAULT '0',
   `youtube` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 CREATE TABLE `user_demographics` (
@@ -2676,7 +2677,7 @@ CREATE TABLE `user_demographics` (
   `age` float DEFAULT NULL,
   `created` int(11) DEFAULT NULL,
   `provider_id` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `user_email_confirmation` (
   `confirm_id` int(11) NOT NULL,
@@ -2684,14 +2685,14 @@ CREATE TABLE `user_email_confirmation` (
   `hash_code` varchar(300) NOT NULL,
   `user_id` int(11) NOT NULL,
   `used` int(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `user_job` (
   `user_id` int(11) NOT NULL,
   `exp` int(11) DEFAULT '0',
   `expNext` int(11) DEFAULT NULL,
   `level` int(11) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `user_job_logs` (
   `log_id` int(11) NOT NULL,
@@ -2699,7 +2700,7 @@ CREATE TABLE `user_job_logs` (
   `created` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `quest_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `user_premium` (
   `id` int(11) NOT NULL,
@@ -2724,7 +2725,7 @@ CREATE TABLE `user_premium` (
   `maxTasks1` int(11) DEFAULT NULL,
   `maxTasks2` int(11) DEFAULT NULL,
   `seenConv` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 CREATE TABLE `user_referrals` (
@@ -2733,7 +2734,7 @@ CREATE TABLE `user_referrals` (
   `slave_user_id` int(11) DEFAULT NULL,
   `created` int(11) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `user_reset_password` (
   `reset_id` int(11) NOT NULL,
@@ -2741,7 +2742,7 @@ CREATE TABLE `user_reset_password` (
   `user_id` int(11) NOT NULL,
   `hash_code` varchar(300) NOT NULL,
   `used` int(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `user_rewards` (
   `reward_id` int(11) NOT NULL,
@@ -2762,7 +2763,7 @@ CREATE TABLE `user_rewards` (
   `dataPoints` float DEFAULT NULL,
   `components` text,
   `applications` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `user_session` (
   `id` int(11) NOT NULL,
@@ -2772,7 +2773,7 @@ CREATE TABLE `user_session` (
   `ip` varchar(45) DEFAULT NULL,
   `tablet` tinyint(1) DEFAULT NULL,
   `mobile` tinyint(1) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `user_simulations` (
   `simulation_id` int(11) NOT NULL,
@@ -2781,7 +2782,7 @@ CREATE TABLE `user_simulations` (
   `created` int(11) DEFAULT NULL,
   `message` text,
   `report` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `user_social_connect` (
   `id` int(11) NOT NULL,
@@ -2795,7 +2796,7 @@ CREATE TABLE `user_social_connect` (
   `kongregateName` varchar(300) DEFAULT NULL,
   `twitter` varchar(50) DEFAULT NULL,
   `twitterName` varchar(300) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `user_support` (
   `inquiry_id` int(11) NOT NULL,
@@ -2804,7 +2805,7 @@ CREATE TABLE `user_support` (
   `title` varchar(300) DEFAULT NULL,
   `content` text,
   `email` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `user_time_delusion` (
   `delusion_id` int(11) NOT NULL,
@@ -2812,7 +2813,7 @@ CREATE TABLE `user_time_delusion` (
   `task_id` int(11) DEFAULT NULL,
   `instance_id` int(11) DEFAULT NULL,
   `created` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `user_train_logs` (
   `log_id` int(11) NOT NULL,
@@ -2820,7 +2821,7 @@ CREATE TABLE `user_train_logs` (
   `user_id` int(11) DEFAULT NULL,
   `success` int(11) DEFAULT NULL,
   `reward_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `user_transit_logs` (
   `transit_id` int(11) NOT NULL,
@@ -2830,7 +2831,7 @@ CREATE TABLE `user_transit_logs` (
   `toNode` int(11) DEFAULT NULL,
   `toZone` int(11) DEFAULT NULL,
   `created` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `zones` (
   `id` int(11) UNSIGNED NOT NULL,
@@ -2849,7 +2850,7 @@ CREATE TABLE `zones` (
   `min_finance` int(11) NOT NULL,
   `avg_level` float NOT NULL DEFAULT '0',
   `points` varchar(45) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `zones` (`id`, `nrm`, `president`, `data`, `status`, `rank`, `next_elections`, `market_tax`, `defense`, `hack`, `vault`, `fmarket_tax`, `min_defence`, `min_finance`) VALUES (1,0,NULL,NULL,NULL,0,0,1,0,0,436,2,588,836),(2,0,NULL,NULL,NULL,0,0,1,0,0,23.05,2,0,0),(3,0,NULL,NULL,NULL,0,0,1,0,0,21666.12,2,0,0),(4,0,NULL,NULL,NULL,0,0,1,0,0,22.53,2,0,0),(5,0,NULL,NULL,NULL,0,0,1,0,0,31.8,2,0,0),(6,0,NULL,NULL,NULL,0,0,1,0,0,41.8,2,0,0);
 
@@ -2866,7 +2867,7 @@ CREATE TABLE `zones_wars` (
   `data` text,
   `zs_points` int(11) NOT NULL DEFAULT '0',
   `zr_points` int(11) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `zones_wars_fights` (
   `id` int(11) UNSIGNED NOT NULL DEFAULT '0',
@@ -2875,7 +2876,7 @@ CREATE TABLE `zones_wars_fights` (
   `zone` int(11) DEFAULT NULL,
   `dmg` int(11) NOT NULL DEFAULT '0',
   `date` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `zones_wars_reqs` (
   `id` int(11) UNSIGNED NOT NULL,
@@ -2884,7 +2885,7 @@ CREATE TABLE `zones_wars_reqs` (
   `status` tinyint(2) DEFAULT '1',
   `reason` varchar(1000) DEFAULT NULL,
   `date` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `zone_candidates` (
   `id` int(11) NOT NULL,
@@ -2892,14 +2893,14 @@ CREATE TABLE `zone_candidates` (
   `zone` int(11) NOT NULL,
   `letter` varchar(500) NOT NULL,
   `submission_date` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `zone_candidate_votes` (
   `id` int(11) NOT NULL,
   `cid` int(11) NOT NULL,
   `uid` int(11) NOT NULL,
   `submission_date` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `zone_grid_clusters` (
   `cluster` int(11) NOT NULL,
@@ -2907,7 +2908,7 @@ CREATE TABLE `zone_grid_clusters` (
   `last_name_change` int(11) DEFAULT NULL,
   `zone_id` int(11) NOT NULL,
   `zone_grid_clusters_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 CREATE TABLE `zone_grid_cluster_nodes` (
@@ -2918,7 +2919,7 @@ CREATE TABLE `zone_grid_cluster_nodes` (
   `created` int(11) NOT NULL,
   `zone_grid_cluster_nodes_id` int(11) NOT NULL,
   `floatingDataPoints` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 

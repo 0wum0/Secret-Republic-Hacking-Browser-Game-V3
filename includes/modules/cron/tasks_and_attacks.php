@@ -14,7 +14,7 @@ foreach($tasks as $task)
 	if ($array = unserialize($task['data']))
 	  $task = array_merge($array, $task);
 
-	require_once("../includes/class/abclass.php");
+	require_once(ABSPATH . 'includes/class/abclass.php');
 	$user['id'] = $task['uid'];
 	switch($task['type'])
 	{
@@ -50,7 +50,7 @@ foreach($tasks as $task)
 }
 
 
-require("../includes/class/class.battleSystem.php");
+require(ABSPATH . 'includes/class/class.battleSystem.php');
 require_once ("class/class.server.php");
 
 $type          = "attacks";
@@ -189,7 +189,7 @@ foreach ($attacks as $attack) {
         $srv->fetchSkills();
         $srvCommandsInfluence = $srv->computeSkillsCommandsInfluence();
         foreach ($srvCommandsInfluence as $c => $v)
-          $commandsInfluence[$c] += $v;
+          $commandsInfluence[$c] = ($commandsInfluence[$c] ?? 0) + $v;
       }
 
       $stats = array();

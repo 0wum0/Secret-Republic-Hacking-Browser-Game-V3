@@ -24,11 +24,11 @@
         $data['user_id']		   = $user['id'];
 		$data['quest_id']          = $check['quest_id'];
         if ($db->insert('quests_feedback', $data)) {
-          $_SESSION['success'] = "We are grateful for your feedback.";
+          $_SESSION['success'] = t('QUEST_FEEDBACK_THANKS');
           $cardinal->redirect(URL . "quests");
         } //$db->insert('quests_feedback', $data)
         else
-          $errors = "Feedback error. Feedback not sent.";
+          $errors = t('QUEST_FEEDBACK_ERROR');
       } //!count($errors)
     } //$_POST
     $tVars['feedback'] = $check;

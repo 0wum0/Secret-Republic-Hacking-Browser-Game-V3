@@ -27,7 +27,7 @@
 				</div>
 			</div>
 			<div class="col-md-2 nopadding">
-			  <button disabled>{$reward.money|number_format}$</button>
+			  <button disabled>{$reward.money|floatval|number_format}$</button>
 			</div>
 			<div class="col-md-4 nopadding">
 			  

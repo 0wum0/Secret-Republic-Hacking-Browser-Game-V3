@@ -26,7 +26,7 @@
       					Alpha Coins
       				</div>
       				<div class="col-md-5">
-      					{$reward.alphaCoins|number_format} AC
+      					{$reward.alphaCoins|floatval|number_format} AC
       				</div>
       			</div>
       		  {/if}
@@ -36,7 +36,7 @@
                   Data Points
                 </div>
                 <div class="col-md-5">
-                  {$reward.dataPoints|number_format:2}
+                  {$reward.dataPoints|floatval|number_format:2}
                 </div>
               </div>
             {/if}
@@ -47,7 +47,7 @@
                         Money
                     </div>
                     <div class="col-md-5 ">
-                        {$reward.money|number_format}$
+                        {$reward.money|floatval|number_format}$
                     </div>
                   
                
@@ -60,7 +60,7 @@
                         Experience
                     </div>
                     <div class="col-md-5 ">
-                        {$reward.exp|number_format} points
+                        {$reward.exp|floatval|number_format} points
                     </div>
                   
                 
@@ -74,7 +74,7 @@
                         Universal Skill Points
                     </div>
                     <div class="col-md-5 ">
-                        {$reward.skillPoints|number_format} points
+                        {$reward.skillPoints|floatval|number_format} points
                     </div>
                 
               </div>
@@ -88,7 +88,7 @@
                         Energy
                     </div>
                     <div class="col-md-5 ">
-                        +{$reward.energy|number_format}
+                        +{$reward.energy|floatval|number_format}
                     </div>
                   
                  
@@ -102,7 +102,7 @@
                         Job Experience
                     </div>
                     <div class="col-md-5 ">
-                        {$reward.jobExp|number_format} points
+                        {$reward.jobExp|floatval|number_format} points
                     </div>
                   
              
@@ -119,7 +119,7 @@
                                  {$theskills[$skill].name}
                             </div>
                             <div class="col-xs-3  text-right">
-                               {$amount|number_format} points
+                               {$amount|floatval|number_format} points
                             </div>
                       </div>
                    {/foreach}

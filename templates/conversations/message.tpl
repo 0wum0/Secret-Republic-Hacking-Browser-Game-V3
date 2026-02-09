@@ -11,7 +11,7 @@
 		conversation with {$message.username} started {$message.created|date_fashion}
 	</p>
 	<p>
-		{$message.replies|number_format} messages exchanged
+		{$message.replies|floatval|number_format} messages exchanged
 	</p>
 
 </div>
@@ -99,7 +99,7 @@
 
 {if !$replyNotAllowed}
 <div class="alert alert-info">
-	<strong>It costs {$config.newMessageReplyDataPoints|number_format} Data Points to reply</strong>
+	<strong>It costs {$config.newMessageReplyDataPoints|floatval|number_format} Data Points to reply</strong>
 </div>
 
 <div id="quick_reply">

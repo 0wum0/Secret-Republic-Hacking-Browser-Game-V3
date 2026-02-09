@@ -23,7 +23,7 @@
 			</div>
 			<div class="col-md-2 nopadding">
 			  <a href="{$config.url}admin/view/registered/group/{$group.group_id}" class="button text-center">
-				{$group.nrMembers|number_format} members
+				{$group.nrMembers|floatval|number_format} members
 				</a>
 			</div>
 			<div class="col-md-2 nopadding">

@@ -11,7 +11,7 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-xs-3">
-        <button disabled>{$user.dataPointsPerHour|number_format:2} / hour</button>
+        <button disabled>{$user.dataPointsPerHour|floatval|number_format:2} / hour</button>
       </div>
       <div class="col-xs-4">
         <a href="{$config.url}alpha_coins/option/extraDataPoints15">
@@ -20,7 +20,7 @@
   {if $smarty.session.premium.extraDataPoints15}
       {assign var= bonus value=round(($user['dataPointsPerHour'] / 100) * 15, 2) }
     
-        + 15% [{$bonus|number_format:2}] (Mining Consultant)
+        + 15% [{$bonus|floatval|number_format:2}] (Mining Consultant)
     
   {else}
     + 0% bonus [hire a Data Points Consultant]
@@ -30,7 +30,7 @@
         </a>
       </div>
       <div class="col-xs-5">
-        <button disabled>Final Prod. Rate: {($user.dataPointsPerHour + $bonus)|number_format:2} / hour</button>
+        <button disabled>Final Prod. Rate: {($user.dataPointsPerHour + $bonus)|floatval|number_format:2} / hour</button>
       </div>
       
     </div>
@@ -85,7 +85,7 @@
       </div>
       <form method="post">
         <button type="submit" {if $user.dataPoints<$spin1Costs || !$logged}disabled{/if} class="button-white" name="form_identifier" value="spin1">
-          Spin for {$spin1Costs|number_format} Data Points
+          Spin for {$spin1Costs|floatval|number_format} Data Points
         </button>
       </form>
     </div>

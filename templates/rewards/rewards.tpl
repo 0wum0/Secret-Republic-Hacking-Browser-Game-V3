@@ -19,7 +19,7 @@
 
 
 {foreach from = $rewards item = reward}
-  {assign var=randVar value=rand(1,3)}
+  {* randVar is assigned from PHP controller *}
   <div class="row ">
         <div class="col-md-{3 + $randVar} cut-text col-sm-{4 + $randVar}">
           <a href="{$config.url}rewards/myReward/{$reward.reward_id}" class="button">{$reward.title}</a>

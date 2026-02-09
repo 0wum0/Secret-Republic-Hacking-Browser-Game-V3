@@ -3,7 +3,7 @@
 	
 
 
-if ($GET['inAppIFrame'])
+if (!empty($GET['inAppIFrame']))
 {
 	$_SESSION['inAppIFrame'] = true;
 }
@@ -11,15 +11,15 @@ if ($GET['inAppIFrame'])
 if (isset($_POST['process'])) {
   if ($cardinal->loginSystem->loginUser()) 
   {
-      $cardinal->redirect($_SESSION['afterLoginRedirect'] ? $_SESSION['afterLoginRedirect'] : URL);
+      $cardinal->redirect(!empty($_SESSION['afterLoginRedirect']) ? $_SESSION['afterLoginRedirect'] : URL);
   }
 }
 
-if(ctype_digit($id=base64_decode($_GET["code"]))){
+if(!empty($_GET["code"]) && ctype_digit($id=base64_decode($_GET["code"]))){
   $_SESSION["referred"]=$id;
 }
   
-if (!$_SESSION['showedVideo'])
+if (empty($_SESSION['showedVideo']))
 {
 	$_SESSION['showedVideo'] = true;
 	$tVars['showVideo'] = true;
@@ -58,8 +58,8 @@ if (!$_SESSION['showedVideo'])
   $tVars["main_stats"] = $smarty->fetch("home/main_stats.tpl");
   $smarty->caching = 0;
 	
-	$messenger[] = array("message" => "Please authenticate on the Grid.");
-$messenger[] = array("message" => "Access restricted.", "type" => "error");
+	$messenger[] = array("message" => t('VISITOR_AUTH_GRID'));
+$messenger[] = array("message" => t('VISITOR_ACCESS_RESTRICT'), "type" => "error");
   
   $tVars["no_footer_bar"] = true;
   $tVars["display"] = 'home/splash_screen.tpl';	

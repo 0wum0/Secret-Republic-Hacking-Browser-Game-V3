@@ -33,12 +33,12 @@
 				{/if}
 				{if $item.ram}
 				<div class="col-md-6">
-					RAM: {$item.ram|number_format}
+					RAM: {$item.ram|floatval|number_format}
 				</div>
 				{/if}
 				
 				{if $item.hdd}<div class="col-md-6">
-					HDD: {$item.hdd|number_format}</div>
+					HDD: {$item.hdd|floatval|number_format}</div>
 				{/if}
 				{if $item.type eq 3}<div class="col-md-6">
 					{$item.slots} HDD slots</div>

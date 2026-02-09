@@ -4,8 +4,8 @@
 
   $cardinal->mustLogin();
 
-  require("../includes/constants/jobs.php");
-  require("../includes/class/qclass.php");
+  require(ABSPATH . 'includes/constants/jobs.php');
+  require(ABSPATH . 'includes/class/qclass.php');
 
   $jobTask = $taskclass->check_fetch_task($user, 12);
 			

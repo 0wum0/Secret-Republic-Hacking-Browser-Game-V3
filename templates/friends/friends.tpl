@@ -8,7 +8,7 @@
 
 <div class="well black text-center">
 <p>
-  "Friends may come and go, but enemies accumulate." ~ Thomas Jones - You have {$nrf|number_format} friends. How many of them are your enemies?
+  "Friends may come and go, but enemies accumulate." ~ Thomas Jones - You have {$nrf|floatval|number_format} friends. How many of them are your enemies?
   </p>
 </div>	
 

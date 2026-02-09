@@ -22,7 +22,7 @@
       $servers = verifySelectedServers($selectedServers, $servers);
       
 
-      require("../includes/class/class.battleSystem.php");
+      require(ABSPATH . 'includes/class/class.battleSystem.php');
       $battleSystem = new BattleSystem();
       $stats = array();
       $stats['spyAttack'] =  

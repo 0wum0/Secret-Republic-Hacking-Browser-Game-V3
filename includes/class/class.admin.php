@@ -32,7 +32,7 @@ class Admin extends Alpha {
       $filter = "where lastActive >= " . (time() - 10 * 60);
     } //$this->GET['online']
     elseif (ctype_digit($this->GET['group'])) {
-      $filter    = 'where hg.group_id = ' . $this->GET['group'];
+      $filter    = 'where uc.group_id = ' . $this->GET['group'];
       $nrMembers = $this->db->rawQuery('select count(hu.id) as nrMembers from users as hu
                                         left outer join user_credentials as uc on uc.uid = hu.id
                                         where uc.group_id = ?', array(
@@ -51,7 +51,7 @@ class Admin extends Alpha {
 
     $members = $this->db->rawQuery('select hu.*, hg.name, lastActive, o.name org_name, login_count from users hu
                                       left outer join user_credentials as uc on uc.uid = hu.id
-                                      left outer join groups as  hg on hg.group_id = uc.group_id
+                                      left outer join user_groups as  hg on hg.group_id = uc.group_id
                                       left outer join organizations o on o.id = hu.organization
                                       ' . $filter . '
                                       order by id desc ' . $this->pages->limit);

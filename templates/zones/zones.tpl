@@ -7,7 +7,7 @@
     <br/>
     <div class="row">
       <div class="col-md-6">
-    <button disabled class="disabled mb10">Population {$zone.nrm|number_format}</button>
+    <button disabled class="disabled mb10">Population {$zone.nrm|floatval|number_format}</button>
       </div>
       <div class="col-md-6">
 
@@ -32,7 +32,7 @@
     
     <div class="row">
       <div class="col-md-6">
-    <button disabled class="disabled mb10">Population {$zone.nrm|number_format}</button>
+    <button disabled class="disabled mb10">Population {$zone.nrm|floatval|number_format}</button>
       </div>
       <div class="col-md-6">
       </div>

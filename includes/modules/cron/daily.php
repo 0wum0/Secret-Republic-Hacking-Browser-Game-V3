@@ -67,7 +67,7 @@ $usersToKick = $db->rawQuery('select id, organization,username from users
 
 
 
-require('../includes/class/oclass.php');
+require(ABSPATH . 'includes/class/oclass.php');
 
 
 foreach($usersToKick as $kick)
@@ -93,10 +93,11 @@ $tasks = $db->rawQuery('select * from tasks where type not in (1,3,4) and ? >= (
 $report .= sprintf("\nFound %s tasks to update", count($tasks));
 
 $user['tasks'] = 1;
+$types = array();
 foreach($tasks as $task)
 {
 	$user['id'] = $task['uid'];
-		$types[$task['type']]++;
+		$types[$task['type']] = ($types[$task['type']] ?? 0) + 1;
 	
 	//$abtask = $taskclass->check_fetch_task($user, $task['type']);
 	/*

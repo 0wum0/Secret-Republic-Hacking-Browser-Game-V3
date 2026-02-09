@@ -18,7 +18,7 @@
           </div>
           <div class="col-md-7">
             <button disabled>
-              {$stats.spyAttack|number_format}
+              {$stats.spyAttack|floatval|number_format}
             </button>
           </div>
         </div>

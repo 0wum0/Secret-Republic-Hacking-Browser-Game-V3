@@ -21,7 +21,7 @@ else
 }
 
 $report = "HACKDOWN ID: ".$hackDownId."\n";
-require("../includes/class/class.battleSystem.php");
+require(ABSPATH . 'includes/class/class.battleSystem.php');
 $processed = 0 ;
 while (count($battle = $db->where('hackdown_id', $hackDownId)->where('status', 1)->orderBy('RAND()')->get('hackdown_arena', 2)) == 2)
 {

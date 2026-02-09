@@ -843,4 +843,41 @@ return [
 
     // ── Job nav ──
     'JOB_NAV_JOB'            => 'Job',
+
+    // ── Forum ──
+    'FORUM_NAV'              => 'Forum',
+    'FORUM_STARTED_BY'       => 'Discussion started by :user in <a href=":url">:forum</a> :date',
+    'FORUM_MUST_CONNECT'     => 'Must be connected to discuss',
+    'FORUM_STICKED'          => 'Sticked',
+    'FORUM_CLOSED'           => 'Closed',
+    'FORUM_PREVIEW'          => 'Preview',
+
+    // ── Conversations ──
+    'CONV_MARK_READ'         => 'Mark all as read',
+    'CONV_TITLE_PH'          => 'Title',
+    'CONV_USERNAME_PH'       => 'Username',
+
+    // ── Quest feedback ──
+    'QUEST_DEBUG'            => 'Quest debug',
+
+    // ── Organization extras ──
+    'ORG_LEVEL_LABEL'        => 'Level :level [:exp/:expNext]',
+    'ORG_MODIFY'             => 'Modify',
+    'ORG_DELETE_SECTION'     => 'Delete section :name',
+    'ORG_DELETE_FORUM'       => 'Delete forum :name',
+    'ORG_REQUESTS'           => 'Requests',
+    'ORG_START_WAR'          => 'Start war',
+    'ORG_NORMAL_WAR'         => 'Normal war request',
+    'ORG_FORCED_WAR'         => 'Forced request (:cost hacking points)',
+    'ORG_NAME_PH'            => 'Organization Name',
+    'ORG_TAG_PH'             => 'Organization TAG',
+
+    // ── Forum extras ──
+    'FORUM_NEW_DISCUSSION'   => 'New discussion',
+    'FORUM_CLOSED_LABEL'     => 'FORUM CLOSED',
+    'FORUM_REPLIES_COUNT'    => ':count replies',
+    'FORUM_BY'               => 'by',
+    'FORUM_LAST_BY'          => 'last :date by :user',
+    'FORUM_NOTHING'          => 'Nothing to display',
+    'FORUM_CANCEL'           => 'Cancel',
 ];

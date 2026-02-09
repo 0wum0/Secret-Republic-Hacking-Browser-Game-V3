@@ -3,7 +3,7 @@
 
 {include file="dialogs/osx_dialog_box.tpl" id="add" title=$L.ORG_ADD_RANK content='
 <form method="post" action="#" style="text-align:center">
-	<input type="text" name="newRank" maxlength="15" placeholder="Rank name - max 15 characters"/>
+	<input type="text" name="newRank" maxlength="15" placeholder="{$L.ORG_RANK_NAME}"/>
 	<input type="submit" value="'|cat:$L.ORG_ADD_RANK|cat:'" />
 </form>
  '} 
@@ -26,7 +26,7 @@
 				{else}
           <form method="post" action="#" >
 
-			<button type="submit" name="deleteRank" title="Delete rank" value="{$rank.rank_id}"><span class="glyphicon glyphicon-remove-sign"></span></button>
+			<button type="submit" name="deleteRank" title="{$L.ORG_DELETE_RANK}" value="{$rank.rank_id}"><span class="glyphicon glyphicon-remove-sign"></span></button>
           </form>
 				{/if}
 			</div>

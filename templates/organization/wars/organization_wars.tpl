@@ -6,8 +6,8 @@
       <ul> 
         <li><a href="{$config.url}organization/view/wars/"><span class="glyphicon glyphicon-fire"></span></a></li> 
         {if $access.manageWars}
-          <li><a href="{$config.url}organization/view/wars/requests/emilia">Requests</a></li> 
-          <li><a href="{$config.url}organization/view/wars/requests/emilia/start/true"><em>Start war</em></a></li> 
+          <li><a href="{$config.url}organization/view/wars/requests/emilia">{$L.ORG_REQUESTS}</a></li> 
+          <li><a href="{$config.url}organization/view/wars/requests/emilia/start/true"><em>{$L.ORG_START_WAR}</em></a></li> 
         {/if}
          
       </ul> 
@@ -44,8 +44,8 @@
 					  </div>
 					  <div class="col-md-5">
 					    <select name="type">
-					      <option value = "1">Normal war request</option>
-					      <option {if $org.hacking_points gte $forced_request_hp_cost}value = "2"{else}disabled{/if}>Forced request ({$forced_request_hp_cost} hacking points)</option>
+					      <option value = "1">{$L.ORG_NORMAL_WAR}</option>
+					      <option {if $org.hacking_points gte $forced_request_hp_cost}value = "2"{else}disabled{/if}>{$L.ORG_FORCED_WAR|replace:':cost':$forced_request_hp_cost}</option>
 					    </select>
 					  </div>
 					</div><br/>

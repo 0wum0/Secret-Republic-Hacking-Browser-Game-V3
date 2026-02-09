@@ -843,4 +843,41 @@ return [
 
     // ── Job-Navigation ──
     'JOB_NAV_JOB'            => 'Job',
+
+    // ── Forum ──
+    'FORUM_NAV'              => 'Forum',
+    'FORUM_STARTED_BY'       => 'Diskussion gestartet von :user in <a href=":url">:forum</a> :date',
+    'FORUM_MUST_CONNECT'     => 'Zum Diskutieren muss man verbunden sein',
+    'FORUM_STICKED'          => 'Angepinnt',
+    'FORUM_CLOSED'           => 'Geschlossen',
+    'FORUM_PREVIEW'          => 'Vorschau',
+
+    // ── Unterhaltungen ──
+    'CONV_MARK_READ'         => 'Alle als gelesen markieren',
+    'CONV_TITLE_PH'          => 'Titel',
+    'CONV_USERNAME_PH'       => 'Benutzername',
+
+    // ── Quest-Feedback ──
+    'QUEST_DEBUG'            => 'Quest-Debug',
+
+    // ── Organisation Extras ──
+    'ORG_LEVEL_LABEL'        => 'Level :level [:exp/:expNext]',
+    'ORG_MODIFY'             => '\u00c4ndern',
+    'ORG_DELETE_SECTION'     => 'Bereich :name l\u00f6schen',
+    'ORG_DELETE_FORUM'       => 'Forum :name l\u00f6schen',
+    'ORG_REQUESTS'           => 'Anfragen',
+    'ORG_START_WAR'          => 'Krieg starten',
+    'ORG_NORMAL_WAR'         => 'Normale Kriegsanfrage',
+    'ORG_FORCED_WAR'         => 'Erzwungene Anfrage (:cost Hacking-Punkte)',
+    'ORG_NAME_PH'            => 'Organisationsname',
+    'ORG_TAG_PH'             => 'Organisations-TAG',
+
+    // ── Forum Extras ──
+    'FORUM_NEW_DISCUSSION'   => 'Neue Diskussion',
+    'FORUM_CLOSED_LABEL'     => 'FORUM GESCHLOSSEN',
+    'FORUM_REPLIES_COUNT'    => ':count Antworten',
+    'FORUM_BY'               => 'von',
+    'FORUM_LAST_BY'          => 'zuletzt :date von :user',
+    'FORUM_NOTHING'          => 'Nichts anzuzeigen',
+    'FORUM_CANCEL'           => 'Abbrechen',
 ];

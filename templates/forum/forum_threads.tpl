@@ -3,16 +3,16 @@ background-size:contain; background-position: 100% 50%">
 
 <div class="futureNav middle ">
 	<ul>
-		<li><a href="{$furl}"><div>Forum</div></a></li>
+		<li><a href="{$furl}"><div>{$L.FORUM_NAV}</div></a></li>
 		<li><a href="{$url}"><div>{$forum.name}</div></a></li>
 	</ul>
 </div><br/><br/>
 <div class="row">
 	<div class="col-md-4">
 		 {if ($logged && !$forum.closed) || $user.forumManager} 
-		  <a href="{$url}new/thread" class="button text-center">New discussion</a>
-		{elseif $forum.closed} <button>FORUM CLOSED</button>
-		{else} <button>Must be connected to discuss</button>
+		  <a href="{$url}new/thread" class="button text-center">{$L.FORUM_NEW_DISCUSSION}</a>
+		{elseif $forum.closed} <button>{$L.FORUM_CLOSED_LABEL}</button>
+		{else} <button>{$L.FORUM_MUST_CONNECT}</button>
 		{/if}
 	</div>
 	
@@ -30,10 +30,10 @@ background-size:contain; background-position: 100% 50%">
 					
 					<a href="{$furl}tid/{$thread.id}" class="button">
 					{if $thread.stick}
-					<span title="Sticked" class="glyphicon glyphicon-pushpin"></span>
+					<span title="{$L.FORUM_STICKED}" class="glyphicon glyphicon-pushpin"></span>
 					{/if}
 			 	 {if $thread.closed}
-			 	 	<span title="Closed" class="glyphicon glyphicon-lock"></span>
+			 	 	<span title="{$L.FORUM_CLOSED}" class="glyphicon glyphicon-lock"></span>
 			 	 {/if}
 					  {$thread.title} ({$thread.replies|floatval|number_format} replies) <small><em>by {$thread.user}</em></small></a>
 				</div>
@@ -48,7 +48,7 @@ background-size:contain; background-position: 100% 50%">
 			</div>
 			 {foreachelse}
 			<div class="well text-center">
-				 Nothing to display
+				 {$L.FORUM_NOTHING}
 			</div>
 			 {/foreach}
 		</div>

@@ -171,19 +171,48 @@ All application settings are in **`includes/constants/constants.php`**. This fil
 
 ### SMTP (Email)
 
-Email sending uses PHPMailer. Configure the SMTP settings in `includes/constants/constants.php`:
+Email sending uses **PHPMailer** (via Composer). Configure the SMTP settings in `includes/constants/constants.php`:
 
 ```php
 "smtp_host"     => "smtp.example.com",
+"smtp_port"     => 587,          // 587 for TLS, 465 for SSL
+"smtp_secure"   => "tls",        // "tls" or "ssl"
 "smtp_username" => "your_smtp_user",
 "smtp_password" => "your_smtp_password",
-"smtp_name"     => "Secret Republic",
 "smtp_from"     => "noreply@example.com",
-"smtp_secure"   => "tls",       // "tls" or "ssl"
-"smtp_port"     => 587,         // 587 for TLS, 465 for SSL
+"smtp_name"     => "Secret Republic",
 ```
 
-If `smtp_host` is left empty, no emails will be sent (email features like registration confirmation and password reset will not work).
+If `smtp_host` is left empty, **no emails will be sent** but registration and all other flows will continue normally (non-blocking). A notice is written to the PHP error log so you can verify the skip.
+
+#### Hostinger SMTP Setup
+
+Hostinger provides a built-in SMTP server for every email account you create in the control panel.
+
+1. **Create an email account** in Hostinger → *Emails* → *Email Accounts* (e.g. `noreply@yourdomain.com`).
+2. Set the following values in `includes/constants/constants.php`:
+
+```php
+"smtp_host"     => "smtp.hostinger.com",
+"smtp_port"     => 465,
+"smtp_secure"   => "ssl",
+"smtp_username" => "noreply@yourdomain.com",   // full email address
+"smtp_password" => "YourEmailAccountPassword",  // the password you set in step 1
+"smtp_from"     => "noreply@yourdomain.com",    // must match the email account
+"smtp_name"     => "Secret Republic",
+```
+
+| Setting | Value | Notes |
+|---|---|---|
+| `smtp_host` | `smtp.hostinger.com` | Same for all Hostinger plans |
+| `smtp_port` | `465` | SSL port (recommended by Hostinger) |
+| `smtp_secure` | `ssl` | Use `ssl` with port 465 |
+| `smtp_username` | `noreply@yourdomain.com` | The full email address you created |
+| `smtp_password` | *(your email password)* | The password for the above email account |
+| `smtp_from` | `noreply@yourdomain.com` | Must match `smtp_username` on Hostinger |
+| `smtp_name` | `Secret Republic` | Display name shown in emails |
+
+> **Tip:** If emails land in spam, add SPF and DKIM DNS records for your domain in Hostinger's DNS Zone Editor. Hostinger's guide: https://support.hostinger.com/en/articles/1583588
 
 ### reCAPTCHA v2
 
@@ -672,9 +701,11 @@ chcon -R -t httpd_sys_rw_content_t includes/templates_c/ includes/cache/ include
 ### Email Not Sending
 
 1. Verify SMTP settings in `includes/constants/constants.php`.
-2. `smtp_host` must not be empty for emails to work.
+2. `smtp_host` must not be empty for emails to work. If it is empty, emails are silently skipped (check the PHP error log for `[SecretRepublic] sendEmail skipped` messages).
 3. Check that your SMTP provider allows the configured authentication method (TLS/SSL).
-4. For debugging, temporarily set `$mail->SMTPDebug = 2;` in `includes/class/alpha.class.php`.
+4. On Hostinger, use `smtp.hostinger.com`, port `465`, secure `ssl`. The `smtp_from` address **must** match the email account you created in the Hostinger panel.
+5. For debugging, temporarily add `$mail->SMTPDebug = 2;` after `$mail->isSMTP();` in `includes/class/alpha.class.php`.
+6. Check the PHP error log for `[SecretRepublic] sendEmail failed:` messages that contain the PHPMailer error details.
 
 ### Missions Page: GROUP BY Errors
 

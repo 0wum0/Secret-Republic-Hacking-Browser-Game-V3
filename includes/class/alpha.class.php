@@ -53,36 +53,61 @@ class Alpha {
     return false;
   }
 
+  /**
+   * Send an email via SMTP using PHPMailer.
+   *
+   * If SMTP is not configured (smtp_host empty), the method logs a notice
+   * and returns false without throwing — so registration and other flows
+   * are never blocked by missing mail configuration.
+   *
+   * @param  array $data  Must contain 'recipients' (array), 'subject', 'message'.
+   * @return bool  true on success, false on skip or error.
+   */
   function sendEmail($data = array()) {
-    $message = $this->buildEmail($data['message']);
-    
-    if ($this->config['smtp_host']) {
-      $mail = new PHPMailer(true); 
-      $mail->isSMTP(); // Set mailer to use SMTP
-      $mail->Host       = $this->config['smtp_host']; // Specify main and backup SMTP servers
-      $mail->SMTPAuth   = true; // Enable SMTP authentication
-      $mail->Username   = $this->config['smtp_username']; // SMTP username
-      $mail->Password   = $this->config['smtp_password']; // SMTP password
-      $mail->SMTPSecure = $this->config['smtp_secure']; // Enable TLS encryption, `ssl` also accepted
-      $mail->Port       = $this->config['smtp_port']; // TCP port to connect to
+    // Guard: skip silently when SMTP is not configured
+    if (empty($this->config['smtp_host'])) {
+      error_log('[SecretRepublic] sendEmail skipped: SMTP_HOST is not configured.');
+      return false;
+    }
 
-      $mail->setFrom($this->config['smtp_from'], $this->config['smtp_name']);
-      foreach ($data['recipients'] as $rec)
-        $mail->addAddress($rec); // Add a recipient
+    try {
+      $message = $this->buildEmail($data['message'] ?? '');
 
-      //Attachments
-      $mail->addAttachment('/var/tmp/file.tar.gz'); // Add attachments
-      $mail->addAttachment('/tmp/image.jpg', 'new.jpg'); // Optional name
+      $mail = new PHPMailer(true);
+      $mail->isSMTP();
+      $mail->Host       = $this->config['smtp_host'];
+      $mail->SMTPAuth   = true;
+      $mail->Username   = $this->config['smtp_username'];
+      $mail->Password   = $this->config['smtp_password'];
+      $mail->SMTPSecure = $this->config['smtp_secure'] ?: PHPMailer::ENCRYPTION_STARTTLS;
+      $mail->Port       = intval($this->config['smtp_port'] ?: 587);
+      $mail->CharSet    = 'UTF-8';
 
-      //Content
-      $mail->isHTML(true); // Set email format to HTML
-      $mail->Subject = $data['subject'];
+      $fromEmail = $this->config['smtp_from'] ?: $this->config['smtp_username'];
+      $fromName  = $this->config['smtp_name'] ?: 'Secret Republic';
+      $mail->setFrom($fromEmail, $fromName);
+
+      if (empty($data['recipients']) || !is_array($data['recipients'])) {
+        error_log('[SecretRepublic] sendEmail skipped: no recipients provided.');
+        return false;
+      }
+      foreach ($data['recipients'] as $rec) {
+        $mail->addAddress($rec);
+      }
+
+      // Content
+      $mail->isHTML(true);
+      $mail->Subject = $data['subject'] ?? '(no subject)';
       $mail->Body    = $message;
       $mail->AltBody = strip_tags($message);
 
       $mail->send();
-    }
+      return true;
 
+    } catch (\Exception $e) {
+      error_log('[SecretRepublic] sendEmail failed: ' . $e->getMessage());
+      return false;
+    }
   }
 
   function buildEmail($msg) {

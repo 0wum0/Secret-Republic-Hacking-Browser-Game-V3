@@ -9,6 +9,10 @@ final class TutorialTest extends TestCase
         $user = [
             'username' => 'test'
         ];
+        // Load i18n functions required by tutorial.php
+        if (!function_exists('t')) {
+            require_once './includes/i18n.php';
+        }
         require './includes/constants/tutorial.php';
         $this->assertSame(18, count($tutorialSteps));
         for ($i = 1; $i <= count($tutorialSteps); $i++) {

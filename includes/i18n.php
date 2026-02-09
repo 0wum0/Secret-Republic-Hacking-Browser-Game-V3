@@ -93,7 +93,7 @@ function _sr_decode_unicode($value)
  */
 function _sr_load_dict(): array
 {
-    if ($GLOBALS['_SR_LANG_CACHE'] !== null) {
+    if (isset($GLOBALS['_SR_LANG_CACHE']) && $GLOBALS['_SR_LANG_CACHE'] !== null) {
         return $GLOBALS['_SR_LANG_CACHE'];
     }
 

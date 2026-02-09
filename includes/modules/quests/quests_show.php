@@ -71,7 +71,7 @@
 
           $db->groupBy('q.id');
           $db->orderBy('qgroup_order', 'desc');
-          $quests = $db->get('quests q', null, 'q.id, q.title, q.summary, q.time, q.id, q.level, qu.last_done done, q.type ,qur.quest as qdone, party, q.qgroup_id');
+          $quests = $db->get('quests q', null, 'q.id, q.title, q.summary, q.time, q.id, q.level, MAX(qu.last_done) as done, q.type, MAX(qur.quest) as qdone, q.party, q.qgroup_id');
 
           $messenger[] = array(
             "message" => count($quests) . " out of " . $group["nrQuests"] . " total missions currently available in '" . $group["name"] . "'",
@@ -98,7 +98,7 @@
       } //$GET["group"]
       else {
         // fetch quests the user can do
-        $db->groupBy('hqg.qgroup_id')->orderBy('gorder', 'asc');
+        $db->orderBy('gorder', 'asc');
 
         $groups = $db->get('quest_groups hqg', null, 'story, premium, hqg.qgroup_id, hqg.name, live_quests nrQuests, live_party_quests, (select count(distinct(quest)) from quests_user qu left outer join quests q on q.id = qu.quest where qu.user_id = ' . $user['id'] . ' and q.qgroup_id = hqg.qgroup_id and q.isLive = 1) questsDone');
 

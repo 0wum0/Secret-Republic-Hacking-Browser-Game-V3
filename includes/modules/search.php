@@ -9,7 +9,7 @@ $cardinal->mustLogin();
 	if($search=$GET["query"])
 	{
 	  if (strlen($search) > 100)
-	    $errors[] = "Please use less than 100 chars in your search";
+	    $errors[] = t('ERR_SEARCH_LENGTH');
 	  else
 	  {
         if($GET["type"]=="user"){
@@ -29,7 +29,7 @@ $cardinal->mustLogin();
               $results=$db->where("username", array("like" => sprintf("%%%s%%",$search)))
                           ->orderBy("username", "asc")
                           ->paginate("users", $pages->current_page, "username, id, zone, zrank, `rank`");
-          } else $errors[] = "Invalid username provided. You don't need the exact username, but you need to write a valid one.";
+          } else $errors[] = t('ERR_SEARCH_INVALID');
 
 
         }

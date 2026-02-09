@@ -3,7 +3,7 @@
 $cardinal->mustLogin();
 
 	if (!$user['server'])
-		$warnings[] = "You have yet to build a <a href='".URL."servers'>main Server</a> so we've <strong>limited your choices on this shop to the cheapest</strong> components and software available.";
+		$warnings[] = t('WARN_SHOP_NO_SERVER', null, [':url' => URL . 'servers']);
 	if ($GET['software'])
 	{
 		if ($_POST['buy'])

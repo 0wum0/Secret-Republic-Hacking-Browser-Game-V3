@@ -151,7 +151,7 @@ else
           $db->rawQuery('update conversations set last_reply_seen = 1 where
                          parent_message_id is null and (sender_user_id = ? or receiver_user_id = ?) and last_reply_by_user_id != ? and last_reply_seen = 0',
                          array($user['id'], $user['id'],$user['id']));
-	 	$success[] = "All messages marked as read.";
+	 	$success[] = t('MSG_ALL_READ');
 	  unset($_SESSION['lastMsgCheck']);
 		$cardinal->redirect(URL_C);
   }

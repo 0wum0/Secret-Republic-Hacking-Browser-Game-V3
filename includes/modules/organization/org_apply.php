@@ -5,7 +5,7 @@ $tVars['load'] = 'apply';
       
       if ($oclass->organization['nrm'] >= $oclass->organization['max_nrm'])
       {
-        $errors[] = 'Organization cannot accept more members at this moment.';
+        $errors[] = t('MSG_ORG_FULL');
         $canApply = false;
       }else
       if ($oclass->organization['applications']) {
@@ -14,7 +14,7 @@ $tVars['load'] = 'apply';
         {
           $canApply = false;
           $app['created'] = date_fashion($app['created']);
-          $info[] = 'You are waiting for a response to your application to join.';
+          $info[] = t('MSG_ORG_WAIT');
           $tVars['myApplication'] = $app;
         }
       } //$oclass->organization['applications']
@@ -22,7 +22,7 @@ $tVars['load'] = 'apply';
       if ($canApply && $_POST) {
           if ($oclass->validate_send_app($_POST['content'], true, $user['id']))
           {
-            $success[] = 'Application has been sent';
+            $success[] = t('MSG_APPLICATION_SENT');
             $cardinal->redirect(URL_C);
           }
         } //$_POST && $oclass->validate_send_app($_POST)

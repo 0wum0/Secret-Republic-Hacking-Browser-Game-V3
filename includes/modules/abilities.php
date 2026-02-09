@@ -44,7 +44,7 @@ require_once(ABSPATH . 'includes/class/abclass.php');
 		  {
 			  if ($user['alphaCoins']<1)
 			  {
-				  $errors[] = "Not enough Alpha Coins available";
+				  $errors[] = t('ERR_NOT_ENOUGH_AC');
 				  $cardinal->redirect(URL . "alpha_coins");
 			  }
 

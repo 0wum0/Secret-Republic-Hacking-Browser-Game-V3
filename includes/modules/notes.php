@@ -15,9 +15,9 @@ if ($GET['note'])
 		if($_POST)
 		{
 			if (strlen($_POST['title']) > 0 && strlen($_POST['title']) > 100)
-				$errors[] = "Title must have between 1 and 100 characters";
+				$errors[] = t('ERR_NOTE_TITLE');
 			if (strlen($_POST['content']) > $maxContentSize)
-				$errors[] = "Content must have less than ".number_format($maxContentSize)." characters.";
+				$errors[] = t('ERR_NOTE_CONTENT', null, [':max' => number_format($maxContentSize)]);
 
 			if (!count($errors))
 			{

@@ -125,11 +125,7 @@ Visit `http://localhost/public_html/setup` - this may be different if you are us
 
 ## Useful tips
 
-You may need to manually execute the following SQL if you see a GROUP BY related error on the missions page:
-
-```
-SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
-```
+All SQL queries are ONLY_FULL_GROUP_BY compliant. No manual `sql_mode` changes are required.
 
 # Cron jobs
 

@@ -280,4 +280,4 @@ secretrepublic/
 → In `php.ini`: `error_reporting = E_ALL & ~E_DEPRECATED & ~E_NOTICE`
 
 ### MySQL Strict Mode Probleme
-→ In `my.cnf`: `sql_mode = ''` oder spezifische Modes entfernen
+→ Alle Queries sind ONLY_FULL_GROUP_BY-konform. Kein manuelles Ändern von `sql_mode` notwendig. Siehe `docs/sql_missions_audit.md` für Details.

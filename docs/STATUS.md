@@ -19,7 +19,7 @@ Das Projekt "Secret Republic Hacking Browser Game V3" wurde vollständig auf PHP
 | Composer Dependencies | Fertig | Alle auf kompatible Versionen aktualisiert |
 | Null-Safety Fixes | Fertig | `$_SESSION`, `array_merge`, undefined array keys |
 | Dynamic Properties | Fertig | `#[AllowDynamicProperties]` auf alle relevanten Klassen |
-| DB/SQL Kompatibilität | Fertig | utf8mb4, ONLY_FULL_GROUP_BY kompatibel |
+| DB/SQL Kompatibilität | Fertig | utf8mb4, ONLY_FULL_GROUP_BY-konforme Queries (keine sql_mode-Änderungen nötig) |
 | Vanilla Forum | N/A | Nicht im Projekt vorhanden (eigenes Forum-System) |
 | PHPUnit Tests | 4/4 bestanden | Alle Unit-Tests grün |
 | Phplint | 0 Fehler / 128 Dateien | Alle Projektdateien syntaktisch korrekt |
@@ -78,8 +78,8 @@ Das Projekt "Secret Republic Hacking Browser Game V3" wurde vollständig auf PHP
 
 ### Phase 6: DB/SQL-Kompatibilität
 - Alle 100 Tabellen bereits auf utf8mb4 (vorherige PR)
-- Keine GROUP BY Queries in PHP-Dateien
-- ONLY_FULL_GROUP_BY kompatibel
+- Alle GROUP BY Queries ONLY_FULL_GROUP_BY-konform refaktoriert (siehe `docs/sql_missions_audit.md`)
+- Keine `SET GLOBAL/SESSION sql_mode` Workarounds notwendig
 
 ### Phase 7: Smoke-Test Ergebnisse
 

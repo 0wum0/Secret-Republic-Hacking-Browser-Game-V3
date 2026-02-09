@@ -117,7 +117,7 @@
         {include file = "index/attacks.tpl"}
 
         {else}
-        <button disabled class="button-clear">Nothing to report</button>
+        <button disabled class="button-clear">{$L.DASH_NOTHING_REPORT}</button>
 
 
         {/if}

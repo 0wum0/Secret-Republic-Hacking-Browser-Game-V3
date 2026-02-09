@@ -15,7 +15,7 @@ if ($hacker['id']) {
         $db->where('uid', $hacker['id']);
         $db->update('user_credentials', $_POST);
 
-        $_SESSION['success'] = 'Hacker credentials updated';
+        $_SESSION['success'] = t('MSG_HACKER_CRED_UPDATED');
 
         $cardinal->redirect(URL_C);
 
@@ -88,7 +88,7 @@ if ($hacker['id']) {
              ->where('user_id', $hacker['id'])
              ->orderBy('created', 'desc')
              ->delete('quests_user', 1);
-          $success[] = 'Record deleted';
+          $success[] = t('MSG_RECORD_DELETED');
         }
       }
 
@@ -165,7 +165,7 @@ if ($hacker['id']) {
       $db->where('id', $hacker['id']);
       $db->update('users', $_POST);
 
-      $_SESSION['success'] = 'Hacker updated';
+      $_SESSION['success'] = t('MSG_HACKER_UPDATED');
 
       $cardinal->redirect(URL_C);
 

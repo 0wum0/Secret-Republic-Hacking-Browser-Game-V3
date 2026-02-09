@@ -24,7 +24,7 @@ class Abilities extends Alpha {
 
 
     }
-    require_once('../includes/constants/abilities.php');
+    require_once(ABSPATH . 'includes/constants/abilities.php');
     $this->abilities = abilities($userAbilities, $userData);
 
 

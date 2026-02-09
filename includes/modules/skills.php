@@ -4,7 +4,7 @@
 
 $cardinal->mustLogin();
 
-//require_once("../includes/class/class.battleSystem.php");
+//require_once(ABSPATH . 'includes/class/class.battleSystem.php');
 
   if ($user["skillPoints"])
     if(submitted_form("add_points"))

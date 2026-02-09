@@ -61,7 +61,7 @@ else
             if ($user['organization'])
             {
                 // give a hacking point to org
-                require ("../includes/class/oclass.php");
+                require(ABSPATH . 'includes/class/oclass.php');
                 $oclass = new Organization();
                 $hackingPoints = 1;
                 $oclass->addHackingPoints($hackingPoints, $user['organization'], $user['id'], $qclass->finished);

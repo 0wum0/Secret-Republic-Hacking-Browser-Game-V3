@@ -10,7 +10,7 @@ if (!file_exists($dbFile)) {
     die('DB.sql is missing - expected in: ' . $dbFile);
 }
 
-require "../includes/class/registrationSystem.php";
+require ABSPATH . 'includes/class/registrationSystem.php';
 
 if ($_POST['DB_HOST']) {
     try {

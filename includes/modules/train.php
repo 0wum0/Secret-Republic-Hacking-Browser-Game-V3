@@ -2,8 +2,8 @@
 
 define('cardinal_system', true);
 $cardinal->mustLogin();
-require_once('../includes/header.php');
-require_once('../includes/class/tclass.php');
+require_once(ABSPATH . 'includes/header.php');
+require_once(ABSPATH . 'includes/class/tclass.php');
 
   $page_title=t('TRAIN_FACILITY');
 
@@ -19,12 +19,12 @@ require_once('../includes/class/tclass.php');
     }
     else
 	{
-	//require("../includes/class/gclass.php");
+	//require(ABSPATH . 'includes/class/gclass.php');
 	//$game = new Game();
 		
 	if ($trainTask['dataid'] == 1)
     {
-      require_once("../includes/class/recaptchalib.php");
+      require_once(ABSPATH . 'includes/class/recaptchalib.php');
          
       
       
@@ -70,7 +70,7 @@ require_once('../includes/class/tclass.php');
 			
 			if ($answered)
 			{
-				require('../includes/class/gclass.php');
+				require(ABSPATH . 'includes/class/gclass.php');
 				$game = new Game();
 				$trainTask['steps']--;
 				if ($trainTask['steps'] <= 0)
@@ -167,7 +167,7 @@ if(!$tclass->trainTask){
 		  else
 		{
 		
-			require('../includes/class/gclass.php');
+			require(ABSPATH . 'includes/class/gclass.php');
 			$game = new Game();
 			
 			switch ($difficulty)

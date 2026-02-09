@@ -8,7 +8,7 @@
 
 | Entry Point | Datei | Beschreibung |
 |---|---|---|
-| Frontend | `public_html/index.php` | Front-Controller, Smarty-Init, Routing |
+| Frontend | `index.php` | Front-Controller, Smarty-Init, Routing |
 | Setup | `includes/modules/setup.php` | Erstinstallation, DB-Import |
 | Cron | `includes/modules/cron/cron.php` | Cronjob-Dispatcher (kein UI) |
 | Admin | `includes/modules/admin/admin.php` | Admin-Panel (via index.php Routing) |

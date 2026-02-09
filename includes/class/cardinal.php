@@ -9,12 +9,17 @@ CARDINAL - ONE OF THE MAIN CLASSES OF THE SYSTEM - N.A.M.
  */
 
 require('alpha.class.php');
-$path = dirname(__FILE__);
-$path = explode('/', $path);
 
-unset($path[count($path) - 1], $path[count($path) - 1]);
-
-define('ABSPATH', implode('/', $path) . '/');
+// ABSPATH = project root (same as SR_ROOT defined in index.php)
+if (defined('SR_ROOT')) {
+    define('ABSPATH', SR_ROOT . '/');
+} else {
+    // Fallback: derive from this file's location (includes/class/)
+    $path = dirname(__FILE__);
+    $path = explode('/', $path);
+    unset($path[count($path) - 1], $path[count($path) - 1]);
+    define('ABSPATH', implode('/', $path) . '/');
+}
 
 class Cardinal extends Alpha {
   function __construct() {

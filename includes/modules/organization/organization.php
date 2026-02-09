@@ -2,7 +2,7 @@
 
 
 
-require_once('../includes/class/oclass.php');
+require_once(ABSPATH . 'includes/class/oclass.php');
 
 $page_title = 'Organization';
 
@@ -86,7 +86,7 @@ if ($oclass->organization['id']) {
     {
       if ($oclass->organization['wars_inprogress'])
       {
-        require('../includes/class/organizationWars.php');
+        require(ABSPATH . 'includes/class/organizationWars.php');
         $owars = new organizationWars;
       
         $wars = $owars->fetchOrganizationWars($oclass->organization['id']);

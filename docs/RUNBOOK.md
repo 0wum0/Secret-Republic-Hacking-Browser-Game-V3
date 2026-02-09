@@ -65,7 +65,9 @@ chmod -R 775 includes/configs/
 
 ### 6. Webserver konfigurieren
 
-**Document Root** muss auf `public_html/` zeigen.
+**Document Root** = das Projektverzeichnis selbst (alle Dateien liegen im Webroot).
+
+Bei Hostinger: Alle Dateien direkt in `public_html/` hochladen (kein Unterordner).
 
 #### Apache (.htaccess ist bereits vorhanden)
 ```bash
@@ -74,11 +76,17 @@ sudo a2enmod rewrite
 sudo systemctl restart apache2
 ```
 
-#### Nginx (Referenz: public_html/nginx.conf)
+#### Nginx (Referenz: nginx.conf im Projektroot)
 ```nginx
 server {
-    root /path/to/secretrepublic/public_html;
+    root /path/to/secretrepublic;
     index index.php;
+
+    # Sensible Verzeichnisse blockieren
+    location ~ ^/(includes|templates|tests|docs|lang|\.git)/ {
+        deny all;
+        return 403;
+    }
 
     location / {
         try_files $uri $uri/ /index.php?$args;
@@ -184,7 +192,7 @@ curl http://domain/cron/key1/KEY/rankings/1
 
 ### Error Reporting
 
-In `public_html/index.php` ist bereits gesetzt:
+In `index.php` ist bereits gesetzt:
 ```php
 error_reporting(E_ALL ^E_NOTICE);
 ini_set('display_errors', '0');
@@ -202,7 +210,7 @@ opcache.validate_timestamps=0  # Nur für Produktion!
 
 ### Smarty Compile Check
 
-Für Performance in Produktion optional in `public_html/index.php` nach Smarty-Init hinzufügen:
+Für Performance in Produktion optional in `index.php` nach Smarty-Init hinzufügen:
 ```php
 $smarty->setCompileCheck(\Smarty\Smarty::COMPILECHECK_OFF);
 ```
@@ -237,30 +245,33 @@ $smarty->setCompileCheck(\Smarty\Smarty::COMPILECHECK_OFF);
 ## Verzeichnisstruktur
 
 ```
-secretrepublic/
-├── public_html/          # Document Root
-│   ├── index.php         # Haupteingang
-│   ├── .htaccess         # Apache Rewrite
-│   └── nginx.conf        # Nginx Referenz-Config
-├── includes/
-│   ├── class/            # PHP-Klassen
-│   ├── constants/        # Konfigurationskonstanten
-│   ├── modules/          # Controller-Module
-│   │   ├── main/         # Startseite (visitor.php, player.php)
-│   │   ├── admin/        # Admin-Panel
-│   │   ├── cron/         # Cronjobs
-│   │   └── ...           # Weitere Module
-│   ├── install/          # DB.sql Schema
-│   ├── vendor/           # Composer Packages
-│   ├── templates_c/      # Smarty Compile Dir (beschreibbar!)
-│   ├── cache/            # Smarty Cache Dir (beschreibbar!)
-│   └── configs/          # Smarty Config Dir (beschreibbar!)
-├── templates/            # Smarty Templates (.tpl)
-├── docs/                 # Dokumentation
-│   ├── STATUS.md         # Upgrade-Status
-│   └── RUNBOOK.md        # Diese Datei
-├── tests/                # PHPUnit Tests
-└── composer.json
+secretrepublic/              # = Webroot (Document Root)
+├── index.php                # Front-Controller (Haupteingang)
+├── api.php                  # API-Endpunkt
+├── .htaccess                # Apache Rewrite + Security
+├── nginx.conf               # Nginx Referenz-Config
+├── composer.json             # (per .htaccess geschützt)
+├── images/                  # Bilder
+├── layout/                  # CSS, JS, Fonts
+├── mp3/                     # Audio-Dateien
+├── includes/                # (per .htaccess geschützt)
+│   ├── class/               # PHP-Klassen
+│   ├── constants/           # Konfigurationskonstanten
+│   ├── modules/             # Controller-Module
+│   │   ├── main/            # Startseite (visitor.php, player.php)
+│   │   ├── admin/           # Admin-Panel
+│   │   ├── cron/            # Cronjobs
+│   │   └── ...              # Weitere Module
+│   ├── install/             # DB.sql Schema
+│   ├── vendor/              # Composer Packages
+│   ├── templates_c/         # Smarty Compile Dir (beschreibbar!)
+│   ├── cache/               # Smarty Cache Dir (beschreibbar!)
+│   └── configs/             # Smarty Config Dir (beschreibbar!)
+├── templates/               # Smarty Templates (per .htaccess geschützt)
+├── lang/                    # Sprachdateien (per .htaccess geschützt)
+├── docs/                    # Dokumentation (per .htaccess geschützt)
+├── tests/                   # PHPUnit Tests (per .htaccess geschützt)
+└── screens/                 # Screenshots (per .htaccess geschützt)
 ```
 
 ---

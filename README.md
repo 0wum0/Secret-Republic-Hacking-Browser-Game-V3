@@ -116,7 +116,7 @@ mysql -u root -p -e "CREATE DATABASE secretrepublic CHARACTER SET utf8mb4 COLLAT
 ### 4. Option A: Automated Setup (Recommended)
 
 1. Make sure `includes/database_info.php` does **not** exist yet (delete it if it does).
-2. Point your webserver's Document Root to `public_html/` (see [Webserver Setup](#webserver-setup)).
+2. Upload all project files directly into your webserver's document root (e.g. Hostinger `public_html/`). **Do not** place them in a subfolder.
 3. Open `http://your-domain/setup` in a browser.
 4. Fill in the database connection details and admin account credentials.
 5. The setup wizard imports the schema (`includes/install/DB.sql`) and creates your admin user.
@@ -273,11 +273,20 @@ For detailed coverage, see `docs/I18N_CHECKLIST.md`.
 
 ## Webserver Setup
 
-The **Document Root** must point to the `public_html/` directory.
+All files live directly in the webroot. Upload all project files to your webserver's document root directory (e.g. Hostinger `public_html/`). **Do not** create a subfolder like `public_html/sr/`.
+
+The `.htaccess` file included in the project root handles URL rewriting **and** blocks direct access to sensitive directories (`includes/`, `templates/`, `tests/`, `docs/`, etc.) and files (`composer.json`, `*.md`, `*.sh`, `*.log`, etc.).
+
+### Hostinger
+
+1. Upload all files to `public_html/` via File Manager or FTP.
+2. `index.php` must be directly inside `public_html/`, not in a subfolder.
+3. `.htaccess` handles everything automatically (mod_rewrite is enabled by default on Hostinger).
+4. Set up cronjobs in Hostinger's "Cron Jobs" panel (see [Cronjobs](#cronjobs)).
 
 ### Apache
 
-`mod_rewrite` must be enabled. An `.htaccess` file is included in `public_html/` and handles all URL rewriting automatically. It supports `mod_php`, `mod_fcgid`, and PHP-FPM.
+`mod_rewrite` must be enabled. The `.htaccess` file in the project root handles all URL rewriting and security rules automatically. It supports `mod_php`, `mod_fcgid`, and PHP-FPM.
 
 ```bash
 # Enable mod_rewrite (Debian/Ubuntu)
@@ -288,19 +297,25 @@ sudo systemctl restart apache2
 Make sure your Apache `<Directory>` block allows `.htaccess` overrides:
 
 ```apache
-<Directory /path/to/public_html>
+<Directory /path/to/webroot>
     AllowOverride All
 </Directory>
 ```
 
 ### Nginx
 
-A reference configuration is provided at `public_html/nginx.conf`. Key parts:
+A reference configuration is provided at `nginx.conf`. Key parts:
 
 ```nginx
 server {
-    root /path/to/project/public_html;
+    root /path/to/project;
     index index.php;
+
+    # Block sensitive directories
+    location ~ ^/(includes|templates|tests|docs|lang|\.git)/ {
+        deny all;
+        return 403;
+    }
 
     location / {
         try_files $uri $uri/ /index.php$is_args$args;
@@ -334,7 +349,7 @@ The **default cron key** is configured in `includes/modules/cron/cron.php`. Chan
 | Hackdown End | `/cron/key1/{CRON_KEY}/hackdownEnd/true` | Once daily (Sundays) |
 | Monthly | `/cron/key1/{CRON_KEY}/monthly/true` | Once monthly |
 
-### Example Crontab
+### Example Crontab (VPS / Dedicated Server)
 
 ```bash
 # Attacks & tasks - every 2 minutes
@@ -357,6 +372,23 @@ The **default cron key** is configured in `includes/modules/cron/cron.php`. Chan
 # Monthly
 0 4 1 * * wget -qO /dev/null http://your-domain/cron/key1/YOUR_KEY/monthly/true
 ```
+
+### Hostinger Cron Jobs
+
+In the Hostinger control panel, go to **Advanced > Cron Jobs** and add entries with these settings:
+
+| Job | Command | Schedule |
+|---|---|---|
+| Attacks & Tasks | `wget -qO /dev/null https://your-domain/cron/key1/YOUR_KEY/attacks/true` | Every 2 minutes (`*/2 * * * *`) |
+| Resources | `wget -qO /dev/null https://your-domain/cron/key1/YOUR_KEY/resources/true` | Every minute (`* * * * *`) |
+| Hourly | `wget -qO /dev/null https://your-domain/cron/key1/YOUR_KEY/hourly/true` | Every hour (`0 * * * *`) |
+| Rankings | `wget -qO /dev/null https://your-domain/cron/key1/YOUR_KEY/rankings/true` | Every hour (`5 * * * *`) |
+| Daily | `wget -qO /dev/null https://your-domain/cron/key1/YOUR_KEY/daily/true` | Once daily (`0 3 * * *`) |
+| Monthly | `wget -qO /dev/null https://your-domain/cron/key1/YOUR_KEY/monthly/true` | Once monthly (`0 4 1 * *`) |
+
+> **Note:** Hostinger's free/shared plans may limit cron frequency. If you cannot run jobs every minute, combine attacks and resources into one cron at the lowest available interval.
+
+Replace `YOUR_KEY` with the cron key configured in `includes/modules/cron/cron.php`.
 
 ---
 
@@ -409,6 +441,18 @@ php -v   # Must show 8.3.x or 8.4.x
 ---
 
 ## Changelog
+
+### 2026-02-09: Flat Webroot Layout (no more public_html/ subfolder)
+
+- **Breaking change:** The `public_html/` wrapper directory has been removed. All files now live directly in the webroot.
+- **Moved to root:** `index.php`, `api.php`, `.htaccess`, `nginx.conf`, `favicon.ico`, `robots.txt`, `images/`, `layout/`, `mp3/`
+- **New constant:** `SR_ROOT` defined in `index.php` as `__DIR__` — replaces all `../` path hacks
+- **Path fixes:** 30+ PHP files updated from `require('../includes/...')` to `require(ABSPATH . 'includes/...')` or `require(SR_ROOT . '/includes/...')`
+- **ABSPATH** in `cardinal.php` now uses `SR_ROOT` when available (with fallback for standalone usage)
+- **Security:** `.htaccess` now blocks direct access to: `includes/`, `templates/`, `tests/`, `docs/`, `screens/`, `lang/`, `MISSION-GUIDES/`, `.git/`, `composer.json`, `composer.lock`, `*.md`, `*.sh`, `*.log`, `*.tpl`, `*.sql`
+- **Nginx:** `nginx.conf` updated with security location blocks
+- **CI:** Updated phplint path in GitHub Actions workflow
+- **Deployment:** Upload all files directly to `public_html/` on Hostinger (no subfolder). See updated [Installation](#installation) and [Webserver Setup](#webserver-setup) sections.
 
 ### 2026-02-09: Admin Registered Page Fix (groups table / join)
 
@@ -476,59 +520,62 @@ The application is built with vanilla PHP, using Smarty as the template engine a
 
 ### Directory Structure
 
+Everything lives in the webroot (no `public_html/` subfolder):
+
 ```
-project-root/
-├── public_html/              # Document Root (web-accessible)
-│   ├── index.php             # Front controller (entry point)
-│   ├── .htaccess             # Apache URL rewriting
-│   ├── nginx.conf            # Nginx reference config
-│   ├── css/                  # Stylesheets
-│   ├── js/                   # JavaScript
-│   └── audio/                # Audio files (mp3, ogg)
-├── includes/
-│   ├── class/                # PHP classes
-│   │   ├── cardinal.php      # Core application class
-│   │   ├── alpha.class.php   # Base class (email, captcha, etc.)
-│   │   ├── loginSystem.php   # Authentication
-│   │   ├── userclass.php     # User operations
-│   │   ├── qclass.php        # Quest/mission engine
-│   │   ├── class.forum.php   # Forum system
+webroot/                        # = Document Root (e.g. Hostinger public_html/)
+├── index.php                   # Front controller (entry point, defines SR_ROOT)
+├── api.php                     # API endpoint
+├── .htaccess                   # Apache URL rewriting + security rules
+├── nginx.conf                  # Nginx reference config
+├── composer.json               # (protected by .htaccess)
+├── images/                     # Game images
+├── layout/                     # CSS, JS, fonts
+│   ├── css/                    # Stylesheets
+│   ├── js/                     # JavaScript
+│   └── fonts/                  # Web fonts
+├── mp3/                        # Audio files (mp3, ogg)
+├── includes/                   # (protected by .htaccess – 403)
+│   ├── class/                  # PHP classes
+│   │   ├── cardinal.php        # Core application class
+│   │   ├── alpha.class.php     # Base class (email, captcha, etc.)
+│   │   ├── loginSystem.php     # Authentication
+│   │   ├── userclass.php       # User operations
+│   │   ├── qclass.php          # Quest/mission engine
+│   │   ├── class.forum.php     # Forum system
 │   │   └── ...
-│   ├── constants/            # Application configuration
-│   │   ├── constants.php     # Main config (SMTP, reCAPTCHA, etc.)
-│   │   ├── abilities.php     # Ability definitions
-│   │   ├── skills.php        # Skill definitions
-│   │   ├── tutorial.php      # Tutorial step definitions
-│   │   └── jobs.php          # Job definitions
-│   ├── modules/              # Controllers (one per route)
-│   │   ├── main/             # Homepage (visitor.php, player.php)
-│   │   ├── admin/            # Admin panel
-│   │   ├── quests/           # Missions
-│   │   ├── cron/             # Cronjob handlers
+│   ├── constants/              # Application configuration
+│   │   ├── constants.php       # Main config (SMTP, reCAPTCHA, etc.)
+│   │   ├── abilities.php       # Ability definitions
+│   │   ├── skills.php          # Skill definitions
+│   │   ├── tutorial.php        # Tutorial step definitions
+│   │   └── jobs.php            # Job definitions
+│   ├── modules/                # Controllers (one per route)
+│   │   ├── main/               # Homepage (visitor.php, player.php)
+│   │   ├── admin/              # Admin panel
+│   │   ├── quests/             # Missions
+│   │   ├── cron/               # Cronjob handlers
 │   │   └── ...
 │   ├── install/
-│   │   └── DB.sql            # Full database schema
-│   ├── vendor/               # Composer packages (gitignored)
-│   ├── templates_c/          # Smarty compiled templates (writable)
-│   ├── cache/                # Smarty cache (writable)
-│   ├── configs/              # Smarty configs (writable)
-│   ├── database_info.php     # DB credentials (not in repo)
+│   │   └── DB.sql              # Full database schema
+│   ├── vendor/                 # Composer packages (gitignored)
+│   ├── templates_c/            # Smarty compiled templates (writable)
+│   ├── cache/                  # Smarty cache (writable)
+│   ├── configs/                # Smarty configs (writable)
+│   ├── database_info.php       # DB credentials (not in repo)
 │   └── database_info.php.template
-├── templates/                # Smarty .tpl templates (~133 files)
-├── MISSION-GUIDES/           # PDF guides for mission design
-├── tests/                    # PHPUnit tests
-├── docs/                     # Additional documentation
-│   ├── STATUS.md             # Upgrade status details
-│   ├── RUNBOOK.md            # Operational runbook
-│   └── sql_missions_audit.md # SQL audit for GROUP BY queries
-├── screens/                  # Screenshots
-├── composer.json
-└── LICENSE.md                # MIT License
+├── templates/                  # Smarty .tpl templates (protected by .htaccess)
+├── lang/                       # Language files (protected by .htaccess)
+├── MISSION-GUIDES/             # PDF guides (protected by .htaccess)
+├── tests/                      # PHPUnit tests (protected by .htaccess)
+├── docs/                       # Documentation (protected by .htaccess)
+├── screens/                    # Screenshots (protected by .htaccess)
+└── LICENSE.md                  # MIT License
 ```
 
 ### Routing
 
-All requests are rewritten to `public_html/index.php` via `.htaccess` / nginx. The first URL segment maps to a module file in `includes/modules/`:
+All requests are rewritten to `index.php` via `.htaccess` / nginx. The first URL segment maps to a module file in `includes/modules/`:
 
 ```
 http://domain/quests            → includes/modules/quests/quests.php
@@ -569,7 +616,7 @@ Use `templates/pages/template.tpl` as a starting point.
 ### PHP Lint
 
 ```bash
-./includes/vendor/bin/phplint --no-cache --exclude=vendor includes/ public_html/index.php
+./includes/vendor/bin/phplint --no-cache --exclude=vendor includes/ index.php
 ```
 
 ### PHPUnit
@@ -601,7 +648,7 @@ chcon -R -t httpd_sys_rw_content_t includes/templates_c/ includes/cache/ include
 ### 500 Internal Server Error
 
 1. Check that `mod_rewrite` is enabled (Apache) or that nginx config has proper `try_files`.
-2. Verify Document Root points to `public_html/`, not the project root.
+2. Verify Document Root points to the project root (where `index.php` lives).
 3. Check PHP error log: `tail -f /var/log/php_errors.log` (or your configured path).
 
 ### Database Connection Error
@@ -681,7 +728,7 @@ opcache.validate_timestamps=0   # Only for production; set to 1 during developme
 
 ### Smarty Compile Check
 
-For production performance, you can disable Smarty compile checks by adding this after the Smarty initialization in `public_html/index.php`:
+For production performance, you can disable Smarty compile checks by adding this after the Smarty initialization in `index.php`:
 
 ```php
 $smarty->setCompileCheck(\Smarty\Smarty::COMPILECHECK_OFF);

@@ -2,7 +2,7 @@
  /**
  */
 
-require("../includes/class/registrationSystem.php");
+require(ABSPATH . 'includes/class/registrationSystem.php');
 $registrationSystem = new RegistrationSystem;
 
 if(!$logged && !empty($_GET['reset']))

@@ -3,7 +3,7 @@
 ## Project Map (Phase 0)
 
 ### Entry Points
-- **`public_html/index.php`** - Haupteingang, Frontcontroller, Smarty-Init, Routing
+- **`index.php`** - Haupteingang, Frontcontroller, Smarty-Init, Routing (im Webroot)
 - **`includes/modules/setup.php`** - Erstinstallation (DB-Import, Admin-Account)
 - **`includes/modules/cron/cron.php`** - Cronjob-Dispatcher (daily, hourly, hackdown, rankings, resources, tasks_and_attacks)
 - **`includes/modules/admin/admin.php`** - Admin-Panel
@@ -57,8 +57,8 @@
 ### Server-Anforderungen
 - **PHP**: 8.1+ (getestet mit 8.3, CI-Matrix inkl. 8.4)
 - **Extensions**: `mysqli`, `mbstring`, `json`, `curl`, `session`, `gd`
-- **Webserver**: Apache mit `mod_rewrite` oder Nginx (Config in `public_html/nginx.conf`)
-- **Document Root**: `public_html/`
+- **Webserver**: Apache mit `mod_rewrite` oder Nginx (Config in `nginx.conf`)
+- **Document Root**: Projektverzeichnis selbst (flat webroot layout)
 - **Writable Dirs**: `includes/templates_c/`, `includes/cache/`, `includes/configs/`
 
 ---
@@ -87,10 +87,10 @@
 ### PHP 8.3/8.4 Kompatibilität - Core
 | Datei | Änderung |
 |-------|----------|
-| `public_html/index.php` | Initialisierung `$GET = array()`, Smarty Config-Dir Fix, Null-Safety für Session-Zugriffe |
+| `index.php` | Initialisierung `$GET = array()`, Smarty Config-Dir Fix, Null-Safety für Session-Zugriffe, `SR_ROOT` Konstante |
 | `includes/header.php` | Initialisierung `$messenger`, `$voice`, `eval()` -> direkter Funktionsaufruf, Null-Safety für `$GET['i']` |
 | `includes/functions.php` | Null-Safety für `$_SESSION['premium']`, `$pages` instanceof Check |
-| `public_html/.htaccess` | Apache `mod_php` (PHP 8+) Rewrite-Regel hinzugefügt |
+| `.htaccess` | Apache Rewrite + Security Rules (blockiert includes/, templates/, etc.) |
 
 ### Datenbank / MySQL 8
 | Datei | Änderung |
@@ -134,10 +134,10 @@ mysql -u USER -p DBNAME < includes/install/DB.sql
 # 4. Verzeichnisse beschreibbar machen
 chmod -R 775 includes/templates_c/ includes/cache/ includes/configs/
 
-# 5. Document Root auf public_html/ setzen
+# 5. Document Root = Projektverzeichnis (flat webroot)
 
 # 6. Apache: mod_rewrite aktivieren
-# Nginx: public_html/nginx.conf als Referenz nutzen
+# Nginx: nginx.conf als Referenz nutzen
 ```
 
 ### Smoke Test Flow
@@ -155,7 +155,7 @@ chmod -R 775 includes/templates_c/ includes/cache/ includes/configs/
 ### Produktion
 ```bash
 # Error Reporting für Produktion
-# In public_html/index.php ist bereits gesetzt:
+# In index.php ist bereits gesetzt:
 # error_reporting(E_ALL ^E_NOTICE);
 # ini_set('display_errors','0');
 

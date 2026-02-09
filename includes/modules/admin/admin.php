@@ -20,7 +20,7 @@ if (!empty($_SESSION['premium']['questManager']) && !$user["globalQuestManager"]
     $user['questManager'] = true;
 }
 
-require_once ('../includes/class/class.admin.php');
+require_once(ABSPATH . 'includes/class/class.admin.php');
 
 if ($GET['view'] == 'tests' && $user['cardinal'])
 {

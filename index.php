@@ -1,5 +1,13 @@
 <?php
-require_once('../includes/vendor/autoload.php');
+/**
+ * Front Controller – Secret Republic V3
+ *
+ * SR_ROOT points to the project / webroot directory.
+ * All paths are resolved from SR_ROOT – no ../ hacks.
+ */
+define('SR_ROOT', __DIR__);
+
+require_once SR_ROOT . '/includes/vendor/autoload.php';
 
 if(!ob_start("ob_gzhandler")) ob_start();
 error_reporting(E_ALL ^E_NOTICE);
@@ -10,21 +18,15 @@ date_default_timezone_set("Europe/London");
 
 define('cardinalSystem', true);
 
-require_once('../includes/i18n.php');
-require_once('../includes/class/cardinal.php');
-
-$path = dirname(__FILE__);
-$path = explode('/', $path);
-
-unset( $path[count($path) - 1]);
-
+require_once SR_ROOT . '/includes/i18n.php';
+require_once SR_ROOT . '/includes/class/cardinal.php';
 
 $smarty = new \Smarty\Smarty;
-$smarty->setTemplateDir(implode('/', $path) . '/' . 'templates');
-$smarty->setCompileDir(implode('/', $path) . '/' . 'includes/templates_c');
-$smarty->setCacheDir(implode('/', $path) . '/' . 'includes/cache');
+$smarty->setTemplateDir(SR_ROOT . '/templates');
+$smarty->setCompileDir(SR_ROOT . '/includes/templates_c');
+$smarty->setCacheDir(SR_ROOT . '/includes/cache');
 // Smarty config dir - use project-level configs directory if it exists, otherwise use a temp path
-$configDir = implode('/', $path) . '/' . 'includes/configs';
+$configDir = SR_ROOT . '/includes/configs';
 if (!is_dir($configDir)) {
     @mkdir($configDir, 0775, true);
 }
@@ -77,15 +79,15 @@ if ($GETQuery) {
 		$GET[$GETQuery[$i]] = isset( $GETQuery[$i + 1]) ? $GETQuery[$i + 1] : "" ;
 }
 
-if (!file_exists('../includes/database_info.php')) {
+if (!file_exists(SR_ROOT . '/includes/database_info.php')) {
 	$include = 'setup';
 } else {
 	$cardinal = new Cardinal();
 	$url = $cardinal->config['url'];
 }
 
-if ($include != "404" && !file_exists("../includes/modules/" . $include . ".php"))
-  $include .= is_dir("../includes/modules/" . $include) ? "/" . $include : $include = "main/main";
+if ($include != "404" && !file_exists(SR_ROOT . '/includes/modules/' . $include . '.php'))
+  $include .= is_dir(SR_ROOT . '/includes/modules/' . $include) ? "/" . $include : $include = "main/main";
 
 $GET["currentPage"] = $include;
 
@@ -93,7 +95,7 @@ $GET["currentPage"] = $include;
 $_GET = array_merge(array("GET" => $_GET), $GET ?? array());
 
 
-require_once('../includes/header.php');
+require_once SR_ROOT . '/includes/header.php';
 
 // i18n: handle ?lang= switch + assign language dict to Smarty
 handle_lang_switch();
@@ -108,7 +110,7 @@ if (function_exists('sec2hms'))         $smarty->registerPlugin('modifier', 'sec
 if (function_exists('ordinal'))         $smarty->registerPlugin('modifier', 'ordinal', 'ordinal');
 if (function_exists('ordinalSuffix'))   $smarty->registerPlugin('modifier', 'ordinalSuffix', 'ordinalSuffix');
 
-$include = file_exists("../includes/modules/" . $include . ".php") ? "../includes/modules/" . $include . ".php" : '404';
+$include = file_exists(SR_ROOT . '/includes/modules/' . $include . '.php') ? SR_ROOT . '/includes/modules/' . $include . '.php' : '404';
 if ($include == "404")
   $cardinal->show_404();
 else require( $include );

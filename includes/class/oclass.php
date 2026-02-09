@@ -631,7 +631,7 @@ class Organization extends Alpha
 
   function organizationForum()
   {
-    require_once('../includes/class/class.forum.php');
+    require_once(ABSPATH . 'includes/class/class.forum.php');
 
     $fclass = new Forum($this->organization['id'], $this->access);
 
@@ -888,7 +888,7 @@ class Organization extends Alpha
     if ($this->GET['manage'] == 'forum') {
       $this->templateVariables['loadd'] = 'manage_forum';
 
-      require_once('../includes/class/class.forum.php');
+      require_once(ABSPATH . 'includes/class/class.forum.php');
       $fclass = new Forum($this->organization['id']);
 
       $this->manageForums($fclass);

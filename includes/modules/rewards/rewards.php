@@ -76,5 +76,6 @@ else
   $rewards = $db->where("user_id", $user["id"])->orderBy("created", "desc")
 	              ->paginate("user_rewards", $pages->current_page, "title,reward_id,received, created");
   $tVars["rewards"] = $rewards;
+  $tVars["randVar"] = random_int(1, 3);
   $tVars["display"] = "rewards/rewards.tpl";
 }

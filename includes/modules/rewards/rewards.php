@@ -37,8 +37,17 @@ if ($GET["myReward"])
         foreach($reward["achievements"] as &$achievement)
           $achievement = $db->where("achievement_id", $achievement)->getOne("achievements", "name, image");
 
-    $reward['components']   = $reward['components'] ? array_values(unserialize($reward['components'])) : [];
-    $reward['applications'] = $reward['applications'] ? array_filter(unserialize($reward['applications']), function($app) { return $app['app_id']; }) : [];
+    $componentsRaw   = $reward['components'] ? @unserialize($reward['components']) : false;
+    $reward['components'] = is_array($componentsRaw) ? array_values($componentsRaw) : [];
+
+    $applicationsRaw = $reward['applications'] ? @unserialize($reward['applications']) : false;
+    if (!is_array($applicationsRaw)) {
+        // Might be a JSON string in some edge cases
+        $applicationsRaw = is_string($reward['applications']) ? @json_decode($reward['applications'], true) : null;
+    }
+    $reward['applications'] = is_array($applicationsRaw)
+        ? array_filter($applicationsRaw, function($app) { return !empty($app['app_id']); })
+        : [];
 
     foreach($reward['components'] as &$component)
       $component = array_merge($component, $db->where('component_id', $component['component_id'])->getOne('components'));

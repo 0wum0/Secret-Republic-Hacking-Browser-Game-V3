@@ -5,7 +5,7 @@ $cardinal->mustLogin();
 require_once('../includes/header.php');
 require_once('../includes/class/tclass.php');
 
-  $page_title="Training facility";
+  $page_title=t('TRAIN_FACILITY');
 
 	$trainTask = $taskclass->check_fetch_task($user, 9);
 
@@ -34,11 +34,11 @@ require_once('../includes/class/tclass.php');
                                       
          if (!$cardinal->verify_captcha_response() && !$finish) {
             // What happens when the CAPTCHA was entered incorrectly
-            $errors [] = "Invalid decrypted data. New encrypted string fetched.";
+            $errors [] = t('TRAIN_ERR_CAPTCHA');
           
           } else {
             $trainTask['steps'] -- ;
-            $success = "Correct answer. File decrypted";
+            $success = t('TRAIN_CORRECT');
             
             if ($trainTask['steps'] == 0)
             {
@@ -82,7 +82,7 @@ require_once('../includes/class/tclass.php');
 				$trainTask['failed'] = 0;
 				$trainTask['step'] = $game->generateNumbersPattern($trainTask['difficulty']);
 				
-				$success[] = "You matched the pattern perfectly. Well done!";
+				$success[] = t('TRAIN_PATTERN_OK');
 				
 				
 			} 
@@ -95,7 +95,7 @@ require_once('../includes/class/tclass.php');
 					
 				}
 				else
-					$errors[] = "Incorrect answer. You can try 3 times per pattern before failing your training ^^.";
+					$errors[] = t('TRAIN_PATTERN_FAIL');
 			}
 			$task = unserialize($trainTask['data']);
 			$task['steps'] = $trainTask['steps'];

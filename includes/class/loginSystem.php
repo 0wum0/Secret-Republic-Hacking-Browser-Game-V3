@@ -132,7 +132,7 @@ class LoginSystem extends Alpha
   {
     if ($this->isUsernameUsed($username))
     {
-      add_alert($username . ' has already been used by another citizen.');
+      add_alert(t('ERR_USERNAME_USED', null, [':username' => $username]));
       return false;
     }
     return true;
@@ -167,7 +167,7 @@ class LoginSystem extends Alpha
   {
     if (!$this->validateUsername($username))
     {
-      add_alert("Username must contain only letters/numbers and have between 4 and 15 characters.");
+      add_alert(t('ERR_USERNAME_VALID'));
       return false;
     }
     else return true;
@@ -257,13 +257,13 @@ class LoginSystem extends Alpha
           } //$userCredentials['group_id']
 
 
-        $message = 'Someone has tried and failed to login into your account. Log from '. date('d/F/Y H:i:s', $dataInsert['created']);
+        $message = t('LOGIN_FAILED_MSG', null, [':date' => date('d/F/Y H:i:s', $dataInsert['created'])]);
         require_once(ABSPATH . 'includes/class/userclass.php');
-        $this->uclass->send_msg(-1, $userData['id'], $message, 'Failed login attempt!');
+        $this->uclass->send_msg(-1, $userData['id'], $message, t('LOGIN_FAILED_ATTEMPT'));
 
       } //$userData['id']
 
-    $this->errors[] = sprintf('Access denied. <a href="%sregister/forgot/password">Forgot password?</a>', URL);
+    $this->errors[] = t('LOGIN_ACCESS_DENIED', null, [':url' => URL . 'register/forgot/password']);
 
     return false;
   } // loginUser
@@ -285,7 +285,7 @@ class LoginSystem extends Alpha
 
     if (!$this->db->insert('user_session', $insertData))
 	{
-		$this->errors[] = 'Could not create your session';
+		$this->errors[] = t('LOGIN_SESSION_ERROR');
 		return;
 	}
 
@@ -299,7 +299,7 @@ class LoginSystem extends Alpha
     $_SESSION['session2']     = $session2;
     $_SESSION['login']         = true;
 
-    add_alert('Welcome, ' . $username . '.<br/>All systems have been initialised successfully. Grid Link: Online.',
+    add_alert(t('LOGIN_WELCOME', null, [':username' => $username]),
               'success');
 
     $_SESSION['group'] = $this->getUserPermissions($userCredentials['group_id']);
@@ -320,9 +320,9 @@ class LoginSystem extends Alpha
         ));
       } //$banned['expires'] <= time()
       else {
-        $this->errors[] = 'Account blocked';
-        $this->errors[] = 'Reason: ' . $banned['reason'];
-        $this->errors[] = 'Expires: ' . date('d/F/Y H:i:s', $banned['expires']);
+        $this->errors[] = t('LOGIN_ACCOUNT_BLOCKED');
+        $this->errors[] = t('LOGIN_BAN_REASON', null, [':reason' => $banned['reason']]);
+        $this->errors[] = t('LOGIN_BAN_EXPIRES', null, [':date' => date('d/F/Y H:i:s', $banned['expires'])]);
       }
   }
   function checkIfSessionIsValid()
@@ -361,7 +361,7 @@ class LoginSystem extends Alpha
       }
       else
       {
-     	$this->errors[] = 'Your session has expired. Authentication required.';
+     	$this->errors[] = t('LOGIN_SESSION_EXPIRED');
         $this->logout();
       }
 	  }
@@ -380,7 +380,7 @@ class LoginSystem extends Alpha
     session_destroy();
     session_unset();
     session_start();
-    add_alert('You have been logged out.');
+    add_alert(t('LOGIN_LOGGED_OUT'));
 
 
 	  $_SESSION['showedVideo'] = true;

@@ -9,11 +9,11 @@
            <div class="alphaGlow mb10">
      
             <form method="post">
-              <button disabled class="disabled">enter your new password twice</button>
+              <button disabled class="disabled">{$L.FORGOT_ENTER_NEW}</button>
               <input type="hidden" name="process" value="true"/>
-              <input style="border-top:0" type="password"  placeholder="Password" name="password" required />
-              <input style="border-top:0" type="password"  placeholder="Confirm password" name="confirm_password" required />
-              <input type="submit" value="Change my password" style="border-top:0;"/>
+              <input style="border-top:0" type="password"  placeholder="{$L.FORGOT_PASS_PH}" name="password" required />
+              <input style="border-top:0" type="password"  placeholder="{$L.FORGOT_CONFIRM_PH}" name="confirm_password" required />
+              <input type="submit" value="{$L.FORGOT_CHANGE_BTN}" style="border-top:0;"/>
             </form>
           </div>
          <br/><br/><br/><br/>

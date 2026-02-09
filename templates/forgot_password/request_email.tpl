@@ -9,9 +9,9 @@
            <div class="alphaGlow mb10">
      
             <form method="post">
-              <button disabled class="disabled">forgot username <span class="glyphicon glyphicon-lock"></span> password combo</button>
+              <button disabled class="disabled">{$L.FORGOT_HEADING}</button>
               <input type="hidden" name="process" value="true"/>
-              <input style="border-top:0" type="email"  placeholder="Email" value="{$smarty.post.email}" name="email" required />
+              <input style="border-top:0" type="email"  placeholder="{$L.FORGOT_EMAIL_PH}" value="{$smarty.post.email}" name="email" required />
            
 			  <button type="submit" style="border-top:0;"><span class="glyphicon glyphicon-send"></span></button>
             </form>
@@ -20,7 +20,7 @@
           
           <div class="well black text-center nomargin">
 
-            Please contact our team if you encounter any problems.
+            {$L.FORGOT_CONTACT_TEAM}
           </div>
           <a href="{$config.url}" class="button text-center"><span class="glyphicon glyphicon-home"></span></a>
         </div>

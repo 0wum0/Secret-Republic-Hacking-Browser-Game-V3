@@ -27,20 +27,20 @@ class RegistrationSystem extends Alpha
       $cardinal->loginSystem->isUsernameUsedThrowAlert($username);
 
     if ($email === false) {
-      add_alert('The email you have provided is not valid');
+      add_alert(t('ERR_EMAIL_INVALID'));
     } //$email === false
     elseif ($this->isEmailUsed($email))
-      add_alert($email . ' has already been used by another citizen.');
+      add_alert(t('ERR_EMAIL_USED', null, [':email' => $email]));
     elseif (!checkdnsrr($domain = substr(strrchr($email, "@"), 1), "MX")) {
-      add_alert('Cardinal System: I could not validate your email domain ['.$domain.']. This might be an error on my part. However, make sure you have not misspelled your address.', "warning");
+      add_alert(t('ERR_EMAIL_DNS', null, [':domain' => $domain]), "warning");
     }
 
     if ($zone < 1 || $zone > 6) {
-      add_alert('Invalid zone selected');
+      add_alert(t('ERR_ZONE_INVALID'));
     }
 
     if (!$_POST['terms'])
-      add_alert('You must agree to our Privacy Policy and Terms of Service');
+      add_alert(t('ERR_TOS_REQUIRED'));
   }
   function registerUser()
   {
@@ -56,16 +56,16 @@ class RegistrationSystem extends Alpha
 
 
       if ($username == $password)
-        add_alert('Why are your username and password the same?');
+        add_alert(t('ERR_USER_PASS_SAME'));
 
       if ($password === false)
-        add_alert('Password must be between 4 and 20 characters.');
+        add_alert(t('ERR_PASSWORD_REQ'));
 
       if (!there_are_errors()) {
         $uid = $this->addUser($username, $password, $email, $pin, $zone);
 
         if (!$uid)
-          add_alert('Something went terribly wrong');
+          add_alert(t('ERR_SOMETHING_WRONG'));
       }
     }
 
@@ -127,7 +127,7 @@ class RegistrationSystem extends Alpha
     $checkEmailLimit = $this->db->where("user_id", $uid)->where('created', time() - 24 * 60 * 60, ">=")->getOne("user_email_confirmation", "count(*) nrc");
     if ($checkEmailLimit['nrc'] >= 2)
     {
-       add_alert("You can request a new confirmation email 2 times over a 24 hours period.");
+       add_alert(t('ERR_EMAIL_CONFIRM_LIMIT'));
        return false;
     }
   	$hash_code = $cardinal->loginSystem->generatePasswordHash($credentials['email'].rand(-1000000,1000000).time(), $username.time().$uid);
@@ -155,7 +155,7 @@ class RegistrationSystem extends Alpha
     }
     else
     {
-      add_alert("Unknow error took place. Please try again later!");
+      add_alert(t('ERR_UNKNOWN'));
       return false;
     }
 	  return true;

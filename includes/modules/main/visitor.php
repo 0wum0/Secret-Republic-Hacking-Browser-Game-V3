@@ -58,8 +58,8 @@ if (empty($_SESSION['showedVideo']))
   $tVars["main_stats"] = $smarty->fetch("home/main_stats.tpl");
   $smarty->caching = 0;
 	
-	$messenger[] = array("message" => "Please authenticate on the Grid.");
-$messenger[] = array("message" => "Access restricted.", "type" => "error");
+	$messenger[] = array("message" => t('VISITOR_AUTH_GRID'));
+$messenger[] = array("message" => t('VISITOR_ACCESS_RESTRICT'), "type" => "error");
   
   $tVars["no_footer_bar"] = true;
   $tVars["display"] = 'home/splash_screen.tpl';	

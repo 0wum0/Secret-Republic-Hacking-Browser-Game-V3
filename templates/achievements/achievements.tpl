@@ -23,7 +23,7 @@
 			
 		</div>
 		<div class="panel-footer text-right">
-			<em>{$achievement.points|floatval|number_format} rank points</em>
+			<em>{$achievement.points|floatval|number_format} {$L.UI_RANK_POINTS}</em>
 		</div>
 	</div>
 	</div>

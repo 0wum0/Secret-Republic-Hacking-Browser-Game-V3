@@ -8,7 +8,7 @@
 	</div>
 </div>
 <div class="alert alert-info">
-  	<strong>It costs {$config.newMessageDataPoints|floatval|number_format} Data Points to send a new message</strong>
+  	{$L.UI_NEW_MSG_COST|replace:':cost':{$config.newMessageDataPoints|floatval|number_format}}
   </div>
   {include file="error_success.tpl"}
 <form method="post">

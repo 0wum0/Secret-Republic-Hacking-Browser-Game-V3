@@ -59,12 +59,12 @@
     <div class="panel panel-glass">
 		<div class="panel-body">
 			
-			 <small>last message by {$m.last_reply_username} {$m.last_reply_date}.</small>
+			 <small>{$L.FORUM_LAST_BY|replace:':date':$m.last_reply_date|replace:':user':$m.last_reply_username}.</small>
 			 
 			 
     	</div>
 		 <div class="panel-footer text-right">
-			 <small> <em>{if $m.replies > 1}{$m.replies|floatval|number_format} message(s) in {/if}conversation with {$m.username}</em></small>
+			 <small> <em>{if $m.replies > 1}{$L.UI_MESSAGES_IN_CONV|replace:':count':{$m.replies|floatval|number_format}} {/if}{$L.UI_CONVERSATION_WITH|replace:':user':$m.username}</em></small>
 			  </div>
 	</div>
 		

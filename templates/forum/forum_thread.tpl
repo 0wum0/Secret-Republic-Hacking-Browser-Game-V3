@@ -10,7 +10,7 @@
 <div class="row">
 	<div class="col-md-7">
 		<h3>{$thread.title}</h3>
-		<h5>Discussion started by {$thread.user|profile_link} in <a href="{$furl}fid/{$forum.id}" >{$forum.name}</a> {$thread.created|date_fashion}</h5>
+		<h5>{$L.FORUM_STARTED_BY|replace:':user':{$thread.user|profile_link}|replace:':url':"{$furl}fid/{$forum.id}"|replace:':forum':$forum.name|replace:':date':{$thread.created|date_fashion}}</h5>
 	</div>
 	
 </div>
@@ -23,7 +23,7 @@
 				 {if $thread.closed && !$forumAccess.forumManager} 
 				  <a><button>CLOSED</button></a>
 				 {else} 
-				  <a href="#quick_reply" class="button text-center">ADD REPLY</a>
+				  <a href="#quick_reply" class="button text-center">{$L.UI_ADD_REPLY}</a>
 				{/if}
 			</div>
 		{if $forumAccess.forumManager}
@@ -57,7 +57,7 @@
  	{include file="forum/post_bit.tpl"} 
  {foreachelse} <hr/>
 <div class="well text-center">
-	 No replies, yet! Would you like to be my first?
+	 {$L.UI_NO_REPLIES_YET}
 </div>
  {/foreach} 
  
@@ -70,7 +70,7 @@
     {if !$thread.closed || $forumAccess.forumManager }
     {if $thread.closed}
       <div class="alert alert-danger">
-        This thread is closed. However, your access level allows you to reply.
+        {$L.UI_CLOSED_THREAD_REPLY}
       </div>
     {/if}
     <form method="post" id="quick_reply">
@@ -97,7 +97,7 @@
      
  {else}
 <div class="well text-center">
-	 You must be connected in order to reply
+	 {$L.UI_MUST_CONNECT_REPLY}
 </div>
 				{/if}
 				<br/>

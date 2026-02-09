@@ -8,8 +8,6 @@ CARDINAL - ONE OF THE MAIN CLASSES OF THE SYSTEM - N.A.M.
  * Contains everything needed to run the system
  */
 
-require('alpha.class.php');
-
 // ABSPATH = project root (same as SR_ROOT defined in index.php)
 if (defined('SR_ROOT')) {
     define('ABSPATH', SR_ROOT . '/');
@@ -20,6 +18,11 @@ if (defined('SR_ROOT')) {
     unset($path[count($path) - 1], $path[count($path) - 1]);
     define('ABSPATH', implode('/', $path) . '/');
 }
+
+// Ensure Composer autoload is always available (PHPMailer, reCAPTCHA, etc.)
+require_once(ABSPATH . 'includes/vendor/autoload.php');
+
+require('alpha.class.php');
 
 class Cardinal extends Alpha {
   function __construct() {

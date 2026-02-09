@@ -22,13 +22,26 @@
 		'recaptcha_site_key' => '', // get key if you would like to activate! https://www.google.com/recaptcha/admin/create
 		'recaptcha_secret_key' => '', // get key if you would like to activate! https://www.google.com/recaptcha/admin/create
 		
-		"smtp_host" => "",
-		"smtp_username" => "",
-		"smtp_password" => "",
-		"smtp_name" => "Secret Republic",
-		"smtp_from" =>"undefined@undefined.com",
-		"smtp_secure" => "tls",
-		"smtp_port" =>587,
+		// ── SMTP Configuration (PHPMailer) ──────────────────────────
+		// Leave smtp_host empty to disable email sending.
+		// Registration and other flows will continue without errors.
+		//
+		// Hostinger example:
+		//   smtp_host     => "smtp.hostinger.com"
+		//   smtp_port     => 465
+		//   smtp_secure   => "ssl"
+		//   smtp_username => "noreply@yourdomain.com"
+		//   smtp_password => "<email-account-password>"
+		//   smtp_from     => "noreply@yourdomain.com"
+		//   smtp_name     => "Secret Republic"
+		// ─────────────────────────────────────────────────────────────
+		"smtp_host"     => "",                      // SMTP server hostname
+		"smtp_port"     => 587,                     // 587 for TLS, 465 for SSL
+		"smtp_secure"   => "tls",                   // "tls" or "ssl"
+		"smtp_username" => "",                       // SMTP login / email address
+		"smtp_password" => "",                       // SMTP password
+		"smtp_from"     => "noreply@yourdomain.com", // Envelope-From address
+		"smtp_name"     => "Secret Republic",        // Sender display name
 
 
 	  	"gridNodeSize" => 10,

@@ -442,6 +442,13 @@ php -v   # Must show 8.3.x or 8.4.x
 
 ## Changelog
 
+### 2026-02-09: fix: decode unicode escaped translations
+
+- **Fixed:** German translation strings containing `\uXXXX` unicode escape sequences (e.g. `Zur\u00fcck`) were rendered literally instead of as proper UTF-8 characters (e.g. `Zurück`).
+- **Root cause:** Language files use single-quoted PHP strings, which do not interpret `\u` escapes. The values were stored with literal backslash-u sequences.
+- **Fix:** Added `_sr_decode_unicode()` helper in `includes/i18n.php` that converts `\uXXXX` sequences to real UTF-8 characters at dictionary load time using `preg_replace_callback` and `mb_chr`. Applied via `array_map` in `_sr_load_dict()` — no template or language file changes needed.
+- **Changed files:** `includes/i18n.php`
+
 ### 2026-02-09: Flat Webroot Layout (no more public_html/ subfolder)
 
 - **Breaking change:** The `public_html/` wrapper directory has been removed. All files now live directly in the webroot.

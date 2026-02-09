@@ -64,6 +64,31 @@ function set_lang(string $lang): void
 }
 
 /**
+ * Decode unicode escape sequences (\uXXXX) in a translation value.
+ *
+ * Language files use single-quoted PHP strings where \uXXXX is stored
+ * literally (PHP only interprets \u in double-quoted strings).  This
+ * helper converts those sequences to real UTF-8 characters at load time.
+ *
+ * @param mixed $value A single string or an array of strings.
+ * @return mixed The decoded value.
+ */
+function _sr_decode_unicode($value)
+{
+    if (is_array($value)) {
+        return array_map('_sr_decode_unicode', $value);
+    }
+
+    if (!is_string($value) || strpos($value, '\\u') === false) {
+        return $value;
+    }
+
+    return preg_replace_callback('/\\\\u([0-9a-fA-F]{4})/', function ($m) {
+        return mb_chr((int) hexdec($m[1]), 'UTF-8');
+    }, $value);
+}
+
+/**
  * Load language dictionary (cached per request).
  */
 function _sr_load_dict(): array
@@ -76,12 +101,15 @@ function _sr_load_dict(): array
     $file = dirname(__DIR__) . '/lang/' . $lang . '.php';
 
     if (file_exists($file)) {
-        $GLOBALS['_SR_LANG_CACHE'] = require $file;
+        $dict = require $file;
     } else {
         // Fallback to default language
         $fallbackFile = dirname(__DIR__) . '/lang/' . SR_DEFAULT_LANG . '.php';
-        $GLOBALS['_SR_LANG_CACHE'] = file_exists($fallbackFile) ? require $fallbackFile : [];
+        $dict = file_exists($fallbackFile) ? require $fallbackFile : [];
     }
+
+    // Decode any \uXXXX unicode escape sequences to real UTF-8 characters
+    $GLOBALS['_SR_LANG_CACHE'] = array_map('_sr_decode_unicode', $dict);
 
     return $GLOBALS['_SR_LANG_CACHE'];
 }

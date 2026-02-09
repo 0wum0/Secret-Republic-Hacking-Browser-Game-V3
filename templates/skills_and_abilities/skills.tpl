@@ -2,10 +2,10 @@
 <div class="row">
 	<div class="col-xs-10">
 		<div class="well black text-center">
-			 You have <strong>{$user.skillPoints} Universal Skill Points (USP)</strong> available.
+			 {$L.SKILLS_POINTS_AVAIL}: <strong>{$user.skillPoints} USP</strong>
 			 {if $user.skillPoints}
 			 <br/>
-			 After inputing the number of points you want to assign to each skill, press the update button at the bottom!
+			 {$L.SKILLS_DESIGNATE}
 			 {/if}
 		</div>
 	</div>
@@ -78,8 +78,8 @@ background:rgba(0, 87, 132, 0.35); height:48px;
 		 <div class="row-fluid">
 		 	<div class="col-md-12">
 		 <button type="submit"  name="form_identifier" value="add_points" 
-		 				 title="Designate skill points as specified above" class="skill_submit mb10" style="display:none">
-		 			Add skill points to skills
+		 				 title="{$L.SKILLS_DESIGNATE}" class="skill_submit mb10" style="display:none">
+		 			{$L.SKILLS_DESIGNATE}
 		 	</button>
 		 		</div>
 		 	</div>
@@ -112,7 +112,7 @@ background:rgba(0, 87, 132, 0.35); height:48px;
 							</div>
 						</div>
 						{if $user.skillPoints}
-						<div class="col-xs-12 col-md-2 skill-col " title="Don't forget to save changes">
+						<div class="col-xs-12 col-md-2 skill-col " title="{$L.SKILLS_DONT_FORGET}">
 								<input type="text" class="glass-input text-center skill_input" value="{$smarty.post.skills[$skill_ID]}" tabindex="{$tabindex}" name="skills[{$skill_ID}]" autocomplete="off" placeholder="assign points" />
 								
 						</div>
@@ -129,7 +129,7 @@ background:rgba(0, 87, 132, 0.35); height:48px;
 												<p>{$commandActions[$command].name}{if 1 eq 2} with rate of {$influence} {/if} {$commandActions[$command].verb} by {$influence*$userSkills[$skill_ID].level}%</p>
 								{/foreach}
 
-								<small>The higher the skill level the bigger the influence will become.</small>
+								<small>{$L.SKILLS_HIGHER_LEVEL}</small>
 </div>
 							</blockquote>
 						
@@ -151,8 +151,8 @@ background:rgba(0, 87, 132, 0.35); height:48px;
 		 <div class="row-fluid">
 		 	<div class="col-md-12">
 		 <button type="submit"  name="form_identifier" tabindex="{$tabindex+1}" value="add_points" 
-		 				 title="Designate skill points as specified above" class="skill_submit mb10" style="display:none">
-		 			Add skill points to skills
+		 				 title="{$L.SKILLS_DESIGNATE}" class="skill_submit mb10" style="display:none">
+		 			{$L.SKILLS_DESIGNATE}
 		 	</button>
 		 		</div>
 		 	</div>

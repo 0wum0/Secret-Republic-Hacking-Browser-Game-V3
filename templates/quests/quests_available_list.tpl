@@ -1,5 +1,5 @@
-<h3 style="margin-bottom:0">Dailies</h3>
-<small>missions which can be done on a daily basis</small>
+<h3 style="margin-bottom:0">{$L.QUEST_DAILIES}</h3>
+<small>{$L.QUEST_DAILY_DESC}</small>
 <hr/>
 {assign var = found value = false}
 {foreach from=$quests item=quest} 
@@ -12,9 +12,9 @@
      	<div class="col-xs-2 nopadding">
 			<button disabled style="border-bottom:0; border-right:0">
             {if $quest.party}
-            Party
+            {$L.QUEST_PARTY}
             {else}
-            SOLO
+            {$L.QUEST_SOLO}
             {/if}
 			</button>
          </div>
@@ -37,7 +37,7 @@
                                               textCountdown = "true" progressBarClass = "progress-info"
                                               progressBarCountdown = "true" reloadOnFinish = "true"
 											  id=$quest.id
-                                              textLeft="Mission will be available again in"}
+                                              textLeft=$L.QUEST_AVAIL_AGAIN}
 											  </div>
 				{/if}
 		</div>
@@ -55,12 +55,12 @@
 {/foreach}
 {if !$found} 
 	<div class="alert alert-warning">
-		No daily missions currently available in this mission group. 
+		{$L.QUEST_NO_DAILY} 
 	</div>
 {/if}
 
-<h3 style="margin-bottom:0">Normal and repeatable</h3>
-<small>missions that can either be completed  once or repeated with no rewards</small>
+<h3 style="margin-bottom:0">{$L.QUEST_NORMAL_REPEAT}</h3>
+<small>{$L.QUEST_NORMAL_DESC}</small>
 <hr/>
 {assign var = found value = false}
 {foreach from=$quests item=quest} 
@@ -73,15 +73,15 @@
 		 	<button disabled style="border-right:0;border-bottom:0">
             {if $quest.type eq 2}
             {if $quest.done}
-            Repeatable
+            {$L.QUEST_REPEATABLE}
             {else}
-            Not done
+            {$L.QUEST_NOT_DONE}
             {/if}
             {else}
             {if $quest.done}
-            Done
+            {$L.QUEST_DONE_LABEL}
             {else}
-            Not done
+            {$L.QUEST_NOT_DONE}
             {/if}
             {/if}</button>
          </div>
@@ -97,9 +97,9 @@
 		</div>
          <div class="col-xs-4 nopadding"><button disabled style="border-right:0" >
             {if $quest.party}
-            Party
+            {$L.QUEST_PARTY}
             {else}
-            SOLO
+            {$L.QUEST_SOLO}
             {/if}</button>
          </div>
          <div class="col-xs-8 nopadding">
@@ -115,7 +115,7 @@
 
 {if !$found} 
 	<div class="alert alert-warning">
-		No normal or repeatable missions currently available in this mission group. 
+		{$L.QUEST_NO_NORMAL} 
 	</div>
 {/if}
 

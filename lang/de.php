@@ -767,4 +767,80 @@ return [
     'GRID_FREE_DP'           => 'Frei schwebende Datenpunkt-Reste. Einsammeln?',
     'GRID_NO_FLOATING_PTS'   => 'keine schwebenden Punkte',
     'GRID_EMPTY_NODE'        => 'LEERER KNOTEN',
+
+    // ── Skills-Seite ──
+    'SKILLS_DESIGNATE'       => 'Skill-Punkte wie oben angegeben zuweisen',
+    'SKILLS_DONT_FORGET'     => 'Vergiss nicht, die \u00c4nderungen zu speichern',
+    'SKILLS_HIGHER_LEVEL'    => 'Je h\u00f6her der Skill-Level, desto gr\u00f6\u00dfer wird der Einfluss.',
+
+    // ── F\u00e4higkeiten-Seite ──
+    'ABILITIES_NAV'          => 'F\u00e4higkeiten',
+    'ABILITIES_DECREASE'     => 'Wartezeit um eine Stunde verk\u00fcrzen f\u00fcr 1 Alpha-M\u00fcnze',
+    'ABILITIES_REQUIREMENTS' => 'Voraussetzungen',
+    'ABILITIES_BONUS'        => 'Bonus-Skill-Punkte f\u00fcr n\u00e4chstes Level',
+    'ABILITIES_UPGRADE'      => 'Verbessern',
+
+    // ── Lager Extras ──
+    'STORAGE_SELL_WARN'      => 'Du bist dabei, diesen Gegenstand zu verkaufen und damit zu verlieren. Der offizielle Shop unterbewertet den Gegenstand und gibt dir weniger Geld, wenn er besch\u00e4digt ist.',
+    'STORAGE_SELL_ITEM'      => 'Verkaufen [:price$]',
+    'STORAGE_REPAIR'         => 'Reparieren',
+    'STORAGE_MOUNT_SERVER'   => 'Server',
+    'STORAGE_PICK_SERVER'    => 'Server ausw\u00e4hlen',
+    'STORAGE_MOUNT_SLOT'     => 'Steckplatz',
+    'STORAGE_REPLACE'        => 'Ersetzen: :name',
+
+    // ── Job/Training-Navigation ──
+    'JOB_TRAIN_NAV'          => 'Trainieren',
+    'TRAIN_PATTERN_HINT'     => 'Probleme mit den Musterspielen? Das Gef\u00fchl, diese Modelle nie zu durchschauen? Versuche, <a href="http://www.cimt.plymouth.ac.uk/projects/mepres/allgcse/bkb12.pdf" target="_blank">diesen Spickzettel</a> zu \u00fcberfliegen \u2013 er dient als Inspiration f\u00fcr die meisten davon.',
+
+    // ── Quests Extras ──
+    'QUEST_ACHIEVEMENT'      => 'Erfolg: :name',
+    'QUEST_AVAIL_AGAIN'      => 'Mission ist wieder verf\u00fcgbar in',
+    'QUEST_FINISHED_DATE'    => 'Abgeschlossen :date.',
+    'QUEST_RESUME'           => 'Mission fortsetzen',
+    'QUEST_PAUSE'            => 'Mission pausieren',
+    'QUEST_NOTEPAD'          => 'Notizblock',
+    'QUEST_NOTEPAD_PH'       => 'Missions-Notizblock',
+    'QUEST_DAILIES'          => 'T\u00e4gliche',
+    'QUEST_NORMAL_REPEAT'    => 'Normal und wiederholbar',
+    'QUEST_FEEDBACK_FOR'     => 'Feedback-Sitzung f\u00fcr <em>:title</em>',
+    'QUEST_DIFFICULTY'       => 'Schwierigkeit',
+    'QUEST_TIME'             => 'Zeit',
+    'QUEST_REPLAY_VALUE'     => 'Wiederspielwert',
+
+    // ── Organisation Extras ──
+    'ORG_EDIT_SECTION'       => 'Bereich bearbeiten',
+    'ORG_CONFIRM_ACTION'     => 'Aktion best\u00e4tigen',
+    'ORG_EDIT_FORUM'         => 'Forum bearbeiten',
+    'ORG_SECTION_NAME'       => 'Bereichsname',
+    'ORG_FORUM_NAME'         => 'Forumname',
+    'ORG_PROCESS'            => 'Verarbeiten',
+    'ORG_ORDER'              => 'Reihenfolge',
+    'ORG_RANK_NAME'          => 'Rangname \u2013 max. 15 Zeichen',
+    'ORG_DELETE_RANK'        => 'Rang l\u00f6schen',
+
+    // ── F\u00e4higkeiten-Seite Extras ──
+    'ABILITIES_HIVE'         => 'F\u00e4higkeiten-Bienenstock',
+    'ABILITIES_NOT_LEARNT'   => 'nicht erlernt',
+    'ABILITIES_MAX_LEVEL'    => 'Maximallevel f\u00fcr diese F\u00e4higkeit erreicht',
+    'ABILITIES_NEED_LEVEL'   => 'Du musst Level :level sein, um die F\u00e4higkeit zu verbessern',
+    'ABILITIES_NO_MONEY'     => 'Nicht genug Geld auf deinem Konto',
+    'ABILITIES_NO_ENERGY'    => 'Nicht genug Energie f\u00fcr das Upgrade',
+    'ABILITIES_NO_DP'        => 'Nicht genug Datenpunkte f\u00fcr das Upgrade',
+    'ABILITIES_NO_ACTION'    => 'Keine Aktion',
+    'ABILITIES_DATA_PTS'     => 'Datenpunkte',
+
+    // ── Quest-Listen Extras ──
+    'QUEST_PARTY'            => 'Party',
+    'QUEST_SOLO'             => 'SOLO',
+    'QUEST_REPEATABLE'       => 'Wiederholbar',
+    'QUEST_NOT_DONE'         => 'Nicht erledigt',
+    'QUEST_DONE_LABEL'       => 'Erledigt',
+    'QUEST_NO_DAILY'         => 'Keine t\u00e4glichen Missionen in dieser Missionsgruppe verf\u00fcgbar.',
+    'QUEST_NO_NORMAL'        => 'Keine normalen oder wiederholbaren Missionen in dieser Missionsgruppe verf\u00fcgbar.',
+    'QUEST_DAILY_DESC'       => 'Missionen, die t\u00e4glich erledigt werden k\u00f6nnen',
+    'QUEST_NORMAL_DESC'      => 'Missionen, die einmal abgeschlossen oder ohne Belohnung wiederholt werden k\u00f6nnen',
+
+    // ── Job-Navigation ──
+    'JOB_NAV_JOB'            => 'Job',
 ];

@@ -767,4 +767,80 @@ return [
     'GRID_FREE_DP'           => 'Free floating Data Points scraps. Collect?',
     'GRID_NO_FLOATING_PTS'   => 'no floating points',
     'GRID_EMPTY_NODE'        => 'EMPTY NODE',
+
+    // ── Skills page ──
+    'SKILLS_DESIGNATE'       => 'Designate skill points as specified above',
+    'SKILLS_DONT_FORGET'     => 'Don\'t forget to save changes',
+    'SKILLS_HIGHER_LEVEL'    => 'The higher the skill level the bigger the influence will become.',
+
+    // ── Abilities page ──
+    'ABILITIES_NAV'          => 'Abilities',
+    'ABILITIES_DECREASE'     => 'Decrease waiting time by an hour for 1 Alpha Coin',
+    'ABILITIES_REQUIREMENTS' => 'Requirements',
+    'ABILITIES_BONUS'        => 'Bonus skill points for next level',
+    'ABILITIES_UPGRADE'      => 'Upgrade',
+
+    // ── Storage extras ──
+    'STORAGE_SELL_WARN'      => 'You are about to sell and as such lose this item. The official shop undervalues the item and gives you less money if the item is damaged.',
+    'STORAGE_SELL_ITEM'      => 'Sell [:price$]',
+    'STORAGE_REPAIR'         => 'Repair',
+    'STORAGE_MOUNT_SERVER'   => 'Server',
+    'STORAGE_PICK_SERVER'    => 'Pick server',
+    'STORAGE_MOUNT_SLOT'     => 'Slot',
+    'STORAGE_REPLACE'        => 'Replace: :name',
+
+    // ── Job/Train nav ──
+    'JOB_TRAIN_NAV'          => 'Train',
+    'TRAIN_PATTERN_HINT'     => 'Problems with the pattern games? Feeling like you\'ll never figure out those models? Try skimming through <a href="http://www.cimt.plymouth.ac.uk/projects/mepres/allgcse/bkb12.pdf" target="_blank">this cheatsheet</a>, it serves as inspiration for most of them.',
+
+    // ── Quests extras ──
+    'QUEST_ACHIEVEMENT'      => 'Achievement: :name',
+    'QUEST_AVAIL_AGAIN'      => 'Mission will be available again in',
+    'QUEST_FINISHED_DATE'    => 'Finished :date.',
+    'QUEST_RESUME'           => 'Resume mission',
+    'QUEST_PAUSE'            => 'Pause mission',
+    'QUEST_NOTEPAD'          => 'Notepad',
+    'QUEST_NOTEPAD_PH'       => 'Mission notepad',
+    'QUEST_DAILIES'          => 'Dailies',
+    'QUEST_NORMAL_REPEAT'    => 'Normal and repeatable',
+    'QUEST_FEEDBACK_FOR'     => 'Feedback session for <em>:title</em>',
+    'QUEST_DIFFICULTY'       => 'Difficulty',
+    'QUEST_TIME'             => 'Time',
+    'QUEST_REPLAY_VALUE'     => 'Replay value',
+
+    // ── Organization extras ──
+    'ORG_EDIT_SECTION'       => 'Edit section',
+    'ORG_CONFIRM_ACTION'     => 'Confirm action',
+    'ORG_EDIT_FORUM'         => 'Edit forum',
+    'ORG_SECTION_NAME'       => 'Section name',
+    'ORG_FORUM_NAME'         => 'Forum name',
+    'ORG_PROCESS'            => 'Process',
+    'ORG_ORDER'              => 'Order',
+    'ORG_RANK_NAME'          => 'Rank name - max 15 characters',
+    'ORG_DELETE_RANK'        => 'Delete rank',
+
+    // ── Abilities page extras ──
+    'ABILITIES_HIVE'         => 'ability hive',
+    'ABILITIES_NOT_LEARNT'   => 'not learnt',
+    'ABILITIES_MAX_LEVEL'    => 'Max level achieved for this ability',
+    'ABILITIES_NEED_LEVEL'   => 'You need to be level :level to upgrade ability',
+    'ABILITIES_NO_MONEY'     => 'Not enough money available in your balance',
+    'ABILITIES_NO_ENERGY'    => 'Not enough energy to sustain upgrade',
+    'ABILITIES_NO_DP'        => 'Not enough data points to sustain upgrade',
+    'ABILITIES_NO_ACTION'    => 'No action',
+    'ABILITIES_DATA_PTS'     => 'data points',
+
+    // ── Quest list extras ──
+    'QUEST_PARTY'            => 'Party',
+    'QUEST_SOLO'             => 'SOLO',
+    'QUEST_REPEATABLE'       => 'Repeatable',
+    'QUEST_NOT_DONE'         => 'Not done',
+    'QUEST_DONE_LABEL'       => 'Done',
+    'QUEST_NO_DAILY'         => 'No daily missions currently available in this mission group.',
+    'QUEST_NO_NORMAL'        => 'No normal or repeatable missions currently available in this mission group.',
+    'QUEST_DAILY_DESC'       => 'missions which can be done on a daily basis',
+    'QUEST_NORMAL_DESC'      => 'missions that can either be completed once or repeated with no rewards',
+
+    // ── Job nav ──
+    'JOB_NAV_JOB'            => 'Job',
 ];

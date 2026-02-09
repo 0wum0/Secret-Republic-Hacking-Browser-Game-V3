@@ -10,12 +10,12 @@
 {if $abtask.remainingSeconds > 60*60}
 <form method="post">
 	<div style="padding:20px">
-	<button type="submit" name="alpha_coins" value="true">Decrease waiting time by an hour for 1 Alpha Coin</button>
+	<button type="submit" name="alpha_coins" value="true">{$L.ABILITIES_DECREASE}</button>
 	</div>
 </form>
 {/if}
 {else}			
-<h1 class="text-center">ability hive</h1>
+<h1 class="text-center">{$L.ABILITIES_HIVE}</h1>
 <br/>
 <link rel="stylesheet" href="{$config.url}layout/honeycombs/homeycombs/css/homeycombs.css" type="text/css"/>
 <script src="{$config.url}layout/honeycombs/homeycombs/js/jquery.homeycombs.js"></script>
@@ -44,28 +44,28 @@
 <section id = "ability-details">
   {foreach from=$abilities key=abilityKey item=ability}
   <div id = "ability_{$abilityKey}" class="ability nodisplay">
-    <h1>{$ability.name} ({if $userAbilities.$abilityKey}{$userAbilities.$abilityKey}/{$ability.maxLevel}{else}not learnt{/if})</h1>
+    <h1>{$ability.name} ({if $userAbilities.$abilityKey}{$userAbilities.$abilityKey}/{$ability.maxLevel}{else}{$L.ABILITIES_NOT_LEARNT}{/if})</h1>
    <hr/>
 	
     {if $ability.cant eq "maxLevel"}
     <div class="alert alert-warning">
-      Max level achieved for this ability
+      {$L.ABILITIES_MAX_LEVEL}
     </div>
     {elseif $ability.cant eq "userLevel"}
     <div class="alert alert-error">
-      You need to be level {$ability.rates.userLevel} to upgrade ability
+      {$L.ABILITIES_NEED_LEVEL|replace:':level':$ability.rates.userLevel}
     </div>
     {elseif $ability.cant eq "userMoney"}
     <div class="alert alert-error">
-      Not enough money available in your balance
+      {$L.ABILITIES_NO_MONEY}
     </div>
     {elseif $ability.cant eq "userEnergy"}
     <div class="alert alert-error">
-      Not enough energy to sustain upgrade
+      {$L.ABILITIES_NO_ENERGY}
     </div>
 	{elseif $ability.cant eq "dataPoints"}
     <div class="alert alert-error">
-      Not enough data points to sustain upgrade
+      {$L.ABILITIES_NO_DP}
     </div>
     {/if}
     
@@ -80,12 +80,12 @@
       </div>
       <div class="col-xs-3">
         <button disabled >
-        {$ability.rates.dataPoints|floatval|number_format} data points
+        {$ability.rates.dataPoints|floatval|number_format} {$L.ABILITIES_DATA_PTS}
         </button>
       </div>
 	  <div class="col-xs-3">
         <button disabled >
-        {$ability.rates.energy|floatval|number_format} energy
+        {$ability.rates.energy|floatval|number_format} {$L.DASH_ENERGY}
         </button>
       </div>
 	  
@@ -115,7 +115,7 @@
    
         {if $ability.requirements}
         <div class="panel panel-glass">
-          <div class="panel-heading">Requirements</div>
+          <div class="panel-heading">{$L.ABILITIES_REQUIREMENTS}</div>
 		  <div class="panel-body">
 		  <div class="row">
           {foreach from=$ability.requirements key=k item=r}
@@ -138,7 +138,7 @@
         {if $ability.cant ne "maxLevel"}
 		<div class="panel panel-glass">
         <div class="panel-heading">
-          <strong>Bonus skill points for next level</strong>
+          <strong>{$L.ABILITIES_BONUS}</strong>
         </div>
 		<div class="panel-body">
 			<div class="row">
@@ -157,11 +157,11 @@
 	  
         {if !$ability.cant}
         <form method="post"><input type="hidden" name="a" value="{$abilityKey}"/>
-          <input type="submit" value="Upgrade" class="btn" />
+          <input type="submit" value="{$L.ABILITIES_UPGRADE}" class="btn" />
         </form>
         {else}
         <button disabled class="disabled">
-        No action
+        {$L.ABILITIES_NO_ACTION}
         </button>
         {/if}
       </div>

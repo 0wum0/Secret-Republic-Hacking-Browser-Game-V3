@@ -29,7 +29,7 @@
                </div>
                {if $myQuest.achievement}
                <div class="col-xs-12">
-                  <button disabled class="mb10">Achievement: {$myQuest.achievement}</button>
+                  <button disabled class="mb10">{$L.QUEST_ACHIEVEMENT|replace:':name':$myQuest.achievement}</button>
                </div>
                {/if}
             </div>
@@ -64,10 +64,10 @@
 				{include file="components/hackdown.tpl" countdownFrom=$myQuest.done + 24*60*60 - time() totalCountdown=24*60*60
                                               textCountdown = "true" progressBarClass = "progress-info"
                                               progressBarCountdown = "true" reloadOnFinish = "true" 
-                                              textLeft="Mission will be available again in"}
+                                              textLeft=$L.QUEST_AVAIL_AGAIN}
 			</div>
 			{else}
-        	<div class="well text-center nomargin">Finished {$myQuest.doneDate}.</div>
+        	<div class="well text-center nomargin">{$L.QUEST_FINISHED_DATE|replace:':date':$myQuest.doneDate}</div>
 			{/if}
          {/if} 
          {if $myQuest.type eq 1 or $myQuest.type eq 2}

@@ -15,7 +15,7 @@
   Mission has been placed on pause. If you wait too much time (e.g. over 24h) you might fail the mission.
 </div>
 <form method="post">
-  <button type="submit" title="Resume mission" name="pause" value="true"><span class="glyphicon glyphicon-play"></span></button>
+  <button type="submit" title="{$L.QUEST_RESUME}" name="pause" value="true"><span class="glyphicon glyphicon-play"></span></button>
 </form>
 {else}
 <audio class="nodisplay" id = "mission-voice">
@@ -185,7 +185,7 @@
             </a>
           </div>
           {if $logged}
-          <div class="col-xs-4" title="Notepad">
+          <div class="col-xs-4" title="{$L.QUEST_NOTEPAD}">
             {if !$notepadAllowed}
             <a href="{$config.url}alpha_coins/option/missionNotepad" class="mb10 button text-center"><span class="glyphicon glyphicon-pencil"></span></a>
             {else}
@@ -197,7 +197,7 @@
           {if $qtask.canPause}
           <div class="col-xs-4">
             <form method="post"  class="mb10">
-              <button type="submit" name="pause" value="true" title="Pause mission"><span class="glyphicon glyphicon-pause"></span></button>
+              <button type="submit" name="pause" value="true" title="{$L.QUEST_PAUSE}"><span class="glyphicon glyphicon-pause"></span></button>
             </form>
           </div>
           {/if}
@@ -228,7 +228,7 @@
         {if $notepadAllowed}
         <div role="tabpanel" class="tab-pane  fade" id="notepad">
           <form method="post" id="notepad">
-            <textarea  placeholder="Mission notepad" maxlength="1000" id="notepad-area">{$notepad}</textarea>
+            <textarea  placeholder="{$L.QUEST_NOTEPAD_PH}" maxlength="1000" id="notepad-area">{$notepad}</textarea>
             <input type="submit" value="update" style="border-top:0;"  class="mb10"/>
           </form>
         </div>

@@ -38,20 +38,29 @@
 | Dashboard | `index/index.tpl` | ✅ Teilweise |
 | Missionsübersicht | `index/missionsSummary.tpl` | ✅ Übersetzt |
 | Missions-Interface | `quests_show.php` | ✅ Übersetzt |
+| Missions-Übersicht | `questsCached.tpl` | ✅ Übersetzt |
 | Quest-Feedback | `feedback.php` | ✅ Übersetzt |
 | Quest-Engine | `qclass.php` | ✅ Übersetzt |
+| Training | `train/train.tpl` + `train.php` | ✅ Übersetzt |
+| Profil | `profile/profile.tpl` + `profile.php` | ✅ Übersetzt |
+| Passwort vergessen | `forgot_password/*.tpl` | ✅ Übersetzt |
+| Visitor Splash | `main_stats.tpl` + `visitor.php` | ✅ Übersetzt |
 
 ### PHP-Meldungen
 
 | Modul | Datei | Status |
 |---|---|---|
 | Header/Tutorial | `header.php` | ✅ Übersetzt |
-| Registrierung | `register.php` | ✅ Übersetzt |
+| Login-System | `loginSystem.php` | ✅ Übersetzt |
+| Registrierung | `register.php` + `registrationSystem.php` | ✅ Übersetzt |
 | Quests | `quests.php`, `quests_show.php` | ✅ Übersetzt |
 | Quest In-Progress | `quest_inprogress.php` | ✅ Übersetzt |
 | Feedback | `feedback.php` | ✅ Übersetzt |
+| Training | `train.php` | ✅ Übersetzt |
+| Profil | `profile.php` | ✅ Übersetzt |
 | Admin Users | `manageUsers.php` | ✅ Teilweise |
 | Funktionen | `functions.php` | ✅ Übersetzt |
+| Visitor | `visitor.php` | ✅ Übersetzt |
 
 ## Dictionary-Abdeckung
 
@@ -59,33 +68,35 @@
 |---|---|---|
 | Navigation | NAV_ | 19 |
 | Footer | FOOTER_ | 13 |
-| Login | LOGIN_ | 8 |
+| Login/Auth | LOGIN_ | 18 |
 | Registrierung | REG_ | 9 |
 | Installer | INSTALL_ | 9 |
 | Dashboard | DASH_ | 14 |
 | Tasks | TASK_ | 9 |
-| Quests | QUEST_ | 18 |
-| Admin | ADMIN_ | 9 |
-| Fehler | ERR_ | 16 |
-| Erfolge | MSG_ | 16 |
+| Quests/Missionen | QUEST_ | 30 |
+| Admin | ADMIN_ | 10 |
+| Fehler | ERR_ | 28 |
+| Erfolg/Info | MSG_ | 16 |
 | Header/Tutorial | HDR_ | 10 |
-| Passwort vergessen | FORGOT_ | 7 |
+| Passwort vergessen | FORGOT_ | 14 |
+| Training | TRAIN_ | 20 |
+| Profil | PROFILE_ | 28 |
+| Visitor | VISITOR_ | 7 |
 | Spiel allgemein | GAME_ | 15 |
 | UI | UI_ | 6 |
 | Seitentitel | div. | ~30 |
-| **Gesamt** | | **~180** |
+| **Gesamt** | | **~280** |
 
 ## Noch nicht übersetzt (Content-Templates)
 
-Die folgenden Templates enthalten vorwiegend spielinhaltliche Texte, die in einer nächsten Phase übersetzt werden können:
+Die folgenden Templates enthalten vorwiegend spielinhaltliche Texte und dynamischen DB-Content, die in einer nächsten Phase übersetzt werden können:
 
 - Forum-Templates (`forum/*.tpl`)
 - Blog-Templates (`blog/*.tpl`)
 - Grid-Templates (`grid/*.tpl`)
 - Server-Templates (`servers/*.tpl`)
-- Profil-Templates (`profile/*.tpl`)
 - Organisation-Templates (`organization/*.tpl`)
 - Shop-Templates (`shop/*.tpl`, `alpha_coins/*.tpl`)
 - Statische Seiten (`pages/*.tpl`)
 
-Diese Templates verwenden überwiegend dynamischen DB-Content oder sehr spezifische Game-Texte. Die i18n-Infrastruktur (`{$L.KEY}`) steht bereit und kann jederzeit angewendet werden.
+Die i18n-Infrastruktur (`{$L.KEY}`) steht bereit und kann jederzeit auf weitere Templates angewendet werden.

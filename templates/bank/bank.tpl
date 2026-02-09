@@ -11,7 +11,7 @@
 			</div>
 			<div class="panel-body">
 				<h1 class="nomargin text-center">
-					{$account.amount|number_format}$ <small>/ {$bankLimit|number_format}$</small>
+					{$account.amount|floatval|number_format}$ <small>/ {$bankLimit|floatval|number_format}$</small>
 				</h1>
 			</div>
 			{if !$smarty.session.premium.removeAds && !$smarty.session.premium.bankLimit2}

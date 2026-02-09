@@ -47,7 +47,7 @@
 						The last two apply only to referrals over level 4. The A-C's will be delivered as <a href="{$config.url}rewards">rewards</a>.
 					</div>
 					<div class="panel-footer text-center">
-				You have referred {$referrals_count|number_format} hackers
+				You have referred {$referrals_count|floatval|number_format} hackers
 			</div>
 				</div>
 			

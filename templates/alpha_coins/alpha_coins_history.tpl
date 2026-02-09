@@ -11,7 +11,7 @@
 					{$transaction.created|date_fashion}
 				</div>
 				<div class="panel-body">
-					Requested {$transaction.alphaCoins|number_format} and received {$transaction.alphaCoinsGiven|number_format} Alpha Coins.
+					Requested {$transaction.alphaCoins|floatval|number_format} and received {$transaction.alphaCoinsGiven|floatval|number_format} Alpha Coins.
 				</div>
 				<div class="panel-footer text-right">
 					via <em>
@@ -49,7 +49,7 @@
 					{if $log.kongregate}
 						kongregate[{$log.kongregate}]
 					{else}
-						Alpha Coins [{$log.ac_cost|number_format}]
+						Alpha Coins [{$log.ac_cost|floatval|number_format}]
 					{/if}
 					</em>
 				</div>

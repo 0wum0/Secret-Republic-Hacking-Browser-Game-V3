@@ -1,13 +1,13 @@
 <div class="row">
   <div class="col-md-6">
     <div class="well">
-      Finished {$stats.finished|number_format} times
+      Finished {$stats.finished|floatval|number_format} times
     </div>
   </div>
 
   <div class="col-md-6">
     <div class="well">
-      Finished {$stats.uniq|number_format} unique times
+      Finished {$stats.uniq|floatval|number_format} unique times
     </div>
   </div>
 </div> 

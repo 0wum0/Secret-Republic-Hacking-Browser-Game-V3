@@ -1,5 +1,5 @@
 <br/>
-	  {assign var="onlineFormatted" value=$online|default:0|number_format}
+	  {assign var="onlineFormatted" value=$online|default:0|floatval|number_format}
 	  <strong><em>{$L.VISITOR_HACKERS_GRID|replace:':count':$onlineFormatted}</em> </strong>
 	   <br/> <br/>
 	  <h4>{$L.VISITOR_NEWEST}</h4>

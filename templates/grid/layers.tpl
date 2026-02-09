@@ -27,13 +27,13 @@
 		<button disabled>DEF</button>
 	</div>
 	<div class="col-md-2">
-		<button disabled>{$player.spyProtection|number_format}</button>
+		<button disabled>{$player.spyProtection|floatval|number_format}</button>
 	</div>
 	<div class="col-md-1">
 		<button disabled>ATK</button>
 	</div>
 	<div class="col-md-2">
-		<button disabled>{$player.spyAttack|number_format}</button>
+		<button disabled>{$player.spyAttack|floatval|number_format}</button>
 	</div>
 	
 </div>
@@ -216,13 +216,13 @@
 		<button disabled>DEF</button>
 	</div>
 	<div class="col-md-2">
-		<button disabled>{$player['layers'][$layerIndex].defense|number_format}</button>
+		<button disabled>{$player['layers'][$layerIndex].defense|floatval|number_format}</button>
 	</div>
 	<div class="col-md-1">
 		<button disabled>ATK</button>
 	</div>
 	<div class="col-md-2">
-		<button disabled>{$player['layers'][$layerIndex].attack|number_format}</button>
+		<button disabled>{$player['layers'][$layerIndex].attack|floatval|number_format}</button>
 	</div>
 	
 </div>

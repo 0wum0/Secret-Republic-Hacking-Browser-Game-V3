@@ -144,7 +144,7 @@
 		<div class="row" >
 			<div class="col-md-4">
 				<div class="panel panel-glass text-center">
-					<div class="panel-heading">RAM [{$server->server.ram_usage|number_format}/{$server->server.total_ram|number_format}]</div>
+					<div class="panel-heading">RAM [{$server->server.ram_usage|floatval|number_format}/{$server->server.total_ram|floatval|number_format}]</div>
 					
 					<div class="panel-body">
 						<strong><small>{$server->server.ram_usage_percent}%</small></strong>
@@ -155,7 +155,7 @@
 			</div>
 			<div class="col-md-4">
 				<div class="panel panel-glass text-center">
-					<div class="panel-heading ">CPU [{$server->server.cpu_usage|number_format}/{$server->server.total_cpu|number_format}]</div>
+					<div class="panel-heading ">CPU [{$server->server.cpu_usage|floatval|number_format}/{$server->server.total_cpu|floatval|number_format}]</div>
 					
 					<div class="panel-body ">
 						<strong><small>{$server->server.cpu_usage_percent}%</small></strong>
@@ -166,7 +166,7 @@
 			</div>
 			<div class="col-md-4">
 				<div class="panel panel-glass text-center">
-					<div class="panel-heading ">HDD [{$server->server.hdd_usage|number_format}/{$server->server.total_hdd|number_format}]</div>
+					<div class="panel-heading ">HDD [{$server->server.hdd_usage|floatval|number_format}/{$server->server.total_hdd|floatval|number_format}]</div>
 					
 					<div class="panel-body ">
 						<strong><small>{$server->server.hdd_usage_percent}%</small></strong>
@@ -197,7 +197,7 @@
 								{$app.name} <small>{if $app.damage}<span class="badge alert-danger">{$app.damage}% damaged</span>{/if}</small>
 							</div>
 							<div class="col-xs-5 text-right">
-						{$app.cpu|number_format} CPU - {$app.ram|number_format} RAM - {$app.hdd|number_format} HDD
+						{$app.cpu|floatval|number_format} CPU - {$app.ram|floatval|number_format} RAM - {$app.hdd|floatval|number_format} HDD
 							</div>
 						</div>
 						</button>

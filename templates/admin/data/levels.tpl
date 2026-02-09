@@ -6,8 +6,8 @@
   {for $index = 1 to 400}
    <tr> 
       <td>LEV {$index}</td>
-      <td>{$levels[$index].exp|number_format} exp</td>
-      <td>{$levels[$index].energy|number_format} energy</td>
+      <td>{$levels[$index].exp|floatval|number_format} exp</td>
+      <td>{$levels[$index].energy|floatval|number_format} energy</td>
      </tr>
   {/for}
  

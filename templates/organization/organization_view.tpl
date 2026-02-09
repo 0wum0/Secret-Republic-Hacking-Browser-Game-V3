@@ -14,9 +14,9 @@
 			<h4>alias [{$org.tag}]{if $org.id eq $user.organization}, ran by {$org.ownern|profile_link}{/if}</h3>
             <p>
               {if $org.orank > 0}
-                Ranked #{$org.orank} in the world with {$org.points|number_format} points{else}not ranked{/if} - {$org.nrm}/{$org.max_nrm|number_format} members - {$org.wars_won|number_format} wars won out of {$org.wars} fought</p>
+                Ranked #{$org.orank} in the world with {$org.points|floatval|number_format} points{else}not ranked{/if} - {$org.nrm}/{$org.max_nrm|floatval|number_format} members - {$org.wars_won|floatval|number_format} wars won out of {$org.wars} fought</p>
             {if $org.myOrg}
-              <p>{$org.name} has <strong><a href="{$config.url}organization/show/{$org.id}/view/hackingPoints">{$org.hacking_points|number_format} hacking points</a></strong></p>
+              <p>{$org.name} has <strong><a href="{$config.url}organization/show/{$org.id}/view/hackingPoints">{$org.hacking_points|floatval|number_format} hacking points</a></strong></p>
               <p>Your rank is {$access.name}</p>
             {/if}
           </div><br/>

@@ -1,7 +1,7 @@
 {include file="dialogs/osx_dialog_box.tpl" id='Storage{$s.storage_id}' title='Sell {$s.name}' content='
 	 <div class="alert alert-warning">You are about to sell and as such lose this item. The official shop undervalues the item and gives you less money if the item is damaged.</div>
 	<form method="post">
-		<button type="submit" name="sell" value="{$s.storage_id}">Sell [{$s.default_sell_price|number_format}$]</button>
+		<button type="submit" name="sell" value="{$s.storage_id}">Sell [{$s.default_sell_price|floatval|number_format}$]</button>
 	</form>
 
  '}
@@ -37,7 +37,7 @@
 				</div>
 				
 				<div class="col-xs-4">
-					<a href="#myModalStorage{$s.storage_id}" data-toggle="modal"><button>SELL [{$s.default_sell_price|number_format}$]</button></a>
+					<a href="#myModalStorage{$s.storage_id}" data-toggle="modal"><button>SELL [{$s.default_sell_price|floatval|number_format}$]</button></a>
 				</div>
 			</div>
 			</form>

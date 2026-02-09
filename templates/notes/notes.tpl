@@ -1,7 +1,7 @@
 {include file="header_home.tpl"}
 
 <div class="well">
-	You can create {$nrNotes} note(s) of {$maxContentSize|number_format} characters in length. 
+	You can create {$nrNotes} note(s) of {$maxContentSize|floatval|number_format} characters in length. 
 	{if !$smarty.session.premium.removeAds && !$smarty.session.premium.notes}
 		<a href="{$config.url}alpha_coins/option/notes">Upgrade to 5 notes with a maximum of 50 000 characters in length.</a>
 	{/if}

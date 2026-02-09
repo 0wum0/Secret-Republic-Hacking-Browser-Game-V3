@@ -15,7 +15,7 @@
     </div>
   </div>
   <div class="col-md-5">
-    <button class="disabled" disabled>{$zone.nrm|number_format}</button>
+    <button class="disabled" disabled>{$zone.nrm|floatval|number_format}</button>
   </div>
 </div>
  <div class="row">

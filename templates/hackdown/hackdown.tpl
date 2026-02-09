@@ -39,7 +39,7 @@
 {else}
 {if $hackdownRemaining }<br/>
 	<h3 class="text-center">
-You have Hackdowned {($hacks.nrMissions + $hacks.nrAttacks)|number_format} ({$hacks.nrMissions} hacks && {$hacks.nrAttacks} Arena) successful times
+You have Hackdowned {($hacks.nrMissions + $hacks.nrAttacks)|floatval|number_format} ({$hacks.nrMissions} hacks && {$hacks.nrAttacks} Arena) successful times
 </h3><br/>
 {/if}
 

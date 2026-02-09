@@ -103,7 +103,7 @@
 					<div class="panel-body text-center">
              		 {$captcha}
 					 </div>
-					  {assign var="stepsFormatted" value=$trainTask.steps|default:0|number_format}
+					  {assign var="stepsFormatted" value=$trainTask.steps|default:0|floatval|number_format}
 				  <input type="submit" name="answer" value="{$L.TRAIN_DECRYPT|replace:':count':$stepsFormatted}"/>
             </div>
            
@@ -137,7 +137,7 @@
 					 <input type="text" name="answer" placeholder="{$L.TRAIN_ANSWER_PH}" class="text-center" autocomplete="off" autofocus="autofocus"/>
 					 			</div>
 								<div class="col-md-5 nopadding">
-					  {assign var="stepsFormatted" value=$trainTask.steps|default:0|number_format}
+					  {assign var="stepsFormatted" value=$trainTask.steps|default:0|floatval|number_format}
 				  <input type="submit" value="{$L.TRAIN_FEELING_LUCKY|replace:':count':$stepsFormatted}"/>
 					 			</div>
 							</div>

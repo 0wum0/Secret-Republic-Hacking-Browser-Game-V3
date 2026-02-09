@@ -121,7 +121,7 @@
         <div class="col-md-3 col-sm-9 text-center">
           {if $node.floatingDataPoints}
           <a href="{$config.url}grid/node/{$node.node}/collect/ohyeah" title="Scavenge">
-            {$node.floatingDataPoints|number_format:2} floating DP's
+            {$node.floatingDataPoints|floatval|number_format:2} floating DP's
           </a>
           {else}
           <em>no <a href="{$config.url}frequently-asked-questions/open/floating-data-points">floating data points</a></em>
@@ -194,7 +194,7 @@
 
             <div class="col-xs-4 ">
               {if $node.floatingDataPoints}
-              <button type="submit" name="collect" value="true" title="Free floating Data Points scraps. Collect?">{$node.floatingDataPoints|number_format:2} floating DP's</button>
+              <button type="submit" name="collect" value="true" title="Free floating Data Points scraps. Collect?">{$node.floatingDataPoints|floatval|number_format:2} floating DP's</button>
               {else}
 
               <div class="well  text-center nomargin">

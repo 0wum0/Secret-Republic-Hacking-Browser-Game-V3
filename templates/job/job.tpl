@@ -9,7 +9,7 @@
          <div class="row mb10">
  
               <div class="col-xs-4 ">
-                <button disabled>JOB LEVEL: {$job.level} ({$job.exp|number_format} / {$job.expNext|number_format})</button>
+                <button disabled>JOB LEVEL: {$job.level} ({$job.exp|floatval|number_format} / {$job.expNext|floatval|number_format})</button>
               </div>
               <div class="col-xs-8 ">
                   <div class="progress  progress-well" >

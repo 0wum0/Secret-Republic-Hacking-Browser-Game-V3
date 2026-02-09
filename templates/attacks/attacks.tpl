@@ -7,7 +7,7 @@
 
 <h2>attack logs</h2>
 <div class="well black">
-	These are all the available stored logs of attacks you have taken part in. We've got {$nrAttacks|number_format} of these babies on record.
+	These are all the available stored logs of attacks you have taken part in. We've got {$nrAttacks|floatval|number_format} of these babies on record.
 </div>
 <br/>
 {foreach from = $attacks item = attack}

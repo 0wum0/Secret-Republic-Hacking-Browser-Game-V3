@@ -28,8 +28,8 @@
                       No articles yet!
                   {/if}
                   {foreach from=$articles item=article}
-                      <a href="{$config.url}blogs/article/{$article.article_id}" title="{$article.nrc|number_format} comments / {$article.votes|number_format} votes">
-                        {$article.title} ({$article.nrc|number_format}/{$article.votes|number_format})
+                      <a href="{$config.url}blogs/article/{$article.article_id}" title="{$article.nrc|floatval|number_format} comments / {$article.votes|floatval|number_format} votes">
+                        {$article.title} ({$article.nrc|floatval|number_format}/{$article.votes|floatval|number_format})
                       </a>
                   {/foreach}
                   <div class="bottom-line">
@@ -53,8 +53,8 @@
                    </a>
                  {else}
                    {foreach from=$orgForums item=post}
-                   <a href="{$config.url}organization/view/forum/tid/{$post.id}" title="{$post.replies|number_format} replies">
-                     {$post.title} ({$post.replies|number_format})
+                   <a href="{$config.url}organization/view/forum/tid/{$post.id}" title="{$post.replies|floatval|number_format} replies">
+                     {$post.title} ({$post.replies|floatval|number_format})
                    </a>
                   {foreachelse}
                     <a href="{$config.url}organization">
@@ -78,8 +78,8 @@
               </p>
               <div class="articles-list">
                     {foreach from=$forums item=post}   
-                      <a href="{$config.url}forum/tid/{$post.id}" title="{$post.replies|number_format} replies">
-                        ({$post.replies|number_format}) {$post.title}
+                      <a href="{$config.url}forum/tid/{$post.id}" title="{$post.replies|floatval|number_format} replies">
+                        ({$post.replies|floatval|number_format}) {$post.title}
                       </a>
                     {foreachelse}
                       No posts yet!
@@ -112,8 +112,8 @@ margin-bottom:5px!important;
      
         {foreach from=$articles item=article}
           	<div class="col-md-12 ">
-              <div class="well black  nomargin mb10 cut-text"  title="{$article.nrc|number_format} comments">
-               <a href="{$config.url}blogs/article/{$article.article_id}" >{$article.title} ({$article.nrc|number_format})</a>
+              <div class="well black  nomargin mb10 cut-text"  title="{$article.nrc|floatval|number_format} comments">
+               <a href="{$config.url}blogs/article/{$article.article_id}" >{$article.title} ({$article.nrc|floatval|number_format})</a>
               </div> 
             </div>
         {/foreach}
@@ -131,7 +131,7 @@ margin-bottom:5px!important;
         
       {foreach from=$orgForums item=post}
 	  <div class="col-md-12 ">
-        <div class="well text-center black mb10 cut-text" title="{$post.replies|number_format} replies">
+        <div class="well text-center black mb10 cut-text" title="{$post.replies|floatval|number_format} replies">
 
 
         <a href="{$config.url}organization/view/forum/tid/{$post.id}">
@@ -159,8 +159,8 @@ margin-bottom:5px!important;
       
     {foreach from=$forums item=post}
    <div class="col-md-12 ">
-          <div class="well black nomargin mb10 cut-text" title="{$post.replies|number_format} replies">
-           <a href="{$config.url}forum/tid/{$post.id}" >{$post.title} ({$post.replies|number_format})</a>
+          <div class="well black nomargin mb10 cut-text" title="{$post.replies|floatval|number_format} replies">
+           <a href="{$config.url}forum/tid/{$post.id}" >{$post.title} ({$post.replies|floatval|number_format})</a>
           </div>
     
          </div>

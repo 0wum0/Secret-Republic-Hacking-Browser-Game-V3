@@ -33,7 +33,7 @@
 
       <p>
         {if $quser.rank > 0}
-         {$quser.points|number_format} {$L.PROFILE_POINTS|replace:':points':''}(W#{$quser.rank}/Z#{$quser.zrank})
+         {$quser.points|floatval|number_format} {$L.PROFILE_POINTS|replace:':points':''}(W#{$quser.rank}/Z#{$quser.zrank})
          {else}
          {$L.PROFILE_NO_RANK}
          {/if}
@@ -105,7 +105,7 @@
 
               <div class="col-xs-4  ">
                 <div class="button text-center ">
-                  {$quser.rep|number_format}
+                  {$quser.rep|floatval|number_format}
                 </div>
               </div>
               <div class="col-xs-2 ">
@@ -177,7 +177,7 @@
 
           <a href="{$config.url}forum/tid/{$thread.id}" >
             <button class="cut-text text-left mb10">
-              {$thread.title}	<small>{$thread.replies|number_format} {$L.FORUM_REPLIES}</small>
+              {$thread.title}	<small>{$thread.replies|floatval|number_format} {$L.FORUM_REPLIES}</small>
             </button>
           </a>
 

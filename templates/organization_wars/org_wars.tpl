@@ -7,13 +7,13 @@
 		<button>
 				{$war.org1_name} 
 			
-			({$war.org1_points|number_format}) vs 
+			({$war.org1_points|floatval|number_format}) vs 
 			
 			
 				{$war.org2_name} 
 			
 			
-			({$war.org2_points|number_format})
+			({$war.org2_points|floatval|number_format})
 		</button>
 		</a>
 	</div>
@@ -43,13 +43,13 @@
 			<a href="{$config.url}organizations/view/{$war.org1_id}">
 				{$war.org1_name} 
 			</a>
-			({$war.org1_points|number_format}) vs 
+			({$war.org1_points|floatval|number_format}) vs 
 			
 			<a href="{$config.url}organizations/view/{$war.org2_id}">
 				{$war.org2_name} 
 			</a>
 			
-			({$war.org2_points|number_format})
+			({$war.org2_points|floatval|number_format})
 		</div>
 	</div>
 	<div class="col-md-5">

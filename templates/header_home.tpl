@@ -88,14 +88,14 @@
 
       <li><a href="{$config.url}skills">{$L.NAV_SKILLS}</a></li>
       <li><a href="{$config.url}job">{$L.NAV_JOB_TRAIN}</a></li>
-      <li><a href="{$config.url}profile">{$L.NAV_HEADQUARTERS}{if $user.friend_requests} ({$user.friend_requests|number_format}){/if}</a></li>
+      <li><a href="{$config.url}profile">{$L.NAV_HEADQUARTERS}{if $user.friend_requests} ({$user.friend_requests|floatval|number_format}){/if}</a></li>
 
       <li><a href="{$config.url}grid">{$L.NAV_GRID}</a></a></li>
 	  <li><a href="{$config.url}zones">{$L.NAV_ZONES}</a></li>
       <li><a href="{$config.url}rankings/page/{($user.rank/20)|ceil}#place_{$user.rank}">
-        {$L.NAV_RANKINGS}{if $user.rank > 0} ({$user.rank|number_format}){/if}
+        {$L.NAV_RANKINGS}{if $user.rank > 0} ({$user.rank|floatval|number_format}){/if}
       </a></a></li>
-      <li><a href="{$config.url}conversations">{if $user.newMsg}<strong>{$user.newMsg|number_format} {$L.UI_NEW} </strong> {/if} {$L.NAV_MESSAGES}</a></li>
+      <li><a href="{$config.url}conversations">{if $user.newMsg}<strong>{$user.newMsg|floatval|number_format} {$L.UI_NEW} </strong> {/if} {$L.NAV_MESSAGES}</a></li>
       <li><a href="{$config.url}forum">{$L.NAV_FORUMS}</a></li>
       <li class="logout"><a href="{$config.url}logout" ><span class="glyphicon glyphicon-off"></span></a></li>
     {else}
@@ -127,7 +127,7 @@
       <div class="resources-bar top">
           <small>
             <div>
-          <span class="glyphicon glyphicon-flash"></span> {$user.energy|number_format}/{$user.maxEnergy|number_format}
+          <span class="glyphicon glyphicon-flash"></span> {$user.energy|floatval|number_format}/{$user.maxEnergy|floatval|number_format}
 
            </div>
 
@@ -136,17 +136,17 @@
         [{$user.main_node}]
         </a></div>
             <div>
-          {$user.money|number_format}$ &nbsp;&nbsp;<a href="{$config.url}bank"><span class="glyphicon glyphicon-piggy-bank"></span></a>
+          {$user.money|floatval|number_format}$ &nbsp;&nbsp;<a href="{$config.url}bank"><span class="glyphicon glyphicon-piggy-bank"></span></a>
            </div>
            <div>
            <a href="{$config.url}data-points" >
-      {$user.dataPoints|number_format:2} DP's
+      {$user.dataPoints|floatval|number_format:2} DP's
 
         </a>
          </div>
          <div>
          <a href="{$config.url}alpha_coins" >
-        {$user.alphaCoins|number_format} a-c
+        {$user.alphaCoins|floatval|number_format} a-c
         </a></div>
         <div>
 
@@ -161,7 +161,7 @@
     {else}
       <div class="resources-bar text-center bottom hidden-xs hidden-sm">
          <div>
-          <small><span class="glyphicon glyphicon-flash"></span></small> {$user.energy|number_format}/{$user.maxEnergy|number_format}
+          <small><span class="glyphicon glyphicon-flash"></span></small> {$user.energy|floatval|number_format}/{$user.maxEnergy|floatval|number_format}
 
            </div>
 
@@ -170,17 +170,17 @@
         [{$user.main_node}]
         </a></div>
             <div>
-          {$user.money|number_format}$ &nbsp;&nbsp;<small><a href="{$config.url}bank"><span class="glyphicon glyphicon-piggy-bank"></span></a></small>
+          {$user.money|floatval|number_format}$ &nbsp;&nbsp;<small><a href="{$config.url}bank"><span class="glyphicon glyphicon-piggy-bank"></span></a></small>
            </div>
            <div>
            <a href="{$config.url}data-points" >
-      {$user.dataPoints|number_format:2} DP's
+      {$user.dataPoints|floatval|number_format:2} DP's
 
         </a>
          </div>
          <div>
          <a href="{$config.url}alpha_coins" >
-        {$user.alphaCoins|number_format} a-c
+        {$user.alphaCoins|floatval|number_format} a-c
         </a></div>
         <div>
 
@@ -218,11 +218,11 @@
               </li>
 			  <li><a href="{$config.url}zones" title="{$L.NAV_ZONES}"  data-placement="left" ><span class="glyphicon glyphicon-globe"></span></a></li>
 
-              <li class="mid-item"><a href="{$config.url}profile" title="{$L.NAV_HEADQUARTERS}" data-placement="left"  {if $user.profileNotification}style="color:rgba(83, 195, 236, 1)"{/if}>{if $user.profileNotification}<strong class="jsFlash">({($user.friend_requests + $user.rewardsToReceive)|number_format})</strong>{else}<span class="glyphicon glyphicon-user"></span>{/if}</a></li>
-			  <li><a href="{$config.url}conversations" title="{$L.NAV_CONVERSATIONS}" data-placement="left"  {if $user.newMsg}style="color:rgba(83, 195, 236, 1)"{/if}>{if $user.newMsg}<strong class="jsFlash">{$user.newMsg|number_format} {$L.UI_NEW}</strong>{else}<span class="glyphicon glyphicon-envelope"></span>{/if}</a></li>
+              <li class="mid-item"><a href="{$config.url}profile" title="{$L.NAV_HEADQUARTERS}" data-placement="left"  {if $user.profileNotification}style="color:rgba(83, 195, 236, 1)"{/if}>{if $user.profileNotification}<strong class="jsFlash">({($user.friend_requests + $user.rewardsToReceive)|floatval|number_format})</strong>{else}<span class="glyphicon glyphicon-user"></span>{/if}</a></li>
+			  <li><a href="{$config.url}conversations" title="{$L.NAV_CONVERSATIONS}" data-placement="left"  {if $user.newMsg}style="color:rgba(83, 195, 236, 1)"{/if}>{if $user.newMsg}<strong class="jsFlash">{$user.newMsg|floatval|number_format} {$L.UI_NEW}</strong>{else}<span class="glyphicon glyphicon-envelope"></span>{/if}</a></li>
               <li>
                 <a href="{$config.url}rankings/page/{($user.rank/20)|ceil}#place_{$user.rank}" title="{$L.NAV_RANKINGS}" data-placement="left" >
-                  <span class="glyphicon glyphicon-king"></span> {if $user.rank > 0} ({$user.rank|number_format}){/if}
+                  <span class="glyphicon glyphicon-king"></span> {if $user.rank > 0} ({$user.rank|floatval|number_format}){/if}
                 </a></li>
 
       </ul>
@@ -243,7 +243,7 @@
               {if $user.org_wars}{if $user.org_wars_now}<strong class="jsFlash">{$L.NAV_ORG_WAR_NOW}</strong>{else}<strong class="jsFlash">{$L.NAV_ORG_WAR}</strong>{/if}{else}<span class="glyphicon glyphicon-tower"></span>{/if}
             </a>
           </li>
-         <li><a href="{$config.url}skills" title="{$L.SKILLS_TITLE}" {if $user.skillPoints} class="jsFlash"{/if}><span class="glyphicon glyphicon-compressed"></span>{if $user.skillPoints} ({$user.skillPoints|number_format}){/if}</a></li>
+         <li><a href="{$config.url}skills" title="{$L.SKILLS_TITLE}" {if $user.skillPoints} class="jsFlash"{/if}><span class="glyphicon glyphicon-compressed"></span>{if $user.skillPoints} ({$user.skillPoints|floatval|number_format}){/if}</a></li>
 
           <li><a href="{$config.url}job" title="{$L.NAV_JOB}"><span class="glyphicon glyphicon-briefcase"></span></a></li>
 

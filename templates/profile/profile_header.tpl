@@ -1,7 +1,7 @@
 <div class="futureNav middle ">
        <ul>
           <li><a href="{$config.url}alpha_coins"><strong>A-Coins</strong></a></li>
-          <li><a href="{$config.url}rewards"{if $user.rewardsToReceive} id="rewards"{/if}><span class="glyphicon glyphicon-gift"></span>{if $user.rewardsToReceive} ({$user.rewardsToReceive|number_format}){/if}</a></li>
+          <li><a href="{$config.url}rewards"{if $user.rewardsToReceive} id="rewards"{/if}><span class="glyphicon glyphicon-gift"></span>{if $user.rewardsToReceive} ({$user.rewardsToReceive|floatval|number_format}){/if}</a></li>
           
           
 		  <li><a href="{$config.url}blogs/myown/go">Blogs</a></li>

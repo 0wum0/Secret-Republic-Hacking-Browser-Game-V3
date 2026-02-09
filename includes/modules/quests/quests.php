@@ -7,7 +7,7 @@ $cardinal->mustLogin();
 */
 if (!$user['server'])
 {
-	$_SESSION['error'] = "You need to have a MAIN server in order to access missions. Please proceed to building and assigning one.";
+	$_SESSION['error'] = t('QUEST_NEED_SERVER');
 	$cardinal->redirect(URL."servers");
 }
 
@@ -46,10 +46,10 @@ else {
 
       unset($qtask);
       if ($_POST["console"] == "complete delusion")
-        $_SESSION["error"] = "Mission failed";
+        $_SESSION["error"] = t('QUEST_MISSION_FAILED');
 
       else
-        $errors[] = "Mission failed";
+        $errors[] = t('QUEST_MISSION_FAILED');
     } //$qtask["remainingSeconds"] <= 0 || $_POST["console"] == "complete delusion"
 
   } //$qtask["id"]

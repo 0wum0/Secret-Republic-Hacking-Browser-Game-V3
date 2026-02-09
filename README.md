@@ -410,6 +410,14 @@ php -v   # Must show 8.3.x or 8.4.x
 
 ## Changelog
 
+### 2026-02-09: Admin Registered Page Fix (groups table / join)
+
+- **Fixed:** `/admin/view/registered/` crashed with "Table \<db\>.groups doesn't exist"
+- **Root cause:** Code in `includes/class/class.admin.php` (`get_registered()`) and `includes/modules/profile.php` referenced a non-existent `groups` table instead of the correct `user_groups` table
+- **Fix 1:** Changed `LEFT JOIN groups` → `LEFT JOIN user_groups` in both `class.admin.php` and `profile.php`
+- **Fix 2:** Changed filter from `hg.group_id` to `uc.group_id` in the group filter branch of `get_registered()`, consistent with the count query
+- No DB schema change required — the `user_groups` table already existed with the correct `group_id` primary key and `name` column
+
 ### 2026-02-09: i18n / Internationalization (DE/EN)
 
 - Added bilingual support: **German** (default) and **English**

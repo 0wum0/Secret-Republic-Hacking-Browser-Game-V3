@@ -64,7 +64,7 @@
 			 
     	</div>
 		 <div class="panel-footer text-right">
-			 <small> <em>{if $m.replies > 1}{$L.UI_MESSAGES_IN_CONV|replace:':count':{$m.replies|floatval|number_format}} {/if}{$L.UI_CONVERSATION_WITH|replace:':user':$m.username}</em></small>
+			 <small> <em>{if $m.replies > 1}{assign var="replyCount" value=$m.replies|floatval|number_format}{$L.UI_MESSAGES_IN_CONV|replace:':count':$replyCount} {/if}{$L.UI_CONVERSATION_WITH|replace:':user':$m.username}</em></small>
 			  </div>
 	</div>
 		

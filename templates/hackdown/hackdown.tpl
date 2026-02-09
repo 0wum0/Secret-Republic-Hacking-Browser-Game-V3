@@ -8,7 +8,8 @@
 	<div class="alert alert-info">
 		<p>{$L.HACKDOWN_SELECT_SERVERS}</p>
 		<p>
-		{$L.HACKDOWN_SERVERS_INFO|replace:':url':"{$config.url}grid/layers/show"}
+		{assign var="layersUrl" value="`$config.url`grid/layers/show"}
+		{$L.HACKDOWN_SERVERS_INFO|replace:':url':$layersUrl}
 		</p>
 		<p>
 		{$L.HACKDOWN_SERVERS_LOCK}
@@ -39,7 +40,8 @@
 {else}
 {if $hackdownRemaining }<br/>
 	<h3 class="text-center">
-{$L.HACKDOWN_STATS|replace:':count':{($hacks.nrMissions + $hacks.nrAttacks)|floatval|number_format}|replace:':missions':$hacks.nrMissions|replace:':arena':$hacks.nrAttacks}
+{assign var="hackCount" value=($hacks.nrMissions + $hacks.nrAttacks)|floatval|number_format}
+{$L.HACKDOWN_STATS|replace:':count':$hackCount|replace:':missions':$hacks.nrMissions|replace:':arena':$hacks.nrAttacks}
 </h3><br/>
 {/if}
 

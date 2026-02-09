@@ -20,7 +20,8 @@
   {if $smarty.session.premium.extraDataPoints15}
       {assign var= bonus value=round(($user['dataPointsPerHour'] / 100) * 15, 2) }
     
-        {$L.DP_MINING_BONUS|replace:'[:bonus]':"[{$bonus|floatval|number_format:2}]"}
+        {assign var="bonusFormatted" value=$bonus|floatval|number_format:2}
+        {$L.DP_MINING_BONUS|replace:'[:bonus]':"[`$bonusFormatted`]"}
     
   {else}
     + 0% bonus [hire a Data Points Consultant]
@@ -30,7 +31,8 @@
         </a>
       </div>
       <div class="col-xs-5">
-        <button disabled>{$L.DP_FINAL_RATE|replace:':rate':{($user.dataPointsPerHour + $bonus)|floatval|number_format:2}}</button>
+        {assign var="finalRate" value=($user.dataPointsPerHour + $bonus)|floatval|number_format:2}
+        <button disabled>{$L.DP_FINAL_RATE|replace:':rate':$finalRate}</button>
       </div>
       
     </div>
@@ -52,7 +54,8 @@
         <p>
           <strong>Data Points / Data Coins</strong> are resources to be <strong>mined (obtained)</strong> using <strong>servers</strong> (which earn you <strong>10 DP/hour each</strong> by default) on which you can install additional <strong>software and hardware</strong> to help you <strong>mine faster</strong>.
         </p>
-        {$L.DP_COLLECT_WAYS|replace:':url':"{$config.url}grid"}
+        {assign var="gridUrl" value="`$config.url`grid"}
+        {$L.DP_COLLECT_WAYS|replace:':url':$gridUrl}
       </div>
     </div>
     
@@ -85,7 +88,8 @@
       </div>
       <form method="post">
         <button type="submit" {if $user.dataPoints<$spin1Costs || !$logged}disabled{/if} class="button-white" name="form_identifier" value="spin1">
-          {$L.DP_SPIN_FOR|replace:':cost':{$spin1Costs|floatval|number_format}}
+          {assign var="spinCost" value=$spin1Costs|floatval|number_format}
+          {$L.DP_SPIN_FOR|replace:':cost':$spinCost}
         </button>
       </form>
     </div>

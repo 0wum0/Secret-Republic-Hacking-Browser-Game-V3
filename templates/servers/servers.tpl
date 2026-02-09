@@ -13,7 +13,8 @@
 <div class="row">
 	<div class="col-xs-10">
 		<div class="well mb10">
-		 			{$L.SERVERS_OWN_COUNT|replace:':count':{$servers|count}|replace:':max':$maxServers}
+		 			{assign var="serverCount" value=$servers|count}
+		 			{$L.SERVERS_OWN_COUNT|replace:':count':$serverCount|replace:':max':$maxServers}
 				
 					
 		</div>
@@ -41,7 +42,8 @@
 <div class="col-lg-3 col-xs-6">
 	{if $server.damaged > 0}
 		<div class="alert alert-danger text-center nomargin">
-			{$L.SERVERS_DAMAGED_PCT|replace:':amount':{$server.damaged|round:2}}
+			{assign var="damagedPct" value=$server.damaged|round:2}
+			{$L.SERVERS_DAMAGED_PCT|replace:':amount':$damagedPct}
 		</div>
 	{else}
 		<div class="alert alert-info text-center nomargin">{$L.SERVERS_UNDAMAGED}</div>
@@ -60,7 +62,9 @@
 </div>
 
 {foreachelse}
-<button disabled>{$L.SERVERS_NO_SERVERS|replace:':shop_url':"{$config.url}shop"|replace:':build_url':"{$config.url}servers/build/hell"}</button>
+{assign var="shopUrl" value="`$config.url`shop"}
+{assign var="buildUrl" value="`$config.url`servers/build/hell"}
+<button disabled>{$L.SERVERS_NO_SERVERS|replace:':shop_url':$shopUrl|replace:':build_url':$buildUrl}</button>
 {/foreach}
 
 <div style="padding:20px">

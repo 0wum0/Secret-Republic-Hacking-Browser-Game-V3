@@ -1,7 +1,8 @@
 {include file="dialogs/osx_dialog_box.tpl" id='Storage{$s.storage_id}' title='Sell {$s.name}' content='
 	 <div class="alert alert-warning">{$L.STORAGE_SELL_WARN}</div>
 	<form method="post">
-		<button type="submit" name="sell" value="{$s.storage_id}">{$L.STORAGE_SELL_ITEM|replace:":price":{$s.default_sell_price|floatval|number_format}}</button>
+		{assign var="sellPrice" value=$s.default_sell_price|floatval|number_format}
+		<button type="submit" name="sell" value="{$s.storage_id}">{$L.STORAGE_SELL_ITEM|replace:":price":$sellPrice}</button>
 	</form>
 
  '}

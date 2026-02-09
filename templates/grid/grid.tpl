@@ -121,10 +121,12 @@
         <div class="col-md-3 col-sm-9 text-center">
           {if $node.floatingDataPoints}
           <a href="{$config.url}grid/node/{$node.node}/collect/ohyeah" title="{$L.GRID_SCAVENGE}">
-            {$L.GRID_FLOATING_DP|replace:':count':{$node.floatingDataPoints|floatval|number_format:2}}
+            {assign var="floatingDp" value=$node.floatingDataPoints|floatval|number_format:2}
+            {$L.GRID_FLOATING_DP|replace:':count':$floatingDp}
           </a>
           {else}
-          <em>{$L.GRID_NO_FLOATING|replace:':url':"{$config.url}frequently-asked-questions/open/floating-data-points"}</em>
+          {assign var="faqUrl" value="`$config.url`frequently-asked-questions/open/floating-data-points"}
+          <em>{$L.GRID_NO_FLOATING|replace:':url':$faqUrl}</em>
           {/if}
         </div>
         {if $node.user_id ne $user.id}

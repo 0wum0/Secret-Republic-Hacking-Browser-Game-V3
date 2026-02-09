@@ -2,7 +2,8 @@
 		
     {if $logged}
       <div class="alert alert-info">
-        {$L.RANK_DETAILS_LINK|replace:':url':"{$config.url}rankings/details/show"}
+        {assign var="rankUrl" value="`$config.url`rankings/details/show"}
+        {$L.RANK_DETAILS_LINK|replace:':url':$rankUrl}
       </div>
     {/if}
 		{$rankingsGrid}

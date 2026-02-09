@@ -134,7 +134,7 @@
                 
               {/if}
 
-              {if $reward.applications and $reward.applications|is_Array}
+              {if $reward.applications && $reward.applications|is_array}
                 <h2 class="white-holder">Applications</h2>
 
                 {foreach $reward.applications as $app}
@@ -155,7 +155,7 @@
                    {/if}
               {/if}
 
-              {if $reward.components and $reward.components|is_Array}
+              {if $reward.components && $reward.components|is_array}
                 <h2 class="white-holder">components</h2>
 
                 {foreach $reward.components as $comp}

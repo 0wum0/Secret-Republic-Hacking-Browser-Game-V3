@@ -10,6 +10,7 @@ date_default_timezone_set("Europe/London");
 
 define('cardinalSystem', true);
 
+require_once('../includes/i18n.php');
 require_once('../includes/class/cardinal.php');
 
 $path = dirname(__FILE__);
@@ -93,6 +94,11 @@ $_GET = array_merge(array("GET" => $_GET), $GET ?? array());
 
 
 require_once('../includes/header.php');
+
+// i18n: handle ?lang= switch + assign language dict to Smarty
+handle_lang_switch();
+$tVars['L'] = get_lang_dict();
+$tVars['current_lang'] = get_lang();
 
 // Smarty 5: Custom app functions als Modifier registrieren (nach header.php geladen)
 if (function_exists('date_fashion'))    $smarty->registerPlugin('modifier', 'date_fashion', 'date_fashion');

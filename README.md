@@ -471,6 +471,12 @@ php -v   # Must show 8.3.x or 8.4.x
 
 ## Changelog
 
+### 2026-02-09: fix: Rankings pagination negative LIMIT offset
+
+- **Problem:** Visiting `/rankings/?page=0`, `/rankings/?page=-5`, or `/rankings/?page=abc` caused a MariaDB syntax error: `LIMIT -20, 20`. The `Paginator` class read `$GET["page"]` and cast it to `(int)` without clamping, then passed the unchecked value to `MysqliDb->paginate()` which computed a negative offset via `($page - 1) * $perPage`.
+- **Fix:** Added page clamping in `Paginator::paginate()`: `current_page` is now forced to `>= 1` and `<= num_pages`. This is a centralized fix that protects all ~40 paginated pages across the codebase (rankings, search, rewards, hackdown, admin, forums, organizations, blogs, conversations, etc.).
+- **Changed file:** `includes/class/paginator.class.php`
+
 ### 2026-02-09: fix: Runtime- und Template-Fehler (PHP 8.3 / Smarty 4)
 
 Three critical runtime errors fixed that prevented the main page, rewards page, and jobs page from loading.

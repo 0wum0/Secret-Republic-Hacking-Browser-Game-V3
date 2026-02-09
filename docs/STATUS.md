@@ -1,28 +1,29 @@
-# Upgrade Status: PHP 8.3/8.4 + Smarty 5.7.0
+# Upgrade Status: PHP 8.3/8.4 + Smarty 5.7.0 + i18n
 
-**Stand:** 2026-02-08
-**Branch:** `cursor/system-php-8-3-kompatibilit-t-7f53`
+**Stand:** 2026-02-09
+**Branch:** `cursor/missionsseite-only-full-group-by-d0dd`
 
 ---
 
 ## Zusammenfassung
 
-Das Projekt "Secret Republic Hacking Browser Game V3" wurde vollständig auf PHP 8.3/8.4 Kompatibilität geprüft und aktualisiert. Smarty wurde von v4.5.6 auf v5.7.0 (aktuellste stabile Version) migriert, inklusive der kritischen Modifier-Registrierung. Alle identifizierten PHP 8.3/8.4 Breaking Changes, Deprecations und Null-Safety-Probleme wurden behoben.
+Das Projekt "Secret Republic Hacking Browser Game V3" wurde vollständig auf PHP 8.3/8.4 Kompatibilität aktualisiert, alle SQL-Queries sind ONLY_FULL_GROUP_BY-konform, und eine vollständige Zweisprachigkeit (DE/EN) mit Deutsch als Standard wurde implementiert.
 
 ## Status: ABGESCHLOSSEN
 
 | Bereich | Status | Details |
 |---------|--------|---------|
-| PHP 8.3/8.4 Syntax-Kompatibilität | Fertig | Alle 128 PHP-Dateien fehlerfrei (phplint) |
+| PHP 8.3/8.4 Syntax-Kompatibilität | Fertig | Alle PHP-Dateien fehlerfrei (phplint) |
 | Smarty Upgrade 4.5.6 -> 5.7.0 | Fertig | Namespace, Modifier-Registrierung, Template-Fixes |
 | Smarty Template Rendering | Fertig | 11 Core-Templates erfolgreich gerendert |
 | Composer Dependencies | Fertig | Alle auf kompatible Versionen aktualisiert |
 | Null-Safety Fixes | Fertig | `$_SESSION`, `array_merge`, undefined array keys |
 | Dynamic Properties | Fertig | `#[AllowDynamicProperties]` auf alle relevanten Klassen |
 | DB/SQL Kompatibilität | Fertig | utf8mb4, ONLY_FULL_GROUP_BY-konforme Queries (keine sql_mode-Änderungen nötig) |
+| **i18n (DE/EN)** | **Fertig** | **Deutsch als Default, Englisch wählbar. ~180 Keys pro Sprache.** |
 | Vanilla Forum | N/A | Nicht im Projekt vorhanden (eigenes Forum-System) |
 | PHPUnit Tests | 4/4 bestanden | Alle Unit-Tests grün |
-| Phplint | 0 Fehler / 128 Dateien | Alle Projektdateien syntaktisch korrekt |
+| Phplint | 0 Fehler | Alle Projektdateien syntaktisch korrekt |
 
 ---
 

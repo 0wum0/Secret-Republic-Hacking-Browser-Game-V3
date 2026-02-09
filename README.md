@@ -28,16 +28,17 @@ A PHP & MySQL browser-based, mobile-compatible role-playing game with a post-apo
 2. [Requirements](#requirements)
 3. [Installation](#installation)
 4. [Configuration](#configuration)
-5. [Webserver Setup](#webserver-setup)
-6. [Cronjobs](#cronjobs)
-7. [Upgrade from Older Versions](#upgrade-from-older-versions)
-8. [Changelog](#changelog)
-9. [Framework Details](#framework-details)
-10. [Tests](#tests)
-11. [Troubleshooting](#troubleshooting)
-12. [Security & Deployment](#security--deployment)
-13. [Screenshots](#screenshots)
-14. [Contributors & License](#contributors--license)
+5. [Languages (DE/EN)](#languages-deen)
+6. [Webserver Setup](#webserver-setup)
+7. [Cronjobs](#cronjobs)
+8. [Upgrade from Older Versions](#upgrade-from-older-versions)
+9. [Changelog](#changelog)
+10. [Framework Details](#framework-details)
+11. [Tests](#tests)
+12. [Troubleshooting](#troubleshooting)
+13. [Security & Deployment](#security--deployment)
+14. [Screenshots](#screenshots)
+15. [Contributors & License](#contributors--license)
 
 ---
 
@@ -210,6 +211,66 @@ The `url` setting is auto-detected from `$_SERVER` and does not need manual conf
 
 ---
 
+## Languages (DE/EN)
+
+The game supports **German** (default) and **English**. The language can be switched at any time via a "DE | EN" toggle in the top-right corner of every page.
+
+### How Switching Works
+
+- Click **DE** or **EN** in the header, or append `?lang=de` / `?lang=en` to any URL.
+- The selection is persisted via:
+  1. **Database** (`users.language` column) for logged-in users
+  2. **Cookie** (`sr_lang`, 1 year) for all visitors
+  3. **Session** as fallback
+
+### Translation Files
+
+| File | Content |
+|---|---|
+| `lang/de.php` | German dictionary (~180 keys) |
+| `lang/en.php` | English dictionary (~180 keys) |
+
+Both files return a PHP array with translation keys and values.
+
+### How to Add/Edit Translations
+
+1. Open `lang/de.php` and `lang/en.php`.
+2. Add a new key to **both** files (same key, different value):
+
+```php
+// lang/de.php
+'MY_NEW_KEY' => 'Mein neuer Text',
+
+// lang/en.php
+'MY_NEW_KEY' => 'My new text',
+```
+
+3. Use in **templates**: `{$L.MY_NEW_KEY}`
+4. Use in **PHP**: `t('MY_NEW_KEY')` or `t('MY_KEY', null, [':name' => $value])`
+
+### Key Naming Convention
+
+| Prefix | Usage |
+|---|---|
+| `NAV_` | Navigation items |
+| `BTN_` | Buttons |
+| `ERR_` | Error messages |
+| `MSG_` | Success/info messages |
+| `ADMIN_` | Admin panel |
+| `INSTALL_` | Installer |
+| `GAME_` | Generic game terms |
+| `UI_` | UI elements |
+
+### Technical Details
+
+- **Loader:** `includes/i18n.php` provides `t()`, `get_lang()`, `set_lang()`
+- **Smarty:** The full dictionary is assigned as `$L` to all templates
+- **DB migration:** For existing installations, run: `ALTER TABLE users ADD COLUMN language VARCHAR(2) NOT NULL DEFAULT 'de';`
+
+For detailed coverage, see `docs/I18N_CHECKLIST.md`.
+
+---
+
 ## Webserver Setup
 
 The **Document Root** must point to the `public_html/` directory.
@@ -348,6 +409,25 @@ php -v   # Must show 8.3.x or 8.4.x
 ---
 
 ## Changelog
+
+### 2026-02-09: i18n / Internationalization (DE/EN)
+
+- Added bilingual support: **German** (default) and **English**
+- Language switch "DE | EN" in header on every page
+- Language persistence: DB (`users.language`) > Cookie (`sr_lang`) > Session > Default `de`
+- i18n infrastructure: `includes/i18n.php` with `t()`, `get_lang()`, `set_lang()`
+- Translation dictionaries: `lang/de.php` + `lang/en.php` (~180 keys each)
+- Smarty integration: `{$L.KEY}` in all translated templates
+- Translated: Navigation, footer, login, registration, setup, admin nav, missions, tutorial, error/success messages
+- DB schema: `users.language VARCHAR(2) DEFAULT 'de'` added
+- Documentation: `docs/I18N_PROJECT_MAP.md`, `docs/I18N_CHECKLIST.md`
+
+### 2026-02-09: ONLY_FULL_GROUP_BY Fix
+
+- All GROUP BY queries on the missions page are now ONLY_FULL_GROUP_BY compliant
+- No `SET GLOBAL/SESSION sql_mode` workarounds needed
+- Fixed queries in `quests_show.php` and `manageUsers.php`
+- Documentation: `docs/sql_missions_audit.md`
 
 ### PHP 8.3/8.4 Compatibility Update
 

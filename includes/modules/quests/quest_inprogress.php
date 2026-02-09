@@ -46,7 +46,7 @@ else
     if ($qtask["type"] == 15 && $qclass->finished)
     {
 
-        $success[] = "Mission completed";
+        $success[] = t('QUEST_MISSION_COMPLETED');
 
         $quest = $db->join('quests_user qu', 'qu.quest = q.id and qu.user_id = ' . $user['id'], 'left outer')->where("q.id", $qclass->questTask["questID"])
             ->getOne("quests q", "qu.id qu_id, type, money, experience, achievement_id, skillPoints, qu.created as done, times");

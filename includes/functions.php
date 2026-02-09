@@ -67,7 +67,7 @@ function configs($field) {
 
 function date_fashion($date) {
   if (!$date)
-    return 'never';
+    return t('GAME_NEVER');
   $dateTime = new DateTime();
   $dateTime->setTimestamp($date);
   return PrettyDateTime::parse($dateTime);
@@ -133,7 +133,7 @@ function myErrorHandler($errno, $errstr, $errfile, $errline) {
       unset($smarty);
 
     } else {
-      echo '<h3>Cardinal notice: An unexpected error took place. Error recorded. Crazy people are going to look into it soon!</h3>';
+      echo '<h3>' . t('ERR_UNEXPECTED') . '</h3>';
       if (isset($cardinal->user['view_debug']))
         print_R($insertData);
     }

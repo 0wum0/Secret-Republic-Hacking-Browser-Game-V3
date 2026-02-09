@@ -8,13 +8,15 @@
       <div class="panel-body text-center">
         {if $myQuest}
         {if $myQuest.type eq 1 or $myQuest.type eq 2}
-        {$L.QUEST_FINISHED_TIMES|replace:':title':$myQuest.title|replace:':times':$myQuest.times|number_format}
+        {assign var="timesFormatted" value=$myQuest.times|default:0|number_format}
+        {$L.QUEST_FINISHED_TIMES|replace:':title':$myQuest.title|replace:':times':$timesFormatted}
         {else}
         {$myQuest.title}
         {/if}
         {else}
         {if !$user.in_party}
-        {$L.QUEST_DONE_FROM|replace:':done':$group.questsDone|number_format|replace:':avail':$quests|count|replace:':total':$group.nrQuests|replace:':name':$group.name}
+        {assign var="doneFormatted" value=$group.questsDone|default:0|number_format}
+        {$L.QUEST_DONE_FROM|replace:':done':$doneFormatted|replace:':avail':$quests|count|replace:':total':$group.nrQuests|replace:':name':$group.name}
         {else}
         <div class="text-center">{$L.NAV_PARTY}</div>
         {/if}

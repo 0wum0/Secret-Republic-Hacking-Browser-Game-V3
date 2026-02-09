@@ -1,5 +1,6 @@
 <br/>
-	  <strong><em>{$L.VISITOR_HACKERS_GRID|replace:':count':$online|number_format}</em> </strong>
+	  {assign var="onlineFormatted" value=$online|default:0|number_format}
+	  <strong><em>{$L.VISITOR_HACKERS_GRID|replace:':count':$onlineFormatted}</em> </strong>
 	   <br/> <br/>
 	  <h4>{$L.VISITOR_NEWEST}</h4>
       {foreach from = $orgHackers item = item}

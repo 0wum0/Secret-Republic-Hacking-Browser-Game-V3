@@ -471,6 +471,37 @@ php -v   # Must show 8.3.x or 8.4.x
 
 ## Changelog
 
+### 2026-02-09: Vollständige Fehleranalyse, Bugfixes & i18n-Vervollständigung
+
+**Phase 0 — Diagnose:**
+- Vollständige Fehleranalyse aller bekannten Probleme durchgeführt
+- Alle bisherigen Fixes verifiziert (Router, number_format, rand(), is_Array, Pagination, Storage)
+- Verbliebene hardcodierte englische Strings in ~20 PHP-Modulen und ~12 Templates identifiziert
+
+**Phase 1 — Verbleibende Blocker-Fixes:**
+- Alle kritischen Blocker waren bereits durch vorherige PRs behoben (Router Querystring, Smarty number_format, Rewards rand/is_Array, Rankings Pagination, Storage TypeError, templates_c .gitignore)
+- PHP-Syntax aller Dateien verifiziert (0 Fehler)
+
+**Phase 2 — i18n-Vervollständigung (DE/EN):**
+- ~60 neue Übersetzungsschlüssel in `lang/de.php` und `lang/en.php` hinzugefügt
+- Alle hardcodierten englischen Strings in PHP-Modulen durch `t()` Aufrufe ersetzt:
+  - `rewards/rewards.php`, `job.php`, `hackdown.php`, `guest_quests.php`, `org_hacking_points.php`
+  - `support.php`, `conversations.php`, `bank.php`, `servers/servers.php`, `shop.php`
+  - `simulator.php`, `skills.php`, `data-points.php`, `dna.php`, `register.php`
+  - `alpha_coins/coupon_handler.php`, `class.forum.php`
+- Templates mit englischen Strings auf `{$L.KEY}` Lookups umgestellt:
+  - `achievements.tpl`, `forum_bit.tpl`, `forum_threads.tpl`, `forum_thread.tpl`
+  - `conversations/messages.tpl`, `conversations/message.tpl`, `conversations/new_message.tpl`
+  - `referrals.tpl`, `notes.tpl`, `support.tpl`, `data-points/data-points.tpl`, `post_bit.tpl`
+
+> **Wichtig:** Nach dem Deployment den Smarty-Cache leeren:
+> ```bash
+> rm -rf includes/templates_c/*
+> rm -rf includes/cache/*
+> ```
+
+---
+
 ### 2026-02-09: Bugfixes & Language Consistency Update
 
 **Phase 1 — Bugfixes:**

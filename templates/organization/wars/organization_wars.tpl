@@ -49,7 +49,7 @@
 					    </select>
 					  </div>
 					</div><br/>
-					<input type="submit" class="btn" value="Send war request"/>
+					<input type="submit" class="btn" value="{$L.ORG_SEND_WAR_REQ}"/>
 				
 				</form>
 				<hr/>

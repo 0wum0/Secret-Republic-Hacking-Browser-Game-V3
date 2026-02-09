@@ -729,4 +729,42 @@ return [
 
     // ── Admin Extras ──
     'ADMIN_ADD_SKILL_EXP'    => 'Skill-Erfahrung hinzuf\u00fcgen',
+
+    // ── Server-Detailseite ──
+    'SERVERS_IN_USE'         => ':used / :total in Benutzung',
+    'SERVERS_POWER_USAGE'    => 'Stromverbrauch: :amount',
+    'SERVERS_RAM_SLOTS'      => ':used / :total RAM-Pl\u00e4tze',
+    'SERVERS_HDD_SLOTS'      => ':used / :total HDD-Pl\u00e4tze',
+    'SERVERS_POWER'          => 'Strom: :used/:total',
+    'SERVERS_NO_RAM'         => 'kein RAM montiert',
+    'SERVERS_NO_HDD'         => 'keine HDDs montiert',
+    'SERVERS_NO_APPS'        => 'keine Apps installiert',
+    'SERVERS_NO_SKILLS'      => 'keine Skill-Level',
+    'SERVERS_CUR_SKILLS'     => 'aktuelle Server-Skill-Level',
+    'SERVERS_UNMOUNT'        => 'Karte entfernen',
+    'SERVERS_DMG_DISABLED'   => 'Deaktiviert wegen Mainboard-Schaden',
+    'SERVERS_ABOUT_DMG'      => '\u00dcber Software, Hardware und was passiert, wenn sie besch\u00e4digt werden',
+    'SERVERS_TRANSFER'       => '\u00dcBERTRAGEN',
+    'SERVERS_TRANSFER_LC'    => '\u00fcbertragen',
+
+    // ── Header-Tutorial-Leiste ──
+    'HDR_TUTORIAL_BAR'       => 'Tutorial (:pct%)',
+
+    // ── Grid-Seite Extras ──
+    'GRID_OCCUPY_NODE'       => 'Knoten besetzen',
+    'GRID_UNINHABITED'       => 'unbewohnter Knoten',
+    'GRID_INITIALIZE'        => 'eine Knoten-Instanz initialisieren',
+    'GRID_INACTIVE'          => 'seit einer Weile inaktiv',
+    'GRID_SCAVENGE'          => 'Sammeln',
+    'GRID_FLOATING_DP'       => ':count schwebende DPs',
+    'GRID_NO_FLOATING'       => 'keine <a href=":url">schwebenden Datenpunkte</a>',
+    'GRID_SEND_MSG'          => 'Nachricht senden',
+    'GRID_CONFIG_ATTACK'     => 'Angriff konfigurieren',
+    'GRID_RENAME_CLUSTER'    => 'Cluster (um)benennen',
+    'GRID_RENAME_INFO'       => 'Cluster-Bewohner k\u00f6nnen den Namen alle 15 Tage \u00e4ndern.',
+    'GRID_NAME_BTN'          => 'Cluster benennen',
+    'GRID_CLUSTER'           => 'Cluster',
+    'GRID_FREE_DP'           => 'Frei schwebende Datenpunkt-Reste. Einsammeln?',
+    'GRID_NO_FLOATING_PTS'   => 'keine schwebenden Punkte',
+    'GRID_EMPTY_NODE'        => 'LEERER KNOTEN',
 ];

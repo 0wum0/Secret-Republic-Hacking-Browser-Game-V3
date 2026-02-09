@@ -729,4 +729,42 @@ return [
 
     // ── Admin extras ──
     'ADMIN_ADD_SKILL_EXP'    => 'Add skill experience',
+
+    // ── Server detail page ──
+    'SERVERS_IN_USE'         => ':used / :total in use',
+    'SERVERS_POWER_USAGE'    => 'Power usage: :amount',
+    'SERVERS_RAM_SLOTS'      => ':used / :total RAM slots',
+    'SERVERS_HDD_SLOTS'      => ':used / :total HDD slots',
+    'SERVERS_POWER'          => 'Power: :used/:total',
+    'SERVERS_NO_RAM'         => 'no RAM mounted',
+    'SERVERS_NO_HDD'         => 'no HDDs mounted',
+    'SERVERS_NO_APPS'        => 'no apps installed',
+    'SERVERS_NO_SKILLS'      => 'no skill levels',
+    'SERVERS_CUR_SKILLS'     => 'current server skill levels',
+    'SERVERS_UNMOUNT'        => 'Unmount card',
+    'SERVERS_DMG_DISABLED'   => 'Disabled due to MBoard damage',
+    'SERVERS_ABOUT_DMG'      => 'About software, hardware and what happens when they\'re damaged',
+    'SERVERS_TRANSFER'       => 'TRANSFER',
+    'SERVERS_TRANSFER_LC'    => 'transfer',
+
+    // ── Header tutorial bar ──
+    'HDR_TUTORIAL_BAR'       => 'Tutorial (:pct%)',
+
+    // ── Grid page extras ──
+    'GRID_OCCUPY_NODE'       => 'Occupy node',
+    'GRID_UNINHABITED'       => 'uninhabited node',
+    'GRID_INITIALIZE'        => 'initialize a node instance',
+    'GRID_INACTIVE'          => 'inactive for a while',
+    'GRID_SCAVENGE'          => 'Scavenge',
+    'GRID_FLOATING_DP'       => ':count floating DP\'s',
+    'GRID_NO_FLOATING'       => 'no <a href=":url">floating data points</a>',
+    'GRID_SEND_MSG'          => 'Send message',
+    'GRID_CONFIG_ATTACK'     => 'Configure attack',
+    'GRID_RENAME_CLUSTER'    => '(Re)name this cluster',
+    'GRID_RENAME_INFO'       => 'Cluster inhabitants can change its name every 15 days.',
+    'GRID_NAME_BTN'          => 'name this cluster',
+    'GRID_CLUSTER'           => 'cluster',
+    'GRID_FREE_DP'           => 'Free floating Data Points scraps. Collect?',
+    'GRID_NO_FLOATING_PTS'   => 'no floating points',
+    'GRID_EMPTY_NODE'        => 'EMPTY NODE',
 ];

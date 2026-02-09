@@ -13,7 +13,7 @@
 <div class="row">
 	<div class="col-xs-10">
 		<div class="well mb10">
-		 			You own {$servers|count}/{$maxServers} servers. Please keep in mind only your main server contributes to your skill levels in missions.
+		 			{$L.SERVERS_OWN_COUNT|replace:':count':{$servers|count}|replace:':max':$maxServers}
 				
 					
 		</div>
@@ -41,10 +41,10 @@
 <div class="col-lg-3 col-xs-6">
 	{if $server.damaged > 0}
 		<div class="alert alert-danger text-center nomargin">
-			{$server.damaged|round:2}% damaged
+			{$L.SERVERS_DAMAGED_PCT|replace:':amount':{$server.damaged|round:2}}
 		</div>
 	{else}
-		<div class="alert alert-info text-center nomargin">undamaged</div>
+		<div class="alert alert-info text-center nomargin">{$L.SERVERS_UNDAMAGED}</div>
 	{/if}
 </div>
 <div class="col-lg-2 col-xs-6">
@@ -52,7 +52,7 @@
 		
 	{else}
 		<form method="post">
-			<button name="main" value="{$server.server_id}" type="submit" title="Set as main">MAIN</button>
+			<button name="main" value="{$server.server_id}" type="submit" title="{$L.SERVERS_SET_MAIN}">{$L.SERVERS_MAIN_LABEL}</button>
 		</form>
 	{/if}
 </div>
@@ -60,9 +60,9 @@
 </div>
 
 {foreachelse}
-<button disabled>you own no servers - <a href="{$config.url}shop">buy some components</a> then <a href="{$config.url}servers/build/hell">build one</a></button>
+<button disabled>{$L.SERVERS_NO_SERVERS|replace:':shop_url':"{$config.url}shop"|replace:':build_url':"{$config.url}servers/build/hell"}</button>
 {/foreach}
 
 <div style="padding:20px">
-	<a class="button text-center" href="{$config.url}servers/build/hell">Build a new server</a>
+	<a class="button text-center" href="{$config.url}servers/build/hell">{$L.SERVERS_BUILD_NEW}</a>
 </div>

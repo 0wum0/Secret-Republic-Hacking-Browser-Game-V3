@@ -1,4 +1,4 @@
-{include file="dialogs/osx_dialog_box.tpl" id="new_section" title="New forum section" content='
+{include file="dialogs/osx_dialog_box.tpl" id="new_section" title=$L.ORG_NEW_SECTION content='
 <form method="post" class="text-center">
 	<input type="text" name="name" placeholder="Section name" maxlength="70" />
 	<input type="submit" value="Process" name="new_section"/>
@@ -10,7 +10,7 @@
       <h3>Forum</h3>
     </div>
     <div class="col-md-3 text-right">
-      <a href="#myModalnew_section" data-toggle="modal"><button>New forum section</button></a>
+      <a href="#myModalnew_section" data-toggle="modal"><button>{$L.ORG_NEW_SECTION}</button></a>
     </div>
   </div>
   
@@ -28,7 +28,7 @@
         </div>
         <div class="col-md-2 nopadding">
           <a href="#myModal{$section.id}" data-toggle="modal"><button>New forum</button></a>
-          {include file="dialogs/osx_dialog_box.tpl" id={$section.id} title="New forum section" content='
+          {include file="dialogs/osx_dialog_box.tpl" id={$section.id} title=$L.ORG_NEW_SECTION content='
           <form method="post" class="text-center">
             <input type="text" name="name" placeholder="Forum name" maxlength=70/>
             <input type="hidden" name="section" value="{$section.id}"/>

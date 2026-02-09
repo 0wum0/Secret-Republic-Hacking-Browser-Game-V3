@@ -1,10 +1,10 @@
 {include file="organization/members_header.tpl"}
 <div class="text-center"><a  href="#myModaladd" data-toggle="modal" id="add"><h3><span class="glyphicon glyphicon-plus-sign"></span></a></h3></div>
 
-{include file="dialogs/osx_dialog_box.tpl" id="add" title="Add new rank" content='
+{include file="dialogs/osx_dialog_box.tpl" id="add" title=$L.ORG_ADD_RANK content='
 <form method="post" action="#" style="text-align:center">
 	<input type="text" name="newRank" maxlength="15" placeholder="Rank name - max 15 characters"/>
-	<input type="submit" value="Add new rank" />
+	<input type="submit" value="'|cat:$L.ORG_ADD_RANK|cat:'" />
 </form>
  '} 
 

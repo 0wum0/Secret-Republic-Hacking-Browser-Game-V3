@@ -89,7 +89,7 @@ You have Hackdowned {($hacks.nrMissions + $hacks.nrAttacks)|floatval|number_form
 {include file="components/hackdown.tpl" countdownFrom=$nextSaturdayRemaining totalCountdown=6*24*60*60
                                               textCountdown = "true" progressBarClass = "progress-info"
                                               progressBarCountdown = "true" reloadOnFinish = "true" 
-                                              textLeft="NEXT HACKDOWN IN"}
+                                              textLeft=$L.HACKDOWN_NEXT_IN}
 </div>
 <div class="panel-footer">You think you have what it takes to be one of the champions?</div>
 </div>
@@ -104,7 +104,7 @@ You have Hackdowned {($hacks.nrMissions + $hacks.nrAttacks)|floatval|number_form
 {include file="components/hackdown.tpl" countdownFrom=$hackdownRemaining totalCountdown=24*60*60
                                               textCountdown = "true" progressBarClass = "progress-info"
                                               progressBarCountdown = "true" reloadOnFinish = "true" 
-                                              textLeft="Hackdown ends in"}
+                                              textLeft=$L.HACKDOWN_ENDS_IN}
 </div>
 </div>
 

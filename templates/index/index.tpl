@@ -99,7 +99,7 @@
       <div class="panel-heading">
         <div class="row">
           <div class="col-xs-10">
-            Connected to {$user.main_node}
+            {$L.DASH_CONNECTED_PREFIX} {$user.main_node}
           </div>
           <div class="col-xs-2 text-right">
             <a href="{$config.url}frequently-asked-questions/open/about-nodes">
@@ -161,9 +161,9 @@
             {include file="components/hackdown.tpl" countdownFrom=$nextSaturdayRemaining totalCountdown=6*24*60*60
             id='hackdown' textCountdown = "true"
             progressBarCountdown = "true" reloadOnFinish = true
-            textFinish = "Hackdown in progress"
+            textFinish=$L.HACKDOWN_IN_PROGRESS
             progressBarClass = "progress-small"
-            textLeft="Next Hackdown in"}
+            textLeft=$L.HACKDOWN_NEXT_IN}
 
 
 
@@ -189,8 +189,8 @@
             {include file="components/hackdown.tpl" countdownFrom=$hackdownRemaining totalCountdown=24*60*60
             id='hackdown' textCountdown = "true"
             progressBarCountdown = "true" reloadOnFinish = true
-            textFinish = "Hackdown ended"
-            progressBarClass = "progress" textLeft="HACKDOWN in progress"}
+            textFinish=$L.HACKDOWN_ENDED
+            progressBarClass = "progress" textLeft=$L.HACKDOWN_IN_PROGRESS}
           </div>
           <a href="{$config.url}hackdown"><img src="{$config.url}layout/img/events/hackdown_main.jpg" class="  imageOpacity" title="Hackdown"/></a>
 

@@ -16,14 +16,14 @@
 	  	
       <div class="panel panel-white panel-white-card" style="text-transform:uppercase">
           {if $reward.received}
-       <div class="panel-heading">Claimed {$reward.received|date_fashion}</div>
+       <div class="panel-heading">{$L.REWARDS_CLAIMED_ON} {$reward.received|date_fashion}</div>
       {/if}
 
           <div class="panel-body">
       	  	{if $reward.alphaCoins}
       			<div class="row">
       				<div class="col-md-7">
-      					Alpha Coins
+      					{$L.REWARDS_ALPHA_COINS}
       				</div>
       				<div class="col-md-5">
       					{$reward.alphaCoins|floatval|number_format} AC
@@ -33,7 +33,7 @@
             {if $reward.dataPoints}
               <div class="row">
                 <div class="col-md-7">
-                  Data Points
+                  {$L.REWARDS_DATA_POINTS}
                 </div>
                 <div class="col-md-5">
                   {$reward.dataPoints|floatval|number_format:2}
@@ -44,7 +44,7 @@
               <div class="row">
          
                     <div class="col-md-7 ">
-                        Money
+                        {$L.REWARDS_MONEY}
                     </div>
                     <div class="col-md-5 ">
                         {$reward.money|floatval|number_format}$
@@ -57,10 +57,10 @@
               <div class="row">
                
                     <div class="col-md-7 ">
-                        Experience
+                        {$L.REWARDS_EXPERIENCE}
                     </div>
                     <div class="col-md-5 ">
-                        {$reward.exp|floatval|number_format} points
+                        {$reward.exp|floatval|number_format} {$L.UI_POINTS}
                     </div>
                   
                 
@@ -71,10 +71,10 @@
               <div class="row">
               
                     <div class="col-md-7 ">
-                        Universal Skill Points
+                        {$L.REWARDS_SKILL_POINTS}
                     </div>
                     <div class="col-md-5 ">
-                        {$reward.skillPoints|floatval|number_format} points
+                        {$reward.skillPoints|floatval|number_format} {$L.UI_POINTS}
                     </div>
                 
               </div>
@@ -85,7 +85,7 @@
               <div class="row">
             
                     <div class="col-md-7 ">
-                        Energy
+                        {$L.REWARDS_ENERGY}
                     </div>
                     <div class="col-md-5 ">
                         +{$reward.energy|floatval|number_format}
@@ -99,10 +99,10 @@
               <div class="row">
               
                     <div class="col-md-7 ">
-                        Job Experience
+                        {$L.REWARDS_JOB_EXP}
                     </div>
                     <div class="col-md-5 ">
-                        {$reward.jobExp|floatval|number_format} points
+                        {$reward.jobExp|floatval|number_format} {$L.UI_POINTS}
                     </div>
                   
              
@@ -111,7 +111,7 @@
 
               
               {if $reward.skills and $reward.skills|count}
-                <h2 class="white-holder">skills</h2>
+                <h2 class="white-holder">{$L.REWARDS_SKILLS}</h2>
 
                     {foreach from=$reward.skills key=skill item=amount}
                       <div class="row ">
@@ -119,7 +119,7 @@
                                  {$theskills[$skill].name}
                             </div>
                             <div class="col-xs-3  text-right">
-                               {$amount|floatval|number_format} points
+                               {$amount|floatval|number_format} {$L.UI_POINTS}
                             </div>
                       </div>
                    {/foreach}
@@ -128,14 +128,14 @@
 
                 {if $reward.achievements|is_array and $reward.achievements|count}
      
-                <h2 class="white-holder">achievements</h2>
+                <h2 class="white-holder">{$L.REWARDS_ACHIEVEMENTS}</h2>
                 {include file='profile/achievements.tpl' achievements = $reward.achievements panelClass='panel-white'}
             
                 
               {/if}
 
               {if $reward.applications && $reward.applications|is_array}
-                <h2 class="white-holder">Applications</h2>
+                <h2 class="white-holder">{$L.REWARDS_APPLICATIONS}</h2>
 
                 {foreach $reward.applications as $app}
                       <div class="row ">
@@ -143,20 +143,20 @@
                                  {$app.name}
                             </div>
                             <div class="col-xs-3  text-right">
-                               {$app.damage}% damaged
+                               {$app.damage}% {$L.UI_DAMAGED}
                             </div>
                       </div>
                    {/foreach}
 
                    {if !$reward.received}
                    <div class="alert alert-info" style="text-transform:none; line-height:initial">
-                     To claim applications you must have space on your main server or a set as main a server which has.
+                     {$L.REWARDS_APP_HINT}
                    </div>
                    {/if}
               {/if}
 
               {if $reward.components && $reward.components|is_array}
-                <h2 class="white-holder">components</h2>
+                <h2 class="white-holder">{$L.REWARDS_COMPONENTS}</h2>
 
                 {foreach $reward.components as $comp}
 
@@ -166,13 +166,13 @@
                             </div>
                             <div class="col-xs-3  text-right">
 
-                               {$comp.damage}% damaged
+                               {$comp.damage}% {$L.UI_DAMAGED}
                             </div>
                       </div>
                    {/foreach}
                    {if !$reward.received}
                    <div class="alert alert-info" style="text-transform:none; line-height:initial">
-                     To claim components make sure to have enough space in storage.
+                     {$L.REWARDS_COMP_HINT}
                    </div>
                    {/if}
               {/if}
@@ -181,7 +181,7 @@
 
            {if !$reward.received}
               <form method="post">
-                <input type="submit" name="receive" class="button-white" value="Claim reward" style="height:70px;font-size:20px; border-left:0!important; border-right:0!important;border-bottom:0!important"/>
+                <input type="submit" name="receive" class="button-white" value="{$L.REWARDS_CLAIM_BTN}" style="height:70px;font-size:20px; border-left:0!important; border-right:0!important;border-bottom:0!important"/>
               </form>
               
             {/if}

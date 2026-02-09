@@ -256,8 +256,8 @@ The game supports **German** (default) and **English**. The language can be swit
 
 | File | Content |
 |---|---|
-| `lang/de.php` | German dictionary (~180 keys) |
-| `lang/en.php` | English dictionary (~180 keys) |
+| `lang/de.php` | German dictionary (~426 keys) |
+| `lang/en.php` | English dictionary (~426 keys) |
 
 Both files return a PHP array with translation keys and values.
 
@@ -471,6 +471,56 @@ php -v   # Must show 8.3.x or 8.4.x
 
 ## Changelog
 
+### 2026-02-09: Bugfixes & Language Consistency Update
+
+**Phase 1 — Bugfixes:**
+
+- **fix: Router must ignore query string (no 404 with `?params`)**
+  - **Problem:** Any URL with a query string (e.g. `/?a=b`, `/?lang=en`) produced a 404 error. The front controller used `QUERY_STRING` as a route fallback and included query strings in `REQUEST_URI`-based path parsing.
+  - **Fix:** Strip query string from `REQUEST_URI` using `parse_url(..., PHP_URL_PATH)` before routing. Removed `QUERY_STRING` fallback for route detection. `URL_C` constant now uses clean path. Original `$_GET` params preserved under `$_GET['GET']`.
+  - **Changed files:** `index.php`, `includes/i18n.php`
+
+- **fix: Language switch (`?lang=`) now works reliably**
+  - **Problem:** `handle_lang_switch()` read from `$_GET['lang']` but `$_GET` was overwritten by the routing merge. The `?lang=en` parameter was lost.
+  - **Fix:** `handle_lang_switch()` now checks both `$_GET['lang']` and `$_GET['GET']['lang']`. After switching, redirects to the same page without `?lang=` to keep URLs clean.
+  - **Changed files:** `includes/i18n.php`
+
+- **fix: Header overlap — admin button vs language switch**
+  - **Problem:** Admin icon (`position:fixed; top:0; right:0`) overlapped the DE/EN language toggle.
+  - **Fix:** Language switch uses flex layout with z-index 10000. Admin icon shifted to `right:55px`.
+  - **Changed files:** `templates/header_home.tpl`, `layout/css/custom.css`
+
+**Phase 2 — Language Consistency (DE/EN):**
+
+- Added **60+ new translation keys** to both `lang/de.php` and `lang/en.php` (total: ~426 keys each)
+- **All 426 keys match** between DE and EN (verified programmatically)
+- **Unicode escapes** (`\uXXXX`) decoded correctly via `_sr_decode_unicode()` in `i18n.php`
+- **Translated templates:**
+  - `rewards/rewards.tpl` — intro, claim all, claim, not claimed, no rewards yet
+  - `rewards/reward.tpl` — all labels (Alpha Coins, Data Points, Money, Experience, Skills, Achievements, Applications, Components, claim button, hints)
+  - `job/job.tpl` — level, intro, wait message, keep coding, work button
+  - `storage/storage.tpl` — area, slots info, sell info, slots status, more slots link
+  - `pages/404.tpl` — heading, body, typed hint, report hint, go home button
+  - `rankings/rankings.tpl` + `rankingsGrid.tpl` — hackers, organizations, members, points, place labels
+  - `home/splash_screen.tpl` — hackdown text strings
+  - `index/index.tpl` — hackdown texts, connected prefix
+  - `hackdown/hackdown.tpl` + `hackdown_arena.tpl` — countdown labels
+
+**Smoke-test results (all pass):**
+- `/` and `/?a=b` — no 404 ✓
+- `/?lang=en` and `/?lang=de` — switches correctly, no 404 ✓
+- `/rewards/` and `/rewards/?x=y` — loads, no 404 ✓
+- `/rewards/myReward/2/` and `/rewards/myReward/2/?x=y` — loads ✓
+- `/rankings/` and `/rankings/?page=0` and `/rankings/?page=-1` — loads, page defaults to 1 ✓
+- `/storage/` and `/storage/?x=y` — loads ✓
+- `/job/` — loads ✓
+
+> **Important:** After deploying, clear the Smarty compiled template cache:
+> ```bash
+> rm -rf includes/templates_c/*
+> rm -rf includes/cache/*
+> ```
+
 ### 2026-02-09: fix: Rewards reward.tpl `is_Array` modifier (Smarty 4)
 
 - **Problem:** `/rewards/myReward/2/` crashed with Smarty compiler error `unknown modifier 'is_Array'` at line 137 of `templates/rewards/reward.tpl`. The template used `|is_Array` (mixed case) but Smarty modifiers are case-sensitive and only `is_array` (lowercase) was registered.
@@ -549,7 +599,7 @@ Three critical runtime errors fixed that prevented the main page, rewards page, 
 - Language switch "DE | EN" in header on every page
 - Language persistence: DB (`users.language`) > Cookie (`sr_lang`) > Session > Default `de`
 - i18n infrastructure: `includes/i18n.php` with `t()`, `get_lang()`, `set_lang()`
-- Translation dictionaries: `lang/de.php` + `lang/en.php` (~280 keys each)
+- Translation dictionaries: `lang/de.php` + `lang/en.php` (~426 keys each, fully synced)
 - Smarty integration: `{$L.KEY}` in all translated templates
 - **Fully translated (no mixed language):**
   - Login / Splash screen
@@ -561,6 +611,13 @@ Three critical runtime errors fixed that prevented the main page, rewards page, 
   - Admin navigation
   - Installer / Setup
   - Header / Footer / Navigation (desktop + mobile)
+  - Rewards pages (list, detail, all labels)
+  - Rankings page (hackers, organizations, place labels)
+  - Job page (level, intro, work button, wait timer)
+  - Storage page (slots, sell info, status)
+  - 404 error page
+  - Hackdown countdown labels
+  - Dashboard (connected, energy, etc.)
   - All PHP error/success/info messages in: `loginSystem`, `registrationSystem`, `header`, `quests`, `train`, `profile`
 - DB schema: `users.language VARCHAR(2) DEFAULT 'de'` added
 - Documentation: `docs/I18N_PROJECT_MAP.md`, `docs/I18N_CHECKLIST.md`

@@ -489,4 +489,73 @@ return [
 
     // ── Admin extras ──
     'ADMIN_BAN_NEW_NOT_HIGHER' => 'New ban not higher than old ban',
+
+    // ── Rewards Page ──
+    'REWARDS_INTRO'          => 'You receive rewards as you complete different tasks, participate events or earn <a href=":url">achievements</a>.',
+    'REWARDS_CLAIM_ALL'      => 'CLAIM ALL',
+    'REWARDS_CLAIM'          => 'CLAIM',
+    'REWARDS_NOT_CLAIMED'    => 'not claimed',
+    'REWARDS_NONE_YET'       => 'You have not received any rewards, yet, :username.',
+    'REWARDS_CLAIMED_ON'     => 'Claimed',
+    'REWARDS_ALPHA_COINS'    => 'Alpha Coins',
+    'REWARDS_DATA_POINTS'    => 'Data Points',
+    'REWARDS_MONEY'          => 'Money',
+    'REWARDS_EXPERIENCE'     => 'Experience',
+    'REWARDS_SKILL_POINTS'   => 'Universal Skill Points',
+    'REWARDS_ENERGY'         => 'Energy',
+    'REWARDS_JOB_EXP'        => 'Job Experience',
+    'REWARDS_SKILLS'         => 'skills',
+    'REWARDS_ACHIEVEMENTS'   => 'achievements',
+    'REWARDS_APPLICATIONS'   => 'Applications',
+    'REWARDS_COMPONENTS'     => 'components',
+    'REWARDS_CLAIM_BTN'      => 'Claim reward',
+    'REWARDS_APP_HINT'       => 'To claim applications you must have space on your main server or a set as main a server which has.',
+    'REWARDS_COMP_HINT'      => 'To claim components make sure to have enough space in storage.',
+
+    // ── Job Page ──
+    'JOB_LEVEL_LABEL'       => 'JOB LEVEL',
+    'JOB_INTRO'             => 'The higher your job level is the more rewarding your work will be. Freelancing keeps your wallet above the floating line and trains you for missions in the field.',
+    'JOB_WAIT_MSG'          => 'Gotta wait till a new day begins to work again.',
+    'JOB_KEEP_CODING'       => 'Keep your code on!',
+    'JOB_WORK_BTN'          => 'Work',
+
+    // ── Storage Page ──
+    'STORAGE_AREA'           => 'Storage area',
+    'STORAGE_SLOTS_INFO'     => '6 slots are available by default. An extra slot is given for every 7 levels you achieve.',
+    'STORAGE_MORE_SLOTS'     => 'Get more slots using A-Coins',
+    'STORAGE_SELL_INFO'      => 'When selling to the Alpha\'s shop they will underevaluate items. The cash you receive decreases with damage.',
+    'STORAGE_SLOTS_STATUS'   => 'You currently have :available slots available out of which :used used.',
+    'STORAGE_SELL_BTN'       => 'SELL',
+
+    // ── 404 Page ──
+    'ERR_404_HEADING'        => 'ERROR 404',
+    'ERR_404_BODY'           => 'System error 404 - Page not found. The page you are looking for could not be found!',
+    'ERR_404_TYPED'          => 'If you\'ve typed the URL by yourself then please check it again for mistakes.',
+    'ERR_404_REPORT'         => 'If you believe this page should exist then please contact our team and report the steps you\'ve gone through to reach this error.',
+    'ERR_404_GO_HOME'        => 'GO TO HOME',
+
+    // ── Hackdown texts ──
+    'HACKDOWN_ENDED'         => 'Hackdown ended',
+    'HACKDOWN_IN_PROGRESS'   => 'HACKDOWN in progress',
+    'HACKDOWN_BEGINS_IN'     => 'Hackdown begins in',
+    'HACKDOWN_NEXT_IN'       => 'Next Hackdown in',
+    'HACKDOWN_ENDS_IN'       => 'Hackdown ends in',
+
+    // ── Dashboard extras ──
+    'DASH_CONNECTED_PREFIX'  => 'Connected to',
+
+    // ── Misc UI ──
+    'UI_POINTS'              => 'points',
+    'UI_DAMAGED'             => 'damaged',
+
+    // ── Rankings Page ──
+    'RANK_HACKERS'           => 'Hackers',
+    'RANK_HACKERS_BTN'       => 'HACKERS',
+    'RANK_ORGS_BTN'          => 'ORGANIZATIONS',
+    'RANK_MEMBERS'           => 'members',
+    'RANK_DETAILS_LINK'      => 'Access the <strong><a href=":url">Rankings Data interface</a></strong> to find detailed information regarding your own ranking.',
+    'RANK_1ST'               => '1st place',
+    'RANK_2ND'               => '2nd place',
+    'RANK_3RD'               => '3rd place',
+    'RANK_NO_HACKERS'        => 'No hackers',
 ];

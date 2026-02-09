@@ -489,4 +489,73 @@ return [
 
     // ── Admin Extras ──
     'ADMIN_BAN_NEW_NOT_HIGHER' => 'Neue Sperre nicht h\u00f6her als alte Sperre',
+
+    // ── Rewards Page ──
+    'REWARDS_INTRO'          => 'Du erh\u00e4ltst Belohnungen, wenn du verschiedene Aufgaben erf\u00fcllst, an Events teilnimmst oder <a href=":url">Erfolge</a> erzielst.',
+    'REWARDS_CLAIM_ALL'      => 'ALLE EINL\u00d6SEN',
+    'REWARDS_CLAIM'          => 'EINL\u00d6SEN',
+    'REWARDS_NOT_CLAIMED'    => 'nicht eingeholt',
+    'REWARDS_NONE_YET'       => 'Du hast noch keine Belohnungen erhalten, :username.',
+    'REWARDS_CLAIMED_ON'     => 'Eingeholt',
+    'REWARDS_ALPHA_COINS'    => 'Alpha-M\u00fcnzen',
+    'REWARDS_DATA_POINTS'    => 'Datenpunkte',
+    'REWARDS_MONEY'          => 'Geld',
+    'REWARDS_EXPERIENCE'     => 'Erfahrung',
+    'REWARDS_SKILL_POINTS'   => 'Universelle Skill-Punkte',
+    'REWARDS_ENERGY'         => 'Energie',
+    'REWARDS_JOB_EXP'        => 'Job-Erfahrung',
+    'REWARDS_SKILLS'         => 'Skills',
+    'REWARDS_ACHIEVEMENTS'   => 'Erfolge',
+    'REWARDS_APPLICATIONS'   => 'Anwendungen',
+    'REWARDS_COMPONENTS'     => 'Komponenten',
+    'REWARDS_CLAIM_BTN'      => 'Belohnung einl\u00f6sen',
+    'REWARDS_APP_HINT'       => 'Um Anwendungen einzul\u00f6sen, muss dein Hauptserver gen\u00fcgend Platz haben.',
+    'REWARDS_COMP_HINT'      => 'Um Komponenten einzul\u00f6sen, stelle sicher, dass genug Platz im Lager vorhanden ist.',
+
+    // ── Job Page ──
+    'JOB_LEVEL_LABEL'       => 'JOB-LEVEL',
+    'JOB_INTRO'             => 'Je h\u00f6her dein Job-Level, desto lohnender ist deine Arbeit. Freelancing h\u00e4lt dein Konto im Plus und trainiert dich f\u00fcr Missionen im Feld.',
+    'JOB_WAIT_MSG'          => 'Warte, bis ein neuer Tag beginnt, um wieder arbeiten zu k\u00f6nnen.',
+    'JOB_KEEP_CODING'       => 'Weiter coden!',
+    'JOB_WORK_BTN'          => 'Arbeiten',
+
+    // ── Storage Page ──
+    'STORAGE_AREA'           => 'Lagerbereich',
+    'STORAGE_SLOTS_INFO'     => 'Standardm\u00e4\u00dfig stehen 6 Pl\u00e4tze zur Verf\u00fcgung. F\u00fcr je 7 Level erh\u00e4ltst du einen weiteren Platz.',
+    'STORAGE_MORE_SLOTS'     => 'Mehr Pl\u00e4tze mit A-Coins erhalten',
+    'STORAGE_SELL_INFO'      => 'Beim Verkauf an Alphas Shop werden Gegenst\u00e4nde unterbewertet. Der Erl\u00f6s sinkt mit dem Schaden.',
+    'STORAGE_SLOTS_STATUS'   => 'Du hast derzeit :available Pl\u00e4tze, davon :used belegt.',
+    'STORAGE_SELL_BTN'       => 'VERKAUFEN',
+
+    // ── 404 Page ──
+    'ERR_404_HEADING'        => 'FEHLER 404',
+    'ERR_404_BODY'           => 'Systemfehler 404 \u2013 Seite nicht gefunden. Die gesuchte Seite konnte nicht gefunden werden!',
+    'ERR_404_TYPED'          => 'Wenn du die URL selbst eingegeben hast, \u00fcberpr\u00fcfe sie bitte auf Fehler.',
+    'ERR_404_REPORT'         => 'Wenn du glaubst, dass diese Seite existieren sollte, kontaktiere unser Team und melde die Schritte, die zu diesem Fehler gef\u00fchrt haben.',
+    'ERR_404_GO_HOME'        => 'ZUR STARTSEITE',
+
+    // ── Hackdown texts ──
+    'HACKDOWN_ENDED'         => 'Hackdown beendet',
+    'HACKDOWN_IN_PROGRESS'   => 'HACKDOWN l\u00e4uft',
+    'HACKDOWN_BEGINS_IN'     => 'Hackdown beginnt in',
+    'HACKDOWN_NEXT_IN'       => 'N\u00e4chster Hackdown in',
+    'HACKDOWN_ENDS_IN'       => 'Hackdown endet in',
+
+    // ── Dashboard extras ──
+    'DASH_CONNECTED_PREFIX'  => 'Verbunden mit',
+
+    // ── Misc UI ──
+    'UI_POINTS'              => 'Punkte',
+    'UI_DAMAGED'             => 'besch\u00e4digt',
+
+    // ── Rankings Page ──
+    'RANK_HACKERS'           => 'Hacker',
+    'RANK_HACKERS_BTN'       => 'HACKER',
+    'RANK_ORGS_BTN'          => 'ORGANISATIONEN',
+    'RANK_MEMBERS'           => 'Mitglieder',
+    'RANK_DETAILS_LINK'      => 'Zugriff auf die <strong><a href=":url">Ranglisten-Daten-Seite</a></strong> f\u00fcr detaillierte Informationen zu deinem Ranking.',
+    'RANK_1ST'               => '1. Platz',
+    'RANK_2ND'               => '2. Platz',
+    'RANK_3RD'               => '3. Platz',
+    'RANK_NO_HACKERS'        => 'Keine Hacker',
 ];

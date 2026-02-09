@@ -13,16 +13,16 @@
 
 <div class="panel panel-glass">
 	<div class="panel-heading">
-		Storage area
+		{$L.STORAGE_AREA}
 	</div>
 	<div class="panel-body text-center">
-		<p>6 slots are available by default. An extra slot is given for every 7 levels you achieve. </p>
-		{if  !$smarty.session.removeAds}<p><a href="{$config.url}alpha_coins/option/extraStorage1">Get more slots using A-Coins</a>.</p>{/if}
-		When selling to the Alpha's shop they will underevaluate items. The cash you receive decreases with damage. 
+		<p>{$L.STORAGE_SLOTS_INFO}</p>
+		{if  !$smarty.session.removeAds}<p><a href="{$config.url}alpha_coins/option/extraStorage1">{$L.STORAGE_MORE_SLOTS}</a>.</p>{/if}
+		{$L.STORAGE_SELL_INFO}
 		
 	</div>
 	<div class="panel-footer text-right">
-		You currently have {$availableSlots} slots available out of which {$storage|count} used.
+		{$L.STORAGE_SLOTS_STATUS|replace:':available':$availableSlots|replace:':used':($storage|count)}
 	</div>
 </div>	
 <br/>

@@ -5,12 +5,12 @@
 <div class="row mb10">
 	<div class="col-xs-8">
 		<div class="well black">
-			You receive rewards as you complete different tasks, participate events or earn <a href="{$config.url}achievements">achievements</a>.
+			{$L.REWARDS_INTRO|replace:':url':"{$config.url}achievements"}
 		</div>
 	</div>
 	<div class="col-xs-4">
 		<form method="post">
-			<button type="submit" name="claim" value="true" {if !$user.rewardsToReceive}disabled{/if}>CLAIM ALL</button>
+			<button type="submit" name="claim" value="true" {if !$user.rewardsToReceive}disabled{/if}>{$L.REWARDS_CLAIM_ALL}</button>
 		</form>
 	</div>
 </div>
@@ -31,11 +31,11 @@
         </div>
 		<div class="col-md-3 col-sm-{12 - 4 - $randVar}">
 		{if !$reward.received}
-			<a href="{$config.url}rewards/myReward/{$reward.reward_id}" class="button text-center">CLAIM</a>
+			<a href="{$config.url}rewards/myReward/{$reward.reward_id}" class="button text-center">{$L.REWARDS_CLAIM}</a>
 		{else}
           <div class="black well text-right">
             {if $reward.received}{$reward.received|date_fashion}
-			{else}not claimed{/if}
+			{else}{$L.REWARDS_NOT_CLAIMED}{/if}
           </div>
 		  {/if}
         
@@ -43,7 +43,7 @@
   </div>
 {foreachelse}
 <div class="well text-center">
-  You have not received any rewards, yet, {$user.username}.
+  {$L.REWARDS_NONE_YET|replace:':username':$user.username}
 </div>
 {/foreach}
 

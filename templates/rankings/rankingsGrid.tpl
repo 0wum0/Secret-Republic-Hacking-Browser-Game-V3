@@ -3,16 +3,16 @@
     
             <div class="col-xs-6 ">
               {if $users}
-                <button  disabled class="disabled">Hackers</button>
+                <button  disabled class="disabled">{$L.RANK_HACKERS}</button>
               {else}
-                <a href="{$config.url}rankings"><button>HACKERS</button></a>
+                <a href="{$config.url}rankings"><button>{$L.RANK_HACKERS_BTN}</button></a>
               {/if}
             </div>
             <div class="col-xs-6 ">
               {if $orgs}
-                <button  disabled class="disabled">ORGANIZATIONS</button>
+                <button  disabled class="disabled">{$L.RANK_ORGS_BTN}</button>
               {else}
-                <a href="{$config.url}rankings/type/orgs"><button>ORGANIZATIONS</button></a>
+                <a href="{$config.url}rankings/type/orgs"><button>{$L.RANK_ORGS_BTN}</button></a>
               {/if}
 
             </div>
@@ -48,12 +48,12 @@
               </div>
               <div class="col-xs-3 hidden-xs hidden-sm">
                 <button disabled class="disabled ">
-                 {$org.nrm} members
+                 {$org.nrm} {$L.RANK_MEMBERS}
                 </button>
               </div>
               <div class="col-xs-3 ">
                 <button disabled class="disabled">
-                {$org.points|floatval|number_format} points
+                {$org.points|floatval|number_format} {$L.UI_POINTS}
                 </button>
               </div>
           
@@ -91,7 +91,7 @@
 		  <div class="row mb10" id="place_{$aUser.rank}">
             {if $aUser.rank lte 3}
               <div class="col-xs-{5-$aUser.rank} ">
-                <button disabled>{if $aUser.rank eq 1}1st place{elseif $aUser.rank eq 2}2nd place{else}3rd place{/if}</button>
+                <button disabled>{if $aUser.rank eq 1}{$L.RANK_1ST}{elseif $aUser.rank eq 2}{$L.RANK_2ND}{else}{$L.RANK_3RD}{/if}</button>
               </div>
             {else}
               <div class="col-xs-1 ">
@@ -110,13 +110,13 @@
 	
             <div class="col-md-2 col-xs-4 ">
               <button disabled class="disabled">
-              {$aUser.points|floatval|number_format} points
+              {$aUser.points|floatval|number_format} {$L.UI_POINTS}
               </button>
           </div>
       </div>
       {foreachelse}
       <div class="well text-center">
-        No hackers
+        {$L.RANK_NO_HACKERS}
         </div>
 		  {/foreach}
 		

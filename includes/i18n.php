@@ -147,10 +147,30 @@ function get_lang_dict(): array
 /**
  * Handle ?lang= parameter for language switching.
  * Call early in request lifecycle.
+ *
+ * Note: index.php overwrites $_GET – original query string params are moved
+ * to $_GET['GET'].  We therefore check both locations.
  */
 function handle_lang_switch(): void
 {
-    if (isset($_GET['lang']) && in_array($_GET['lang'], SR_SUPPORTED_LANGS, true)) {
-        set_lang($_GET['lang']);
+    // Check original query string params (nested under 'GET' after routing merge)
+    $lang = $_GET['lang'] ?? $_GET['GET']['lang'] ?? null;
+    if ($lang !== null && in_array($lang, SR_SUPPORTED_LANGS, true)) {
+        set_lang($lang);
+
+        // Redirect to the same page WITHOUT ?lang= to keep URLs clean.
+        // Preserve other query params if any.
+        $params = $_GET['GET'] ?? $_GET;
+        if (is_array($params)) {
+            unset($params['lang']);
+        } else {
+            $params = [];
+        }
+        $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?: '/';
+        $qs = http_build_query($params);
+        $redirectUrl = $path . ($qs !== '' ? '?' . $qs : '');
+
+        header('Location: ' . $redirectUrl, true, 302);
+        exit;
     }
 }

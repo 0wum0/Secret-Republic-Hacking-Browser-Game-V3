@@ -9,7 +9,7 @@
          <div class="row mb10">
  
               <div class="col-xs-4 ">
-                <button disabled>JOB LEVEL: {$job.level} ({$job.exp|floatval|number_format} / {$job.expNext|floatval|number_format})</button>
+                <button disabled>{$L.JOB_LEVEL_LABEL}: {$job.level} ({$job.exp|floatval|number_format} / {$job.expNext|floatval|number_format})</button>
               </div>
               <div class="col-xs-8 ">
                   <div class="progress  progress-well" >
@@ -24,7 +24,7 @@
 		
 		
 		<div class="well">
-			The higher you job level is the more rewarding your work will be. Freelancing keeps your wallet above the floating line and trains you for missions in the field. 
+			{$L.JOB_INTRO}
 		</div>
 		
 		{include file="error_success.tpl"}
@@ -35,10 +35,10 @@
 {include file="components/hackdown.tpl" countdownFrom=$job.remainingSeconds totalCountdown=$timeBetweenJobs
                                               textCountdown = "true" progressBarClass = "progress-info"
                                               progressBarCountdown = "true" reloadOnFinish = "true" 
-                                              textLeft="Gotta wait till a new day begins to work again. "}
+                                              textLeft=$L.JOB_WAIT_MSG}
 											  </div>
 											  <div class="panel-footer">
-											  Keep your code on!
+											  {$L.JOB_KEEP_CODING}
 											  </div>
 </div>
 
@@ -64,7 +64,7 @@
                   {if !$jobLog.log_id}
                   <form method="post">
                     <input type="hidden" name="work" value="{$jobID}"/>
-                    <input type="submit" value = "Work"/>
+                    <input type="submit" value="{$L.JOB_WORK_BTN}"/>
                   </form>
                  
                   {/if}

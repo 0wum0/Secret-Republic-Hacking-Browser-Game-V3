@@ -106,7 +106,7 @@ if ($hacker['id']) {
                      ->where('user_id', $hacker['id'])
                      ->groupBy('quest')
                      ->orderBy('created', 'desc')
-                     ->paginate('quests_user', $pages->current_page, 'quests_user.created, quests.title, quests.type, quest, quest_groups.name groupName');
+                     ->paginate('quests_user', $pages->current_page, 'MAX(quests_user.created) as created, MAX(quests.title) as title, MAX(quests.type) as type, quest, MAX(quest_groups.name) as groupName');
       foreach ($missions as &$mission)
         $mission['created'] = date('d/F/Y H:i:s', $mission['created']);
 

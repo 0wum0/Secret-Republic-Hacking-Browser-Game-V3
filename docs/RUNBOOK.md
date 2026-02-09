@@ -40,13 +40,13 @@ Datei `includes/database_info.php` bearbeiten:
 
 ```php
 <?php
-return array(
-    'server_name' => 'localhost',
-    'username' => 'DB_USER',
-    'password' => 'DB_PASSWORD',
-    'name' => 'DB_NAME',
-    'port' => 3306
-);
+$db['server_name'] = 'localhost';
+$db['username'] = 'DB_USER';
+$db['password'] = 'DB_PASSWORD';
+$db['name'] = 'DB_NAME';
+$db['port'] = 3306;
+
+return $db;
 ```
 
 ### 4. Datenbank-Schema importieren
@@ -113,7 +113,7 @@ sudo apt install php8.3 php8.3-cli php8.3-fpm php8.3-mysqli php8.3-mbstring php8
 
 ```bash
 cd /path/to/secretrepublic
-git pull origin cursor/system-php-8-3-kompatibilit-t-7f53
+git pull origin master
 ```
 
 ### 3. Composer Dependencies aktualisieren
@@ -280,4 +280,4 @@ secretrepublic/
 → In `php.ini`: `error_reporting = E_ALL & ~E_DEPRECATED & ~E_NOTICE`
 
 ### MySQL Strict Mode Probleme
-→ In `my.cnf`: `sql_mode = ''` oder spezifische Modes entfernen
+→ Alle Queries sind ONLY_FULL_GROUP_BY-konform. Kein manuelles Ändern von `sql_mode` notwendig. Siehe `docs/sql_missions_audit.md` für Details.

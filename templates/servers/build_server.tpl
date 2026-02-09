@@ -5,7 +5,7 @@
 <h3>Build server</h3>
 <hr/>
 <div class="well">
-	All components required to build the new server must be located in your <a href="{$config.url}storage">storage</a>. You will be charged <strong>{($cost * $serversCount)|number_format}$</strong> [{$cost|number_format}$ x current number of servers] for a new server license. 
+	All components required to build the new server must be located in your <a href="{$config.url}storage">storage</a>. You will be charged <strong>{($cost * $serversCount)|floatval|number_format}$</strong> [{$cost|floatval|number_format}$ x current number of servers] for a new server license. 
 </div>
 
 {include file="error_success.tpl"}	

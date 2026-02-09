@@ -7,7 +7,7 @@
 		<p>
 			 by {$article.user|profile_link} {$article.created} in <strong><a href="{$config.url}blogs/blog/{$article.blog_id}">{$article.blogName}</a></strong>
 		</p>
-		<p>{$article.votes|number_format} votes and {$article.nrc|number_format} comments</p>
+		<p>{$article.votes|floatval|number_format} votes and {$article.nrc|floatval|number_format} comments</p>
 	
 	</div>
 	<br/>
@@ -40,9 +40,9 @@
 				<div class="col-md-6 ">
 					<form method="post" action="{$url}">
 					  {if $article.voted}
-						<button type="submit" name="vote" value="true"><span class="glyphicon glyphicon-thumbs-down"></span> ({$article.votes|number_format})</button>
+						<button type="submit" name="vote" value="true"><span class="glyphicon glyphicon-thumbs-down"></span> ({$article.votes|floatval|number_format})</button>
 					  {else}
-					    <button type="submit" name="vote" value="true"><span class="glyphicon glyphicon-thumbs-up"></span> ({$article.votes|number_format})</button>
+					    <button type="submit" name="vote" value="true"><span class="glyphicon glyphicon-thumbs-up"></span> ({$article.votes|floatval|number_format})</button>
 					  {/if}
 					</form>
 				</div>

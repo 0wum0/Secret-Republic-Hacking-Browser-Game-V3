@@ -55,7 +55,7 @@ trait MiniTaskManagement
           $this->voice = 'command_done';
           $this->completedObjective('nmap', $ip);
 
-          $this->increaseTraceBy(5, true, $ip);
+          $this->increaseTraceBy(5, $ip);
 
           break;
         case 'port_connect':
@@ -67,7 +67,7 @@ trait MiniTaskManagement
           );
           $welcome         = $this->db->where('service_id', $this->questData['hosts'][$ip]['services'][$port]['service_id'])->getOne('quest_services', 'welcome');
 
-          $this->increaseTraceBy(5, true, $ip);
+          $this->increaseTraceBy(5, $ip);
           $this->voice = 'accessgranted';
           $this->consoleOutput = '<strong>' . $this->questData['hosts'][$ip]['hostname'] . ' RESPONSE: Access granted ' . $this->user['username'] . '@' . $ip . ':' . $port . '</strong><br/>';
           $this->parseQSyntaxRecursively($welcome['welcome']);
@@ -183,7 +183,7 @@ trait MiniTaskManagement
 
           $ip = $this->questData['task']['ip'];
           $port = $this->questData['task']['port'];
-          $this->increaseTraceBy(15, true, $ip);
+          $this->increaseTraceBy(15, $ip);
           if (!$failed)
           {
             unset($this->questData['hosts'][$ip]['services'][$port]);
@@ -208,7 +208,7 @@ trait MiniTaskManagement
             unset($this->service['tables'][$tableKey]['content'][$row]);
 
 
-          $this->increaseTraceBy(4, true, $this->connected['ip']);
+          $this->increaseTraceBy(4, $this->connected['ip']);
           }
           $this->voice = 'command_done';
           $this->consoleOutput = count($rowsToDelete) . ' rows deleted from table ' . $this->service['tables'][$tableKey]['title'];
@@ -221,7 +221,7 @@ trait MiniTaskManagement
           $this->completedObjective('sql_drop', $objective);
 
 
-          $this->increaseTraceBy(15, true, $this->connected['ip']);
+          $this->increaseTraceBy(15, $this->connected['ip']);
 
           $this->voice = 'command_done';
           $this->consoleOutput = $this->service['tables'][$tableKey]['title'] . " dropped";
@@ -247,7 +247,7 @@ trait MiniTaskManagement
     $port = $this->questData['task']['port'];
     $ip   = $this->questData['task']['ip'];
 
-    $this->increaseTraceBy(6, true, $ip);
+    $this->increaseTraceBy(6, $ip);
 
     $this->consoleOutput = 'Cracked ' . $ip . ':' . $port;
     $this->voice = 'crack_done';
@@ -291,7 +291,7 @@ trait MiniTaskManagement
     $file = $this->service['files'][$fileKey = $this->questData['task']['fileKey']];
     $this->completedObjective('transfer', $file['title'] . '|' . $ip . ':' . $port);
 
-    $this->increaseTraceBy(4, true, $ip);
+    $this->increaseTraceBy(4, $ip);
     $this->voice = 'command_done';
     if ($this->questData['task']['removeFromHost'])
     {

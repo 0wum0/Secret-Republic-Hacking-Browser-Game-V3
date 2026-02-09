@@ -14,7 +14,7 @@
 			<div class="col-md-6">
 				<blockquote>
 
-						<h1 class=" nomargin" >{$user.alphaCoins|number_format}</h1>
+						<h1 class=" nomargin" >{$user.alphaCoins|floatval|number_format}</h1>
 					<div>Alpha Coins</div>
 				</blockquote>
 			</div>

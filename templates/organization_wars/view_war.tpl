@@ -32,7 +32,7 @@
 
           <div class="col-md-4 ">
             <div class="well black text-center">
-              {$war.org1_points|number_format}
+              {$war.org1_points|floatval|number_format}
             </div>
           </div>
           <div class="col-md-4">
@@ -40,7 +40,7 @@
           </div>
           <div class="col-md-4 ">
             <div class="well black text-center">
-              {$war.org2_points|number_format}
+              {$war.org2_points|floatval|number_format}
             </div>
           </div>
        

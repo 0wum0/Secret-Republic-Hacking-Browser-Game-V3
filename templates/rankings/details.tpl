@@ -15,7 +15,7 @@
         Global Rank
       </div> 
       <div class="col-xs-6 ">
-        #{$user.rank|number_format}         
+        #{$user.rank|floatval|number_format}         
       </div> 
     </div> 
 
@@ -24,7 +24,7 @@
         Zone Rank
       </div> 
       <div class="col-xs-6 ">
-        #{$user.zrank|number_format}         
+        #{$user.zrank|floatval|number_format}         
       </div> 
     </div> 
 
@@ -35,7 +35,7 @@
         Achievements
       </div> 
       <div class="col-xs-6 ">
-        {$details.achievement_points|number_format}         
+        {$details.achievement_points|floatval|number_format}         
       </div> 
     </div> 
 
@@ -44,7 +44,7 @@
         Missions
       </div> 
       <div class="col-xs-6 ">
-        {$details.quest_points|number_format}         
+        {$details.quest_points|floatval|number_format}         
       </div> 
     </div> 
 
@@ -53,7 +53,7 @@
         Skills
       </div> 
       <div class="col-xs-6 ">
-        {$details.skill_points|number_format}         
+        {$details.skill_points|floatval|number_format}         
       </div> 
     </div> 
 
@@ -62,7 +62,7 @@
         Organization
       </div> 
       <div class="col-xs-6 ">
-        {$details.org_points|number_format}         
+        {$details.org_points|floatval|number_format}         
       </div> 
     </div> 
 
@@ -71,7 +71,7 @@
         Total
       </div> 
       <div class="col-xs-6 ">
-        {$details.total_points|number_format}         
+        {$details.total_points|floatval|number_format}         
       </div> 
     </div> 
 

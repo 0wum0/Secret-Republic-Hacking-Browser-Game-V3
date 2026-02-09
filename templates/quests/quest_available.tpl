@@ -16,16 +16,16 @@
                   <button disabled class="mb10">{($myQuest.time*60)|sec2hms} </button>
                </div>
                <div class="col-xs-5">
-                  <button disabled class="mb10">{($myQuest.experience)|number_format} EXP</button>
+                  <button disabled class="mb10">{($myQuest.experience)|floatval|number_format} EXP</button>
                </div>
                <div class="col-xs-5">
-                  <button disabled class="mb10">ENERGY COST: {($myQuest.energy)|number_format} </button>
+                  <button disabled class="mb10">ENERGY COST: {($myQuest.energy)|floatval|number_format} </button>
                </div>
 			   <div class="col-xs-4">
-                  <button disabled class="mb10">{($myQuest.money)|number_format} $</button>
+                  <button disabled class="mb10">{($myQuest.money)|floatval|number_format} $</button>
                </div>
                <div class="col-xs-3">
-                  <button disabled class="mb10"> {($myQuest.skillPoints)|number_format} USP</button>
+                  <button disabled class="mb10"> {($myQuest.skillPoints)|floatval|number_format} USP</button>
                </div>
                {if $myQuest.achievement}
                <div class="col-xs-12">

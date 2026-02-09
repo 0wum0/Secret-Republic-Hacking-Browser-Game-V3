@@ -4,7 +4,7 @@
 				<div class="row">
 					<div class="col-md-4">
 						
-						<button disabled>Level {$org.level} [{$org.exp|number_format}/{$org.expNext|number_format}]</button>
+						<button disabled>Level {$org.level} [{$org.exp|floatval|number_format}/{$org.expNext|floatval|number_format}]</button>
 						
 					</div>
 					<div class="col-md-8">
@@ -39,7 +39,7 @@
 		<div class="row mb10">
   <div class="col-md-3 text-center">
     <button disabled class="disabled">hacking points</button>
-    <h1>{$org.hacking_points|number_format}</h1>
+    <h1>{$org.hacking_points|floatval|number_format}</h1>
   </div>
   <div class="col-md-9">
   <div class="well">
@@ -88,7 +88,7 @@
 	</div>
 	<div class="col-xs-4">
 		<button disabled >
-			{$member.hackingPoints|number_format} HP's
+			{$member.hackingPoints|floatval|number_format} HP's
 		</button>
 	</div>
 </div>
@@ -109,7 +109,7 @@ Ancient records are deleted by the Cardinal Mainframe.
 		{/if}
 	</div>
 	<div class="col-xs-6 col-md-2">
-		<button disabled>{$entry.hackingPoints|number_format} HP</button>
+		<button disabled>{$entry.hackingPoints|floatval|number_format} HP</button>
 	</div>
 	<div class="col-xs-6 col-md-5 ">
 		<button disabled class="cut-text text-right">{$entry.created|date_fashion}

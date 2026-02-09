@@ -121,7 +121,7 @@ border-radius: 5px;">
 
       <div class="row">
         <div class="col-md-12">
-      <p>CPU {$server->server.cpu_usage_percent}% [{$server->server.cpu_usage|number_format}/{$server->server.total_cpu|number_format}]</p>
+      <p>CPU {$server->server.cpu_usage_percent}% [{$server->server.cpu_usage|floatval|number_format}/{$server->server.total_cpu|floatval|number_format}]</p>
 
       <div class="progress-holder border-left-right mb10" style="height:18px;">
         <div class="progress" style="width:{$server->server.cpu_usage_percent}%;"></div>
@@ -135,7 +135,7 @@ border-radius: 5px;">
           <div class="progress-holder border-top-bottom mb10">
             <div class="progress" style="width:{$server->server.ram_usage_percent}%;"></div>
             <div class="progress-label">
-                <small>{$server->server.ram_usage_percent}% RAM [{$server->server.ram_usage|number_format}/{$server->server.total_ram|number_format}]</small>
+                <small>{$server->server.ram_usage_percent}% RAM [{$server->server.ram_usage|floatval|number_format}/{$server->server.total_ram|floatval|number_format}]</small>
             </div>
         </div>
       </div>
@@ -143,7 +143,7 @@ border-radius: 5px;">
           <div class="progress-holder border-top-bottom mb10">
             <div class="progress" style="width:{$server->server.hdd_usage_percent}%;"></div>
             <div class="progress-label">
-                <small>{$server->server.hdd_usage_percent}% HDD [{$server->server.hdd_usage|number_format}/{$server->server.total_hdd|number_format}]</small>
+                <small>{$server->server.hdd_usage_percent}% HDD [{$server->server.hdd_usage|floatval|number_format}/{$server->server.total_hdd|floatval|number_format}]</small>
             </div>
         </div>
       </div>

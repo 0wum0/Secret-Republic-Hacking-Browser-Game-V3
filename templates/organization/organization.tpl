@@ -30,7 +30,7 @@
 </div>
         <hr/>
 		  <div class="well text-center">
-    In order to create an organization you need {$organizationCost|number_format}$ and you must have completed the {$organizationMission} mission.
+    In order to create an organization you need {$organizationCost|floatval|number_format}$ and you must have completed the {$organizationMission} mission.
   </div>
         {if $canCreateOrganization}
         <a href="{$config.url}organization/view/create">

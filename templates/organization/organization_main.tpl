@@ -7,7 +7,7 @@
 						{if $org.id eq $user.organization}
 							<a href="{$config.url}organization/show/{$org.id}/view/hackingPoints">
 						{/if}
-						<button {if $org.id ne $user.organization}disabled{/if}>Level {$org.level} [{$org.exp|number_format}/{$org.expNext|number_format}]</button>
+						<button {if $org.id ne $user.organization}disabled{/if}>Level {$org.level} [{$org.exp|floatval|number_format}/{$org.expNext|floatval|number_format}]</button>
 						{if $org.id eq $user.organization}</a>{/if}
 						
 					</div>

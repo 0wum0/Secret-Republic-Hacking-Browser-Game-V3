@@ -66,7 +66,7 @@
       <div class="panel-body">
 
         <div class="text-center">
-          Servers received {$attack.report.serversDamage.sender.damage|number_format}% damage to  components and {$attack.report.serversDamage.sender.softwareDamage|number_format}% to software.
+          Servers received {$attack.report.serversDamage.sender.damage|floatval|number_format}% damage to  components and {$attack.report.serversDamage.sender.softwareDamage|floatval|number_format}% to software.
         </div>
       </div>
     </div>
@@ -80,7 +80,7 @@
         
 
          <div class="text-center">
-          Servers received {$attack.report.serversDamage.receiver.damage|number_format}%  damage to  components and {$attack.report.serversDamage.receiver.softwareDamage|number_format}% to software.
+          Servers received {$attack.report.serversDamage.receiver.damage|floatval|number_format}%  damage to  components and {$attack.report.serversDamage.receiver.softwareDamage|floatval|number_format}% to software.
         </div>
        </div>
     </div>
@@ -191,10 +191,10 @@
                     </div>
                     <div class="row">
                       <div class="col-md-6 value">
-                         {$round.layers.attacker.attack|number_format} ATK
+                         {$round.layers.attacker.attack|floatval|number_format} ATK
                       </div>
                       <div class="col-md-6 value">
-                          {$round.layers.attacker.defense|number_format} DEF
+                          {$round.layers.attacker.defense|floatval|number_format} DEF
                       </div>
                     </div>
                   </div>
@@ -204,10 +204,10 @@
                   </div>
                     <div class="row">
                       <div class="col-md-6 value">
-                         {$round.layers.defender.attack|number_format} ATK
+                         {$round.layers.defender.attack|floatval|number_format} ATK
                       </div>
                       <div class="col-md-6 value">
-                          {$round.layers.defender.defense|number_format} DEF
+                          {$round.layers.defender.defense|floatval|number_format} DEF
                       </div>
                     </div>
                   </div>
@@ -236,10 +236,10 @@
             <div class="row">
               <div class="col-xs-6">
                 <button disabled>
-                  ATK: {$round.layers.attacker.attack|number_format}
+                  ATK: {$round.layers.attacker.attack|floatval|number_format}
               </div>
               <div class="col-xs-6">
-              <button disabled>DEF: {$round.layers.attacker.defense|number_format}
+              <button disabled>DEF: {$round.layers.attacker.defense|floatval|number_format}
               </div>
             </div>
             <h4>
@@ -255,14 +255,14 @@
             </h4>
             <div class="row">
             <div class="col-xs-6">
-            <button disabled>ATK: {$round.layers.defender.attack|number_format}
+            <button disabled>ATK: {$round.layers.defender.attack|floatval|number_format}
             </div>
             <div class="col-xs-6">
-            <button disabled>DEF: {$round.layers.defender.defense|number_format}
+            <button disabled>DEF: {$round.layers.defender.defense|floatval|number_format}
             </div>
             </div>
           </div>
-          <button disabled style="border-bottom:0;border-left:0;border-right:0">{$round.layerDamage|number_format} damage</button>
+          <button disabled style="border-bottom:0;border-left:0;border-right:0">{$round.layerDamage|floatval|number_format} damage</button>
         </div>
       </div>-->
     {/foreach}

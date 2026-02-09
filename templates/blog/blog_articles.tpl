@@ -5,7 +5,7 @@
         <h3 class="cut-text"><a href="{$config.url}blogs/article/{$a.article_id}" >{$a.title}</a></h3>
 
         <blockquote>
-            <small>{$a.votes|number_format} votes and {$a.nrc|number_format} comments</small>
+            <small>{$a.votes|floatval|number_format} votes and {$a.nrc|floatval|number_format} comments</small>
             <br/>
              <article id="{$a.article_id}">
              {$a.content}

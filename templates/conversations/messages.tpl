@@ -64,7 +64,7 @@
 			 
     	</div>
 		 <div class="panel-footer text-right">
-			 <small> <em>{if $m.replies > 1}{$m.replies|number_format} message(s) in {/if}conversation with {$m.username}</em></small>
+			 <small> <em>{if $m.replies > 1}{$m.replies|floatval|number_format} message(s) in {/if}conversation with {$m.username}</em></small>
 			  </div>
 	</div>
 		

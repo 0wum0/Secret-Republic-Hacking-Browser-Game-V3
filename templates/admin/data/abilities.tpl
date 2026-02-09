@@ -14,7 +14,7 @@
        {foreach from=$totalSkills key = tSkill item = amount}
         {if $tSkill eq $skill}
         {assign var = found value = 1}
-        <td>{$amount|number_format}</td>
+        <td>{$amount|floatval|number_format}</td>
         {/if}
        {/foreach}
        {if !$found}
@@ -25,7 +25,7 @@
   </tr>
 
 </table>
-<h3>Some money fucked-up approximation: {$totalMoney|number_format} $$$</h3>
+<h3>Some money fucked-up approximation: {$totalMoney|floatval|number_format} $$$</h3>
 {if 1 eq 2}
 				 <div class="">
 			    

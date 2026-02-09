@@ -107,7 +107,7 @@ background:rgba(0, 87, 132, 0.35); height:48px;
 								</div>
 
 								<div class="skill-label">
-									Level {$userSkills[$skill_ID].level} ({$userSkills[$skill_ID].exp|number_format}/{$userSkills[$skill_ID].expNext|number_format})
+									Level {$userSkills[$skill_ID].level} ({$userSkills[$skill_ID].exp|floatval|number_format}/{$userSkills[$skill_ID].expNext|floatval|number_format})
 								</div>
 							</div>
 						</div>

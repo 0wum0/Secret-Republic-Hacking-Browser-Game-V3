@@ -29,7 +29,7 @@
 			</div>
 			<div class="col-md-4">
 				<button disabled>
-					{$user.points|number_format} points
+					{$user.points|floatval|number_format} points
 				</button>
 			</div>
 		</div>
@@ -50,7 +50,7 @@
 			</div>
 			<div class="col-md-4">
 				<button disabled>
-					{$org.points|number_format} points
+					{$org.points|floatval|number_format} points
 				</button>
 			</div>
 		</div>
@@ -68,7 +68,7 @@
 					<button disabled>Zone {$zone.zone}</button>
 			</div>
 			<div class="col-md-8 ">
-					<button disabled>{$zone.points|number_format} points</button>
+					<button disabled>{$zone.points|floatval|number_format} points</button>
 			</div>
 		</div>
 	

@@ -46,12 +46,12 @@
                           </div>
                           <div class="col-md-3 nopadding">
                             <div class="well  text-center">
-                            Rank #{$result.rank|number_format}
+                            Rank #{$result.rank|floatval|number_format}
                             </div>
                           </div>
                           <div class="col-md-3 nopadding">
                            <div class="well black text-center">
-                            Zone rank #{$result.zrank|number_format}
+                            Zone rank #{$result.zrank|floatval|number_format}
                             </div>
                           </div>
                           <div class="col-md-2 nopadding">
@@ -80,12 +80,12 @@
                           </div>
                           <div class="col-md-3 nopadding">
                             <div class="well  text-center">
-                            Rank #{$result.orank|number_format}
+                            Rank #{$result.orank|floatval|number_format}
                             </div>
                           </div>
                           <div class="col-md-3 nopadding">
                            <div class="well black text-center">
-                            {$result.nrm|number_format} members
+                            {$result.nrm|floatval|number_format} members
                             </div>
                           </div>
                           <div class="col-md-2 nopadding">
@@ -113,12 +113,12 @@
                           </div>
                           <div class="col-md-3 nopadding">
                             <div class="well  text-center">
-                             {$result.nrs|number_format} subscribers
+                             {$result.nrs|floatval|number_format} subscribers
                             </div>
                           </div>
                           <div class="col-md-3 nopadding">
                            <div class="well black text-center">
-                            {$result.nrs|number_format} articles
+                            {$result.nrs|floatval|number_format} articles
                             </div>
                           </div>
                           <div class="col-md-2 nopadding">
@@ -145,12 +145,12 @@
                           </div>
                           <div class="col-md-3 nopadding">
                             <div class="well  text-center">
-                             {$result.nrv|number_format} votes
+                             {$result.nrv|floatval|number_format} votes
                             </div>
                           </div>
                           <div class="col-md-3 nopadding">
                            <div class="well black text-center">
-                            {$result.nrc|number_format} comments
+                            {$result.nrc|floatval|number_format} comments
                             </div>
                           </div>
                           <div class="col-md-2 nopadding">
@@ -183,9 +183,9 @@
                           <div class="col-md-3 nopadding">
                             <div class="well black text-center">
                               {if $result.parent}
-                                {$result.parent_views|number_format} views
+                                {$result.parent_views|floatval|number_format} views
                               {else}
-                                {$result.views|number_format} views
+                                {$result.views|floatval|number_format} views
                               {/if}
                             </div>
                           </div>

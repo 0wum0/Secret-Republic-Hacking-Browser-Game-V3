@@ -53,7 +53,7 @@
               </div>
               <div class="col-xs-3 ">
                 <button disabled class="disabled">
-                {$org.points|number_format} points
+                {$org.points|floatval|number_format} points
                 </button>
               </div>
           
@@ -95,7 +95,7 @@
               </div>
             {else}
               <div class="col-xs-1 ">
-                <button disabled>{$aUser.rank|number_format}</button>
+                <button disabled>{$aUser.rank|floatval|number_format}</button>
               </div>
             {/if}
             {if $aUser.rank lte 3}
@@ -110,7 +110,7 @@
 	
             <div class="col-md-2 col-xs-4 ">
               <button disabled class="disabled">
-              {$aUser.points|number_format} points
+              {$aUser.points|floatval|number_format} points
               </button>
           </div>
       </div>

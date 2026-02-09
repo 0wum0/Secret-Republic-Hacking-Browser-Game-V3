@@ -39,7 +39,7 @@
               
                     <div class="col-md-6">
                      
-                      [{$player.id}]{$player.username|profile_link} [{$player.level|number_format}] [Z{$player.zone}] [{$player.login_count|number_format}L]
+                      [{$player.id}]{$player.username|profile_link} [{$player.level|floatval|number_format}] [Z{$player.zone}] [{$player.login_count|floatval|number_format}L]
                       
                        <small>{$player.lastActive|date_fashion}</small>
                     </div>
@@ -52,7 +52,7 @@
                 
                    
                     <div class="col-md-2 cut-text">
-                      {$player.money|number_format}$
+                      {$player.money|floatval|number_format}$
                     </div>
                  
       

@@ -49,12 +49,12 @@
 					if($_POST['reputation'])
 					{
 						if ($user['level'] < 5)
-							add_alert("You must be at least level 5 to give reputation to other hackers");
+							add_alert(t('PROFILE_REP_LEVEL'));
 						else
 						{
 							$count = $db->where('sender', $user['id'])->where('created', time()-24*60*60,'>')->getOne('users_reputation', 'count(*) nrr')['nrr'];
 							if($count >= $user['dailyRep'])
-								add_alert('You have already given '.$user['dailyRep'].' reputation points in the last 24 hours');
+								add_alert(t('PROFILE_REP_LIMIT', null, [':count' => $user['dailyRep']]));
 						}
 						
 						if (!there_are_errors())
@@ -62,7 +62,7 @@
 							$dataInsert = array('sender' => $user['id'], 'receiver' => $quser['id'], 'created' => time());
 							$db->insert('users_reputation', $dataInsert);
 							$uclass->updatePlayer(array("rep" => $quser['rep'] + 1), $quser['id']);
-							add_alert("Reputation point awarded to " . $quser['username'], 'success');
+							add_alert(t('PROFILE_REP_AWARDED', null, [':user' => $quser['username']]), 'success');
 						}
 
 						$cardinal->redirect(URL_C);
@@ -93,7 +93,7 @@
 				  		 ->delete('friend_requests');
 
 						$waitingRequest = $areFriends = false;
-						$success = 'Request canceled';
+						$success = t('PROFILE_FR_CANCELED');
 				  }
 
 				  if($_POST['sendFriendRequest'] && !$areFriends && !$waitingRequest)
@@ -102,7 +102,7 @@
 					$db->insert('friend_requests', $request);
 
 					$waitingRequest = $quser['id'];
-					$success = 'Friend request has been sent to '.$quser['username'];      
+					$success = t('PROFILE_FR_SENT', null, [':user' => $quser['username']]);      
 				  }
 
 				  $tVars['areFriends'] = $areFriends;

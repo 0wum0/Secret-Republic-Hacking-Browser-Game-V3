@@ -13,9 +13,9 @@
 
     <div class="text-right col-xs-6" >
 
-      <h1 style="font-size:50px;">{if $quser.id eq $user.id}<a style="font-size:14px" href="{$config.url}dna/#changeUsername">change</a>{/if}{$quser.username}</h1>
+      <h1 style="font-size:50px;">{if $quser.id eq $user.id}<a style="font-size:14px" href="{$config.url}dna/#changeUsername">{$L.PROFILE_CHANGE}</a>{/if}{$quser.username}</h1>
       <p>
-        level {$quser.level}
+        {$L.PROFILE_LEVEL|replace:':level':$quser.level}
       </p>
       <p>
         {$quser.name}
@@ -25,17 +25,17 @@
 
       <p>
         {if $quser.organization}
-          Member of <a href="{$config.url}organization/show/{$quser.organization}">{$quser.oname}</a> (#{$quser.orank})
+          {$L.PROFILE_MEMBER_OF|replace:':url':"`$config.url`organization/show/`$quser.organization`"|replace:':name':$quser.oname|replace:':rank':$quser.orank}
         {else}
-        Not part of any organization
+        {$L.PROFILE_NO_ORG}
         {/if}
       </p>
 
       <p>
         {if $quser.rank > 0}
-         {$quser.points|number_format} points (W#{$quser.rank}/Z#{$quser.zrank})
+         {$quser.points|number_format} {$L.PROFILE_POINTS|replace:':points':''}(W#{$quser.rank}/Z#{$quser.zrank})
          {else}
-         no rank
+         {$L.PROFILE_NO_RANK}
          {/if}
 
       </p>
@@ -45,7 +45,7 @@
 
 
 
-        <a href="{$config.url}dna" style="font-size:20px"><span class="glyphicon glyphicon-cog" title="DNA Management"></span></a>
+        <a href="{$config.url}dna" style="font-size:20px"><span class="glyphicon glyphicon-cog" title="{$L.PROFILE_DNA_MGMT}"></span></a>
 
 
       </p>
@@ -64,7 +64,7 @@
 
   <div class="text-center">
 {if $user.manageUsers} 
-        <a href="{$config.url}admin/view/hacker/hid/{$quser.id}" title="Manage DNA" ><span class="glyphicon glyphicon-cog"></span></a>
+        <a href="{$config.url}admin/view/hacker/hid/{$quser.id}" title="{$L.PROFILE_DNA_MGMT}" ><span class="glyphicon glyphicon-cog"></span></a>
         <a href="{$config.url}admin/view/hacker/hid/{$quser.id}/load/bans" ><span class="glyphicon glyphicon-ban-circle"></span></a>
   {/if}
 {if $user.manageDuality && $user.id != $quser.id} 
@@ -78,7 +78,7 @@
   
   {if $quser.banned}
   <div class="alert alert-danger">
-    Cardinal System Notice: Citizen is under arrest by the Grid Police Force. Account blocked.
+    {$L.PROFILE_BANNED}
   </div>
   {else}
   
@@ -99,7 +99,7 @@
             <div class="row mb10">
               <div class="col-xs-6 ">
                 <div class="well black  ">
-                  Reputation
+                  {$L.PROFILE_REP}
                 </div>
               </div>
 
@@ -134,7 +134,7 @@
             </div>
             <div class="col-xs-9 ">
               <a href="{$config.url}zones/zone/{$quser.zone}" class="button text-center">
-                ZONE {$quser.zone}
+                {$L.PROFILE_ZONE|replace:':zone':$quser.zone}
               </a>
             </div>
 
@@ -145,8 +145,7 @@
 
           
 
-
-          <h3>blogs</h3>
+          <h3>{$L.PROFILE_BLOGS}</h3>
           {foreach from=$blogs item=blog}
           <div class="row mb10">
             <div class="col-xs-8 ">
@@ -158,7 +157,7 @@
 
             <div class="col-xs-4  ">
               <div class="well black   text-center">
-                {$blog.nrs} subscribers
+                {$blog.nrs} {$L.PROFILE_SUBSCRIBERS|replace:':count':''}
               </div>
             </div>
           </div>
@@ -166,19 +165,19 @@
           {foreachelse}
           {if $quser.id ne $user.id}
           <div class="well black text-center">
-            {$quser.username} has no blogs
+            {$L.PROFILE_NO_BLOGS|replace:':user':$quser.username}
           </div>
           {else}
-          <a href="{$config.url}blogs/create/now" class="button text-center">Create a blog now</a>
+          <a href="{$config.url}blogs/create/now" class="button text-center">{$L.PROFILE_CREATE_BLOG}</a>
           {/if}
           {/foreach}
 
-          <h3 id ="forumPosts">public forum threads</h3>
+          <h3 id ="forumPosts">{$L.PROFILE_FORUM_THREADS}</h3>
           {foreach from=$forumThreads item = thread}
 
           <a href="{$config.url}forum/tid/{$thread.id}" >
             <button class="cut-text text-left mb10">
-              {$thread.title}	<small>{$thread.replies|number_format} replies</small>
+              {$thread.title}	<small>{$thread.replies|number_format} {$L.FORUM_REPLIES}</small>
             </button>
           </a>
 
@@ -188,10 +187,10 @@
           {foreachelse}
           {if $quser.id ne $user.id}
           <div class="well black text-center">
-            {$quser.username} has made no public threads
+            {$L.PROFILE_NO_THREADS|replace:':user':$quser.username}
           </div>
           {else}
-          <a href="{$config.url}forum" class="button text-center">No threads. Go to forums!</a>
+          <a href="{$config.url}forum" class="button text-center">{$L.PROFILE_GO_FORUMS}</a>
           {/if}
           {/foreach}  
         </div>
@@ -203,7 +202,7 @@
           {if $logged && $quser.id ne $user.id}
           {if $quser.organization eq $user.organization}
           <div class="alert alert-warning">
-            You are in the same organization as <em>{$quser.username}</em>.
+            {$L.PROFILE_SAME_ORG|replace:':user':$quser.username}
           </div>
           {/if}
 
@@ -217,16 +216,16 @@
             <div class="col-xs-9">
               <form method="post">
                 {if $areFriends}
-                <button disabled class="disabled">FRIENDS</button>
+                <button disabled class="disabled">{$L.PROFILE_FRIENDS_BTN}</button>
                 {elseif !$waitingRequest}
 
-                <input type="submit" name="sendFriendRequest" value="Send friendship request"/>
+                <input type="submit" name="sendFriendRequest" value="{$L.PROFILE_SEND_FR}"/>
 
                 {elseif $waitingRequest eq $user.id}
-                <a href="{$config.url}friends/requests/magic" class="button text-center">Answer {$quser.username}'s friend request</a>
+                <a href="{$config.url}friends/requests/magic" class="button text-center">{$L.PROFILE_ANSWER_FR|replace:':user':$quser.username}</a>
                 {else}
 
-                <input type="submit" name="cancelFriendRequest" value="Cancel friendship request"/>
+                <input type="submit" name="cancelFriendRequest" value="{$L.PROFILE_CANCEL_FR}"/>
 
                 {/if}
               </form>
@@ -235,12 +234,12 @@
           {/if}
 
 
-          <h3 class="text-right">achievements</h3>
-          <div class="text-right"><small><strong><a href="{$config.url}achievements">view list of publicly available achievements </a></strong></small></div>
+          <h3 class="text-right">{$L.PROFILE_ACHIEV}</h3>
+          <div class="text-right"><small><strong><a href="{$config.url}achievements">{$L.PROFILE_ACHIEV_LIST}</a></strong></small></div>
           <br/>
           {if !count($achievements)}
           <div class="well text-center">
-            No achievements :(, yet! {if $user.id eq $quser.id} How lazy can you be?{/if}
+            {$L.PROFILE_NO_ACHIEV} {if $user.id eq $quser.id} {$L.PROFILE_LAZY}{/if}
           </div>
           {else}
           {include file='profile/achievements.tpl'}

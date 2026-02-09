@@ -10,24 +10,24 @@
  
   <div class="well text-center">
         
-        <p>By training you will earn new skills and prepare yourself for real missions and challenges.</p>
-		<p>Forge your mind and train your hands as they're the most important tools a hacker needs.</p>
+        <p>{$L.TRAIN_INTRO_1}</p>
+		<p>{$L.TRAIN_INTRO_2}</p>
 		<p>Problems with the pattern games? Feeling like you'll never figure out those models? Try skimming through <a href="http://www.cimt.plymouth.ac.uk/projects/mepres/allgcse/bkb12.pdf" target="_blank">this cheatsheet</a>, it serves as inspiration for most of them.
 		</p>
-		The higher the difficulty the higher the chance for greater rewards.
+		{$L.TRAIN_INTRO_3}
       </div>
 	   {include file="error_success.tpl"}
         {if !$trainLog.log_id}
         <form method="post">
         	<div class="row">
 				<div class="col-xs-4">
-					<button type="submit" name="train" value="low">Low difficulty</button>
+					<button type="submit" name="train" value="low">{$L.TRAIN_LOW}</button>
 				</div>
 				<div class="col-xs-4">
-					<button type="submit" name="train" value="mid">Medium difficulty</button>
+					<button type="submit" name="train" value="mid">{$L.TRAIN_MID}</button>
 				</div>
 				<div class="col-xs-4">
-					<button type="submit" name="train" value="high">High difficulty</button>
+					<button type="submit" name="train" value="high">{$L.TRAIN_HIGH}</button>
 				</div>
 			</div>
         </form>
@@ -39,25 +39,25 @@
 					{include file="components/hackdown.tpl" countdownFrom=$trainLog.remaining totalCountdown=$trainEvery
                                               textCountdown = "true" progressBarClass = "progress-info"
                                               progressBarCountdown = "true" reloadOnFinish = "true" 
-                                              textLeft="You'll be able to train again in"}
+                                              textLeft=$L.TRAIN_AGAIN_IN}
 				</div>
-				<div class="panel-footer">You can train once every {$trainEvery|sec2hms}.</div>
+				<div class="panel-footer">{$L.TRAIN_ONCE_EVERY|replace:':time':$trainEvery|sec2hms}</div>
 				
 			</div>
         {/if}
   
   	<br/><br/>
-	<h1 class="nomargin">training history</h1>
-	<small><em>only last 10 displayed</em></small>
+	<h1 class="nomargin">{$L.TRAIN_HISTORY}</h1>
+	<small><em>{$L.TRAIN_HISTORY_LAST}</em></small>
 	<hr/>
 	<div class="well black">
 	{foreach from = $history item = train}
 		<div class="row mb10">
 			<div class="col-xs-2">
 				{if $train.success}
-					<div class="alert alert-success text-center nomargin">DONE</div>
+					<div class="alert alert-success text-center nomargin">{$L.TRAIN_DONE}</div>
 				{else}
-					<div class="alert alert-danger text-center nomargin">FAILED</div>
+					<div class="alert alert-danger text-center nomargin">{$L.TRAIN_FAILED}</div>
 				{/if}
 			</div>
 			<div class="col-xs-7">
@@ -67,13 +67,13 @@
 			</div>
 			<div class="col-xs-3">
 				{if $train.reward_id}
-					<a href="{$config.url}rewards/myReward/{$train.reward_id}" title="Reward"><button><span class="glyphicon glyphicon-gift"></span></button></a>
+					<a href="{$config.url}rewards/myReward/{$train.reward_id}" title="{$L.REWARDS_TITLE}"><button><span class="glyphicon glyphicon-gift"></span></button></a>
 				{/if}
 			</div>
 		</div>
 	{foreachelse}
 		<div class="alert alert-info text-center">
-			no training records
+			{$L.TRAIN_NO_RECORDS}
 		</div>
 	{/foreach}
   </div>
@@ -90,7 +90,7 @@
            {include file="components/hackdown.tpl" countdownFrom=$trainTask.remainingSeconds totalCountdown=$trainTask.totalSeconds
                                               textCountdown = "true" progressBarClass = "progress-info"
                                               progressBarCountdown = "true" reloadOnFinish = "true" 
-                                              textLeft="You must complete your training tasks in"}
+                                              textLeft=$L.TRAIN_COMPLETE_TASKS}
 
             </div>
             {include file="error_success.tpl"}
@@ -99,11 +99,11 @@
              <form method="post">
 			 	
             	<div class="panel panel-glass">
-					<div class="panel-heading">Match</div>
+					<div class="panel-heading">{$L.TRAIN_MATCH}</div>
 					<div class="panel-body text-center">
              		 {$captcha}
 					 </div>
-					  <input type="submit" name="answer" value="Decrypt ({$trainTask.steps|number_format} remaining)"/>
+					  <input type="submit" name="answer" value="{$L.TRAIN_DECRYPT|replace:':count':$trainTask.steps|number_format}"/>
             </div>
            
             </form>
@@ -112,10 +112,10 @@
 	
 	<form method="post">
 		<div class="panel panel-glass">
-					<div class="panel-heading">Find X so that the pattern is complete</div>
+					<div class="panel-heading">{$L.TRAIN_FIND_X}</div>
 					<div class="panel-body text-center">
              		 <div class="alert alert-warning">
-				<strong>TIPS</strong> You might need a pen and paper at first. Try substracting numbers that are next to each other, look carefully at the results. You'll soon get used to all the patterns.
+				<strong>TIPS</strong> {$L.TRAIN_TIPS}
 			</div>
 		<h1 class="text-center" style="font-size:60px">
 		{foreach $trainTask.step.numbers as $key => $number}
@@ -133,10 +133,10 @@
 					 	<div class="col-md-12">
 							<div class="row">
 								<div class="col-md-7 nopadding">
-					 <input type="text" name="answer" placeholder="Answer" class="text-center" autocomplete="off" autofocus="autofocus"/>
+					 <input type="text" name="answer" placeholder="{$L.TRAIN_ANSWER_PH}" class="text-center" autocomplete="off" autofocus="autofocus"/>
 					 			</div>
 								<div class="col-md-5 nopadding">
-					  <input type="submit" value="I'M FEELING LUCKY ({$trainTask.steps|number_format} remaining)"/>
+					  <input type="submit" value="{$L.TRAIN_FEELING_LUCKY|replace:':count':$trainTask.steps|number_format}"/>
 					 			</div>
 							</div>
 						</div>

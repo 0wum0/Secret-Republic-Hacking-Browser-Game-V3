@@ -41,16 +41,16 @@
 						  {include file="components/hackdown.tpl" countdownFrom=$hackdownRemaining totalCountdown=24*60*60
                                                     id='hackdown' textCountdown = "true"
                                                     progressBarCountdown = "true" reloadOnFinish = true
-                                                    textFinish = "Hackdown ended"
-                                                    progressBarClass = "progress" textLeft="HACKDOWN in progress"}
+                                                    textFinish=$L.HACKDOWN_ENDED
+                                                    progressBarClass = "progress" textLeft=$L.HACKDOWN_IN_PROGRESS}
 
       				{else}
 						  {include file="components/hackdown.tpl" countdownFrom=$nextSaturdayRemaining totalCountdown=6*24*60*60
                                                     id='hackdown' textCountdown = "true"
                                                     progressBarCountdown = "true" reloadOnFinish = true
-                                                    textFinish = "Hackdown in progress"
+                                                    textFinish=$L.HACKDOWN_IN_PROGRESS
                                                     progressBarClass = "progress-small"
-													textLeft="Hackdown begins in"}
+													textLeft=$L.HACKDOWN_BEGINS_IN}
 
 
 	  				{/if}

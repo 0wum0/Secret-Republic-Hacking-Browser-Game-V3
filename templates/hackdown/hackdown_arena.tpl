@@ -4,7 +4,7 @@
 {include file="components/hackdown.tpl" countdownFrom=$hackdownRemaining totalCountdown=24*60*60
                                               textCountdown = "true" progressBarClass = "progress-info"
                                               progressBarCountdown = "true" reloadOnFinish = "true" 
-                                              textLeft="Hackdown ends in"}
+                                              textLeft=$L.HACKDOWN_ENDS_IN}
 </div>
 </div>
 

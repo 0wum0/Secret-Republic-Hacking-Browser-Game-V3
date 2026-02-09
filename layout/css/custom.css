@@ -968,7 +968,7 @@ table.futuristic tbody tr:nth-child(even) {
 
 .adminIcon {
     top: 0;
-    right: 0;
+    right: 55px;
     position: fixed;
     padding: 20px;
     z-index: 9999;

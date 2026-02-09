@@ -55,10 +55,12 @@
 </head>
 <body id="body">
 
-<div style="position:fixed;top:2px;right:8px;z-index:9999;font-size:11px;opacity:0.7;">
+<div style="position:fixed;top:4px;right:8px;z-index:10000;display:flex;align-items:center;gap:12px;font-size:11px;">
+<span style="opacity:0.85;">
 <a href="?lang=de" style="color:{if $current_lang eq 'de'}#53c3ec{else}#888{/if};text-decoration:none;">DE</a>
 <span style="color:#555;">|</span>
 <a href="?lang=en" style="color:{if $current_lang eq 'en'}#53c3ec{else}#888{/if};text-decoration:none;">EN</a>
+</span>
 </div>
 
 {include file="admin/adminNavigation.tpl"}

@@ -471,6 +471,31 @@ php -v   # Must show 8.3.x or 8.4.x
 
 ## Changelog
 
+### 2026-02-09: fix: Runtime- und Template-Fehler (PHP 8.3 / Smarty 4)
+
+Three critical runtime errors fixed that prevented the main page, rewards page, and jobs page from loading.
+
+- **Fix: Smarty `number_format` strict typing (59 templates, 196 occurrences)**
+  - **Problem:** `Smarty\Extension\DefaultExtension::smarty_modifier_number_format(): Argument #1 must be float, string given` — PHP 8.3 strict types cause a fatal error when database values (strings) are passed directly to `number_format`.
+  - **Fix:** Added `|floatval` modifier before every `|number_format` call across all 59 affected `.tpl` templates. Pattern: `{$var|number_format}` → `{$var|floatval|number_format}`.
+  - **Affected pages:** Main (`/`), profile, rankings, servers, organizations, grid, hackdown, rewards, quests, skills, zones, forums, admin panel, and more.
+
+- **Fix: Rewards template `rand()` syntax error**
+  - **Problem:** `{assign var=randVar value=rand(1,3))}` in `rewards.tpl` line 22 caused a Smarty compiler error (`unknown modifier 'rand'` + extra closing parenthesis).
+  - **Fix:** Removed `rand()` call from template. Random value is now generated in `includes/modules/rewards/rewards.php` using `random_int(1,3)` and assigned as a Smarty template variable.
+  - **Changed files:** `templates/rewards/rewards.tpl`, `includes/modules/rewards/rewards.php`
+
+- **Fix: PHP 8.3 parameter order in `ConsoleManagement.php`**
+  - **Problem:** `function increaseTraceBy($amount, $takeBounceInAccount = true, $targetIP)` — optional parameter declared before required parameter causes a deprecation notice / fatal in PHP 8.3+.
+  - **Fix:** Reordered to `function increaseTraceBy($amount, $targetIP, $takeBounceInAccount = true)`. Updated all 7 call sites in `MiniTaskManagement.php`.
+  - **Changed files:** `includes/class/quests/ConsoleManagement.php`, `includes/class/quests/MiniTaskManagement.php`
+
+> **Important:** After deploying these fixes, clear the Smarty compiled template cache:
+> ```bash
+> rm -rf includes/templates_c/*
+> rm -rf includes/cache/*
+> ```
+
 ### 2026-02-09: fix: decode unicode escaped translations
 
 - **Fixed:** German translation strings containing `\uXXXX` unicode escape sequences (e.g. `Zur\u00fcck`) were rendered literally instead of as proper UTF-8 characters (e.g. `Zurück`).

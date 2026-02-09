@@ -30,12 +30,15 @@ elseif (isset($_POST['mount']))
 			$server = new Server($server['server_id'], $server);
 			$server->fetchComponents();
 
+			// Initialise to null so the variable is always defined.
+			$componentToReplace = null;
+
 			// CPU
 			if ($component['type'] == 1)
 			{
 				if ($server->server['cpu_usage'] > $component['cpu'])
 					$errors[] = "Current running apps on server consume more CPU power than the new component has to offer.";
-				if ($server->server['power_usage'] - $server->components['motherboard']['power_usage'] + $component['power_usage'] > $server->components['power_source']['power'])
+				if ($server->server['power_usage'] - ($server->components['motherboard']['power_usage'] ?? 0) + $component['power_usage'] > ($server->components['power_source']['power'] ?? 0))
 					$errors[] = "The mounted power source cannot support the new component.";
 			}
 			// MOTHERBOARD
@@ -44,7 +47,7 @@ elseif (isset($_POST['mount']))
 				if ($server->server['used_ram_slots'] > $component['slots'])
 						$errors[] = sprintf("New component supports only %s while the server has %s RAM cards mounted", $component['slots'], $server->server['used_ram_slots']);
 
-				if ($server->server['power_usage'] - $server->components['motherboard']['power_usage'] + $component['power_usage'] > $server->components['power_source']['power'])
+				if ($server->server['power_usage'] - ($server->components['motherboard']['power_usage'] ?? 0) + $component['power_usage'] > ($server->components['power_source']['power'] ?? 0))
 					$errors[] = "The mounted power source cannot support the new component.";
 
 			}
@@ -70,7 +73,8 @@ elseif (isset($_POST['mount']))
 			{
 					if(replaceComponentWithComponent($server, $component, $componentToReplace, $user['id']))
 					{
-						add_alert(sprintf("Replaced <strong>%s</strong> with <strong>%s</strong> on <strong>%s</strong>", $componentToReplace['name'], $component['name'], $server->server['hostname']), "success");
+						$replacedName = is_array($componentToReplace) ? ($componentToReplace['name'] ?? 'Unknown') : 'Free slot';
+						add_alert(sprintf("Replaced <strong>%s</strong> with <strong>%s</strong> on <strong>%s</strong>", $replacedName, $component['name'], $server->server['hostname']), "success");
 
 						$cardinal->redirect(URL."storage");
 					}

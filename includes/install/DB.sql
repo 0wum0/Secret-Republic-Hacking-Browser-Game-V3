@@ -2623,7 +2623,8 @@ CREATE TABLE `users` (
   `dataPointsPerHour` int(11) UNSIGNED NOT NULL DEFAULT '0',
   `tutorial` int(10) UNSIGNED NOT NULL DEFAULT '10',
   `main_node` varchar(20) DEFAULT NULL,
-  `createdAt` int(11) DEFAULT NULL
+  `createdAt` int(11) DEFAULT NULL,
+  `language` varchar(2) NOT NULL DEFAULT 'de'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `users_reputation` (

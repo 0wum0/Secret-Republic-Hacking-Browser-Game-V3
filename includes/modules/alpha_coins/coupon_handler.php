@@ -1,7 +1,7 @@
 <?php
 
 if ($_POST['coupon'] == "iLOVEtutorials")
-  $success [] = "Tutorial coupon accepted. No rewards attached. You can now continue with the tutorial.";
+  $success [] = t('MSG_COUPON_ACCEPTED');
 else
 {
   $faileds = $db->where('user_id', $user['id']) 
@@ -9,7 +9,7 @@ else
           ->getOne('coupon_logs', 'count(*) nrf');
   if ($faileds['nrf'] >= 3)
   {
-    $errors[] = "One too many failed attempts in the last 24 hours. We hope you're not trying something funky!";
+    $errors[] = t('ERR_COUPON_LIMIT');
   }
   else
   {
@@ -34,7 +34,7 @@ else
     else
     {
       $coupon['failed'] = 1;
-      $errors[] = "Invalid or terminated coupon";
+      $errors[] = t('ERR_COUPON_INVALID');
     }
     $db->insert('coupon_logs', $couponLog);
   }

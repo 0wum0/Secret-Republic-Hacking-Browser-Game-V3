@@ -30,7 +30,7 @@ if ($hackdownTask["id"]) {
       
           $taskclass->delete_task_session($user["id"], $hackdownTask["type"]);
 		
-		  $errors [] = "Mission failed";
+		  $errors [] = t('MSG_MISSION_FAILED');
 		  
 		  $cardinal->redirect(URL_C);
 	}
@@ -184,7 +184,7 @@ else
 
 						}
 						else
-						  $errors[] = 'Unknow error.';
+						  $errors[] = t('MSG_UNKNOWN_ERROR');
 
 				
 				  }

@@ -19,8 +19,8 @@
       $taskclass->delete_task_session($user["id"], $guestTask["type"], true);
        unset($guestTask);
       if ($_POST["console"] == "complete delusion")
-       $_SESSION["error"] = "Mission failed";
-      else $errors [] = "Mission failed";
+       $_SESSION["error"] = t('MSG_MISSION_FAILED');
+      else $errors [] = t('MSG_MISSION_FAILED');
     }
     
     $tVars["qtask"] = $guestTask;

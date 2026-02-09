@@ -10,7 +10,7 @@ if ($GET['simulation'])
 {
 	if (empty($_SESSION['premium']['attackSimulator']))
 	{
-		$_SESSION['error'] = "You need to activate the Attack Simulator to access it.";
+		$_SESSION['error'] = t('ERR_ACTIVATE_SIMULATOR');
 		$cardinal->redirect(URL."alpha_coins/option/attackSimulator");
 	}
 
@@ -30,7 +30,7 @@ elseif ($GET['simulate'])
 
 	if (empty($_SESSION['premium']['attackSimulator']))
 {
-	$_SESSION['error'] = "You need to activate the Attack Simulator to access it.";
+	$_SESSION['error'] = t('ERR_ACTIVATE_SIMULATOR');
 	$cardinal->redirect(URL."alpha_coins/option/attackSimulator");
 }
 

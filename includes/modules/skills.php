@@ -13,7 +13,7 @@ $cardinal->mustLogin();
 
       foreach($_POST['skills'] as $skill_id => $points)
       {
-        if (!isset($theskills[$skill_id]))  {add_alert("Incorrect data"); continue; }
+        if (!isset($theskills[$skill_id]))  {add_alert(t('ERR_INCORRECT_DATA')); continue; }
         $points = intval($points);
         if ($points)
         {

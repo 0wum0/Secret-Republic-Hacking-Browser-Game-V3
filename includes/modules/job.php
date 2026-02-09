@@ -19,7 +19,7 @@
       $taskclass->delete_task_session($user["id"], $jobTask["type"]);
        unset($jobTask);
 		
-		 $errors [] = "Mission failed";
+		 $errors [] = t('MSG_MISSION_FAILED');
 		$_SESSION['voice'] = 'work_failed';
      
     }

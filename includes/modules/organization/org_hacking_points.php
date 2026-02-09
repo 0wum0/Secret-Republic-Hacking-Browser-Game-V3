@@ -10,7 +10,7 @@ if ($hackTask["id"]) {
       
           $taskclass->delete_task_session($user["id"], $hackTask["type"]);
     
-      $errors [] = "Mission failed";
+      $errors [] = t('MSG_MISSION_FAILED');
       
       $cardinal->redirect(URL_C);
   }

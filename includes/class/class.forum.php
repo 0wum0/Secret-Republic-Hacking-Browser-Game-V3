@@ -90,7 +90,7 @@ class Forum extends Alpha{
 				$postFrequencyCheck = $this->db->where('user_id', $this->user['id'])->where('created', time() - 60, '>=')->getOne($this->posts, 'id, created');
 
 				if( $postFrequencyCheck["id"])
-					$this->errors[] ="You must wait 60 seconds between posts. ".($postFrequencyCheck["created"]+60 - time())." seconds until you can post again";
+					$this->errors[] = t('ERR_FORUM_POST_WAIT', null, [':seconds' => ($postFrequencyCheck["created"]+60 - time())]);
 
 				if (!count($this->errors))
 				{

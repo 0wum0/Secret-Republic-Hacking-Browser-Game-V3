@@ -558,4 +558,175 @@ return [
     'RANK_2ND'               => '2nd place',
     'RANK_3RD'               => '3rd place',
     'RANK_NO_HACKERS'        => 'No hackers',
+
+    // ── Dashboard extras (index/index.tpl) ──
+    'DASH_OWN_ALPHA'         => 'You own <strong><a href=":url">:count Alpha coins</a>',
+    'DASH_INCREASE_REC'      => 'Increase recovery rate?',
+    'DASH_AC_BONUS'          => '+:pct% A-C bonus',
+
+    // ── Tasks ──
+    'TASK_FINISHED'          => 'Task finished',
+
+    // ── Servers Page ──
+    'SERVERS_OWN_COUNT'      => 'You own :count/:max servers. Please keep in mind only your main server contributes to your skill levels in missions.',
+    'SERVERS_SET_MAIN'       => 'Set as main',
+    'SERVERS_MAIN_LABEL'     => 'MAIN',
+    'SERVERS_MAIN_TAG'       => '[MAIN]',
+    'SERVERS_DAMAGED_PCT'    => ':amount% damaged',
+    'SERVERS_UNDAMAGED'      => 'undamaged',
+    'SERVERS_NO_SERVERS'     => 'you own no servers - <a href=":shop_url">buy some components</a> then <a href=":build_url">build one</a>',
+    'SERVERS_BUILD_NEW'      => 'Build a new server',
+    'SERVERS_CHANGE_HOST'    => 'change hostname',
+
+    // ── Organization Hacking Points ──
+    'ORG_HP_DAILY_TITLE'     => 'Daily Organization Mission - 2 hacking points reward',
+    'ORG_HP_FIELD_AGAIN'     => 'You can go on the field again in',
+    'ORG_HP_LABEL'           => 'hacking points',
+    'ORG_HP_DESC'            => 'Hacking points are a valuable resource for organizations. These can be used and earned in various ways. Members need only complete missions and be active in the competition in order to reward their organization with hacking points.',
+    'ORG_HP_EXP_DESC'        => 'Hacking Points also represent the experience the organization earns and need to level up. One hacking points is equivalent to one experience point. Upgrades and features change at times depending on the organization\'s level.',
+    'ORG_HP_USE_CREDITS'     => ':name can use these credits to force wars on other organizations or to upgrade itself.',
+    'ORG_HP_UPGRADE_NRM'     => 'Increase maximum number of members by 1 for :cost HP',
+    'ORG_HP_RANKINGS'        => 'HP Rankings',
+    'ORG_HP_HISTORY'         => 'History',
+    'ORG_HP_ANCIENT'         => 'Ancient records are deleted by the Cardinal Mainframe.',
+    'ORG_HP_NO_LOGS'         => 'No hacking points earnings logs.',
+
+    // ── Grid extras ──
+    'GRID_INITIATE_SPY'      => 'Initiate spy attempt',
+
+    // ── Organization Forum ──
+    'ORG_NEW_SECTION'        => 'New forum section',
+
+    // ── Organization Wars ──
+    'ORG_SEND_WAR_REQ'       => 'Send war request',
+
+    // ── Organization Ranks ──
+    'ORG_ADD_RANK'           => 'Add new rank',
+
+    // ── Tutorial Steps ──
+    'TUT_STEP1_TITLE'        => 'Step numero zero',
+    'TUT_STEP1_CONTENT'      => '<p>*applause*</p>
+<p>Welcome, :username,</p>
+<p>To the first of a series of mini-tutorials meant to introduce you to this majestic competition.</p>
+<p>Rewards await you at the end of every step.</p>
+<p>First and foremost, go through <a href=\':url_tutorial\'>a short summary of available interfaces</a>.</p>
+<p><strong>Connecting to your account daily will grant incremental rewards proportional with the number of consecutive days.</strong></p>
+<p>The tutorial icon will keep flashing on the left. Press it when you\'re done reading the summary.</p>',
+
+    'TUT_STEP2_TITLE'        => 'Me haz rewardz',
+    'TUT_STEP2_CONTENT'      => '<p>We\'ve delivered your reward!</p>
+<p>You can claim it in the Rewards Interface, where you can also find a history of your rewards.</p>
+<p>Please claim all of your pending rewards.</p>',
+
+    'TUT_STEP3_TITLE'        => 'Friends with benefits',
+    'TUT_STEP3_CONTENT'      => '<p>"Friends may come and go, but enemies accumulate." ~ Thomas Jones.</p>
+<p>However, the usefulness of friendships cannot be denied.</p>
+<p>If you <a href=":url_dna">connect your accounts</a> you can authenticate with one click and there\'s an achievement for connecting all social accounts.</p>
+<p>Considerable rewards are at stake <a href=":url_referrals">if you refer others and these rewards will keep on coming</a>.</p>
+<p>Now go and check your Friends interface. You might have a request or two pending.</p>
+<p>Press the top Headquarters navigation button, go to the Friends screen and make a decision for pending requests.</p>',
+
+    'TUT_STEP4_TITLE'        => 'A server?',
+    'TUT_STEP4_CONTENT'      => '<p>Servers are computers designed for heavy work.</p>
+<p>To be able to do anything useful you need to configure your 1st server so please find the Servers interface.</p>
+<p><strong>Buy the CHEAPEST components</strong> you find. Money does NOT grow in trees (sadly).</p>
+<p>You require a Power Source, a Motherboard, a CPU, a Case, one <a title="Computer Memory Card">RAM card</a> and one <a title="Hard Disk Storage">HDD</a>.</p>
+<p>Bought items go to Storage. Be careful as the storage has limited space (expands as you level or by <a href=":url_ac_storage">Alpha Coins</a>).</p>
+<p>After building a server, you should visit your <a href=":url_storage">Storage</a> to mount RAM and HDD on it.</p>',
+
+    'TUT_STEP5_TITLE'        => 'Missions',
+    'TUT_STEP5_CONTENT'      => '<p>Access the missions interface.</p>
+<p>Most commands you will use in missions are influenced by your skills && your main server skills and there\'s a chance they will cause damage to your software. On the Skills interface you can find out what it influences.</p>
+<p><strong>This time your task is to finish the first mission in the Computer Science missions group.</strong></p>
+<p>If you\'ll feel you do not have enough time in missions, you can make use of a <a href=":url_ac_time">Time Distortion Device</a>.</p>
+<p>Some of the missions have been designed by hackers just like you, who joined the <a href=":url_ac_quest">Alpha Mission Designer Intern program</a>.</p>',
+
+    'TUT_STEP6_TITLE'        => 'All for one and one for party',
+    'TUT_STEP6_CONTENT'      => '<p>In the missions interface you can see that "Parties" are an option.</p>
+<p>Skim a bit through the instructions for "Parties".</p>
+<p>A live chat box appears to party members. <a href=":url_ac_chat">You can enable this Party Chat everywhere</a> (by default it\'s visible only in the mission interface).</p>
+<p>Party members can join shared mission instances, interacting with the very same systems.</p>
+<p>Your task is simple. Create a party and disband whenever you like.</p>',
+
+    'TUT_STEP7_TITLE'        => 'the node maze',
+    'TUT_STEP7_CONTENT'      => '<p>Every competitor can be found on the grid network.</p>
+<p>Through the grid you can spy and attack each other. Everyone has three layers of security plus a spy layer on top of that. We will discuss them later.</p>
+<p>The Grid is separated into Zones which in turn have subdivisions named clusters.</p>
+<p>You can own one or multiple nodes in one or more clusters of any zone but officially you are part only of the Zone you picked at first.</p>
+<p>Occupying a node is called Instantiation and can be done with specialized software.</p>
+<p>In extreme situations nodes can be destroyed so it\'s better to have more than one.</p>
+<p>Now take a quick look at the Grid, find a random citizen and access his profile.</p>',
+
+    'TUT_STEP8_TITLE'        => 'dark side of the grid',
+    'TUT_STEP8_CONTENT'      => '<p><a href=":url_achievements">Achievements</a> are special awards. Some improve your ranking. There are as many hidden achievements as there are public ones.</p>
+<p>Your skills and server skills influence your Layers.</p>
+<p>An attacker must breach through the second layer to steal anything and if he passes through the third layer more resources are stolen.</p>
+<p>You can send your servers to attack and while they are in use they are not protecting you.</p>
+<p>You can see the influence of every skill and server (as long as it is not in use) in the Layers Interface.</p>
+<p>The <a href=":url_simulator">battle simulator</a> can attempt to predict the outcome of battles.</p>
+<p>Please go to <a href=":url_grid">the Grid</a> and enter the <strong>Layers Interface</strong>.</p>',
+
+    'TUT_STEP9_TITLE'        => 'Skills',
+    'TUT_STEP9_CONTENT'      => '<p>We\'ve established that skills influence your security layers.</p>
+<p>Skills also increase the efficiency and hence diminish the duration of commands execution in the missions console.</p>
+<p>Access the Skills Interface upgrade your skills with all available Universal Skill Points (USP).</p>
+<p>You might find yourself going through a painful trial and error process to figure out which skills are the best to use.</p>
+<p>Skills are for all intents and purposes <strong>you</strong>!</p>',
+
+    'TUT_STEP10_TITLE'       => 'Abs',
+    'TUT_STEP10_CONTENT'     => '<p>Abilities enhance your skills. They have no other contributions than to give you more specific skill points.</p>
+<p>You might want to see exactly to which skills each ability contributes before jumping into it.</p>
+<p>You can advance to the next step as soon as you\'ve learnt an ability.</p>
+<p>To access the Ability Hive, go to the Skills Interface then enter the Abilities Interface.</p>',
+
+    'TUT_STEP11_TITLE'       => 'Server skills and apps',
+    'TUT_STEP11_CONTENT'     => '<p>You are doing very well indeed. We must say we are impressed!</p>
+<p>Server components and software can be damaged during Grid Battles, Missions and the lot.</p>
+<p>Server skills are generated by running apps. Please buy a cheap app (in the same shop as for components), install and run it on your main server.</p>
+<p>Observe the skill levels of your server changing.</p>',
+
+    'TUT_STEP12_TITLE'       => 'Data Points',
+    'TUT_STEP12_CONTENT'     => '<p>You can <a href=":url_dp">read about Data Points here</a>.</p>
+<p>It\'s enough to say here that DPs are generated by servers under the influence of running apps.</p>
+<p>You can <a href=":url_ac_dp">hire a Mining Consultant to increase your DP production</a>.</p>
+<p>All you have to do is <a href=":url_dp">give this a quick read</a>.</p>',
+
+    'TUT_STEP13_TITLE'       => 'Jobs',
+    'TUT_STEP13_CONTENT'     => '<p>The key word is freelancing. A hacker needs money and experience and not just from missions.</p>
+<p>Find the Jobs Interface and complete a job.</p>',
+
+    'TUT_STEP14_TITLE'       => 'Training',
+    'TUT_STEP14_CONTENT'     => '<p>Great! The same goes for Training.</p>
+<p>Our training programs will boggle your mind but your logic will improve exponentially. You like brain teasers? TOO BAD!</p>
+<p>If you find yourself stuck in a numbers problem, the forums and chats are always at your disposal.</p>
+<p>Train once and we shall swiftly move on!</p>
+<p>You can access the Train Interface through the Job one.</p>',
+
+    'TUT_STEP15_TITLE'       => 'Forumsy',
+    'TUT_STEP15_CONTENT'     => '<p><a href=":url_forum">Say hello to us on the forums!</a></p>
+<p>Feel free to skip this step if you so desire.</p>',
+
+    'TUT_STEP16_TITLE'       => 'Organizations',
+    'TUT_STEP16_CONTENT'     => '<p>Organizations are groups of hackers with the slightest trace of a common goal. Partners in crime.</p>
+<p>Organization wars make the difference between the strong.. and the weak.</p>
+<p>Hacking Points help organizations improve. You can earn Hacking Points for your organization by doing normal missions, entering events and participating in the daily hacking missions in the Hacking Points interface of your organization.</p>
+<p>After a while, you will be kicked out of the beginners organization. Join or create your own!</p>
+<p>Your task is to find the Hacking Points Interface of your current organization (go to your organization and investigate around there).</p>
+<p>If you try you might find yourself unable to complete the Hacking Points mission as you\'re not used to the console ^^. No worries, you\'ll master it very soon.</p>',
+
+    'TUT_STEP17_TITLE'       => 'Easy peasy',
+    'TUT_STEP17_CONTENT'     => '<p>About time for another easy task.</p>
+<p>You can set a Youtube video to appear on your profile page! How cool is that?!</p>
+<p>All you need is the video code, an example is provided in the DNA/Settings Interface.</p>
+<p>Access this Interface by clicking your avatar in the dashboard or on your profile page and set a Youtube video for yourself. Optionally investigate how to update your avatar as well!</p>',
+
+    'TUT_STEP18_TITLE'       => 'My Computer Science Degree',
+    'TUT_STEP18_CONTENT'     => '<p>Last but not least, finish the "SELECT * FROM WORLD" mission available in the Computer Science missions group.</p>
+<p><strong>You will have to do missions in the group one by one until you reach that one.</strong></p>
+<p>Did you notice the <strong>PAUSE</strong> button available in missions?</p>
+<p>Please remember to like, follow our social channels and download our mobile/tablet apps to show your support to this challenging project.</p>
+<p>And we apologise beforehand for the bugs you might encounter ^^.</p>',
+
+    // ── Admin extras ──
+    'ADMIN_ADD_SKILL_EXP'    => 'Add skill experience',
 ];

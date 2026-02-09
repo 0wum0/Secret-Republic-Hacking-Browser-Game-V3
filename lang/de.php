@@ -558,4 +558,175 @@ return [
     'RANK_2ND'               => '2. Platz',
     'RANK_3RD'               => '3. Platz',
     'RANK_NO_HACKERS'        => 'Keine Hacker',
+
+    // ── Dashboard Extras (index/index.tpl) ──
+    'DASH_OWN_ALPHA'         => 'Du besitzt <strong><a href=":url">:count Alpha-M\u00fcnzen</a>',
+    'DASH_INCREASE_REC'      => 'Regenerationsrate erh\u00f6hen?',
+    'DASH_AC_BONUS'          => '+:pct% A-C-Bonus',
+
+    // ── Aufgaben ──
+    'TASK_FINISHED'          => 'Aufgabe erledigt',
+
+    // ── Server-Seite ──
+    'SERVERS_OWN_COUNT'      => 'Du besitzt :count/:max Server. Beachte, dass nur dein Hauptserver zu deinen Skill-Leveln in Missionen beitr\u00e4gt.',
+    'SERVERS_SET_MAIN'       => 'Als Hauptserver setzen',
+    'SERVERS_MAIN_LABEL'     => 'HAUPT',
+    'SERVERS_MAIN_TAG'       => '[HAUPT]',
+    'SERVERS_DAMAGED_PCT'    => ':amount% besch\u00e4digt',
+    'SERVERS_UNDAMAGED'      => 'unbeschadigt',
+    'SERVERS_NO_SERVERS'     => 'Du besitzt keine Server \u2013 <a href=":shop_url">kaufe Komponenten</a> und <a href=":build_url">baue einen</a>',
+    'SERVERS_BUILD_NEW'      => 'Neuen Server bauen',
+    'SERVERS_CHANGE_HOST'    => 'Hostname \u00e4ndern',
+
+    // ── Organisation Hacking-Punkte ──
+    'ORG_HP_DAILY_TITLE'     => 'T\u00e4gliche Organisationsmission \u2013 2 Hacking-Punkte Belohnung',
+    'ORG_HP_FIELD_AGAIN'     => 'Du kannst wieder ins Feld in',
+    'ORG_HP_LABEL'           => 'Hacking-Punkte',
+    'ORG_HP_DESC'            => 'Hacking-Punkte sind eine wertvolle Ressource f\u00fcr Organisationen. Sie k\u00f6nnen auf verschiedene Weise genutzt und verdient werden. Mitglieder m\u00fcssen nur Missionen abschlie\u00dfen und aktiv am Wettbewerb teilnehmen, um ihre Organisation mit Hacking-Punkten zu belohnen.',
+    'ORG_HP_EXP_DESC'        => 'Hacking-Punkte repr\u00e4sentieren auch die Erfahrung, die die Organisation sammelt und zum Aufstieg ben\u00f6tigt. Ein Hacking-Punkt entspricht einem Erfahrungspunkt. Upgrades und Features \u00e4ndern sich je nach Level der Organisation.',
+    'ORG_HP_USE_CREDITS'     => ':name kann diese Punkte nutzen, um anderen Organisationen den Krieg zu erkl\u00e4ren oder sich zu verbessern.',
+    'ORG_HP_UPGRADE_NRM'     => 'Maximale Mitgliederzahl um 1 erh\u00f6hen f\u00fcr :cost HP',
+    'ORG_HP_RANKINGS'        => 'HP-Rangliste',
+    'ORG_HP_HISTORY'         => 'Verlauf',
+    'ORG_HP_ANCIENT'         => 'Alte Eintr\u00e4ge werden vom Cardinal-Mainframe gel\u00f6scht.',
+    'ORG_HP_NO_LOGS'         => 'Keine Hacking-Punkte-Verlaufseintr\u00e4ge.',
+
+    // ── Grid Extras ──
+    'GRID_INITIATE_SPY'      => 'Spionageversuch starten',
+
+    // ── Organisation Forum ──
+    'ORG_NEW_SECTION'        => 'Neuer Forenbereich',
+
+    // ── Organisation Kriege ──
+    'ORG_SEND_WAR_REQ'       => 'Kriegsanfrage senden',
+
+    // ── Organisation R\u00e4nge ──
+    'ORG_ADD_RANK'           => 'Neuen Rang hinzuf\u00fcgen',
+
+    // ── Tutorial-Schritte ──
+    'TUT_STEP1_TITLE'        => 'Schritt Nummer Null',
+    'TUT_STEP1_CONTENT'      => '<p>*Applaus*</p>
+<p>Willkommen, :username,</p>
+<p>zum ersten einer Reihe von Mini-Tutorials, die dich in diesen gro\u00dfartigen Wettbewerb einf\u00fchren sollen.</p>
+<p>Am Ende jedes Schritts warten Belohnungen auf dich.</p>
+<p>Lies zuerst <a href=\':url_tutorial\'>eine kurze \u00dcbersicht der verf\u00fcgbaren Interfaces</a>.</p>
+<p><strong>T\u00e4gliches Einloggen gew\u00e4hrt wachsende Belohnungen proportional zu aufeinanderfolgenden Tagen.</strong></p>
+<p>Das Tutorial-Symbol blinkt weiterhin links. Dr\u00fccke es, wenn du die \u00dcbersicht gelesen hast.</p>',
+
+    'TUT_STEP2_TITLE'        => 'Belohnungen!',
+    'TUT_STEP2_CONTENT'      => '<p>Wir haben deine Belohnung geliefert!</p>
+<p>Du kannst sie im Belohnungs-Bereich abholen. Dort findest du auch den Verlauf deiner Belohnungen.</p>
+<p>Bitte hole alle ausstehenden Belohnungen ab.</p>',
+
+    'TUT_STEP3_TITLE'        => 'Freunde mit Vorteilen',
+    'TUT_STEP3_CONTENT'      => '<p>\u201eFreunde kommen und gehen, aber Feinde sammeln sich an.\u201c ~ Thomas Jones.</p>
+<p>Dennoch ist der Nutzen von Freundschaften unbestreitbar.</p>
+<p>Wenn du <a href=":url_dna">deine Konten verkn\u00fcpfst</a>, kannst du dich mit einem Klick authentifizieren \u2013 und es gibt einen Erfolg f\u00fcr das Verkn\u00fcpfen aller sozialen Konten.</p>
+<p>Beachtliche Belohnungen warten, <a href=":url_referrals">wenn du andere wirbst, und die Belohnungen kommen immer wieder</a>.</p>
+<p>Schau jetzt in dein Freunde-Interface. Vielleicht hast du ein oder zwei Anfragen offen.</p>
+<p>Dr\u00fccke oben auf Hauptquartier, gehe zu Freunde und entscheide \u00fcber offene Anfragen.</p>',
+
+    'TUT_STEP4_TITLE'        => 'Ein Server?',
+    'TUT_STEP4_CONTENT'      => '<p>Server sind Computer, die f\u00fcr schwere Arbeit ausgelegt sind.</p>
+<p>Um etwas N\u00fctzliches tun zu k\u00f6nnen, musst du deinen 1. Server konfigurieren \u2013 finde das Server-Interface.</p>
+<p><strong>Kaufe die G\u00dcNSTIGSTEN Komponenten</strong>, die du findest. Geld w\u00e4chst NICHT auf B\u00e4umen (leider).</p>
+<p>Du brauchst ein Netzteil, ein Mainboard, eine CPU, ein Geh\u00e4use, eine <a title="Arbeitsspeicherkarte">RAM-Karte</a> und eine <a title="Festplattenspeicher">HDD</a>.</p>
+<p>Gekaufte Gegenst\u00e4nde gehen ins Lager. Achtung: Das Lager hat begrenzten Platz (erweitert sich mit deinem Level oder durch <a href=":url_ac_storage">Alpha-M\u00fcnzen</a>).</p>
+<p>Nach dem Bauen eines Servers solltest du dein <a href=":url_storage">Lager</a> besuchen, um RAM und HDD zu montieren.</p>',
+
+    'TUT_STEP5_TITLE'        => 'Missionen',
+    'TUT_STEP5_CONTENT'      => '<p>Rufe das Missions-Interface auf.</p>
+<p>Die meisten Befehle in Missionen werden von deinen Skills && den Skills deines Hauptservers beeinflusst, und es besteht die M\u00f6glichkeit, dass sie deine Software besch\u00e4digen. Im Skills-Interface erf\u00e4hrst du, was beeinflusst wird.</p>
+<p><strong>Diesmal ist deine Aufgabe, die erste Mission in der Informatik-Missionsgruppe abzuschlie\u00dfen.</strong></p>
+<p>Wenn du in Missionen nicht genug Zeit hast, kannst du ein <a href=":url_ac_time">Zeitverzerrungsger\u00e4t</a> nutzen.</p>
+<p>Einige Missionen wurden von Hackern wie dir entworfen, die dem <a href=":url_ac_quest">Alpha-Missions-Designer-Praktikumsprogramm</a> beigetreten sind.</p>',
+
+    'TUT_STEP6_TITLE'        => 'Alle f\u00fcr einen und einer f\u00fcr die Party',
+    'TUT_STEP6_CONTENT'      => '<p>Im Missions-Interface siehst du, dass \u201ePartys\u201c eine Option sind.</p>
+<p>\u00dcberfliege kurz die Anweisungen f\u00fcr \u201ePartys\u201c.</p>
+<p>F\u00fcr Party-Mitglieder erscheint eine Live-Chatbox. <a href=":url_ac_chat">Du kannst den Party-Chat \u00fcberall aktivieren</a> (standardm\u00e4\u00dfig ist er nur im Missions-Interface sichtbar).</p>
+<p>Party-Mitglieder k\u00f6nnen gemeinsamen Missions-Instanzen beitreten und mit denselben Systemen interagieren.</p>
+<p>Deine Aufgabe ist einfach. Erstelle eine Party und l\u00f6se sie auf, wann du willst.</p>',
+
+    'TUT_STEP7_TITLE'        => 'Das Knoten-Labyrinth',
+    'TUT_STEP7_CONTENT'      => '<p>Jeder Teilnehmer kann im Grid-Netzwerk gefunden werden.</p>
+<p>\u00dcber das Grid kannst du andere ausspionieren und angreifen. Jeder hat drei Sicherheitsschichten plus eine Spionageschicht dar\u00fcber. Wir besprechen das sp\u00e4ter.</p>
+<p>Das Grid ist in Zonen unterteilt, die wiederum Unterabschnitte namens Cluster haben.</p>
+<p>Du kannst einen oder mehrere Knoten in einem oder mehreren Clustern jeder Zone besitzen, aber offiziell geh\u00f6rst du nur der Zone an, die du zuerst gew\u00e4hlt hast.</p>
+<p>Einen Knoten zu besetzen hei\u00dft Instanziierung und kann mit spezialisierter Software durchgef\u00fchrt werden.</p>
+<p>In extremen Situationen k\u00f6nnen Knoten zerst\u00f6rt werden \u2013 besser, mehr als einen zu haben.</p>
+<p>Schau jetzt kurz ins Grid, finde einen zuf\u00e4lligen B\u00fcrger und rufe sein Profil auf.</p>',
+
+    'TUT_STEP8_TITLE'        => 'Die dunkle Seite des Grids',
+    'TUT_STEP8_CONTENT'      => '<p><a href=":url_achievements">Erfolge</a> sind spezielle Auszeichnungen. Einige verbessern dein Ranking. Es gibt ebenso viele versteckte Erfolge wie \u00f6ffentliche.</p>
+<p>Deine Skills und Server-Skills beeinflussen deine Schichten.</p>
+<p>Ein Angreifer muss die zweite Schicht durchbrechen, um etwas zu stehlen \u2013 und wenn er die dritte Schicht passiert, werden mehr Ressourcen gestohlen.</p>
+<p>Du kannst deine Server zum Angriff senden, aber w\u00e4hrend sie im Einsatz sind, sch\u00fctzen sie dich nicht.</p>
+<p>Du kannst den Einfluss jedes Skills und Servers (sofern er nicht im Einsatz ist) im Schichten-Interface sehen.</p>
+<p>Der <a href=":url_simulator">Kampfsimulator</a> kann versuchen, den Ausgang von K\u00e4mpfen vorherzusagen.</p>
+<p>Bitte gehe zum <a href=":url_grid">Grid</a> und betritt das <strong>Schichten-Interface</strong>.</p>',
+
+    'TUT_STEP9_TITLE'        => 'Skills',
+    'TUT_STEP9_CONTENT'      => '<p>Wir haben festgestellt, dass Skills deine Sicherheitsschichten beeinflussen.</p>
+<p>Skills erh\u00f6hen auch die Effizienz und verk\u00fcrzen die Dauer der Befehlsausf\u00fchrung in der Missions-Konsole.</p>
+<p>Rufe das Skills-Interface auf und verbessere deine Skills mit allen verf\u00fcgbaren Universellen Skill-Punkten (USP).</p>
+<p>Vielleicht durchl\u00e4ufst du einen schmerzhaften Trial-and-Error-Prozess, um herauszufinden, welche Skills am besten sind.</p>
+<p>Skills sind im Grunde genommen <strong>du</strong>!</p>',
+
+    'TUT_STEP10_TITLE'       => 'F\u00e4higkeiten',
+    'TUT_STEP10_CONTENT'     => '<p>F\u00e4higkeiten verbessern deine Skills. Sie tragen nur dazu bei, dir spezifischere Skill-Punkte zu geben.</p>
+<p>Vielleicht m\u00f6chtest du genau sehen, zu welchen Skills jede F\u00e4higkeit beitr\u00e4gt, bevor du einsteigst.</p>
+<p>Du kannst zum n\u00e4chsten Schritt weitergehen, sobald du eine F\u00e4higkeit erlernt hast.</p>
+<p>Um den F\u00e4higkeiten-Bienenstock zu erreichen, gehe zum Skills-Interface und dann zum F\u00e4higkeiten-Interface.</p>',
+
+    'TUT_STEP11_TITLE'       => 'Server-Skills und Apps',
+    'TUT_STEP11_CONTENT'     => '<p>Du machst das wirklich sehr gut. Wir m\u00fcssen sagen, wir sind beeindruckt!</p>
+<p>Serverkomponenten und Software k\u00f6nnen bei Grid-K\u00e4mpfen, Missionen und anderem besch\u00e4digt werden.</p>
+<p>Server-Skills werden durch laufende Apps generiert. Bitte kaufe eine g\u00fcnstige App (im gleichen Shop wie f\u00fcr Komponenten), installiere und starte sie auf deinem Hauptserver.</p>
+<p>Beobachte, wie sich die Skill-Level deines Servers \u00e4ndern.</p>',
+
+    'TUT_STEP12_TITLE'       => 'Datenpunkte',
+    'TUT_STEP12_CONTENT'     => '<p>Du kannst <a href=":url_dp">hier \u00fcber Datenpunkte lesen</a>.</p>
+<p>Es reicht zu sagen, dass DPs von Servern unter dem Einfluss laufender Apps generiert werden.</p>
+<p>Du kannst <a href=":url_ac_dp">einen Mining-Berater engagieren, um deine DP-Produktion zu steigern</a>.</p>
+<p>Alles, was du tun musst, ist <a href=":url_dp">das hier kurz zu lesen</a>.</p>',
+
+    'TUT_STEP13_TITLE'       => 'Jobs',
+    'TUT_STEP13_CONTENT'     => '<p>Das Schl\u00fcsselwort ist Freelancing. Ein Hacker braucht Geld und Erfahrung \u2013 und nicht nur aus Missionen.</p>
+<p>Finde das Job-Interface und schlie\u00dfe einen Job ab.</p>',
+
+    'TUT_STEP14_TITLE'       => 'Training',
+    'TUT_STEP14_CONTENT'     => '<p>Gro\u00dfartig! Das Gleiche gilt f\u00fcr Training.</p>
+<p>Unsere Trainingsprogramme werden deinen Verstand herausfordern, aber deine Logik wird sich exponentiell verbessern. Du magst Denksportaufgaben? PECH GEHABT!</p>
+<p>Wenn du bei einem Zahlenproblem feststeckst, stehen dir die Foren und Chats jederzeit zur Verf\u00fcgung.</p>
+<p>Trainiere einmal und wir machen z\u00fcgig weiter!</p>
+<p>Du erreichst das Training-Interface \u00fcber das Job-Interface.</p>',
+
+    'TUT_STEP15_TITLE'       => 'Forumsy',
+    'TUT_STEP15_CONTENT'     => '<p><a href=":url_forum">Sag uns im Forum Hallo!</a></p>
+<p>Du kannst diesen Schritt gerne \u00fcberspringen, wenn du m\u00f6chtest.</p>',
+
+    'TUT_STEP16_TITLE'       => 'Organisationen',
+    'TUT_STEP16_CONTENT'     => '<p>Organisationen sind Gruppen von Hackern mit einem Hauch eines gemeinsamen Ziels. Partner im Verbrechen.</p>
+<p>Organisationskriege machen den Unterschied zwischen den Starken.. und den Schwachen.</p>
+<p>Hacking-Punkte helfen Organisationen sich zu verbessern. Du kannst Hacking-Punkte f\u00fcr deine Organisation verdienen, indem du normale Missionen machst, an Events teilnimmst und an den t\u00e4glichen Hacking-Missionen im Hacking-Punkte-Interface deiner Organisation teilnimmst.</p>
+<p>Nach einer Weile wirst du aus der Anf\u00e4nger-Organisation entfernt. Tritt einer bei oder gr\u00fcnde deine eigene!</p>
+<p>Deine Aufgabe ist es, das Hacking-Punkte-Interface deiner aktuellen Organisation zu finden (gehe zu deiner Organisation und untersuche die Umgebung).</p>
+<p>Vielleicht schaffst du die Hacking-Punkte-Mission nicht, weil du die Konsole noch nicht gewohnt bist ^^. Keine Sorge, du wirst sie bald meistern.</p>',
+
+    'TUT_STEP17_TITLE'       => 'Kinderleicht',
+    'TUT_STEP17_CONTENT'     => '<p>Zeit f\u00fcr eine weitere einfache Aufgabe.</p>
+<p>Du kannst ein Youtube-Video auf deiner Profilseite anzeigen lassen! Wie cool ist das?!</p>
+<p>Alles, was du brauchst, ist der Video-Code \u2013 ein Beispiel findest du im DNA/Einstellungen-Interface.</p>
+<p>Rufe dieses Interface auf, indem du auf deinen Avatar im Dashboard oder auf deiner Profilseite klickst und setze ein Youtube-Video f\u00fcr dich. Untersuche optional auch, wie du deinen Avatar aktualisieren kannst!</p>',
+
+    'TUT_STEP18_TITLE'       => 'Mein Informatik-Abschluss',
+    'TUT_STEP18_CONTENT'     => '<p>Zu guter Letzt: Schlie\u00dfe die Mission \u201eSELECT * FROM WORLD\u201c ab, die in der Informatik-Missionsgruppe verf\u00fcgbar ist.</p>
+<p><strong>Du musst die Missionen der Gruppe eine nach der anderen abschlie\u00dfen, bis du diese erreichst.</strong></p>
+<p>Hast du den <strong>PAUSE</strong>-Button in Missionen bemerkt?</p>
+<p>Bitte denke daran, unsere sozialen Kan\u00e4le zu liken und zu folgen und unsere Mobile-/Tablet-Apps herunterzuladen, um dieses herausfordernde Projekt zu unterst\u00fctzen.</p>
+<p>Und wir entschuldigen uns im Voraus f\u00fcr die Bugs, die dir begegnen k\u00f6nnten ^^.</p>',
+
+    // ── Admin Extras ──
+    'ADMIN_ADD_SKILL_EXP'    => 'Skill-Erfahrung hinzuf\u00fcgen',
 ];

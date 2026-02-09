@@ -4,7 +4,7 @@
 	  
 	  {if $user.rewardsToReceive}
 	  	<a href="{$config.url}rewards" >
-	  	<button class="rewards-icon"  title="{$user.rewardsToReceive} rewards to claim">
+	  	<button class="rewards-icon"  title="{$user.rewardsToReceive} {$L.REWARDS_TITLE}">
 		
 		
 		<span class="glyphicon glyphicon-gift" id="rewards2"></span>
@@ -14,7 +14,7 @@
 	  
 	   {if $user.newMsg}
 	  	<a href="{$config.url}conversations" >
-	  	<button class="messages-icon"  title="{$user.newMsg} unread emails">
+	  	<button class="messages-icon"  title="{$user.newMsg} {$L.NAV_MESSAGES}">
 		<span class="glyphicon glyphicon-envelope" id="newMsg2"></span>
 
 		</button></a>
@@ -66,7 +66,7 @@
                 {if $logged}
                   <a href="{$config.url}logout" class="button text-center"><span class="glyphicon glyphicon-off"></span></a>
                 {else}
-                  <a href="{$config.url}" class="text-center button">GUEST</a>
+                  <a href="{$config.url}" class="text-center button">{$L.FOOTER_GUEST}</a>
                 {/if}
               </div>
           
@@ -81,22 +81,22 @@
 			  <p>
 			  
 			  
-			  <a href="{$config.url}theWorld" title="Stats of the hacking competition"> World stats</a>
-				<a href="{$config.url}rankings" title="Hacker rankings">Rankings</a>
+			  <a href="{$config.url}theWorld" title="{$L.FOOTER_WORLD_STATS}"> {$L.FOOTER_WORLD_STATS}</a>
+				<a href="{$config.url}rankings" title="{$L.FOOTER_RANKINGS}">{$L.FOOTER_RANKINGS}</a>
 				
-        <a href="{$config.url}blogs/" title="Hacker blogs">blogs</a>
-        <a href="{$config.url}blogs/latestArticles/eve" title="Latest articles">articles</a>
-        <a href="{$config.url}frequently-asked-questions" title="Frequently Asked Questions">f.a.q.</a>
-        <a href="{$config.url}pages/page/beginner-tutorial">beginner intro</a>
+        <a href="{$config.url}blogs/" title="{$L.FOOTER_BLOGS}">{$L.FOOTER_BLOGS}</a>
+        <a href="{$config.url}blogs/latestArticles/eve" title="{$L.FOOTER_ARTICLES}">{$L.FOOTER_ARTICLES}</a>
+        <a href="{$config.url}frequently-asked-questions" title="{$L.FAQ_TITLE}">{$L.FOOTER_FAQ}</a>
+        <a href="{$config.url}pages/page/beginner-tutorial">{$L.FOOTER_BEGINNER_INTRO}</a>
 
 				
 				</p>
         <p>
-          <a href="{$config.url}pages/page/about">about</a>
-        <a href="{$config.url}forum" title="Secret Republic Public Forums">Forums</a>
-          <a href="{$config.url}pages/page/media">artwork</a>
-          <a href="{$config.url}pages/page/terms-of-service">t.o.s. & privacy</a>
-        <a href="{$config.url}support">support</a>
+          <a href="{$config.url}pages/page/about">{$L.FOOTER_ABOUT}</a>
+        <a href="{$config.url}forum" title="{$L.FOOTER_FORUMS}">{$L.FOOTER_FORUMS}</a>
+          <a href="{$config.url}pages/page/media">{$L.FOOTER_ARTWORK}</a>
+          <a href="{$config.url}pages/page/terms-of-service">{$L.FOOTER_TOS}</a>
+        <a href="{$config.url}support">{$L.FOOTER_SUPPORT}</a>
 
         </p>
 			
@@ -119,7 +119,7 @@
 			</div></div>
        {/if}
        	{if $user.cardinal}
-		<h3>debug queries</h3>
+	  <h3>{$L.FOOTER_DEBUG_QUERIES}</h3>
 		<p style="white-space:break-spaces;">
 			{$queries|var_export}
 			</p>

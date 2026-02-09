@@ -13,23 +13,23 @@
 			<div class="loginContainer alphaGlow mb10">
 				<form method="post">
 					<input type="hidden" name="process" value="true"/>
-					<input type="text" maxlength="15" placeholder="USER" name="username" required="required" class="text-center" style="border-bottom:0"/>
-					<input type="password" maxlength="20" placeholder="PASSWORD" class="text-center" data-no-voice name="password" required="required"/>
+					<input type="text" maxlength="15" placeholder="{$L.LOGIN_USER_PLACEHOLDER}" name="username" required="required" class="text-center" style="border-bottom:0"/>
+					<input type="password" maxlength="20" placeholder="{$L.LOGIN_PASS_PLACEHOLDER}" class="text-center" data-no-voice name="password" required="required"/>
 					<button type="submit" class="connect"><span class="glyphicon glyphicon-flash"></span></button>
 				</form>
 			</div>
 			<div class="login_links">
 				<div class="row ">
 					<div class="col-md-6 mb10">
-						<a href="{$config.url}register" title="in less than a minute">create new account</a>
+						<a href="{$config.url}register" title="{$L.LOGIN_IN_LESS_THAN}">{$L.LOGIN_CREATE_ACCOUNT}</a>
 					</div>
 					<div class="col-md-6 mb10">
-						<a href="{$config.url}register/forgot/password">forgot user | pass</a>
+						<a href="{$config.url}register/forgot/password">{$L.LOGIN_FORGOT}</a>
 					</div>
 				</div>
 				<br/>
 			</div>
-			<div class="alert alert-info text-center"><strong> <a href="https://github.com/nenuadrian/Secret-Republic-Hacking-Browser-Game-V3" target="_blank">Open Source framework of this game on GitHub</a></strong></div>
+			<div class="alert alert-info text-center"><strong> <a href="https://github.com/nenuadrian/Secret-Republic-Hacking-Browser-Game-V3" target="_blank">{$L.LOGIN_OPEN_SOURCE}</a></strong></div>
 
 		</div>
 

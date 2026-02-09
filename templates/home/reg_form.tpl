@@ -13,7 +13,7 @@ $("#zone_{$smarty.post.zone}").click();
 {/if}
       <div class="row text-center mb10">
         <div class="col-md-10  inline text-center welcomeHacker" style="float:none">
-          "Without the fear of our enemies, our bravery is meaningless"
+          {$L.REG_QUOTE}
         </div>
       </div>
 
@@ -30,22 +30,22 @@ $("#zone_{$smarty.post.zone}").click();
             <form method="post">
               <input type="hidden" name="process" value="true"/>
 			  <div class="well black text-center nomargin">
-			  	 Would you rather live a life of what if's or a life of oh well's?
+			  	 {$L.REG_WELCOME}
 				</div>
               <div class="row-fluid">
                 <div class="col-md-6 col-xs-6 nopadding">
-                  <input  type="text" maxlength="15" autocomplete="off" placeholder="Username" value="{if $smarty.post.username}{$smarty.post.username}{else}{$data.username}{/if}" name="username"  required/>
+                  <input  type="text" maxlength="15" autocomplete="off" placeholder="{$L.REG_USERNAME}" value="{if $smarty.post.username}{$smarty.post.username}{else}{$data.username}{/if}" name="username"  required/>
                 </div>
 
                 <div class="col-md-6 col-xs-6 nopadding">
 
-                  <input  type="email" maxlength="255" autocomplete="off"  placeholder="E-mail (confirmation required)" value="{if $smarty.post.email}{$smarty.post.email}{else}{$data.email}{/if}" name="email" required />
+                  <input  type="email" maxlength="255" autocomplete="off"  placeholder="{$L.REG_EMAIL}" value="{if $smarty.post.email}{$smarty.post.email}{else}{$data.email}{/if}" name="email" required />
 
                 </div>
 
               </div>
 
-              <input style="border-top:0;border-bottom:0;"  type="password" maxlength="20" autocomplete="off"  placeholder="Password" value="{$smarty.post.password}" name="password" required />
+              <input style="border-top:0;border-bottom:0;"  type="password" maxlength="20" autocomplete="off"  placeholder="{$L.REG_PASSWORD}" value="{$smarty.post.password}" name="password" required />
               <div class="row">
                 <div class="col-md-12">
                   <div class="row-fluid">
@@ -61,7 +61,7 @@ $("#zone_{$smarty.post.zone}").click();
 
               <div class="well black text-center nomargin " >
                 <div id="zone_info">
-                  Zones have long replaced countries in the new world order. The world is delimited in 6 major zones, each with its own unique qualities.
+                  {$L.REG_ZONE_INFO}
                 </div>
               </div>
 
@@ -70,7 +70,7 @@ $("#zone_{$smarty.post.zone}").click();
                   <div class="row-fluid">
                     <div class="col-md-8 col-xs-7 nopadding cut-text">
                       <input type="checkbox" name="terms" class="nodisplay" id="terms" {if $smarty.post.terms}checked{/if}/>
-                      <a href="{$config.url}pages/page/terms-of-service/" target="_blank" class="button text-center">ACCEPT OUR TOS & PRIVACY POLICY</a>
+                      <a href="{$config.url}pages/page/terms-of-service/" target="_blank" class="button text-center">{$L.REG_ACCEPT_TOS}</a>
                     </div>
                     <div class="col-md-4 col-xs-5 nopadding">
                       <a class="button text-center" id="terms_button" onclick="doCheckboxToggle2('terms');" {if !$smarty.post.terms}style="opacity:.6"{/if}><span class="glyphicon glyphicon-ok" ></span></a>
@@ -78,14 +78,14 @@ $("#zone_{$smarty.post.zone}").click();
                   </div>
                 </div>
               </div>
-        		<button type="submit" style="border-top:0;">OBTAIN CITIZENSHIP</button>
+        		<button type="submit" style="border-top:0;">{$L.REG_SUBMIT}</button>
 
             </form>
             </div>
 
           <br/><br/><br/><br/>
           <div class="well black text-center nomargin">
-           Back home?
+           {$L.REG_BACK_HOME}
 
           </div>
           <a href="{$config.url}" class="button text-center"><span class="glyphicon glyphicon-home"></span></a>
